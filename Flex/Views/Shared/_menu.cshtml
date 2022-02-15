@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Flex.Data.Model.Tab>
+@using Flex.Util
+<div class="box">
+    <div class="box-header">
+        <h4>Menu</h4>
+    </div>
+    <div class="box-body">
+        <ul class="list-unstyled">
+            <li><button class="quick-link" data-url="@Url.Action("Index","DashBoard")" id="mnubtnHome"><i class="fa fa-money fa-lg"></i>Home</button></li>
+            @{
+                if (Model!=null)
+                {
+                    if (Model.Any())
+                    {
+                        foreach (var tab in Model)
+                        {
+                            <li><button class="quick-link" data-url="@Url.Action(@tab.Action,@tab.Controller)" onclick="LoadPage(this);"><i class="fa fa-money fa-lg"></i>@tab.Name</button></li>
+                        }
+                        if (WebSecurity.Module.Trim().ToUpper()=="GTY" && Model.FirstOrDefault().Controller=="Payment")
+                        {
+                            <li><button class="quick-link" data-url="@Url.Action("GReverseReceipt","Payment")" onclick="LoadPage(this);"><i class="fa fa-money fa-lg"></i>Receipt Reversal </button></li>
+                            <li><button class="quick-link" data-url="@Url.Action("GUpdateTransaction","Payment")" onclick="LoadPage(this);"><i class="fa fa-money fa-lg"></i>Update Receipt</button></li>
+                        }
+                    }
+                }
+
+            }
+            
+        </ul>
+    </div>
+</div>
+<div>@Html.Partial("_profile")</div>

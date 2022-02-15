@@ -1,0 +1,74 @@
+﻿
+@{
+    var datefrom = DateTime.Today.AddDays(-30).ToString("yyyy-MM-dd");
+    var dateto = DateTime.Today.ToString("yyyy-MM-dd");
+}
+<ul class="nav nav-tabs border-none">
+    <li role="presentation" class="active">
+        <a class="border-none uppercase bold padding-horizontal-md margin-right-xs">Claim Report</a>
+    </li>
+</ul>
+
+<div class="padding-top-md">
+    <form id="claimrpt">
+        <div class="panel">
+            <div class="padding-sm">
+                <div class="row">
+                    <div class="form-group col-md-6 ss-item-required">
+                        <label class="radio-inline">
+                            <input type="radio" value="Single" name="rptType" checked="checked" onchange="toggleclaimreport(this);"> Single
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" value="All" name="rptType" onchange="toggleclaimreport(this);"> All
+                        </label>
+                    </div>
+                </div>
+                <div class="row" style="display:none;" id="divAll">
+                    <div class="col-sm-3">
+                        <label for="Code" class="color-transparent-darker lite small uppercase">Start Date</label>
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control datepicker" name="sDate" readonly value="@datefrom"/>
+                            <span class="input-group-btn" style="padding-top:1px;">
+                                <button type="button" class="btn btn-default" onclick="openDatePicker(this)"><i class="fa fa-calendar"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="Code" class="color-transparent-darker lite small uppercase">End Date</label>
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control datepicker" name="eDate" readonly value="@dateto" />
+                            <span class="input-group-btn" style="padding-top:1px;">
+                                <button type="button" class="btn btn-default" onclick="openDatePicker(this)"><i class="fa fa-calendar"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" value="summary" name="rptSummary">Summary Only
+                        </label>
+                    </div>
+                </div>
+                <div class="row" style="display:block;" id="divSingle">
+                    <div class="col-sm-6">
+                        <div class="col-sm-4 margin-left-none">
+                            <label for="Code" class="color-transparent-darker lite small uppercase">Policy No.</label>
+                        </div>
+                        <div class="col-sm-8">
+                            @*<input type="text" name="policyno" class="form-control input-md" id="policyno" />*@
+                            <input type="text" class="form-control input-md" data-autocomplete="@Url.Action("PolicynoAutoComplete","CustPolicy")" />
+                            <input type="hidden" value="" id="policyno" data-autocomplete-id="true" name="policyno" />
+                            @*@Html.DropDownList("policyno", (IEnumerable<SelectListItem>)ViewBag.PolicyNo, String.Empty,
+        new { @class = "form-control input-md" })*@
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <input type="button" class="btn btn-info btn-sm" value="Submit" id="btnsubmit" onclick="claimReport();" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

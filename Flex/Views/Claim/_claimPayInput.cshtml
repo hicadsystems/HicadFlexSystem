@@ -1,0 +1,36 @@
+﻿
+@model Flex.Data.Model.ClaimRequest
+<form id="claimpay">
+    <div class="padding-md">
+        <div class="row">
+            <div class="form-group col-md-5">
+                <label for="Code" class="color-transparent-darker lite small uppercase">Policy</label>
+                <input name="policy" value="@ViewBag.PolicyName" class="form-control input-md" readonly />
+                <input type="hidden" value="@Model.PolicyNo" name="policyno" />
+                <input type="hidden" value="@Model.Id" name="Id" />
+            </div>
+            <div class="form-group col-md-4">
+                <label for="Commission" class="color-transparent-darker lite small uppercase">Claim No</label>
+                <input type="text" class="form-control" value="@Model.ClaimNo" name="claimno" readonly />
+            </div>
+            <div class="form-group col-md-3">
+                <label for="Commission" class="color-transparent-darker lite small uppercase">Amount</label>
+                <input type="text" class="form-control" value="@Model.ApprovedAmount" name="amount" readonly />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="Name" class="color-transparent-darker lite small uppercase">Payment Method</label>
+                @Html.DropDownList("PaymentMethod", (IEnumerable<SelectListItem>)ViewBag.paymentMethods, String.Empty,
+                             new { @class = "form-control input-md", @onchange = "toggleChqNo(this)" })
+            </div>
+
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="Commission" class="color-transparent-darker lite small uppercase">Payment Ref. No.</label>
+                <input type="text" name="refno" class="form-control input-md"  />
+            </div>
+        </div>
+    </div>
+</form>
+
+

@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Flex.Data.Model.fl_poltype>
+
+<ul class="nav nav-tabs border-none">
+    <li role="presentation" class="active">
+        <a class="border-none uppercase bold padding-horizontal-md margin-right-xs">Policy Type</a>
+    </li>
+    <li class="pull-right">
+        <button type="button" onclick="showPolTypeInput(this, 0)" class="btn btn-success btn-sm" data-url="@Url.Action("AddEditPolicyType", "SetUp")"><span class="fa fa-plus"></span> &nbsp; ADD Poicy Type</button>
+    </li>
+</ul>
+
+@*<div class="margin-top-md margin-bottom-md">
+    <span class="inline-block pull-right text-gray" style="margin-bottom:-34px; width:24px; height:34px; line-height:34px; vertical-align:middle;">
+        <span class="fa fa-search"></span>
+    </span>
+    <input type="text" name="policyTypeSearch" style="padding-right:30px;" class=" form-control input-md" placeholder="Search PolicyType" />
+    <div class="text-center padding-sm" style="display:none;">
+        <span class="fa fa-spinner rotate"></span> <em>loading...</em>
+    </div>
+</div>*@
+
+
+<div class="margin-top-md margin-bottom-md">
+    @{
+        if (Model != null && Model.Any())
+        {
+            @*<div class="padding-sm">*@
+            <span class="pull-right" id="spApproval">
+                <a class="btn btn-warning btn-sm" id="btnApprove" onclick="exportPolType('pdf')"><span class="fa fa-download"></span> &nbsp; pdf</a>
+            </span>
+            @*</div>*@
+        }
+    }
+
+    <table class="table table-common table-striped table-hover border-bottom table-condensed" id="tblppolicy">
+        <thead>
+            <tr>
+                <th style="width:10%;">Policy Class</th>
+                <th style="width:7%;">Code</th>
+                <th style="width:17%;">Decription</th>
+                <th style="width:5%;">Type</th>
+                <th style="width:4%;">Term</th>
+                <th style="width:3%;">Maturity</th>
+                <th style="width:9%;">Income Account</th>
+                <th style="width:9%;">Liability Account</th>
+                <th style="width:9%;">Expense Account</th>
+                <th style="width:9%;">Vat Account</th>
+                <th style="width:3%;"></th>
+                <th style="width:3%;"></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if (Model != null)
+                {
+                    foreach (var poltype in Model)
+                    {
+                        <tr class="pointer">
+                            <td>@poltype.poltype</td>
+                            <td>@poltype.code</td>
+                            <td>@poltype.poldesc</td>
+                            <td>@poltype.actype</td>
+                            <td>@poltype.term</td>
+                            <td>@poltype.matage</td>
+                            <td>@poltype.income_account</td>
+                            <td>@poltype.liability_account</td>
+                            <td>@poltype.expense_account</td>
+                            <td>@poltype.vat_account</td>
+                            <td>
+                                <button class="btn btn-warning btn-sm fa fa-pencil" data-id="@poltype.Id"
+                                        data-url="@Url.Action("AddEditPolicyType", "SetUp")" onclick="showPolTypeInput(this,@poltype.Id)">
+                                    Edit
+                                </button>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger btn-sm fa fa-remove" data-id="@poltype.Id" data-url="@Url.Action("DeletePolicyType", "SetUp")"
+                                        data-submiturl="@Url.Action("cDeletePolicyType", "SetUp")" onclick="ShowdelItem(this,@poltype.Id);">
+                                    Delete
+                                </button>
+                            </td>
+
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="10" class="pagination-summary small">
+                    <paging-summary ng-model="model.currentPage" items-per-page="model.pageSize" total-items="model.totalItems"></paging-summary>
+                    <!--<pagination boundary-links="true" total-items="model.totalItems" items-per-page="model.pageSize" max-size="5" ng-model="model.currentPage" class="pagination-sm" previous-text="&lsaquo; Prev" next-text="Next &rsaquo;" first-text="&laquo;" last-text="&raquo;" ng-change="submit(model)"></pagination>-->
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    </div>

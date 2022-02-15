@@ -1,0 +1,18 @@
+﻿<div class="box">
+    <div class="box-header">
+        <h4>Quick Links</h4>
+    </div>
+    <div class="box-body">
+        <ul class="list-unstyled">
+            <li><button class="quick-link active" data-url="@Url.Action("Index","PolicySummary")" onclick="LoadPage(this);"><i class="fa fa-credit-card fa-lg"></i>Policy Summary</button></li>
+            <li><button class="quick-link" data-url="@Url.Action("Index","Statement")" onclick="LoadPage(this);"><i class="fa fa-money fa-lg"></i>Statement</button></li>
+            <li><button class="quick-link" data-url="@Url.Action("Create","Policy")" onclick="LoadPage(this);"><i class="fa fa-money fa-lg"></i>New Policy</button></li>
+            @*<li ng-if="true"><button class="quick-link" data-url="@Url.Action("Index","Claim")" onclick="LoadPage(this);"><i class="fa fa-money fa-lg"></i>Make Payment</button></li>*@
+            <li><button class="quick-link" data-url="@Url.Action("Index","Claim")" onclick="LoadPage(this);"><i class="fa fa-check fa-lg"></i>Claims</button></li>
+            <li><button class="quick-link" data-url="@Url.Action("Index","PaymentChannel")" onclick="LoadPage(this);"><i class="fa fa-check fa-lg"></i>Payment Channel</button></li>
+            @*<li><button class="quick-link" ng-class="{'active': $active('payment.beneficiaries')}" ui-sref="payment.beneficiaries"><i class="fa fa-user fa-lg"></i>Manage Beneficiaries and Next of Kin</button></li>*@
+            @*<li><button class="quick-link" ng-class="{'active': $active('payment.overview')}" ui-sref="payment.overview"><i class="fa fa-area-chart fa-lg"></i>Payments Report</button></li>*@
+        </ul>
+    </div>
+</div>
+<div>@Html.Partial("_profile")</div>

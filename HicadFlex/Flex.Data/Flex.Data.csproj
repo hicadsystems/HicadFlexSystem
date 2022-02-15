@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A6BA9569-66CF-4167-9C25-A98DE5810498}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Flex.Data</RootNamespace>
+    <AssemblyName>Flex.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net40\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Enum\Enum.cs" />
+    <Compile Include="Model\accchart.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ac_costCenter.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ac_rctdetails.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ac_rctheader.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ClaimRequest.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CustomerPolicy.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CustomerUser.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\fl_agents.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\fl_grouptype.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\fl_location.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\fl_password.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\fl_payclaim.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\fl_payhistory.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\fl_payinput.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\fl_payinput2.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\fl_pendingSMS.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\fl_policyinput.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\fl_poltype.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\fl_premrate.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\fl_premrateRules.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\fl_PublicHoliday.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\fl_receiptcontrol.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\fl_state.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\fl_system.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\fl_translog.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LinkRole.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Module.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\NextofKin_BeneficiaryStaging.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\OnlineReciept.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PendingEmail.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PersonalDetailsStaging.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\pl_UserSession.cs" />
+    <Compile Include="Model\FlexDb.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FlexDb.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\FlexDb.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\FlexDb.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FlexDb.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\FlexEntities.cs" />
+    <Compile Include="Model\pfl_grouptype.cs" />
+    <Compile Include="Model\Portlet.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Role.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Tab.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\UserRole.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\UserSession.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\vProduction.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\vwPolicy.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\vwPolicyHistory.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\UtilEnumHelper.cs" />
+    <Compile Include="ViewModel\AuthResult.cs" />
+    <Compile Include="ViewModel\BindingModel.cs" />
+    <Compile Include="ViewModel\CustomerPolicySummary.cs" />
+    <Compile Include="ViewModel\GroupViewModel.cs" />
+    <Compile Include="ViewModel\InterestCalModel.cs" />
+    <Compile Include="ViewModel\MeessageViewModel.cs" />
+    <Compile Include="ViewModel\PagedResult.cs" />
+    <Compile Include="ViewModel\PolicyViewModel.cs" />
+    <Compile Include="ViewModel\ProcessResult.cs" />
+    <Compile Include="ViewModel\QueryModel.cs" />
+    <Compile Include="ViewModel\PendingPolicy.cs" />
+    <Compile Include="ViewModel\UserAuthViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EntityDeploy Include="Model\FlexDb.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FlexDb.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Model\FlexDb.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FlexDb.edmx</DependentUpon>
+      <LastGenOutput>FlexDb.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Model\FlexDb.edmx.diagram">
+      <DependentUpon>FlexDb.edmx</DependentUpon>
+    </None>
+    <None Include="Model\FlexDb.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FlexDb.edmx</DependentUpon>
+      <LastGenOutput>FlexDb.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

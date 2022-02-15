@@ -1,0 +1,157 @@
+USE [testdata]
+GO
+/****** Object:  StoredProcedure [dbo].[fl_qrystatement]    Script Date: 06/13/2014 13:30:41 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[fl_qrystatement]
+@policyno   varchar(20),
+@wdate datetime,
+@lpoltype  varchar(2),
+@wstation varchar(20),
+@RETURN_CODE varchar(8) output
+	/*
+	(
+	@parameter1 int = 5,
+	@parameter2 datatype OUTPUT
+	)
+	*/
+AS
+declare @polno varchar(12),@curyear integer,@prvyear integer,@prvdate smalldatetime,@exitdate varchar(8),@amount money,@openb money,
+		@mm smallint,@origdate smalldatetime,@origdate2 smalldatetime,@trandate smalldatetime,@receiptno varchar(12),@wreceiptno varchar(12),
+		@gir smallint,@grpcode varchar(5),@pcn varchar(5),@period varchar(6),@wind varchar(12),@wctodate integer,@wctyear integer,@loan money,
+		@curintr money,@curintr2 money,@curintr5 money,@amount2 money,@amount5 money,@cumintr money,@cumintr2 money,@cumintr5 money
+declare @openb2 money,@openb5 money,@loan2 money,@loan5 money,@doctype varchar(12),@poltype varchar(2),@hold varchar(10), @amt money,
+		@effperiod varchar(6),@prvperiod varchar(6),@period2 varchar(6),@period5 varchar(6),
+		@amountx money,@cumintrx money,@curintrx money,@openbx money,@loanx money
+	/* SET NOCOUNT ON */ 
+delete from fl_temphistory where workstation=@wstation
+If @policyno='ALL' 
+begin
+	declare mytab cursor for
+	select policyno,exitdate,pcn,dob from fl_policyinput where poltype=@lpoltype order by policyno
+	open mytab
+	fetch next from mytab into @polno, @exitdate,@pcn,@hold
+	If @@fetch_status<>0 return 7
+end
+else
+begin
+	declare mytab cursor for
+	select policyno,exitdate,pcn,dob from fl_policyinput where policyno=@policyno and poltype=@lpoltype
+	open mytab
+	fetch next from mytab into @polno, @exitdate,@pcn,@hold
+	If @@fetch_status<>0 return 7
+end
+set @curyear = Year(@wdate) 
+set @prvyear = @curyear - 1
+set @effperiod = cast(month(@wdate) as varchar)
+if len(@effperiod) = 1 set @effperiod = '0' + @effperiod
+set @prvperiod = cast(@prvyear as varchar) + '11'
+set @effperiod = cast(@curyear as varchar) + @effperiod
+set @wind = '12/01/' + cast(@prvyear as varchar)
+set @prvdate = cast(@wind as smalldatetime)
+set @return_code = 'YES'
+while @@fetch_status=0   --for each policy
+begin
+	set @wind = '0'
+    If IsNull(@exitdate,'11111111')<> '11111111' goto nextrecord1
+    declare mytab1 cursor for
+    select orig_date, trandate, receiptno, gir, grpcode, period, cur_intr, amount, openbalance, cumul_intr, loanamt, doctype, poltype 
+    from fl_payhistory where policyno=@polno and period > @prvperiod order by receiptno,period,trandate
+	open mytab1
+	fetch next from mytab1 into @origdate, @trandate, @receiptno, @gir, @grpcode, @period, @curintr, @amount, @openb, @cumintr, @loan, @doctype, @poltype
+	If @@fetch_status<>0 GoTo nextrecord
+    set @wctyear = 0
+    set @wctodate = 0
+    while @@fetch_status=0   --for each receipt
+    begin
+		If @effperiod < @period  GoTo nextreceipt1
+		set @wreceiptno = @receiptno
+		if year(@origdate) < year(@wdate) set @wreceiptno = ' Open Bal'
+
+		declare mytab5 cursor for
+		select cur_intr,cumul_intr,amount,openbalance,loanamt,period from fl_payhistory where policyno=@polno and receiptno=@receiptno and period<=@effperiod ORDER BY trandate desc
+		open mytab5
+		fetch next from mytab5 into @curintr5,@cumintr5,@amount5,@openb5,@loan5,@period5
+		if @period5<>@period GoTo nextreceipt
+		If @wreceiptno = ' Open Bal'
+		begin
+			set @wctodate = @wctodate + 1
+			set @hold = '01/01/' + cast(@curyear as varchar)
+			set @origdate2 = cast(@hold as datetime)
+		end
+        Else
+        begin
+			set @origdate2 = @origdate
+        End 
+
+        declare mytabx cursor for
+        select cur_intr,cumul_intr,amount,openbalance,loanamt from fl_temphistory where policyno=@polno and poltype=@poltype and receiptno=@wreceiptno and workstation=@wstation
+		open mytabx
+        fetch next from mytabx into @curintrx,@cumintrx,@amountx,@openbx,@loanx
+        If @@fetch_status=0
+        begin
+			 If @wreceiptno = ' Open Bal'
+			 begin
+				  set @curintr2 = isnull(@curintrx,0) + isnull(@curintr,0)
+				  set @openb2 = isnull(@openbx,0) + isnull(@amount5,0) + isnull(@cumintr5,0) -  isnull(@curintr5,0)
+				  set @amount2 = @openb2
+				  set @cumintr2 = 0
+				  set @loan2 = isnull(@loan,0) + isnull(@loanx,0)
+			 end
+			 else
+			 begin
+				 set @openb2 = isnull(@openb,0) + isnull(@openbx,0)
+				 set @amount2 = isnull(@amount,0) + isnull(@amountx,0)
+				 set @curintr2 = isnull(@curintr,0) + isnull(@curintrx,0)
+				 set @cumintr2 = isnull(@cumintr,0) + isnull(@cumintrx,0)
+				 set @loan2 = isnull(@loan,0) + isnull(@loanx,0)
+			end
+            update fl_temphistory set gir=@gir,grpcode=@grpcode,pcn=@pcn,trandate=@trandate,orig_date=@origdate2,loanamt=@loan2
+            ,cur_intr=@curintr2,amount=@amount2,doctype=@doctype,poltype=@poltype,cumul_intr=@cumintr2,openbalance=@openb2
+             where policyno=@polno and receiptno=@wreceiptno and workstation=@wstation --and period=@period
+        end
+		Else
+		begin
+			 If @wreceiptno = ' Open Bal'
+			 begin
+				  set @curintr2 = isnull(@curintr,0)
+				  set @openb2 = isnull(@amount5,0) + isnull(@cumintr5,0) -  isnull(@curintr5,0)
+				  set @amount2 = @openb2
+				  set @cumintr2 = 0
+				  set @loan2 = isnull(@loan,0)
+			 end
+			 else
+			 begin
+				 set @openb2 = isnull(@openb,0)
+				 set @amount2 = isnull(@amount,0)
+				 set @curintr2 = isnull(@curintr,0)
+				 set @cumintr2 = isnull(@cumintr,0)
+				 set @loan2 = isnull(@loan,0)
+			end
+			insert into fl_temphistory (gir,policyno,grpcode,pcn,trandate,receiptno,period,orig_date,cur_intr,amount,doctype,poltype,cumul_intr,openbalance,loanamt,workstation)
+			values(@gir,@polno,@grpcode,@pcn,@trandate,@wreceiptno,@period,@origdate,@curintr2,@amount2,@doctype,@poltype,@cumintr2,@openb2,@loan2,@wstation)
+		end
+        close mytabx
+        deallocate mytabx
+nextreceipt:
+		close mytab5
+		deallocate mytab5
+		nextreceipt1:
+		fetch next from mytab1 into @origdate, @trandate, @receiptno, @gir, @grpcode, @period, @curintr, @amount, @openb, @cumintr, @loan, @doctype, @poltype
+    END
+    update fl_temphistory set gir=@wctyear, loanamt=@wctodate + @wctyear where policyno=@polno and workstation=@wstation
+nextrecord:
+	close mytab1
+	deallocate mytab1
+nextrecord1:
+	fetch next from mytab into @polno, @exitdate,@pcn,@hold
+END
+close mytab
+deallocate mytab
+update fl_temphistory set opendeposit=isnull(opendeposit,0),deposit=isnull(deposit,0),curdep_intr=isnull(curdep_intr,0)
+	
+RETURN
+

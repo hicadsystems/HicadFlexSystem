@@ -1,0 +1,56 @@
+﻿@model Flex.Data.Model.fl_agents
+
+<form id="frmAgent">
+    <div class="padding-md">
+        <input type="hidden" value="@Model.Id" name="Id" />
+        <div class="row">
+            <input type="hidden" name="Code" class="form-control input-md" value="@Model.agentcode" />
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="Name" class="color-transparent-darker lite small uppercase">Name</label>
+                <input type="text" name="Name" class="form-control input-md" value="@Model.agentname" />
+            </div>
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="Type" class="color-transparent-darker lite small uppercase">Type</label>
+                @Html.DropDownList("Type", (IEnumerable<SelectListItem>)ViewBag.agentType, String.Empty, new { @class = "form-control input-md" })
+                @*<textarea name="Type" class="form-control input-md">@Model.agenttype</textarea>*@
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="Commission" class="color-transparent-darker lite small uppercase">Commission Rate</label>
+                <input type="text" name="Commission" class="form-control input-md" required value="@Model.CommissionRate.GetValueOrDefault()" />
+            </div>
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="Location" class="color-transparent-darker lite small color-gray">Location</label>
+                @Html.DropDownList("Location", (IEnumerable<SelectListItem>)ViewBag.CostCentre, String.Empty, new { @class = "form-control input-md" })
+
+                @*<input type="text" name="Location" class="form-control input-md" required value="@Model.locationId" />*@
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="Address" class="color-transparent-darker lite small uppercase">Phone</label>
+                <input type="text" name="Phone" class="form-control input-md" required value="@Model.agentphone" />
+            </div>
+            <div class="form-group col-md-6">
+                <label for="Address" class="color-transparent-darker lite small uppercase">Address</label>
+                <textarea name="Address" class="form-control input-md" required rows="2">@Model.agentaddr</textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="Address" class="color-transparent-darker lite small uppercase">Status</label>
+                @Html.DropDownList("Status", (IEnumerable<SelectListItem>)ViewBag.statuses, String.Empty, new { @class = "form-control input-md" })
+            </div>
+            <div class="form-group col-md-6">
+                <label for="Address" class="color-transparent-darker lite small uppercase">Exit Date</label>
+                <input type="text" name="ExitDate" class="form-control input-md datepicker" required value="@Model.exitdate" />
+            </div>
+
+        </div>
+    </div>
+</form>
+

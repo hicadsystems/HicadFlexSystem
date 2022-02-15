@@ -1,0 +1,66 @@
+﻿@model Flex.Data.Model.fl_system
+<div class="form-top">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#coyProfile" aria-controls="coyProfile" role="tab" data-toggle="tab">Company Profile</a>
+        </li>
+        @{
+            if (Model == null)
+            {
+                <li class="pull-right">
+                    <button class="btn btn-success btn-sm" id="btnApprove" data-url="@Url.Action("AddEditCoyProfile", "SetUp")" onclick="showCoyProfileInput('New',this)"><span class="fa fa-download" id="btnAddCoyProfile"></span> Add Company Profile</button>
+                </li>
+            }
+        }
+    </ul>
+</div>
+<div class="tab-content margin-top-sm">
+    <div role="tabpanel" class="tab-pane active" id="coyProfile">
+        @{
+            if (Model != null)
+            {
+                <table class="table table-common table-striped table-hover border-bottom table-condensed" id="tblppolicy">
+                    <thead>
+                        <tr>
+                            <th style="width:10%;">Code</th>
+                            <th style="width:17%;">Name</th>
+                            <th style="width:10%;">Address</th>
+                            <th style="width:9%;">Town</th>
+                            <th style="width:18%;">LGA</th>
+                            <th style="width:10%;">State Type</th>
+                            <th style="width:9%;">P.O. Box</th>
+                            <th style="width:10%;">Telephone</th>
+                            <th style="width:6%;">Email</th>
+                            <th style="width:6%;">Installation Date</th>
+                            <th style="width:6%;">Processing Month</th>
+                            <th style="width:6%;">Processing Year</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="pointer">
+                            <td>@Model.coycode</td>
+                            <td>@Model.coyname</td>
+                            <td>@Model.coyaddress</td>
+                            <td>@Model.town</td>
+                            <td>@Model.lg</td>
+                            <td>@Model.state</td>
+                            <td>@Model.box</td>
+                            <td>@Model.telephone</td>
+                            <td>@Model.email</td>
+                            <td>@Model.installdate</td>
+                            <td>@Model.processmonth</td>
+                            <td>@Model.processyear</td>
+                            <td>
+                                <button class="btn btn-warning btn-sm fa fa-pencil" data-id="@Model.Id"
+                                        data-url="@Url.Action("AddEditCoyProfile", "SetUp")" onclick="showCoyProfileInput('edit',this,'@Model.coycode')">
+                                    Edit
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+        }
+    </div>
+</div>

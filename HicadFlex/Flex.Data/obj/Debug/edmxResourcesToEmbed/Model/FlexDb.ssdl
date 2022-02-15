@@ -1,0 +1,1029 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Flex.Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ac_costCenter">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="Desc" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Flex.dbo.ac_rctdetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ac_rctdetails">
+    <Key>
+      <PropertyRef Name="rct_number" />
+      <PropertyRef Name="rct_account" />
+      <PropertyRef Name="rct_type" />
+      <PropertyRef Name="rct_code" />
+    </Key>
+    <Property Name="rct_number" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="rct_account" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="rct_type" Type="nvarchar" MaxLength="2" Nullable="false" />
+    <Property Name="rct_code" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="rct_debit" Type="money" />
+    <Property Name="rct_credit" Type="money" />
+    <Property Name="rct_remark" Type="nvarchar" MaxLength="50" />
+    <Property Name="rct_bank" Type="nvarchar" MaxLength="15" />
+    <Property Name="coy_code" Type="nvarchar" MaxLength="10" />
+    <Property Name="Branch_code" Type="nvarchar" MaxLength="10" />
+    <Property Name="createdby" Type="nvarchar" MaxLength="15" />
+    <Property Name="datecreated" Type="datetime" />
+    <Property Name="datedeleted" Type="datetime" />
+    <Property Name="deletedby" Type="nvarchar" MaxLength="20" />
+    <Property Name="deletemarker" Type="nvarchar" MaxLength="3" />
+    <Property Name="rct_class" Type="nvarchar" MaxLength="15" />
+    <Property Name="rct_premium" Type="money" />
+    <Property Name="rct_premloan" Type="money" />
+    <Property Name="rct_policyloan" Type="money" />
+    <Property Name="rct_othercharge" Type="money" />
+    <Property Name="rct_grossnet" Type="nvarchar" MaxLength="6" />
+    <Property Name="rct_partfull" Type="nvarchar" MaxLength="12" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Flex.dbo.ac_rctheader' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ac_rctheader">
+    <Key>
+      <PropertyRef Name="coy_code" />
+      <PropertyRef Name="rcth_unitcode" />
+      <PropertyRef Name="rcth_number" />
+      <PropertyRef Name="rcth_class" />
+      <PropertyRef Name="rcth_type" />
+      <PropertyRef Name="rcth_date" />
+      <PropertyRef Name="rcth_bank" />
+      <PropertyRef Name="rcth_indicator" />
+      <PropertyRef Name="Branch_code" />
+    </Key>
+    <Property Name="coy_code" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Branch_code" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="rcth_unitcode" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="rcth_number" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="rcth_name" Type="nvarchar" MaxLength="70" />
+    <Property Name="rcth_address" Type="nvarchar" MaxLength="50" />
+    <Property Name="rcth_refnumber" Type="nvarchar" MaxLength="10" />
+    <Property Name="rcth_cheque" Type="nvarchar" MaxLength="20" />
+    <Property Name="rcth_class" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="rcth_type" Type="nvarchar" MaxLength="2" Nullable="false" />
+    <Property Name="rcth_date" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="rcth_policy" Type="nvarchar" MaxLength="15" />
+    <Property Name="rcth_bank" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="rcth_debit" Type="money" />
+    <Property Name="rcth_credit" Type="money" />
+    <Property Name="rcth_total" Type="money" />
+    <Property Name="rcth_remark" Type="nvarchar" MaxLength="50" />
+    <Property Name="rcth_indicator" Type="bit" Nullable="false" />
+    <Property Name="createdby" Type="nvarchar" MaxLength="20" />
+    <Property Name="datecreated" Type="datetime" />
+    <Property Name="updatedby" Type="nvarchar" MaxLength="20" />
+    <Property Name="dateupdated" Type="datetime" />
+    <Property Name="datedeleted" Type="datetime" />
+    <Property Name="deletedby" Type="nvarchar" MaxLength="20" />
+    <Property Name="naira" Type="nvarchar" MaxLength="10" />
+    <Property Name="kobo" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Flex.dbo.accchart' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="accchart">
+    <Key>
+      <PropertyRef Name="acctnumber" />
+    </Key>
+    <Property Name="acctcode1" Type="nvarchar" MaxLength="1" />
+    <Property Name="acctcode2" Type="nvarchar" MaxLength="2" />
+    <Property Name="acctcode3" Type="nvarchar" MaxLength="3" />
+    <Property Name="acctcode4" Type="nvarchar" MaxLength="4" />
+    <Property Name="acctcode5" Type="nvarchar" MaxLength="5" />
+    <Property Name="acctcode6" Type="nvarchar" MaxLength="6" />
+    <Property Name="acctnumber" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="acctcode7" Type="nvarchar" MaxLength="60" />
+    <Property Name="oldnumber" Type="nvarchar" MaxLength="12" />
+    <Property Name="acctype" Type="nvarchar" MaxLength="2" />
+    <Property Name="acctsubtype" Type="nvarchar" MaxLength="1" />
+    <Property Name="address" Type="nvarchar" MaxLength="100" />
+    <Property Name="effdate" Type="char" MaxLength="10" />
+    <Property Name="ledgerpasswd" Type="nvarchar" MaxLength="20" />
+    <Property Name="ledgerpasswd2" Type="nvarchar" MaxLength="20" />
+    <Property Name="subcode" Type="nvarchar" MaxLength="6" />
+    <Property Name="blgroup1" Type="nvarchar" MaxLength="5" />
+    <Property Name="blgroup2" Type="nvarchar" MaxLength="5" />
+    <Property Name="blgroup3" Type="nvarchar" MaxLength="5" />
+    <Property Name="blgroup4" Type="nvarchar" MaxLength="5" />
+    <Property Name="blgroupdes1" Type="nvarchar" MaxLength="50" />
+    <Property Name="blgroupdes2" Type="nvarchar" MaxLength="50" />
+    <Property Name="blgroupdes3" Type="nvarchar" MaxLength="50" />
+    <Property Name="blgroupdes4" Type="nvarchar" MaxLength="50" />
+    <Property Name="blsum1" Type="nvarchar" MaxLength="5" />
+    <Property Name="blsum2" Type="nvarchar" MaxLength="5" />
+    <Property Name="blsum3" Type="nvarchar" MaxLength="5" />
+    <Property Name="blsum4" Type="nvarchar" MaxLength="5" />
+    <Property Name="blsumdesc1" Type="nvarchar" MaxLength="50" />
+    <Property Name="blsumdesc2" Type="nvarchar" MaxLength="50" />
+    <Property Name="blsumdesc3" Type="nvarchar" MaxLength="50" />
+    <Property Name="blsumdesc4" Type="nvarchar" MaxLength="50" />
+    <Property Name="cfgroup1" Type="nvarchar" MaxLength="5" />
+    <Property Name="cfgroup2" Type="nvarchar" MaxLength="5" />
+    <Property Name="cfgroup3" Type="nvarchar" MaxLength="5" />
+    <Property Name="cfgroup4" Type="nvarchar" MaxLength="5" />
+    <Property Name="cfgroupdes1" Type="nvarchar" MaxLength="50" />
+    <Property Name="cfgroupdes2" Type="nvarchar" MaxLength="50" />
+    <Property Name="cfgroupdes3" Type="nvarchar" MaxLength="50" />
+    <Property Name="cfgroupdes4" Type="nvarchar" MaxLength="50" />
+    <Property Name="cfsumdesc1" Type="nvarchar" MaxLength="50" />
+    <Property Name="cfsumdesc2" Type="nvarchar" MaxLength="50" />
+    <Property Name="cfsumdesc3" Type="nvarchar" MaxLength="50" />
+    <Property Name="cfsumdesc4" Type="nvarchar" MaxLength="50" />
+    <Property Name="createdby" Type="nvarchar" MaxLength="20" />
+    <Property Name="datecreated" Type="datetime" />
+    <Property Name="address1" Type="nvarchar" MaxLength="50" />
+    <Property Name="address2" Type="nvarchar" MaxLength="50" />
+    <Property Name="address3" Type="nvarchar" MaxLength="50" />
+    <Property Name="telephone" Type="nvarchar" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="trade" Type="nvarchar" MaxLength="50" />
+    <Property Name="dateblocked" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="ClaimRequest">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClaimNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="PolicyNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="ClaimType" Type="int" />
+    <Property Name="Status" Type="int" />
+    <Property Name="DateCreated" Type="datetime2" Precision="7" />
+    <Property Name="EffectiveDate" Type="datetime2" Precision="7" />
+    <Property Name="Interest" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="ApprovedAmount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="FundAmount" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="CustomerPolicies">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerUserId" Type="bigint" />
+    <Property Name="Policyno" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="CustomerUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="40" />
+    <Property Name="password" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdby" Type="bigint" />
+    <Property Name="datecreated" Type="datetime2" Precision="7" />
+    <Property Name="passworddate" Type="datetime2" Precision="7" />
+    <Property Name="modifydate" Type="datetime2" Precision="7" />
+    <Property Name="modifyby" Type="bigint" />
+    <Property Name="lastLoginDate" Type="datetime" />
+    <Property Name="firstLoginDate" Type="datetime" />
+    <Property Name="status" Type="int" />
+    <Property Name="email" Type="nvarchar" MaxLength="100" />
+    <Property Name="phone" Type="nvarchar" MaxLength="15" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="fl_agents">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="agentcode" Type="nvarchar" MaxLength="50" />
+    <Property Name="agentname" Type="nvarchar" MaxLength="50" />
+    <Property Name="locationId" Type="int" />
+    <Property Name="agenttype" Type="int" />
+    <Property Name="CommissionRate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="createdBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="datecreated" Type="datetime2" Precision="7" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="datemodified" Type="datetime2" Precision="7" />
+    <Property Name="modifiedby" Type="nvarchar" MaxLength="50" />
+    <Property Name="agentaddr" Type="nvarchar" MaxLength="100" />
+    <Property Name="agentphone" Type="nvarchar" MaxLength="15" />
+    <Property Name="status" Type="int" />
+    <Property Name="exitdate" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="fl_grouptype">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="grpcode" Type="nvarchar" MaxLength="50" />
+    <Property Name="grpname" Type="nvarchar" MaxLength="100" />
+    <Property Name="Address" Type="nvarchar" MaxLength="150" />
+    <Property Name="accountcode" Type="nvarchar" MaxLength="50" />
+    <Property Name="grpclass" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="DateCreated" Type="datetime2" Precision="7" />
+    <Property Name="Createdby" Type="nvarchar" MaxLength="50" />
+    <Property Name="annmonth" Type="nchar" MaxLength="2" />
+  </EntityType>
+  <EntityType Name="fl_location">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="locdesc" Type="nvarchar" MaxLength="50" />
+    <Property Name="locstate" Type="nvarchar" MaxLength="50" />
+    <Property Name="loccode" Type="nvarchar" MaxLength="50" />
+    <Property Name="datecreated" Type="datetime2" Precision="7" />
+    <Property Name="createdby" Type="nvarchar" MaxLength="50" />
+    <Property Name="datemodified" Type="datetime2" Precision="7" />
+    <Property Name="modifiedby" Type="nvarchar" MaxLength="50" />
+    <Property Name="Isdeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="fl_password">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userid" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="userpassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="40" />
+    <Property Name="userdept" Type="nvarchar" MaxLength="30" />
+    <Property Name="createdby" Type="nvarchar" MaxLength="30" />
+    <Property Name="datecreated" Type="datetime" />
+    <Property Name="expirydate" Type="datetime" />
+    <Property Name="passworddate" Type="datetime" />
+    <Property Name="Deleteddate" Type="datetime" />
+    <Property Name="Deletedby" Type="nvarchar" MaxLength="30" />
+    <Property Name="modifydate" Type="datetime" />
+    <Property Name="modifyby" Type="nvarchar" MaxLength="30" />
+    <Property Name="lastlogindate" Type="datetime" />
+    <Property Name="status" Type="int" />
+    <Property Name="branch" Type="int" />
+    <Property Name="mobile" Type="nvarchar" MaxLength="15" />
+    <Property Name="email" Type="nvarchar" MaxLength="100" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="fl_payclaim">
+    <Key>
+      <PropertyRef Name="srn" />
+    </Key>
+    <Property Name="srn" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="policyno" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="receiptno" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="period" Type="nvarchar" MaxLength="6" Nullable="false" />
+    <Property Name="grpcode" Type="nvarchar" MaxLength="5" />
+    <Property Name="pcn" Type="nvarchar" MaxLength="9" />
+    <Property Name="poltype" Type="nvarchar" MaxLength="3" />
+    <Property Name="orig_date" Type="smalldatetime" />
+    <Property Name="trandate" Type="smalldatetime" />
+    <Property Name="amount" Type="money" />
+    <Property Name="gir" Type="real" />
+    <Property Name="cur_intr" Type="money" />
+    <Property Name="cumul_intr" Type="money" />
+    <Property Name="loanamt" Type="money" />
+    <Property Name="doctype" Type="nvarchar" MaxLength="20" />
+    <Property Name="openbalance" Type="money" />
+    <Property Name="opendeposit" Type="money" />
+    <Property Name="deposit" Type="money" />
+    <Property Name="curdep_intr" Type="money" />
+    <Property Name="cumuldep_intr" Type="money" />
+  </EntityType>
+  <EntityType Name="fl_payhistory">
+    <Key>
+      <PropertyRef Name="srn" />
+    </Key>
+    <Property Name="srn" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="policyno" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="receiptno" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="period" Type="nvarchar" MaxLength="6" Nullable="false" />
+    <Property Name="grpcode" Type="nvarchar" MaxLength="5" />
+    <Property Name="pcn" Type="nvarchar" MaxLength="9" />
+    <Property Name="poltype" Type="nvarchar" MaxLength="3" />
+    <Property Name="orig_date" Type="smalldatetime" />
+    <Property Name="trandate" Type="smalldatetime" />
+    <Property Name="amount" Type="money" />
+    <Property Name="gir" Type="real" />
+    <Property Name="cur_intr" Type="money" />
+    <Property Name="cumul_intr" Type="money" />
+    <Property Name="loanamt" Type="money" />
+    <Property Name="doctype" Type="nvarchar" MaxLength="20" />
+    <Property Name="openbalance" Type="money" />
+    <Property Name="opendeposit" Type="money" />
+    <Property Name="deposit" Type="money" />
+    <Property Name="curdep_intr" Type="money" />
+    <Property Name="cumuldep_intr" Type="money" />
+  </EntityType>
+  <EntityType Name="fl_payinput">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="policyno" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="receiptno" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="type" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="grpcode" Type="nvarchar" MaxLength="8" />
+    <Property Name="pcn" Type="nvarchar" MaxLength="9" />
+    <Property Name="reverseind" Type="bit" />
+    <Property Name="trandate" Type="datetime2" Precision="7" />
+    <Property Name="effdate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="totamt" Type="money" />
+    <Property Name="chequeno" Type="nvarchar" MaxLength="50" />
+    <Property Name="payindicator" Type="nvarchar" MaxLength="1" />
+    <Property Name="status" Type="nvarchar" MaxLength="1" />
+    <Property Name="createdby" Type="nvarchar" MaxLength="20" />
+    <Property Name="datecreated" Type="datetime2" Precision="7" />
+    <Property Name="amount" Type="money" />
+    <Property Name="poltype" Type="nvarchar" MaxLength="3" />
+  </EntityType>
+  <EntityType Name="fl_payinput2">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="policyno" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="receiptno" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="poltype" Type="nvarchar" MaxLength="3" />
+    <Property Name="type" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="grpcode" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="pcn" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="reverseind" Type="bit" />
+    <Property Name="trandate" Type="datetime2" Precision="7" />
+    <Property Name="effdate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="totamt" Type="money" />
+    <Property Name="chequeno" Type="nvarchar" MaxLength="10" />
+    <Property Name="payindicator" Type="nvarchar" MaxLength="1" />
+    <Property Name="status" Type="int" />
+    <Property Name="createdby" Type="nvarchar" MaxLength="20" />
+    <Property Name="datecreated" Type="datetime2" Precision="7" />
+    <Property Name="ps" Type="money" />
+    <Property Name="er" Type="money" />
+    <Property Name="ee" Type="money" />
+    <Property Name="av" Type="money" />
+    <Property Name="psc" Type="money" />
+    <Property Name="cc" Type="money" />
+  </EntityType>
+  <EntityType Name="fl_pendingSMS">
+    <Key>
+      <PropertyRef Name="srn" />
+    </Key>
+    <Property Name="srn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="telephone" Type="nvarchar" MaxLength="20" />
+    <Property Name="message" Type="nvarchar(max)" />
+    <Property Name="isSent" Type="bit" />
+    <Property Name="retrycount" Type="int" />
+    <Property Name="Application" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="fl_policyinput">
+    <Key>
+      <PropertyRef Name="srn" />
+    </Key>
+    <Property Name="srn" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="policyno" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="pcn" Type="nvarchar" MaxLength="9" />
+    <Property Name="grpcode" Type="nvarchar" MaxLength="15" />
+    <Property Name="sex" Type="nvarchar" MaxLength="7" />
+    <Property Name="title" Type="nvarchar" MaxLength="10" />
+    <Property Name="surname" Type="nvarchar" MaxLength="30" />
+    <Property Name="othername" Type="nvarchar" MaxLength="30" />
+    <Property Name="peradd" Type="nvarchar(max)" />
+    <Property Name="dob" Type="nvarchar" MaxLength="8" />
+    <Property Name="nok" Type="nvarchar" MaxLength="30" />
+    <Property Name="datecreated" Type="smalldatetime" />
+    <Property Name="createdby" Type="nvarchar" MaxLength="20" />
+    <Property Name="datemodified" Type="smalldatetime" />
+    <Property Name="modifiedby" Type="nvarchar" MaxLength="20" />
+    <Property Name="accdate" Type="datetime" />
+    <Property Name="quoteno" Type="nvarchar" MaxLength="20" />
+    <Property Name="poltype" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="exitdate" Type="nvarchar" MaxLength="8" />
+    <Property Name="location" Type="int" />
+    <Property Name="agentcode" Type="nvarchar" MaxLength="15" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="premium" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="telephone" Type="nvarchar" MaxLength="15" />
+    <Property Name="pinword" Type="nvarchar" MaxLength="30" />
+    <Property Name="religion" Type="nvarchar" MaxLength="15" />
+    <Property Name="status" Type="int" />
+    <Property Name="pwd" Type="nvarchar" MaxLength="50" />
+    <Property Name="PictureFile" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="fl_poltype">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="poltype" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="poldesc" Type="nvarchar" MaxLength="50" />
+    <Property Name="code" Type="nvarchar" MaxLength="5" />
+    <Property Name="actype" Type="nvarchar" MaxLength="50" />
+    <Property Name="term" Type="int" />
+    <Property Name="matage" Type="int" />
+    <Property Name="maxloan" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="income_account" Type="nvarchar" MaxLength="50" />
+    <Property Name="liability_account" Type="nvarchar" MaxLength="50" />
+    <Property Name="expense_account" Type="nvarchar" MaxLength="50" />
+    <Property Name="vat_account" Type="nvarchar" MaxLength="50" />
+    <Property Name="Datecreated" Type="datetime2" Precision="7" />
+    <Property Name="CreatedBy" Type="datetime2" Precision="7" />
+    <Property Name="DateModified" Type="datetime2" Precision="7" />
+    <Property Name="ModifiedBy" Type="datetime2" Precision="7" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="fl_premrate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="poltypeId" Type="int" Nullable="false" />
+    <Property Name="grpcode" Type="int" />
+    <Property Name="period" Type="nvarchar" MaxLength="50" />
+    <Property Name="interest" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="commrate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="retention" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="mkt_commrate" Type="nvarchar" MaxLength="50" />
+    <Property Name="Datecreated" Type="datetime2" Precision="7" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateModified" Type="datetime2" Precision="7" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="fl_premrateRules">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Interest" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CommRate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Mkt_CommRate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="IntrBound" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CommBound" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="PremRateId" Type="int" />
+  </EntityType>
+  <EntityType Name="fl_PublicHoliday">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HolidayName" Type="nvarchar" MaxLength="20" />
+    <Property Name="Holidayday" Type="int" />
+    <Property Name="holidaymonth" Type="int" />
+    <Property Name="HolidayMsg" Type="nvarchar" MaxLength="100" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="fl_receiptcontrol">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PolTypeId" Type="int" />
+    <Property Name="PaymentMethod" Type="int" />
+    <Property Name="Income_ledger" Type="nvarchar" MaxLength="50" />
+    <Property Name="Bank_ledger" Type="nvarchar" MaxLength="50" />
+    <Property Name="BankAccount" Type="nvarchar" MaxLength="50" />
+    <Property Name="Bankname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Receiptcounter" Type="int" />
+    <Property Name="DateCreated" Type="datetime2" Precision="7" />
+    <Property Name="CreatedBy" Type="bigint" />
+    <Property Name="DateModified" Type="datetime2" Precision="7" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Flex.dbo.fl_state' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="fl_state">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="fl_system">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="coycode" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="coyname" Type="nvarchar" MaxLength="60" />
+    <Property Name="coyaddress" Type="nvarchar" MaxLength="100" />
+    <Property Name="town" Type="nvarchar" MaxLength="15" />
+    <Property Name="lg" Type="nvarchar" MaxLength="15" />
+    <Property Name="state" Type="nvarchar" MaxLength="20" />
+    <Property Name="telephone" Type="nvarchar" MaxLength="20" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="box" Type="nvarchar" MaxLength="30" />
+    <Property Name="processyear" Type="nvarchar" MaxLength="11" />
+    <Property Name="processmonth" Type="nvarchar" MaxLength="11" />
+    <Property Name="installdate" Type="nvarchar" MaxLength="11" />
+    <Property Name="createdby" Type="nvarchar" MaxLength="20" />
+    <Property Name="datecreated" Type="datetime" />
+    <Property Name="serialnumber" Type="nvarchar" MaxLength="15" />
+    <Property Name="reassurance" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="fl_translog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="receiptno" Type="nvarchar" MaxLength="50" />
+    <Property Name="trandate" Type="datetime2" Precision="7" />
+    <Property Name="bank_ledger" Type="nvarchar" MaxLength="50" />
+    <Property Name="income_ledger" Type="nvarchar" MaxLength="50" />
+    <Property Name="payee" Type="nvarchar" MaxLength="100" />
+    <Property Name="paymentmethod" Type="int" />
+    <Property Name="amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="policyno" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark" Type="nvarchar(max)" />
+    <Property Name="Instrument" Type="int" />
+    <Property Name="Isreversed" Type="bit" />
+    <Property Name="chequeno" Type="nvarchar" MaxLength="50" />
+    <Property Name="poltype" Type="nvarchar" MaxLength="3" />
+    <Property Name="grpcode" Type="nvarchar" MaxLength="8" />
+  </EntityType>
+  <EntityType Name="LinkRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LinkId" Type="int" />
+    <Property Name="RoleID" Type="int" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="Parent" Type="int" />
+  </EntityType>
+  <EntityType Name="Modules">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="PolicyType" Type="nvarchar" MaxLength="50" />
+    <Property Name="Code" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="NextofKin_BeneficiaryStaging">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RegNo" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="15" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="Dob" Type="datetime2" Precision="7" />
+    <Property Name="RelationShip" Type="nvarchar" MaxLength="50" />
+    <Property Name="Category" Type="int" Nullable="false" />
+    <Property Name="PersonalDetailsStagingId" Type="bigint" />
+    <Property Name="Proportion" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="ApprovalStatus" Type="int" />
+    <Property Name="IsSynched" Type="bit" />
+    <Property Name="PolicyId" Type="bigint" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Flex.dbo.OnlineReciept' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="OnlineReciept">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PaymentDate" Type="datetime2" Precision="7" />
+    <Property Name="ReceiptNo" Type="nvarchar" MaxLength="20" />
+    <Property Name="PaymentChannel" Type="int" />
+    <Property Name="InitialAmount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="FinalAmount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Product" Type="nvarchar" MaxLength="30" />
+    <Property Name="Policyno" Type="nvarchar" MaxLength="20" />
+    <Property Name="IsSynched" Type="bit" />
+    <Property Name="TransactionStatus" Type="int" />
+    <Property Name="InitialResponseCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="InitialPaymentDate" Type="datetime2" Precision="7" />
+    <Property Name="IntialResponseDecription" Type="nvarchar" MaxLength="100" />
+    <Property Name="FinalResponseCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="FinalPaymentDate" Type="datetime2" Precision="7" />
+    <Property Name="FinalResponseDecription" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="PendingEmail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Subject" Type="varchar" MaxLength="500" />
+    <Property Name="DueDate" Type="datetime" Nullable="false" />
+    <Property Name="Body" Type="text" />
+    <Property Name="From" Type="varchar" MaxLength="500" />
+    <Property Name="To" Type="varchar" MaxLength="500" />
+    <Property Name="Bcc" Type="varchar" MaxLength="500" />
+    <Property Name="CC" Type="varchar" MaxLength="500" />
+    <Property Name="ErrorMessage" Type="text" />
+    <Property Name="IsBodyHtml" Type="bit" />
+    <Property Name="ReplyTo" Type="varchar" MaxLength="100" />
+    <Property Name="Sender" Type="varchar" MaxLength="200" />
+    <Property Name="Retries" Type="int" />
+    <Property Name="Priority" Type="varchar" MaxLength="50" />
+    <Property Name="ThrewException" Type="bit" />
+    <Property Name="RetryCount" Type="int" />
+    <Property Name="IsSent" Type="bit" />
+  </EntityType>
+  <EntityType Name="PersonalDetailsStaging">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RegNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="50" />
+    <Property Name="OtherNames" Type="nvarchar" MaxLength="50" />
+    <Property Name="ResAddress" Type="nvarchar" MaxLength="100" />
+    <Property Name="OffAddress" Type="nvarchar" MaxLength="100" />
+    <Property Name="PosAddress" Type="nvarchar" MaxLength="100" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="15" />
+    <Property Name="dob" Type="datetime2" Precision="7" />
+    <Property Name="Occupation" Type="nvarchar" MaxLength="50" />
+    <Property Name="ContribAmount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="ContribFreq" Type="nvarchar" MaxLength="10" />
+    <Property Name="CommencementDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="Duration" Type="int" />
+    <Property Name="Type" Type="int" />
+    <Property Name="PolicyType" Type="int" />
+    <Property Name="ApprovalStatus" Type="int" />
+    <Property Name="IsSynched" Type="bit" />
+    <Property Name="DateCreated" Type="datetime2" Precision="7" />
+    <Property Name="ApprovedBy" Type="bigint" />
+    <Property Name="Location" Type="int" />
+  </EntityType>
+  <EntityType Name="Portlet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="ImageUrl" Type="nvarchar" MaxLength="50" />
+    <Property Name="Background" Type="nvarchar" MaxLength="50" />
+    <Property Name="Order" Type="int" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Tabs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="PortletId" Type="int" />
+    <Property Name="icon" Type="nchar" MaxLength="10" />
+    <Property Name="Controller" Type="nvarchar" MaxLength="50" />
+    <Property Name="Action" Type="nvarchar" MaxLength="50" />
+    <Property Name="Order" Type="int" />
+    <Property Name="View" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleId" Type="int" />
+    <Property Name="UserId" Type="bigint" />
+  </EntityType>
+  <EntityType Name="UserSession">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="DateCreated" Type="datetime2" Precision="7" />
+    <Property Name="LastModifiedDate" Type="datetime2" Precision="7" />
+    <Property Name="CustomerUserID" Type="bigint" />
+    <Property Name="ExpiryDate" Type="datetime" />
+    <Property Name="LastAccessed" Type="datetime" />
+    <Property Name="LogoutDate" Type="datetime" />
+    <Property Name="SessionStatus" Type="int" />
+    <Property Name="AccessCount" Type="bigint" />
+    <Property Name="Token" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserId" Type="bigint" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Flex.dbo.vProduction' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vProduction">
+    <Key>
+      <PropertyRef Name="policyno" />
+      <PropertyRef Name="receiptno" />
+    </Key>
+    <Property Name="policyno" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="agentname" Type="nvarchar" MaxLength="50" />
+    <Property Name="agentcode" Type="nvarchar" MaxLength="15" />
+    <Property Name="accdate" Type="datetime" />
+    <Property Name="receiptno" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="chequeno" Type="nvarchar" MaxLength="50" />
+    <Property Name="totamt" Type="money" />
+    <Property Name="trandate" Type="datetime2" Precision="7" />
+    <Property Name="amount" Type="money" />
+    <Property Name="surname" Type="nvarchar" MaxLength="30" />
+    <Property Name="othername" Type="nvarchar" MaxLength="30" />
+    <Property Name="title" Type="nvarchar" MaxLength="10" />
+    <Property Name="location" Type="int" />
+    <Property Name="agentLocation" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Flex.dbo.vwPolicy' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vwPolicy">
+    <Key>
+      <PropertyRef Name="policyno" />
+      <PropertyRef Name="srn" />
+    </Key>
+    <Property Name="policyno" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="premium" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="poltype" Type="nvarchar" MaxLength="3" />
+    <Property Name="location" Type="int" />
+    <Property Name="telephone" Type="nvarchar" MaxLength="15" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="surname" Type="nvarchar" MaxLength="30" />
+    <Property Name="othername" Type="nvarchar" MaxLength="30" />
+    <Property Name="balance" Type="money" />
+    <Property Name="status" Type="int" />
+    <Property Name="agentcode" Type="nvarchar" MaxLength="15" />
+    <Property Name="address" Type="nvarchar(max)" />
+    <Property Name="srn" Type="bigint" Nullable="false" />
+    <Property Name="locdesc" Type="nvarchar" MaxLength="50" />
+    <Property Name="agentname" Type="nvarchar" MaxLength="50" />
+    <Property Name="accdate" Type="datetime" />
+    <Property Name="title" Type="nvarchar" MaxLength="10" />
+    <Property Name="exitdate" Type="nvarchar" MaxLength="8" />
+    <Property Name="agentLocation" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Flex.dbo.vwPolicyHistory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vwPolicyHistory">
+    <Key>
+      <PropertyRef Name="policyno" />
+      <PropertyRef Name="receiptno" />
+      <PropertyRef Name="gir" />
+    </Key>
+    <Property Name="policyno" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="receiptno" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="period" Type="nvarchar" MaxLength="6" />
+    <Property Name="trandate" Type="smalldatetime" />
+    <Property Name="amount" Type="money" />
+    <Property Name="cumul_intr" Type="money" />
+    <Property Name="Name" Type="nvarchar" MaxLength="61" />
+    <Property Name="locdesc" Type="nvarchar" MaxLength="50" />
+    <Property Name="doctype" Type="nvarchar" MaxLength="20" />
+    <Property Name="cur_intr" Type="money" />
+    <Property Name="gir" Type="real" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="10" />
+    <Property Name="orig_date" Type="smalldatetime" />
+    <Property Name="telephone" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <Association Name="FK_fl_premrate_fl_poltype">
+    <End Role="fl_poltype" Type="Self.fl_poltype" Multiplicity="1" />
+    <End Role="fl_premrate" Type="Self.fl_premrate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="fl_poltype">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="fl_premrate">
+        <PropertyRef Name="poltypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FlexModelStoreContainer">
+    <EntitySet Name="ac_costCenter" EntityType="Self.ac_costCenter" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ClaimRequest" EntityType="Self.ClaimRequest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerPolicies" EntityType="Self.CustomerPolicies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerUser" EntityType="Self.CustomerUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="fl_agents" EntityType="Self.fl_agents" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="fl_grouptype" EntityType="Self.fl_grouptype" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="fl_location" EntityType="Self.fl_location" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="fl_password" EntityType="Self.fl_password" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="fl_payclaim" EntityType="Self.fl_payclaim" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="fl_payhistory" EntityType="Self.fl_payhistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="fl_payinput" EntityType="Self.fl_payinput" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="fl_payinput2" EntityType="Self.fl_payinput2" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="fl_pendingSMS" EntityType="Self.fl_pendingSMS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="fl_policyinput" EntityType="Self.fl_policyinput" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="fl_poltype" EntityType="Self.fl_poltype" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="fl_premrate" EntityType="Self.fl_premrate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="fl_premrateRules" EntityType="Self.fl_premrateRules" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="fl_PublicHoliday" EntityType="Self.fl_PublicHoliday" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="fl_receiptcontrol" EntityType="Self.fl_receiptcontrol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="fl_system" EntityType="Self.fl_system" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="fl_translog" EntityType="Self.fl_translog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LinkRole" EntityType="Self.LinkRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Modules" EntityType="Self.Modules" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NextofKin_BeneficiaryStaging" EntityType="Self.NextofKin_BeneficiaryStaging" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PendingEmail" EntityType="Self.PendingEmail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PersonalDetailsStaging" EntityType="Self.PersonalDetailsStaging" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Portlet" EntityType="Self.Portlet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tabs" EntityType="Self.Tabs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserSession" EntityType="Self.UserSession" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ac_rctdetails" EntityType="Self.ac_rctdetails" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ac_rctdetails].[rct_number] AS [rct_number], 
+    [ac_rctdetails].[rct_account] AS [rct_account], 
+    [ac_rctdetails].[rct_type] AS [rct_type], 
+    [ac_rctdetails].[rct_code] AS [rct_code], 
+    [ac_rctdetails].[rct_debit] AS [rct_debit], 
+    [ac_rctdetails].[rct_credit] AS [rct_credit], 
+    [ac_rctdetails].[rct_remark] AS [rct_remark], 
+    [ac_rctdetails].[rct_bank] AS [rct_bank], 
+    [ac_rctdetails].[coy_code] AS [coy_code], 
+    [ac_rctdetails].[Branch_code] AS [Branch_code], 
+    [ac_rctdetails].[createdby] AS [createdby], 
+    [ac_rctdetails].[datecreated] AS [datecreated], 
+    [ac_rctdetails].[datedeleted] AS [datedeleted], 
+    [ac_rctdetails].[deletedby] AS [deletedby], 
+    [ac_rctdetails].[deletemarker] AS [deletemarker], 
+    [ac_rctdetails].[rct_class] AS [rct_class], 
+    [ac_rctdetails].[rct_premium] AS [rct_premium], 
+    [ac_rctdetails].[rct_premloan] AS [rct_premloan], 
+    [ac_rctdetails].[rct_policyloan] AS [rct_policyloan], 
+    [ac_rctdetails].[rct_othercharge] AS [rct_othercharge], 
+    [ac_rctdetails].[rct_grossnet] AS [rct_grossnet], 
+    [ac_rctdetails].[rct_partfull] AS [rct_partfull]
+    FROM [dbo].[ac_rctdetails] AS [ac_rctdetails]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ac_rctheader" EntityType="Self.ac_rctheader" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ac_rctheader].[coy_code] AS [coy_code], 
+    [ac_rctheader].[Branch_code] AS [Branch_code], 
+    [ac_rctheader].[rcth_unitcode] AS [rcth_unitcode], 
+    [ac_rctheader].[rcth_number] AS [rcth_number], 
+    [ac_rctheader].[rcth_name] AS [rcth_name], 
+    [ac_rctheader].[rcth_address] AS [rcth_address], 
+    [ac_rctheader].[rcth_refnumber] AS [rcth_refnumber], 
+    [ac_rctheader].[rcth_cheque] AS [rcth_cheque], 
+    [ac_rctheader].[rcth_class] AS [rcth_class], 
+    [ac_rctheader].[rcth_type] AS [rcth_type], 
+    [ac_rctheader].[rcth_date] AS [rcth_date], 
+    [ac_rctheader].[rcth_policy] AS [rcth_policy], 
+    [ac_rctheader].[rcth_bank] AS [rcth_bank], 
+    [ac_rctheader].[rcth_debit] AS [rcth_debit], 
+    [ac_rctheader].[rcth_credit] AS [rcth_credit], 
+    [ac_rctheader].[rcth_total] AS [rcth_total], 
+    [ac_rctheader].[rcth_remark] AS [rcth_remark], 
+    [ac_rctheader].[rcth_indicator] AS [rcth_indicator], 
+    [ac_rctheader].[createdby] AS [createdby], 
+    [ac_rctheader].[datecreated] AS [datecreated], 
+    [ac_rctheader].[updatedby] AS [updatedby], 
+    [ac_rctheader].[dateupdated] AS [dateupdated], 
+    [ac_rctheader].[datedeleted] AS [datedeleted], 
+    [ac_rctheader].[deletedby] AS [deletedby], 
+    [ac_rctheader].[naira] AS [naira], 
+    [ac_rctheader].[kobo] AS [kobo]
+    FROM [dbo].[ac_rctheader] AS [ac_rctheader]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="accchart" EntityType="Self.accchart" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [accchart].[acctcode1] AS [acctcode1], 
+    [accchart].[acctcode2] AS [acctcode2], 
+    [accchart].[acctcode3] AS [acctcode3], 
+    [accchart].[acctcode4] AS [acctcode4], 
+    [accchart].[acctcode5] AS [acctcode5], 
+    [accchart].[acctcode6] AS [acctcode6], 
+    [accchart].[acctnumber] AS [acctnumber], 
+    [accchart].[description] AS [description], 
+    [accchart].[acctcode7] AS [acctcode7], 
+    [accchart].[oldnumber] AS [oldnumber], 
+    [accchart].[acctype] AS [acctype], 
+    [accchart].[acctsubtype] AS [acctsubtype], 
+    [accchart].[address] AS [address], 
+    [accchart].[effdate] AS [effdate], 
+    [accchart].[ledgerpasswd] AS [ledgerpasswd], 
+    [accchart].[ledgerpasswd2] AS [ledgerpasswd2], 
+    [accchart].[subcode] AS [subcode], 
+    [accchart].[blgroup1] AS [blgroup1], 
+    [accchart].[blgroup2] AS [blgroup2], 
+    [accchart].[blgroup3] AS [blgroup3], 
+    [accchart].[blgroup4] AS [blgroup4], 
+    [accchart].[blgroupdes1] AS [blgroupdes1], 
+    [accchart].[blgroupdes2] AS [blgroupdes2], 
+    [accchart].[blgroupdes3] AS [blgroupdes3], 
+    [accchart].[blgroupdes4] AS [blgroupdes4], 
+    [accchart].[blsum1] AS [blsum1], 
+    [accchart].[blsum2] AS [blsum2], 
+    [accchart].[blsum3] AS [blsum3], 
+    [accchart].[blsum4] AS [blsum4], 
+    [accchart].[blsumdesc1] AS [blsumdesc1], 
+    [accchart].[blsumdesc2] AS [blsumdesc2], 
+    [accchart].[blsumdesc3] AS [blsumdesc3], 
+    [accchart].[blsumdesc4] AS [blsumdesc4], 
+    [accchart].[cfgroup1] AS [cfgroup1], 
+    [accchart].[cfgroup2] AS [cfgroup2], 
+    [accchart].[cfgroup3] AS [cfgroup3], 
+    [accchart].[cfgroup4] AS [cfgroup4], 
+    [accchart].[cfgroupdes1] AS [cfgroupdes1], 
+    [accchart].[cfgroupdes2] AS [cfgroupdes2], 
+    [accchart].[cfgroupdes3] AS [cfgroupdes3], 
+    [accchart].[cfgroupdes4] AS [cfgroupdes4], 
+    [accchart].[cfsumdesc1] AS [cfsumdesc1], 
+    [accchart].[cfsumdesc2] AS [cfsumdesc2], 
+    [accchart].[cfsumdesc3] AS [cfsumdesc3], 
+    [accchart].[cfsumdesc4] AS [cfsumdesc4], 
+    [accchart].[createdby] AS [createdby], 
+    [accchart].[datecreated] AS [datecreated], 
+    [accchart].[address1] AS [address1], 
+    [accchart].[address2] AS [address2], 
+    [accchart].[address3] AS [address3], 
+    [accchart].[telephone] AS [telephone], 
+    [accchart].[email] AS [email], 
+    [accchart].[trade] AS [trade], 
+    [accchart].[dateblocked] AS [dateblocked]
+    FROM [dbo].[accchart] AS [accchart]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="fl_state" EntityType="Self.fl_state" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [fl_state].[Id] AS [Id], 
+    [fl_state].[Code] AS [Code], 
+    [fl_state].[Name] AS [Name]
+    FROM [dbo].[fl_state] AS [fl_state]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="OnlineReciept" EntityType="Self.OnlineReciept" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [OnlineReciept].[Id] AS [Id], 
+    [OnlineReciept].[PaymentDate] AS [PaymentDate], 
+    [OnlineReciept].[ReceiptNo] AS [ReceiptNo], 
+    [OnlineReciept].[PaymentChannel] AS [PaymentChannel], 
+    [OnlineReciept].[InitialAmount] AS [InitialAmount], 
+    [OnlineReciept].[FinalAmount] AS [FinalAmount], 
+    [OnlineReciept].[Product] AS [Product], 
+    [OnlineReciept].[Policyno] AS [Policyno], 
+    [OnlineReciept].[IsSynched] AS [IsSynched], 
+    [OnlineReciept].[TransactionStatus] AS [TransactionStatus], 
+    [OnlineReciept].[InitialResponseCode] AS [InitialResponseCode], 
+    [OnlineReciept].[InitialPaymentDate] AS [InitialPaymentDate], 
+    [OnlineReciept].[IntialResponseDecription] AS [IntialResponseDecription], 
+    [OnlineReciept].[FinalResponseCode] AS [FinalResponseCode], 
+    [OnlineReciept].[FinalPaymentDate] AS [FinalPaymentDate], 
+    [OnlineReciept].[FinalResponseDecription] AS [FinalResponseDecription]
+    FROM [dbo].[OnlineReciept] AS [OnlineReciept]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vProduction" EntityType="Self.vProduction" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vProduction].[policyno] AS [policyno], 
+    [vProduction].[agentname] AS [agentname], 
+    [vProduction].[agentcode] AS [agentcode], 
+    [vProduction].[accdate] AS [accdate], 
+    [vProduction].[receiptno] AS [receiptno], 
+    [vProduction].[chequeno] AS [chequeno], 
+    [vProduction].[totamt] AS [totamt], 
+    [vProduction].[trandate] AS [trandate], 
+    [vProduction].[amount] AS [amount], 
+    [vProduction].[surname] AS [surname], 
+    [vProduction].[othername] AS [othername], 
+    [vProduction].[title] AS [title], 
+    [vProduction].[location] AS [location], 
+    [vProduction].[agentLocation] AS [agentLocation]
+    FROM [dbo].[vProduction] AS [vProduction]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vwPolicy" EntityType="Self.vwPolicy" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vwPolicy].[policyno] AS [policyno], 
+    [vwPolicy].[premium] AS [premium], 
+    [vwPolicy].[poltype] AS [poltype], 
+    [vwPolicy].[location] AS [location], 
+    [vwPolicy].[telephone] AS [telephone], 
+    [vwPolicy].[email] AS [email], 
+    [vwPolicy].[surname] AS [surname], 
+    [vwPolicy].[othername] AS [othername], 
+    [vwPolicy].[balance] AS [balance], 
+    [vwPolicy].[status] AS [status], 
+    [vwPolicy].[agentcode] AS [agentcode], 
+    [vwPolicy].[address] AS [address], 
+    [vwPolicy].[srn] AS [srn], 
+    [vwPolicy].[locdesc] AS [locdesc], 
+    [vwPolicy].[agentname] AS [agentname], 
+    [vwPolicy].[accdate] AS [accdate], 
+    [vwPolicy].[title] AS [title], 
+    [vwPolicy].[exitdate] AS [exitdate], 
+    [vwPolicy].[agentLocation] AS [agentLocation]
+    FROM [dbo].[vwPolicy] AS [vwPolicy]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vwPolicyHistory" EntityType="Self.vwPolicyHistory" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vwPolicyHistory].[policyno] AS [policyno], 
+    [vwPolicyHistory].[receiptno] AS [receiptno], 
+    [vwPolicyHistory].[period] AS [period], 
+    [vwPolicyHistory].[trandate] AS [trandate], 
+    [vwPolicyHistory].[amount] AS [amount], 
+    [vwPolicyHistory].[cumul_intr] AS [cumul_intr], 
+    [vwPolicyHistory].[Name] AS [Name], 
+    [vwPolicyHistory].[locdesc] AS [locdesc], 
+    [vwPolicyHistory].[doctype] AS [doctype], 
+    [vwPolicyHistory].[cur_intr] AS [cur_intr], 
+    [vwPolicyHistory].[gir] AS [gir], 
+    [vwPolicyHistory].[title] AS [title], 
+    [vwPolicyHistory].[orig_date] AS [orig_date], 
+    [vwPolicyHistory].[telephone] AS [telephone]
+    FROM [dbo].[vwPolicyHistory] AS [vwPolicyHistory]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_fl_premrate_fl_poltype" Association="Self.FK_fl_premrate_fl_poltype">
+      <End Role="fl_poltype" EntitySet="fl_poltype" />
+      <End Role="fl_premrate" EntitySet="fl_premrate" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,92 @@
+﻿@using Flex.Data.ViewModel
+@using Flex.Data.Model
+@model PagedResult<fl_location>
+
+@{
+    if (Model.Items != null && Model.Items.Any())
+    {
+        <span class="pull-right" id="spApproval">
+            <a class="btn btn-warning btn-sm" id="btnApprove" onclick="searchLocation(document.getElementById('locationSearch').value,'pdf')"><span class="fa fa-download"></span> &nbsp; pdf</a>
+        </span>
+
+        @*</div>*@
+    }
+}
+@{
+    var lshowing = Model.RowCount > 0 ? (Model.CurrentPage - 1) * Model.PageSize + 1 : 0;
+    var hshowing = ((Model.CurrentPage - 1) * Model.PageSize) + Model.RowCount;
+    var pageSumm = string.Format("Showing {0}-{1} of {2}", lshowing, hshowing, Model.LongRowCount);
+    var maxpagecount = Model.PageCount > 5 ? Model.CurrentPage - 1+ 5 : Model.PageCount;
+    var prvPage = Model.CurrentPage - 1;
+    var nextpage = Model.CurrentPage + 1;
+}
+
+<table class="table table-common table-striped table-hover border-bottom table-condensed" id="tblppolicy">
+    <thead>
+        <tr>
+            <th style="width:10%;">Code</th>
+            <th style="width:20%;">Desc</th>
+            <th style="width:9%;">State</th>
+            <th style="width:5%;"></th>
+            <th style="width:5%;"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            if (Model != null)
+            {
+                foreach (var loc in Model.Items)
+                {
+                    <tr class="pointer">
+                        <td>@loc.loccode</td>
+                        <td>@loc.locdesc</td>
+                        <td>@loc.locstate</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm fa fa-pencil" data-id="@loc.Id"
+                                    data-url="@Url.Action("AddEditLocation", "SetUp")" onclick="showLocationInput(this,@loc.Id)">
+                                Edit
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger btn-sm fa fa-remove" data-id="@loc.Id" data-url="@Url.Action("DeleteLocation", "SetUp")"
+                                    data-submiturl="@Url.Action("cDeleteLocation", "SetUp")" onclick="ShowdelItem(this,@loc.Id,'Location');">
+                                Delete
+                            </button>
+                        </td>
+
+                    </tr>
+                }
+            }
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="10" class="pagination-summary small">
+                <span class="pull-right">@pageSumm</span>
+            </td>
+        </tr>
+    </tfoot>
+
+</table>
+<div class="col-md-12 text-left">
+    <ul class="pagination pagination-sm" data-url="">
+        <li>
+            <a href="#" aria-label="Previous" onclick="searchLocation(document.getElementById('locationSearch').value,null,@prvPage)">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        @{
+            for (int i = Model.CurrentPage - 1; i < maxpagecount; i++)
+            {
+                var x = i + 1;
+                <li><a href="#" data-pageindex="@x" onclick="searchLocation(document.getElementById('locationSearch').value,null,@x)">@x</a></li>
+            }
+        }
+        <li>
+            <a href="#" aria-label="Next" onclick="searchLocation(document.getElementById('locationSearch').value,null,@nextpage)">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+    <input type="hidden" value="@Model.CurrentPage" id="currentppage" />
+</div>

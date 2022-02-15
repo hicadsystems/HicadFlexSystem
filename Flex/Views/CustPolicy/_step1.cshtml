@@ -1,0 +1,181 @@
+﻿@using Flex.Data.ViewModel
+@using Flex.Util
+@model SignUpBindingModel
+
+@{
+    Layout = null;
+}
+<form name="step1" action="@Url.Action("Next")" id="step1Frm">
+    <div class="bg-white col-md-12">
+        @if (WebSecurity.Module.Trim() == "GTY")
+        {
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="CustomerId" class="color-transparent-darker lite small">Group</label>
+                    @Html.DropDownList("GroupCode", (IEnumerable<SelectListItem>)ViewBag.grp, "Select...", new { @class = "form-control input-md" })
+                </div>
+
+            </div>
+        }
+        else
+        {
+            <input type="hidden" id="GroupCode" value="001" name="GroupCode" />
+        }
+
+        <div class="row">
+            <div class="form-group col-md-8">
+                <div class="row">
+                    <div class="form-group col-md-6 ss-item-required">
+                        <label for="Surname" class="color-transparent-darker lite small">SURNAME</label>
+                        <input type="text" name="Surname" class="form-control input-md" autofocus required value="@Model.PersonalInfo.Surname" />
+                        <span class="text-danger pull-right small">* required</span>
+                    </div>
+                    <div class="form-group col-md-6 ss-item-required">
+                        <label for="OtherNames" class="color-transparent-darker lite small">OTHER NAMES</label>
+                        <input type="email" name="OtherNames" class="form-control input-md" required value="@Model.PersonalInfo.Othernames" />
+                        <span class="text-danger pull-right small">* required</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6 ss-item-required">
+                        <label for="ResidentialAddress" class="color-transparent-darker lite small">RESIDENTIAL ADDRESS</label>
+                        <textarea name="ResidentialAddress" class="form-control input-md" rows="2" value="@Model.PersonalInfo.ResAddress"></textarea>
+                        <span class="text-danger pull-right small">* required</span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="OfficeAddress" class="color-transparent-darker lite small">OFFICE ADDRESS</label>
+                        <textarea name="OfficeAddress" class="form-control input-md" rows="2" value="@Model.PersonalInfo.OfficeAddress"></textarea>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="PostalAddress" class="color-transparent-darker lite small">POSTAL ADDRESS</label>
+                        <textarea name="PostalAddress" class="form-control input-md" rows="2" required value="@Model.PersonalInfo.PostalAddress"></textarea>
+                    </div>
+                    <div class="form-group col-md-6 ss-item-required">
+                        <label for="Phone" class="color-transparent-darker lite small">PHONE NUMBER</label>
+                        <input type="tel" name="Phone" class="form-control input-md" required value="@Model.PersonalInfo.Phone" />
+                        <span class="text-danger pull-right small">* required</span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group col-md-4">
+                <div class="row">
+                    <img src="~/Pictures/default.png" class="img-thumbnail profile-pic" id="picture" />
+                    <input type="hidden" name="PictureFile" value="" id="PictureFile" />
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-8">
+                        <input type="file" name="Picture" class="form-control-file" id="pictureUpload" />
+                    </div>
+                    <div class="form-group col-md-4">
+                        <button class="btn btn-block btn-success" onclick="uploadPic(this)" data-url="@Url.Action("UploadPicture","CustPolicy")">Upload</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4 ss-item-required">
+                <label for="Email" class="color-transparent-darker lite small">EMAIL</label>
+                <input type="email" name="Email" class="form-control input-md" value="@Model.PersonalInfo.Email" />
+                <span class="text-danger pull-right small">* valid email is required</span>
+            </div>
+            <div class="form-group col-md-4 ss-item-required">
+                <label for="Dob" class="color-transparent-darker lite small ">DATE of BIRTH</label>
+                @*<input type="text" name="dob" class="form-control input-md datepicker" />*@
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control datepicker" name="Dob" id="Dob" value="@Model.PersonalInfo.Dob" readonly />
+                    <span class="input-group-btn" style="padding-top:1px;">
+                        <button type="button" class="btn btn-default" onclick="openDatePicker(this)"><i class="fa fa-calendar"></i></button>
+                    </span>
+                </div>
+                <span class="text-danger pull-right small">* required</span>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="Occupation" class="color-transparent-darker lite small">OCCUPATION</label>
+                <input type="text" name="Occupation" class="form-control input-md" value="@Model.PersonalInfo.Occupation" />
+            </div>
+        </div>
+        <div class="row">
+            @if (Model.PersonalInfo.PolicyType <= 0)
+            {
+                <div class="form-group col-md-4 ss-item-required">
+                    <label for="PolicyType" class="color-transparent-darker lite small">Policy Type</label>
+                    @Html.DropDownList("PolicyType", (IEnumerable<SelectListItem>)ViewBag.polType, String.Empty,
+                             new { @class = "form-control input-md", @required = "true", @id = "polType" })
+                </div>
+            }
+            @if (Model.PersonalInfo.Location <= 0)
+            {
+                <div class="form-group col-md-4 ss-item-required">
+                    <label for="Location" class="color-transparent-darker lite small">Location</label>
+                    @Html.DropDownList("Location", (IEnumerable<SelectListItem>)ViewBag.Location, String.Empty,
+                             new { @class = "form-control input-md", @required = "true", @id = "location" })
+                </div>}
+            <div class="form-group col-md-4 ss-item-required">
+                <label class="color-transparent-darker lite small" for="Amount">Contribution Amount</label>
+                <input type="number" name="Amount" class="form-control input-md" required value="@Model.PersonalInfo.Amount" min="0" />
+            </div>
+        </div>
+        <div class="row">
+            @if (string.IsNullOrEmpty(Model.PersonalInfo.Frequency))
+            {
+                <div class="form-group col-md-4 ss-item-required">
+                    <label for="Frequency" class="color-transparent-darker lite small">FREQUENCY</label>
+                    <div>
+                        <label class="radio-inline">
+                            <input type="radio" name="Frequency" id="inlineRadio3" value="5"> Daily
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="Frequency" id="inlineRadio3" value="6"> Weekly
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="Frequency" id="inlineRadio1" value="1" required> Monthly
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="Frequency" id="inlineRadio2" value="2"> Quaterly
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="Frequency" id="inlineRadio3" value="3"> Bi-Annually
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="Frequency" id="inlineRadio3" value="4"> Annually
+                        </label>
+                        <span class="text-danger pull-right small">* required</span>
+                    </div>
+                </div>
+            }
+            @if (Model.PersonalInfo.Duration <= 0)
+            {
+                <div class="form-group col-md-4 ss-item-required">
+                    <label class="color-transparent-darker lite small" for="Duration">Contribution Duration</label>
+                    <div class="input-group">
+                        <input type="number" name="Duration" required
+                               class="form-control input-md" aria-describedby="basic-addon2" min="1">
+                        <span class="input-group-addon" id="basic-addon2">yrs</span>
+                    </div>
+                </div>
+            }
+            <div class="form-group col-md-4 ss-item-required">
+                <label class="color-transparent-darker lite small" for="Agent">Agent</label>
+                @Html.DropDownList("AgentCode", (IEnumerable<SelectListItem>)ViewBag.Agent, String.Empty,
+                             new { @class = "form-control input-md", @required = "true" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4 ss-item-required">
+                <label class="color-transparent-darker lite small" for="Duration">Sex</label>
+                @Html.DropDownList("Gender", (IEnumerable<SelectListItem>)ViewBag.Gender, String.Empty, new { @class = "form-control input-md", @required = "true" })
+            </div>
+            <div class="form-group col-md-4 ss-item-required">
+                <label class="color-transparent-darker lite small" for="Agent">Religion</label>
+                @Html.DropDownList("Religion", (IEnumerable<SelectListItem>)ViewBag.Religion, String.Empty, new { @class = "form-control input-md", @required = "true" })
+            </div>
+        </div>
+        <input type="button" class="btn btn-block btn-success" value="Submit" onclick="createPolicy(1)" />
+
+    </div>
+</form>
+

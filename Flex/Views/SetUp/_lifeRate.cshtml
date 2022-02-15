@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Flex.Data.Model.fl_premrate>
+
+<ul class="nav nav-tabs border-none">
+    <li role="presentation" class="active">
+        <a class="border-none uppercase bold padding-horizontal-md margin-right-xs">Rates</a>
+    </li>
+    <li class="pull-right">
+        <button type="button" onclick="showRateInput(this);" class="btn btn-success btn-sm" data-url="@Url.Action("AddRate", "SetUp")"><span class="fa fa-plus"></span> &nbsp; ADD Rate</button>
+    </li>
+</ul>
+
+<div class="padding-top-md">
+    <div class="panel">
+        <div class="padding-sm">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="row">
+                        <div class="col-sm-5 text-right padding-none">
+                            <label for="period" class="uppercase smaller lite margin-top-sm margin-right-sm">Period</label>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <input type="text" name="period" class="form-control input-md" id="period" />
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="row">
+                        <div class="col-sm-5 text-right padding-none">
+                            <label for="PolType" class="uppercase smaller lite margin-top-sm margin-right-sm">Policy Type</label>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                @*<input type="text" name="PolType" class="form-control input-md" />*@
+                                @Html.DropDownList("PolType", (IEnumerable<SelectListItem>)ViewBag.polType, String.Empty,
+                                                   new { @class = "form-control input-md", @id = "PolType" })
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="row">
+                        <div class="col-sm-5 text-right padding-none">
+                            <label for="Group" class="uppercase smaller lite margin-top-sm margin-right-sm">Group</label>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                @*<input type="text" name="Group" class="form-control input-md" />*@
+                                @Html.DropDownList("Group", (IEnumerable<SelectListItem>)ViewBag.grp, String.Empty,
+                                          new { @class = "form-control input-md", @id = "Group" })
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <input type="button" class="btn btn-info btn-sm" value="SEARCH" id="btnppsearch" data-url="@Url.Action("SearchLifeRate")" onclick="searchRate(this);" />
+                </div>
+            </div>
+        </div>
+
+        @{
+            var dispaly = string.Empty;
+
+            dispaly = Model.Any() ? "block" : "none";
+        }
+        <div id="tbrate" class="table-responsive" style="display:@dispaly;">
+            @Html.Partial("_tbrates", Model)
+        </div>
+
+    </div>
+</div>
+

@@ -1,0 +1,28 @@
+﻿
+<ul class="nav nav-tabs border-none">
+    <li role="presentation" class="active">
+        <a class="border-none uppercase bold padding-horizontal-md margin-right-xs">Policy Reactivation </a>
+    </li>
+</ul>
+
+<div class="padding-top-md">
+    <form id="policyRe">
+        <div class="panel"> 
+            <div class="padding-sm">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label for="Code" class="color-transparent-darker lite small uppercase">Policy Number</label>
+                        @Html.DropDownList("policyno", (IEnumerable<SelectListItem>)ViewBag.Policy, String.Empty,
+                            new { @class = "form-control input-md" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <input type="button" class="btn btn-info btn-sm" value="Submit" id="btnsubmit" onclick="policyReactivation();" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

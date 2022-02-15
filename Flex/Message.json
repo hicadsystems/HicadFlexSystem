@@ -1,0 +1,33 @@
+﻿{
+	"Messages":[
+	  {
+		"IsEnabled": true,
+		"Message": "<p>Hello {Surname} {OtherName}</p><br/><<p>Your Policy has been approved.</p> Please find details of your policy below.</p><br/><br/> <p>Policy No.: {PolicyNo}</p><br/> <p>Username: {Username}</p><br/> <p>Password: {Password}</p><br/> <p>Thanks<p/>",
+		"MessageType": 1,
+		"NotificationType": 1,
+		"PolicyType": "PPP;TSP;ALM"
+	  },
+	  {
+		"MessageType": 1,
+		"NotificationType": 2,
+		"Message": "<p>Hello {Surname} {OtherName}</p><br/><<p>Your Policy has been approved.</p> Please find details of your policy below.</p><br/><br/> <p>Policy No.: {PolicyNo}</p><br/> <p>Username: {Username}</p><br/> <p>Password: {Password}</p><br/> <p>Thanks<p/>",
+		"IsEnabled": true,
+		"PolicyType": "PPP;TSP;ALM"
+	  },
+	  {
+		"MessageType": 2,
+		"NotificationType": 1,
+		"Message": "",
+		"IsEnabled": true,
+		"PolicyType": "PPP;TSP;ALM"
+	  },
+	  {
+		"MessageType": 2,
+		"NotificationType": 2,
+		"Message": "",
+		"IsEnabled": true,
+		"PolicyType": "PPP;TSP;ALM"
+	  }
+
+	]
+}

@@ -1,0 +1,116 @@
+﻿@using Flex.Data.Model
+@using Flex.Data.ViewModel
+@model PagedResult<fl_payinput>
+@*<ul class="nav nav-tabs border-none">
+    <li role="presentation" class="active">
+        <a class="border-none uppercase bold padding-horizontal-md margin-right-xs">Payment</a>
+    </li>
+</ul>*@
+@{
+    var datefrom = DateTime.Today.AddDays(-30).ToString("yyyy-MM-dd");
+    var dateto = DateTime.Today.ToString("yyyy-MM-dd");
+}
+<div class="padding-top-md">
+    <div class="panel">
+        <div class="padding-sm">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="row">
+                        <div class="col-sm-5 text-right padding-none">
+                            <label for="DateFrom" class="uppercase smaller lite margin-top-sm margin-right-sm">Date From</label>
+                        </div>
+                        <div class="col-sm-7">
+                            @*<div class="form-group">
+                                <input type="text" name="DateFrom" class="form-control input-md" value="@datefrom" />
+                            </div>*@
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control datepicker" value="@datefrom" name="DateFrom" id="DateFrom" readonly />
+                                <span class="input-group-btn" style="padding-top:1px;">
+                                    <button type="button" class="btn btn-default" onclick="openDatePicker(this)"><i class="fa fa-calendar"></i></button>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="row">
+                        <div class="col-sm-5 text-right padding-none">
+                            <label for="DateTo" class="uppercase smaller lite margin-top-sm margin-right-sm">Date To</label>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control datepicker" value="@dateto" name="DateTo" id="DateTo" readonly />
+                                <span class="input-group-btn" style="padding-top:1px;">
+                                    <button type="button" class="btn btn-default" onclick="openDatePicker(this)"><i class="fa fa-calendar"></i></button>
+                                </span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="row">
+                        <div class="col-sm-5 text-right padding-none">
+                            <label for="RecieptNo" class="uppercase smaller lite margin-top-sm margin-right-sm">Reciept No.</label>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <input type="text" name="ReceiptNo" class="form-control input-md" id="RecieptNo" />
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-3 text-right padding-none">
+                            <label for="PolicyNo" class="uppercase smaller lite margin-top-sm margin-right-sm">Policy Holder</label>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                @*<input type="text" name="PolicyNo" class="form-control input-md" id="PolicyNo" />*@
+                                <input type="text" class="form-control" data-autocomplete="@Url.Action("PolicynoAutoComplete","CustPolicy")" />
+                                <input type="hidden" value="" id="PolicyNo" data-autocomplete-id="true" name="PolicyNo" />
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <input type="button" class="btn btn-info btn-sm" value="SEARCH" id="btnppsearch" data-url="@Url.Action("SearchTransaction","Payment")" onclick="searchTransaction(this);" />
+                </div>
+            </div>
+
+        </div>
+
+        @{
+            var dispaly = string.Empty;
+
+            dispaly = Model.Items.Any() ? "block" : "none";
+        }
+    <div id="tbtrans" class="table-responsive">
+        <span class="pull-right" id="spApproval">
+            @*<a class="btn btn-warning btn-sm" id="btnApprove" onclick="exportPaymentXls('xls')"><span class="fa fa-download"></span> &nbsp; xls</a>
+            <input type="button" class="btn btn-warning btn-sm" value="pdf" id="btnppsearch" data-url="@Url.Action("PaymentListingPdf","Payment")" onclick="exportPayment(this);" />*@
+            @*<a class="btn btn-warning btn-sm" id="btnApprove" onclick="exportPayment('pdf')"><span class="fa fa-download"></span> &nbsp; pdf</a>*@
+            @*<a class="btn btn-warning btn-sm" id="btnApprove" onclick="exportPayment(@Model.Items)"><span class="fa fa-download"></span> &nbsp; pdf</a>*@
+        </span>
+        @Html.Partial("_tbPayments", Model)
+    </div>
+
+    </div>
+</div>
+
+
+
+

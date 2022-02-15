@@ -1,0 +1,42 @@
+﻿@using Flex.Data.ViewModel
+@model SignUpBindingModel
+
+@*<div class="table-responsive">*@
+        <table id="tbBen" class="table table-condensed">
+            <thead>
+                <tr class="headings">
+                    <th class="no-link last">
+                        <span class="nobr">Action</span>
+                    </th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Phone </th>
+                    <th>Email</th>
+                    <th>Date of Birth</th>
+                    <th>Relationship</th>
+                    <th>Proportion</th>
+                </tr>
+            </thead>
+            <tbody>
+    @{
+            if (Model.PersonalInfo.Beneficiary.Any())
+            {
+                foreach (var ben in Model.PersonalInfo.Beneficiary)
+                {
+                    <tr>
+                        <td>@ben.Name</td>
+                        <td>@ben.Address</td>
+                        <td>@ben.Phone</td>
+                        <td>@ben.Email</td>
+                        <td>@ben.Dob</td>
+                        <td>@ben.Relationship</td>
+                        <td>@ben.Proportion</td>
+                        <td><a class="btn btn-danger fa fa-remove" ></a></td>
+                    </tr>
+                }
+
+            }
+        }
+            </tbody>
+        </table>
+            @*</div>*@

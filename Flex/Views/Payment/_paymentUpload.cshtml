@@ -1,0 +1,55 @@
+﻿@using Flex.Util
+
+<div class="padding-top-md">
+    <div class="panel">
+        <div class="padding-sm">
+            <div class="row">
+                <form id="step1Frm">
+                    <div class="bg-white col-md-12">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="CustomerId" class="color-transparent-darker lite small">Receipt</label>
+                                <input type="text" name="Recieptno" id="receiptno" class="form-control input-md" onchange="validateReceipt(this)" data-url="@Url.Action("ValidateReceipt","Payment")" required/>
+                            </div>
+
+                        </div>
+                        @if (WebSecurity.Module.Trim() == "GTY")
+                        {
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="CustomerId" class="color-transparent-darker lite small">Group</label>
+                            @Html.DropDownList("GroupCode", (IEnumerable<SelectListItem>)ViewBag.grp, "Select...", new { @class = "form-control input-md", @required = "true", @id = "grpcode" })
+                        </div>
+                        
+                    </div>
+                        }
+                        else
+                        {
+                            <input type="hidden" id="GroupCode" value="001" name="GroupCode" />
+                        }
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <input type="file" name="payUpload" class="form-control-file" id="payUpload" />
+                        </div>
+                        <div class="form-group col-sm-2">
+                            <a href="~/Assests/Upload/GPaymentUpload.xlsx">Download Sample</a>
+                        </div>
+                    </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="Narration" class="color-transparent-darker lite small color-gray">Date</label>
+                                <input type="text" name="TransactionDate" class="form-control input-md datepicker" id="transDate" autocomplete="off" />
+                            </div>
+                            
+                        </div>
+                        <a class="btn btn-block btn-success" onclick="uploadPayment(this);" data-url="@Url.Action("UploadPayment","Payment")" disabled id="btnUpload">Upload</a>
+
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

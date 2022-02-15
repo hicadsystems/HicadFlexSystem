@@ -1,0 +1,94 @@
+﻿@{ var datefrom = DateTime.Today.AddDays(-30).ToString("yyyy-MM-dd"); }
+
+<ul class="nav nav-tabs border-none">
+    <li role="presentation" class="active">
+        <a class="border-none uppercase bold padding-horizontal-md margin-right-xs">Gratuity</a>
+    </li>
+</ul>
+
+<div class="padding-top-md">
+    <form id="greport">
+        <div class="panel">
+            <div class="padding-sm">
+                <div class="row">
+                    <div class="form-group col-md-6 ss-item-required">
+
+                        <label class="radio-inline">
+                            <input type="radio" value="Single" name="rptType" checked="checked" onchange="togglegreport(this);"> Single
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" value="All" name="rptType" onchange="togglegreport(this);"> All
+                        </label>
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-sm-6">
+                        <label for="PolycyName" class="color-transparent-darker lite small uppercase">Policy Name</label>
+                        @Html.DropDownList("policycomp", (IEnumerable<SelectListItem>)ViewBag.GroupCode, String.Empty,
+                                                       new { @class = "form-control input-md", @required = true })
+                        @*<input type="text" class="form-control input-md" name="Agent" />*@
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3 ss-item-required">
+                            <label for="Code" class="color-transparent-darker lite small uppercase">Date</label>
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control datepicker" value="@datefrom" name="sDate" readonly />
+                                <span class="input-group-btn" style="padding-top:1px;">
+                                    <button type="button" class="btn btn-default" onclick="openDatePicker(this)"><i class="fa fa-calendar"></i></button>
+                                </span>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="checkbox">
+                                <label class="color-transparent-darker lite small uppercase">
+                                    <input type="checkbox" name="showsummary" value="1">Show Summary
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" id="divSingle">
+                    @*<div class="col-sm-6">
+                <label for="Customer" class="color-transparent-darker lite small uppercase">Customer Name</label>
+                @Html.DropDownList("policyName", (IEnumerable<SelectListItem>)ViewBag.customer, String.Empty,
+                                new { @class = "form-control input-md", @required = true })
+
+            </div>*@
+                    <div class="col-sm-6">
+                        <label for="Code" class="color-transparent-darker lite small uppercase">Policy</label>
+                        @*<input type="text" class="form-control input-md" name="Policy" data-autocomplete="true" id="policyno" />*@
+                        <input type="text" class="form-control" data-autocomplete="@Url.Action("PolicynoAutoComplete","CustPolicy")" style="width: 200px" />
+                        <input type="hidden" value="" id="policyno" data-autocomplete-id="true" name="policyName" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5 ss-item-required">
+                        <label for="Header" class="color-transparent-darker lite small color-gray">Report Header</label>
+                        <input type="text" name="Header" class="form-control input-md" required />
+                    </div>
+
+                    <div class="col-sm-5 ss-item-required">
+                        <label for="Naration" class="color-transparent-darker lite small color-gray">Naration</label>
+                        <input type="text" name="Naration" class="form-control input-md" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <input type="button" class="btn btn-info btn-sm" value="Submit" id="btnsubmit" onclick="gratuityReport();" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+
+
+

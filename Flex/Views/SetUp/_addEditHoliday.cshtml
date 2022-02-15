@@ -1,0 +1,30 @@
+﻿@model Flex.Data.Model.fl_PublicHoliday
+
+<form id="frmHoliday">
+    <div class="padding-md">
+        <input type="hidden" value="@Model.Id" name="Id" />
+        <div class="row">
+            <div class="form-group col-md-12 ss-item-required">
+                <label for="Name" class="color-transparent-darker lite small uppercase">Name</label>
+                <input type="text" name="HolidayName" class="form-control input-md" value="@Model.HolidayName" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="Address" class="color-transparent-darker lite small uppercase">Day</label>
+                <input type="number" name="Holidayday" class="form-control input-md" value="@Model.Holidayday" />
+            </div>
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="Account" class="color-transparent-darker lite small uppercase">Month</label>
+                @Html.DropDownList("Holidaymonth", (IEnumerable<SelectListItem>)ViewBag.Months, String.Empty,
+                                 new { @class = "form-control input-md" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12 ss-item-required">
+                <label for="Report" class="color-transparent-darker lite small color-gray">Message</label>
+                <textarea name="HolidayMsg" class="form-control input-md">@Model.HolidayMsg</textarea>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,25 @@
+﻿
+@{
+    var model=ViewBag.Tab as List<Flex.Data.Model.Tab>;
+    var view = ViewBag.DefaultView as string;
+    var portlet= model[0].Portlet.Name;
+}
+
+<div class="bg-success padding-bottom-lg" style="margin-bottom:-40px;margin-left:-50px;margin-right:-50px;">
+        <div class="container padding-horizontal-lg">
+            <h3>@portlet</h3>
+        </div>
+    </div>
+<div class="row">
+    <div class="col-md-3">
+        <div>@Html.Partial("_menu",@model)</div>
+    </div>
+    <div class="col-md-9" id="custpolContent">
+        @Html.Action(@model[0].Action, @model[0].Controller)
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Assests/scripts/custpolicy.js"></script>
+<script src="~/Assests/scripts/modal.js"></script>
+}

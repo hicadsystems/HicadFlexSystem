@@ -1,0 +1,40 @@
+﻿@using Flex.Util
+@{ 
+    var active = "";
+}
+<div class="form-top">
+    <ul class="nav nav-tabs" role="tablist">
+        @if (WebSecurity.Module.Trim().ToUpper() != "GTY")
+        {
+            <li role="presentation" class="active">
+                <a href="#paymentList" aria-controls="policylist" role="tab" data-toggle="tab">Payment Listing</a>
+            </li>
+        }
+        @if (WebSecurity.Module.Trim().ToUpper() == "GTY")
+        {
+            <li role="presentation">
+                <a href="#gpaymentList" aria-controls="newpolicy" role="tab" data-toggle="tab">Gratuity Payment Listing</a>
+            </li>
+        }
+    </ul>
+</div>
+<div class="tab-content">
+    @if (WebSecurity.Module.Trim().ToUpper() != "GTY")
+     {
+            active = "active";
+            <div role="tabpanel" class="tab-pane @active" id="paymentList">
+            @*@Html.Partial("_payments")*@
+            @Html.Action("PaymentListing", "Payment")
+        </div>
+    }
+    @if (WebSecurity.Module.Trim().ToUpper() == "GTY")
+    {
+        active = "active";
+        <div role="tabpanel" class="tab-pane @active" id="gpaymentList">
+            @*@Html.Partial("_paymentUpload")*@
+            @Html.Action("GPaymentListing", "Payment")
+        </div>
+    }
+</div>
+
+

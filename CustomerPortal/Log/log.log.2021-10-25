@@ -1,0 +1,10 @@
+[Flex Customer Logger Started] 
+2021-10-25 09:58:00,073 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132796258747313826] Starting... @ BaseDir is [E:\ProjectsTom\temiowode-flex-system-ca7dddf7c581\CustomerPortal\]
+2021-10-25 10:07:34,885 [11] INFO  CustomerPortal - Inside post signUp
+[Flex Customer Logger Started] 
+2021-10-25 10:53:13,287 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132796291917322099] Starting... @ BaseDir is [E:\ProjectsTom\temiowode-flex-system-ca7dddf7c581\CustomerPortal\]
+[Flex Customer Logger Started] 
+2021-10-25 10:53:45,490 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132796292238973622] Starting... @ BaseDir is [E:\ProjectsTom\temiowode-flex-system-ca7dddf7c581\CustomerPortal\]
+2021-10-25 10:57:27,228 [6] INFO  Flex - Inside Payment History
+[Flex Customer Logger Started] 
+2021-10-25 11:10:49,163 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132796302480711746] Starting... @ BaseDir is [E:\ProjectsTom\temiowode-flex-system-ca7dddf7c581\CustomerPortal\]

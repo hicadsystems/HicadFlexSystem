@@ -1,0 +1,81 @@
+﻿@using Flex.Data.Model
+@using Flex.Data.ViewModel
+@model PagedResult<vwPolicyHistory>
+@{
+    if (Model != null && Model.Items.Any())
+    {
+        @*<div class="padding-sm">*@
+        <span class="pull-right" id="spApproval">
+            <a class="btn btn-warning btn-sm" id="btnApprove" data-url="@Url.Action("ApprovePolicy","CustPolicy")"><span class="fa fa-download"></span> &nbsp; pdf</a>
+        </span>
+        @*</div>*@
+    }
+}
+@{ 
+    var lshowing = Model.RowCount > 0 ? (Model.CurrentPage - 1) * Model.PageSize + 1 : 0;
+    var hshowing = ((Model.CurrentPage - 1) * Model.PageSize) + Model.RowCount;
+    var pageSumm = string.Format("Showing {0}-{1} of {2}", lshowing, hshowing, Model.LongRowCount);
+
+}
+<table class="table table-common table-striped table-hover border-bottom table-condensed" id="tblagent">
+    <thead>
+        <tr>
+            <th style="width:10%;">Reciept No</th>
+            <th style="width:17%;">Trans date</th>
+            <th style="width:9%;">Amount</th>
+            <th style="width:15%;">Interest</th>
+            <th style="width:10%;">Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            if (Model != null)
+            {
+                foreach (var stmt in Model.Items)
+                {
+                    <tr class="pointer">
+                        <td>@stmt.receiptno</td>
+                        <td>@stmt.trandate</td>
+                        <td>@stmt.amount</td>
+                        <td>@(stmt.cumul_intr ?? 0.0M)</td>
+                        @{
+                            var total= stmt.amount + (stmt.cumul_intr ?? 0.0M);
+                        }
+                        <td>@total</td>
+                    </tr>
+        }
+    }
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="10" class="pagination-summary small">
+                @*<paging-summary ng-model="model.currentPage" items-per-page="model.pageSize" total-items="model.totalItems"></paging-summary>*@
+                <span class="pull-right">@pageSumm</span>
+                <!--<pagination boundary-links="true" total-items="model.totalItems" items-per-page="model.pageSize" max-size="5" ng-model="model.currentPage" class="pagination-sm" previous-text="&lsaquo; Prev" next-text="Next &rsaquo;" first-text="&laquo;" last-text="&raquo;" ng-change="submit(model)"></pagination>-->
+            </td>
+        </tr>
+    </tfoot>
+</table>
+<div class="col-md-6 text-left">
+    <ul class="pagination pagination-sm">
+        <li>
+            <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        @{
+            for (int i = 0; i < Model.PageCount; i++)
+            {
+                var x = i + 1;
+                <li><a href="#">@x</a></li>
+            }
+        }
+        <li>
+            <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</div>
+

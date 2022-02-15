@@ -1,0 +1,73 @@
+/****** Object:  Table [dbo].[fl_quotation]    Script Date: 07/15/2016 14:50:18 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[fl_quotation](
+	[grpcode] [nvarchar](5) NOT NULL,
+	[pcn] [nvarchar](6) NOT NULL,
+	[poltype] [nvarchar](2) NOT NULL,
+	[sex] [nvarchar](7) NULL,
+	[title] [nvarchar](10) NULL,
+	[surname] [nvarchar](30) NOT NULL,
+	[othername] [nvarchar](30) NULL,
+	[peradd] [ntext] NULL,
+	[dob] [nvarchar](10) NULL,
+	[nok] [nvarchar](30) NULL,
+	[datecreated] [smalldatetime] NULL,
+	[createdby] [nvarchar](20) NULL,
+	[datemodified] [smalldatetime] NULL,
+	[modifiedby] [nvarchar](20) NULL,
+	[policyno] [nvarchar](20) NULL,
+	[quoteno] [nvarchar](10) NULL,
+	[tag] [nvarchar](15) NULL,
+	[location] [nvarchar](25) NULL,
+	[agentcode] [nvarchar](15) NULL,
+	[email] [nvarchar](50) NULL,
+	[premium] [numeric](18, 0) NULL,
+	[telephone] [nvarchar](15) NULL,
+	[religion] [nvarchar](15) NULL,
+	[resaddr] [ntext] NULL,
+	[occupation] [nvarchar](50) NULL,
+	[emprname] [nvarchar](50) NULL,
+	[empraddr] [ntext] NULL,
+	[nokaddr] [ntext] NULL,
+	[nokrelationship] [nvarchar](20) NULL,
+	[noktelephone] [nvarchar](15) NULL,
+	[benname1] [nvarchar](50) NULL,
+	[proportion1] [int] NULL,
+	[benphone1] [nvarchar](15) NULL,
+	[benname2] [nvarchar](50) NULL,
+	[proportion2] [int] NULL,
+	[benphone2] [nvarchar](15) NULL,
+	[benname3] [nvarchar](50) NULL,
+	[proportion3] [int] NULL,
+	[benphone3] [nvarchar](15) NULL,
+	[bankname] [nvarchar](50) NULL,
+	[bankacname] [nvarchar](50) NULL,
+	[bankacnumber] [nvarchar](15) NULL,
+	[drvlicenceno] [nvarchar](20) NULL,
+	[Passportno] [nvarchar](20) NULL,
+	[nationalID] [nvarchar](20) NULL,
+	[otherid] [nvarchar](50) NULL,
+	[photograph] [binary](50) NULL,
+	[signature] [image] NULL,
+	[rightthumb] [binary](50) NULL,
+	[leftthumb] [binary](50) NULL,
+ CONSTRAINT [PK_fl_quotation] PRIMARY KEY CLUSTERED 
+(
+	[grpcode] ASC,
+	[pcn] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+

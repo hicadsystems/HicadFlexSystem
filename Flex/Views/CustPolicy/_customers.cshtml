@@ -1,0 +1,26 @@
+﻿
+@using Flex.Data.ViewModel
+@model PagedResult<CustomerViewModel>
+<ul class="nav nav-tabs border-none">
+    <li role="presentation" class="active">
+        <a class="border-none uppercase bold padding-horizontal-md margin-right-xs">Customers</a>
+    </li>
+    @*<li class="pull-right">
+            <button type="button" class="btn btn-warning btn-md"><span class="fa fa-plus"></span> &nbsp; ADD BENEFICIARY</button>
+        </li>*@
+</ul>
+
+<div class="margin-top-md">
+    <span class="inline-block pull-right text-gray" style="margin-bottom:-34px; width:24px; height:34px; line-height:34px; vertical-align:middle;">
+        <span class="fa fa-search"></span>
+    </span>
+    <input type="text" name="customerSearch" style="padding-right:30px;" class=" form-control input-md" id="custSearch"
+           placeholder="Search Customers" onkeyup="searchCustomer(document.getElementById('custSearch').value, 0, 0)" />
+    <div class="text-center padding-sm" style="display:none;" id="searching">
+        <span class="fa fa-spinner rotate"></span> <em>loading...</em>
+    </div>
+</div>
+
+<div class="row margin-top-md" style="flex:auto" id="tbcust">
+    @Html.Partial("_tbCustomers",Model)
+</div>

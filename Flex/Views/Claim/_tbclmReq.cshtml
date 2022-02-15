@@ -1,0 +1,57 @@
+﻿@model List<Flex.Data.Model.ClaimRequest>
+
+@*@{
+    if (Model != null && Model.Any())
+    {
+        <span class="pull-right" id="spApproval">
+            <a class="btn btn-warning btn-sm" id="btnApprove" onclick="retrieveApprovedQuaotations(this,'pdf')" data-url="@Url.Action("ApprovedPolicy")" ><span class="fa fa-download"></span> &nbsp; pdf</a>
+        </span>
+    }
+}*@
+<table class="table table-common table-striped table-hover border-bottom table-condensed" id="tblppolicy">
+    <thead>
+        <tr>
+            <th style="width:10%;">Policy No.</th>
+            <th style="width:17%;">Amount</th>
+            <th style="width:10%;">Claim Type</th>
+            <th style="width:9%;">Status</th>
+            <th style="width:10%;">Date Requested</th>
+            <th style="width:5%;"></th>
+            <th style="width:5%;"></th>
+            <th style="width:5%;"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            if (Model != null)
+            {
+                foreach (var clmReq in Model)
+                {
+                    <tr class="pointer">
+                        <td>@clmReq.PolicyNo</td>
+                        <td>@clmReq.Amount</td>
+                        <td>@clmReq.ClaimType</td>
+                        <td>@clmReq.Status</td>
+                        <td>@clmReq.DateCreated</td>
+                        <td>
+                            <button class="btn btn-danger btn-sm fa fa-remove" onclick="claimProcess(@clmReq.Id,'disapprove')">Disapprove</button>
+                        </td>
+                        <td><button class="btn btn-primary btn-sm fa fa-refresh" onclick="claimProcess(@clmReq.Id,'process')">Process</button></td>
+                        <td><button class="btn btn-success btn-sm fa fa-check" onclick="claimProcess(@clmReq.Id,'approve')">Approve</button></td>
+                    </tr>
+                }
+            }
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="10" class="pagination-summary small">
+                <paging-summary ng-model="model.currentPage" items-per-page="model.pageSize" total-items="model.totalItems"></paging-summary>
+                <!--<pagination boundary-links="true" total-items="model.totalItems" items-per-page="model.pageSize" max-size="5" ng-model="model.currentPage" class="pagination-sm" previous-text="&lsaquo; Prev" next-text="Next &rsaquo;" first-text="&laquo;" last-text="&raquo;" ng-change="submit(model)"></pagination>-->
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+
+

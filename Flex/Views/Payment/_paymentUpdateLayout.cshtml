@@ -1,0 +1,37 @@
+﻿@using Flex.Util
+@{
+    var active = "";
+}
+
+<div class="form-top">
+    <ul class="nav nav-tabs" role="tablist">
+         @*@if (WebSecurity.Module.Trim().ToUpper() == "GTY") 
+         {
+
+         }*@ 
+    
+        <li role="presentation" class="active">
+            <a href="#transactionPost" aria-controls="policylist" role="tab" data-toggle="tab">Payment Update</a>
+        </li>
+    </ul>
+</div>
+<div class="tab-content">
+    @if (WebSecurity.Module.Trim().ToUpper() == "GTY") 
+    { 
+    <div role="tabpanel" class="tab-pane active" id="transactionPost">
+        @Html.Action("GUpdateTransaction", "Payment")
+        @*@Html.Partial("_gpaymentupdate")*@
+    </div>
+    }
+    @if(WebSecurity.Module.Trim().ToUpper() != "GTY")
+    {
+        <div role="tabpanel" class="tab-pane active" id="transactionPost">
+            @Html.Partial("_paymentUpdate")
+        </div>
+    }
+    @*<div role="tabpanel" class="tab-pane active" id="transactionPost">
+        @Html.Partial("_paymentUpdate")
+    </div>*@
+
+</div>
+

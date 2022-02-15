@@ -1,0 +1,58 @@
+﻿@model Flex.Data.Model.fl_receiptcontrol
+
+<form id="payAccts">
+    <div class="padding-md">
+        <input type="hidden" value="@Model.Id" name="Id" />
+        <div class="row">
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="Name" class="color-transparent-darker lite small uppercase">Payment Method</label>
+                @Html.DropDownList("PayMethod", (IEnumerable<SelectListItem>)ViewBag.paymentMethods, String.Empty,
+                                      new { @class = "form-control input-md", @id = "PaymentMethod", @onchange = "loadPolicyType(this);" })
+                @*<select class="form-control" name="PaymentMethod" id="PaymentMethod" onchange="loadPolicyType(this);"></select>*@
+                @*<input type="text" name="Name" class="form-control input-md" value="@Model.agentname" />*@
+            </div>
+
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="PolicyType" class="color-transparent-darker lite small uppercase">Policy Type</label>
+                @{
+                    if (Model.PolTypeId > 0)
+                    {
+                        @Html.DropDownList("PolType", (IEnumerable<SelectListItem>)ViewBag.PolicyType, String.Empty,
+                                      new { @class = "form-control input-md" })
+                    }
+                    else
+                    {
+                        <select class="form-control" name="PolType" id="PolicyType"></select>
+
+                    }
+                }
+                @*@Html.DropDownList("PolicyType","Select...")*@
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="Income" class="color-transparent-darker lite small uppercase">Income Ledger</label>
+                @*<input name="Income" class="form-control input-md">@Model.Income_ledger</input>*@
+                @Html.DropDownList("Income", (IEnumerable<SelectListItem>)ViewBag.IncomeAcct, String.Empty,
+                        new { @class = "form-control input-md select2" })
+            </div>
+            <div class="form-group col-md-6">
+                <label for="Bank" class="color-transparent-darker lite small uppercase">Bank Ledger</label>
+                @*<input type="text" name="Bank" class="form-control input-md" required value="@Model.Bank_ledger" />*@
+                @Html.DropDownList("Bank", (IEnumerable<SelectListItem>)ViewBag.BankAcct, String.Empty,
+                        new { @class = "form-control input-md select2" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="BankName" class="color-transparent-darker lite small color-gray">Bank Name</label>
+                <input type="text" name="BankName" class="form-control input-md" required value="@Model.Bankname" />
+            </div>
+            <div class="form-group col-md-6">
+                <label for="Account" class="color-transparent-darker lite small color-gray">Bank Account</label>
+                <input type="text" name="Account" class="form-control input-md" required value="@Model.BankAccount" />
+            </div>
+        </div>
+    </div>
+</form>
+

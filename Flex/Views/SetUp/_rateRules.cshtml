@@ -1,0 +1,38 @@
+﻿@using Flex.Data.Model
+@model List<fl_premrateRules>
+
+<table id="tbrules" class="table table-condensed">
+    <thead>
+        <tr class="headings">
+            <th>GIR</th>
+            <th>Staff</th>
+            <th>Marketer </th>
+            <th>Comm. Upper Limit</th>
+            <th>Intr. Upper Limit</th>
+            <th class="no-link last">
+                <span class="nobr">Action</span>
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            if (Model.Any())
+            {
+                foreach (var rule in Model)
+                {
+                    <tr>
+                        <td>@rule.Interest</td>
+                        <td>@rule.CommRate</td>
+                        <td>@rule.Mkt_CommRate</td>
+                        <td>@rule.CommBound</td>
+                        <td>@rule.IntrBound</td>
+                        <td></td>
+                    </tr>
+                }
+
+            }
+        }
+    </tbody>
+</table>
+

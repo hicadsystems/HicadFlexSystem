@@ -1,0 +1,19 @@
+﻿<div class="form-top">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#pendingProposal" aria-controls="pendingProposal" role="tab" data-toggle="tab">Pending Proposal</a>
+        </li>
+        <li role="presentation">
+            <a href="#acceptedProposal" aria-controls="acceptedProposal" role="tab" data-toggle="tab">Accepted Proposal</a>
+        </li>
+    </ul>
+</div>
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="pendingProposal">
+        @Html.Partial("_pendingPolicy")
+    </div>
+    <div role="tabpanel" class="tab-pane" id="acceptedProposal">
+        @Html.Partial("acceptedProposalSearch")
+    </div>
+
+</div>

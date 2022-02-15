@@ -1,0 +1,51 @@
+﻿@using Flex.Data.Model 
+
+@model Flex.Data.ViewModel.RoleLinks
+@{ 
+    var PortletTabs = (List<Portlet>)ViewBag.PortletTabs;
+ }
+<div class="padding-md" id="divRole">
+    <input type="hidden" value="@Model.RoleId" name="Id" id="roleid" />
+    <div class="row">
+        <div class="form-group col-md-6 ss-item-required">
+            <label for="Code" class="color-transparent-darker lite small uppercase">Name</label>
+            <input type="text" name="Name" class="form-control input-md" required id="roleName" value="@Model.Name"/>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="Code" class="color-transparent-darker lite small uppercase">Description</label>
+            <input type="text" name="Desc" class="form-control input-md" id="roleDesc" value="@Model.Desc" />
+        </div>
+    </div>
+    <div class="row" >
+        @{
+            var chkPortlet = false;
+            var hasLink = Model.Menu.Any() ? true : false;
+            foreach (var p in @PortletTabs)
+            {
+                chkPortlet = Model.Menu.Any(x => x.Portlet == p.Id);
+                <div class="col-md-6">
+                <label class="checkbox-inline">
+                    <input type="checkbox" value="@p.Id" name="portlet" id="@p.Id" checked="@chkPortlet"> @p.Name
+                </label>
+                <div id="@p.Id">
+                    @foreach (var tab in p.Tabs)
+                    {
+                        var chkTab = false;
+                        var aTabs = Model.Menu.Where(x => x.Portlet == p.Id).FirstOrDefault();
+                        if (aTabs != null)
+                        {
+                            chkTab = aTabs.Tabs.Contains(tab.Id);
+                        }
+                        <div class="col-md-12">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="@tab.Id" name="tab" data-parent="@p.Id" checked="@chkTab"> @tab.Name
+                            </label>
+                        </div>
+                    }
+                </div>
+
+                </div>
+            }
+        }
+    </div>
+</div>

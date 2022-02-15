@@ -1,0 +1,78 @@
+﻿@model Flex.Data.Model.fl_system
+<form id="frmCoyProfile">
+    <div class="padding-md">
+        <input type="hidden" value="@Model.Id" name="Id" />
+        <div class="row">
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="Code" class="color-transparent-darker lite small uppercase">
+                    Code
+                    <span>*</span> 
+                </label>
+                <input type="text" name="Code" class="form-control input-md" required value="@Model.coycode" />
+            </div>
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="Name" class="color-transparent-darker lite small uppercase">Name</label>
+                <input type="text" name="Name" class="form-control input-md" value="@Model.coyname" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="Address" class="color-transparent-darker lite small uppercase">Address</label>
+                <textarea name="Address" class="form-control input-md">@Model.coyaddress</textarea>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="Town" class="color-transparent-darker lite small uppercase">Town</label>
+                <input type="text" name="Town" class="form-control input-md" required value="@Model.town" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="State" class="color-transparent-darker lite small color-gray">State</label>
+                <input type="text" name="State" class="form-control input-md" required value="@Model.state" />
+            </div>
+            <div class="form-group col-md-6">
+                <label for="LGA" class="color-transparent-darker lite small">Local Govt. Area</label>
+                <input type="text" name="LGA" class="form-control input-md" required value="@Model.lg" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="box" class="color-transparent-darker lite small">P.O. Box</label>
+                <input type="text" name="box" class="form-control input-md" required value="@Model.box" />
+            </div>
+            <div class="form-group col-md-6">
+                <label for="Phone" class="color-transparent-darker lite small color-gray">Telephone</label>
+                <input type="text" name="Phone" class="form-control input-md" required value="@Model.telephone" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="Email" class="color-transparent-darker lite small">Email</label>
+                <input type="text" name="Email" class="form-control input-md" required value="@Model.email" />
+            </div>
+            @*<div class="form-group col-md-6">
+                    <label for="Phone" class="color-transparent-darker lite small color-gray">Telephone</label>
+                    <input type="text" name="Phone" class="form-control input-md" required />
+                </div>*@
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-4 ss-item-required">
+                <label for="InstallDate" class="color-transparent-darker lite small ">Installation Date</label>
+                <input type="text" name="InstallDate" class="form-control input-md datepicker" required value="@Model.installdate" placeholder="dd/mm/yyyy" />
+            </div>
+            <div class="form-group col-md-4">
+                <label for="ProcessMonth" class="color-transparent-darker lite small color-gray">Processing Month</label>
+                <input type="text" name="ProcessMonth" class="form-control input-md" required value="@Model.processmonth" placeholder="mm" />
+            </div>
+            <div class="form-group col-md-4">
+                <label for="ProcessYear" class="color-transparent-darker lite small color-gray">Processing Year</label>
+                <input type="text" name="ProcessYear" class="form-control input-md" required value="@Model.processyear" />
+            </div>
+
+        </div>
+    </div>
+
+</form>

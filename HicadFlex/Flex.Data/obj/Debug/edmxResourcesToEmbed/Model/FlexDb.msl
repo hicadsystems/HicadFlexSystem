@@ -1,0 +1,790 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FlexModelStoreContainer" CdmEntityContainer="FlexEntities">
+    <EntitySetMapping Name="CustomerUsers">
+      <EntityTypeMapping TypeName="Flex.Model.CustomerUser">
+        <MappingFragment StoreEntitySet="CustomerUser">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="firstLoginDate" ColumnName="firstLoginDate" />
+          <ScalarProperty Name="lastLoginDate" ColumnName="lastLoginDate" />
+          <ScalarProperty Name="modifyby" ColumnName="modifyby" />
+          <ScalarProperty Name="modifydate" ColumnName="modifydate" />
+          <ScalarProperty Name="passworddate" ColumnName="passworddate" />
+          <ScalarProperty Name="datecreated" ColumnName="datecreated" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="fl_password">
+      <EntityTypeMapping TypeName="Flex.Model.fl_password">
+        <MappingFragment StoreEntitySet="fl_password">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="branch" ColumnName="branch" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="lastlogindate" ColumnName="lastlogindate" />
+          <ScalarProperty Name="modifyby" ColumnName="modifyby" />
+          <ScalarProperty Name="modifydate" ColumnName="modifydate" />
+          <ScalarProperty Name="Deletedby" ColumnName="Deletedby" />
+          <ScalarProperty Name="Deleteddate" ColumnName="Deleteddate" />
+          <ScalarProperty Name="passworddate" ColumnName="passworddate" />
+          <ScalarProperty Name="expirydate" ColumnName="expirydate" />
+          <ScalarProperty Name="datecreated" ColumnName="datecreated" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="userdept" ColumnName="userdept" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="userpassword" ColumnName="userpassword" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NextofKin_BeneficiaryStaging">
+      <EntityTypeMapping TypeName="Flex.Model.NextofKin_BeneficiaryStaging">
+        <MappingFragment StoreEntitySet="NextofKin_BeneficiaryStaging">
+          <ScalarProperty Name="PolicyId" ColumnName="PolicyId" />
+          <ScalarProperty Name="IsSynched" ColumnName="IsSynched" />
+          <ScalarProperty Name="ApprovalStatus" ColumnName="ApprovalStatus" />
+          <ScalarProperty Name="Proportion" ColumnName="Proportion" />
+          <ScalarProperty Name="PersonalDetailsStagingId" ColumnName="PersonalDetailsStagingId" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="RelationShip" ColumnName="RelationShip" />
+          <ScalarProperty Name="Dob" ColumnName="Dob" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="RegNo" ColumnName="RegNo" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserSessions">
+      <EntityTypeMapping TypeName="Flex.Model.UserSession">
+        <MappingFragment StoreEntitySet="UserSession">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Token" ColumnName="Token" />
+          <ScalarProperty Name="AccessCount" ColumnName="AccessCount" />
+          <ScalarProperty Name="SessionStatus" ColumnName="SessionStatus" />
+          <ScalarProperty Name="LogoutDate" ColumnName="LogoutDate" />
+          <ScalarProperty Name="LastAccessed" ColumnName="LastAccessed" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+          <ScalarProperty Name="CustomerUserID" ColumnName="CustomerUserID" />
+          <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerPolicies">
+      <EntityTypeMapping TypeName="Flex.Model.CustomerPolicy">
+        <MappingFragment StoreEntitySet="CustomerPolicies">
+          <ScalarProperty Name="Policyno" ColumnName="Policyno" />
+          <ScalarProperty Name="CustomerUserId" ColumnName="CustomerUserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PendingEmails">
+      <EntityTypeMapping TypeName="Flex.Model.PendingEmail">
+        <MappingFragment StoreEntitySet="PendingEmail">
+          <ScalarProperty Name="IsSent" ColumnName="IsSent" />
+          <ScalarProperty Name="RetryCount" ColumnName="RetryCount" />
+          <ScalarProperty Name="ThrewException" ColumnName="ThrewException" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="Retries" ColumnName="Retries" />
+          <ScalarProperty Name="Sender" ColumnName="Sender" />
+          <ScalarProperty Name="ReplyTo" ColumnName="ReplyTo" />
+          <ScalarProperty Name="IsBodyHtml" ColumnName="IsBodyHtml" />
+          <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+          <ScalarProperty Name="CC" ColumnName="CC" />
+          <ScalarProperty Name="Bcc" ColumnName="Bcc" />
+          <ScalarProperty Name="To" ColumnName="To" />
+          <ScalarProperty Name="From" ColumnName="From" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="Flex.Model.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tabs">
+      <EntityTypeMapping TypeName="Flex.Model.Tab">
+        <MappingFragment StoreEntitySet="Tabs">
+          <ScalarProperty Name="View" ColumnName="View" />
+          <ScalarProperty Name="Order" ColumnName="Order" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="Controller" ColumnName="Controller" />
+          <ScalarProperty Name="icon" ColumnName="icon" />
+          <ScalarProperty Name="PortletId" ColumnName="PortletId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRoles">
+      <EntityTypeMapping TypeName="Flex.Model.UserRole">
+        <MappingFragment StoreEntitySet="UserRole">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Portlets">
+      <EntityTypeMapping TypeName="Flex.Model.Portlet">
+        <MappingFragment StoreEntitySet="Portlet">
+          <ScalarProperty Name="Order" ColumnName="Order" />
+          <ScalarProperty Name="Background" ColumnName="Background" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="fl_system">
+      <EntityTypeMapping TypeName="Flex.Model.fl_system">
+        <MappingFragment StoreEntitySet="fl_system">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="reassurance" ColumnName="reassurance" />
+          <ScalarProperty Name="serialnumber" ColumnName="serialnumber" />
+          <ScalarProperty Name="datecreated" ColumnName="datecreated" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="installdate" ColumnName="installdate" />
+          <ScalarProperty Name="processmonth" ColumnName="processmonth" />
+          <ScalarProperty Name="processyear" ColumnName="processyear" />
+          <ScalarProperty Name="box" ColumnName="box" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="lg" ColumnName="lg" />
+          <ScalarProperty Name="town" ColumnName="town" />
+          <ScalarProperty Name="coyaddress" ColumnName="coyaddress" />
+          <ScalarProperty Name="coyname" ColumnName="coyname" />
+          <ScalarProperty Name="coycode" ColumnName="coycode" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="fl_poltype">
+      <EntityTypeMapping TypeName="Flex.Model.fl_poltype">
+        <MappingFragment StoreEntitySet="fl_poltype">
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Datecreated" ColumnName="Datecreated" />
+          <ScalarProperty Name="vat_account" ColumnName="vat_account" />
+          <ScalarProperty Name="expense_account" ColumnName="expense_account" />
+          <ScalarProperty Name="liability_account" ColumnName="liability_account" />
+          <ScalarProperty Name="income_account" ColumnName="income_account" />
+          <ScalarProperty Name="maxloan" ColumnName="maxloan" />
+          <ScalarProperty Name="matage" ColumnName="matage" />
+          <ScalarProperty Name="term" ColumnName="term" />
+          <ScalarProperty Name="actype" ColumnName="actype" />
+          <ScalarProperty Name="poldesc" ColumnName="poldesc" />
+          <ScalarProperty Name="poltype" ColumnName="poltype" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="fl_pendingSMS">
+      <EntityTypeMapping TypeName="Flex.Model.fl_pendingSMS">
+        <MappingFragment StoreEntitySet="fl_pendingSMS">
+          <ScalarProperty Name="Application" ColumnName="Application" />
+          <ScalarProperty Name="retrycount" ColumnName="retrycount" />
+          <ScalarProperty Name="isSent" ColumnName="isSent" />
+          <ScalarProperty Name="message" ColumnName="message" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="srn" ColumnName="srn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="fl_location">
+      <EntityTypeMapping TypeName="Flex.Model.fl_location">
+        <MappingFragment StoreEntitySet="fl_location">
+          <ScalarProperty Name="Isdeleted" ColumnName="Isdeleted" />
+          <ScalarProperty Name="modifiedby" ColumnName="modifiedby" />
+          <ScalarProperty Name="datemodified" ColumnName="datemodified" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="datecreated" ColumnName="datecreated" />
+          <ScalarProperty Name="loccode" ColumnName="loccode" />
+          <ScalarProperty Name="locstate" ColumnName="locstate" />
+          <ScalarProperty Name="locdesc" ColumnName="locdesc" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="fl_policyinput">
+      <EntityTypeMapping TypeName="Flex.Model.fl_policyinput">
+        <MappingFragment StoreEntitySet="fl_policyinput">
+          <ScalarProperty Name="PictureFile" ColumnName="PictureFile" />
+          <ScalarProperty Name="pwd" ColumnName="pwd" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="religion" ColumnName="religion" />
+          <ScalarProperty Name="pinword" ColumnName="pinword" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="premium" ColumnName="premium" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="agentcode" ColumnName="agentcode" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="exitdate" ColumnName="exitdate" />
+          <ScalarProperty Name="poltype" ColumnName="poltype" />
+          <ScalarProperty Name="policyno" ColumnName="policyno" />
+          <ScalarProperty Name="quoteno" ColumnName="quoteno" />
+          <ScalarProperty Name="accdate" ColumnName="accdate" />
+          <ScalarProperty Name="modifiedby" ColumnName="modifiedby" />
+          <ScalarProperty Name="datemodified" ColumnName="datemodified" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="datecreated" ColumnName="datecreated" />
+          <ScalarProperty Name="nok" ColumnName="nok" />
+          <ScalarProperty Name="dob" ColumnName="dob" />
+          <ScalarProperty Name="peradd" ColumnName="peradd" />
+          <ScalarProperty Name="othername" ColumnName="othername" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="sex" ColumnName="sex" />
+          <ScalarProperty Name="grpcode" ColumnName="grpcode" />
+          <ScalarProperty Name="pcn" ColumnName="pcn" />
+          <ScalarProperty Name="srn" ColumnName="srn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="fl_receiptcontrol">
+      <EntityTypeMapping TypeName="Flex.Model.fl_receiptcontrol">
+        <MappingFragment StoreEntitySet="fl_receiptcontrol">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Receiptcounter" ColumnName="Receiptcounter" />
+          <ScalarProperty Name="Bankname" ColumnName="Bankname" />
+          <ScalarProperty Name="BankAccount" ColumnName="BankAccount" />
+          <ScalarProperty Name="Bank_ledger" ColumnName="Bank_ledger" />
+          <ScalarProperty Name="Income_ledger" ColumnName="Income_ledger" />
+          <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+          <ScalarProperty Name="PolTypeId" ColumnName="PolTypeId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PersonalDetailsStagings">
+      <EntityTypeMapping TypeName="Flex.Model.PersonalDetailsStaging">
+        <MappingFragment StoreEntitySet="PersonalDetailsStaging">
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="IsSynched" ColumnName="IsSynched" />
+          <ScalarProperty Name="ApprovalStatus" ColumnName="ApprovalStatus" />
+          <ScalarProperty Name="PolicyType" ColumnName="PolicyType" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="CommencementDate" ColumnName="CommencementDate" />
+          <ScalarProperty Name="ContribFreq" ColumnName="ContribFreq" />
+          <ScalarProperty Name="ContribAmount" ColumnName="ContribAmount" />
+          <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+          <ScalarProperty Name="dob" ColumnName="dob" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PosAddress" ColumnName="PosAddress" />
+          <ScalarProperty Name="OffAddress" ColumnName="OffAddress" />
+          <ScalarProperty Name="ResAddress" ColumnName="ResAddress" />
+          <ScalarProperty Name="OtherNames" ColumnName="OtherNames" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="RegNo" ColumnName="RegNo" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="acccharts">
+      <EntityTypeMapping TypeName="Flex.Model.accchart">
+        <MappingFragment StoreEntitySet="accchart">
+          <ScalarProperty Name="dateblocked" ColumnName="dateblocked" />
+          <ScalarProperty Name="trade" ColumnName="trade" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="address3" ColumnName="address3" />
+          <ScalarProperty Name="address2" ColumnName="address2" />
+          <ScalarProperty Name="address1" ColumnName="address1" />
+          <ScalarProperty Name="datecreated" ColumnName="datecreated" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="cfsumdesc4" ColumnName="cfsumdesc4" />
+          <ScalarProperty Name="cfsumdesc3" ColumnName="cfsumdesc3" />
+          <ScalarProperty Name="cfsumdesc2" ColumnName="cfsumdesc2" />
+          <ScalarProperty Name="cfsumdesc1" ColumnName="cfsumdesc1" />
+          <ScalarProperty Name="cfgroupdes4" ColumnName="cfgroupdes4" />
+          <ScalarProperty Name="cfgroupdes3" ColumnName="cfgroupdes3" />
+          <ScalarProperty Name="cfgroupdes2" ColumnName="cfgroupdes2" />
+          <ScalarProperty Name="cfgroupdes1" ColumnName="cfgroupdes1" />
+          <ScalarProperty Name="cfgroup4" ColumnName="cfgroup4" />
+          <ScalarProperty Name="cfgroup3" ColumnName="cfgroup3" />
+          <ScalarProperty Name="cfgroup2" ColumnName="cfgroup2" />
+          <ScalarProperty Name="cfgroup1" ColumnName="cfgroup1" />
+          <ScalarProperty Name="blsumdesc4" ColumnName="blsumdesc4" />
+          <ScalarProperty Name="blsumdesc3" ColumnName="blsumdesc3" />
+          <ScalarProperty Name="blsumdesc2" ColumnName="blsumdesc2" />
+          <ScalarProperty Name="blsumdesc1" ColumnName="blsumdesc1" />
+          <ScalarProperty Name="blsum4" ColumnName="blsum4" />
+          <ScalarProperty Name="blsum3" ColumnName="blsum3" />
+          <ScalarProperty Name="blsum2" ColumnName="blsum2" />
+          <ScalarProperty Name="blsum1" ColumnName="blsum1" />
+          <ScalarProperty Name="blgroupdes4" ColumnName="blgroupdes4" />
+          <ScalarProperty Name="blgroupdes3" ColumnName="blgroupdes3" />
+          <ScalarProperty Name="blgroupdes2" ColumnName="blgroupdes2" />
+          <ScalarProperty Name="blgroupdes1" ColumnName="blgroupdes1" />
+          <ScalarProperty Name="blgroup4" ColumnName="blgroup4" />
+          <ScalarProperty Name="blgroup3" ColumnName="blgroup3" />
+          <ScalarProperty Name="blgroup2" ColumnName="blgroup2" />
+          <ScalarProperty Name="blgroup1" ColumnName="blgroup1" />
+          <ScalarProperty Name="subcode" ColumnName="subcode" />
+          <ScalarProperty Name="ledgerpasswd2" ColumnName="ledgerpasswd2" />
+          <ScalarProperty Name="ledgerpasswd" ColumnName="ledgerpasswd" />
+          <ScalarProperty Name="effdate" ColumnName="effdate" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="acctsubtype" ColumnName="acctsubtype" />
+          <ScalarProperty Name="acctype" ColumnName="acctype" />
+          <ScalarProperty Name="oldnumber" ColumnName="oldnumber" />
+          <ScalarProperty Name="acctcode7" ColumnName="acctcode7" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="acctnumber" ColumnName="acctnumber" />
+          <ScalarProperty Name="acctcode6" ColumnName="acctcode6" />
+          <ScalarProperty Name="acctcode5" ColumnName="acctcode5" />
+          <ScalarProperty Name="acctcode4" ColumnName="acctcode4" />
+          <ScalarProperty Name="acctcode3" ColumnName="acctcode3" />
+          <ScalarProperty Name="acctcode2" ColumnName="acctcode2" />
+          <ScalarProperty Name="acctcode1" ColumnName="acctcode1" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ac_costCenter">
+      <EntityTypeMapping TypeName="Flex.Model.ac_costCenter">
+        <MappingFragment StoreEntitySet="ac_costCenter">
+          <ScalarProperty Name="Desc" ColumnName="Desc" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="fl_agents">
+      <EntityTypeMapping TypeName="Flex.Model.fl_agents">
+        <MappingFragment StoreEntitySet="fl_agents">
+          <ScalarProperty Name="exitdate" ColumnName="exitdate" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="agentphone" ColumnName="agentphone" />
+          <ScalarProperty Name="agentaddr" ColumnName="agentaddr" />
+          <ScalarProperty Name="modifiedby" ColumnName="modifiedby" />
+          <ScalarProperty Name="datemodified" ColumnName="datemodified" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="datecreated" ColumnName="datecreated" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="CommissionRate" ColumnName="CommissionRate" />
+          <ScalarProperty Name="agenttype" ColumnName="agenttype" />
+          <ScalarProperty Name="locationId" ColumnName="locationId" />
+          <ScalarProperty Name="agentname" ColumnName="agentname" />
+          <ScalarProperty Name="agentcode" ColumnName="agentcode" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LinkRoles">
+      <EntityTypeMapping TypeName="Flex.Model.LinkRole">
+        <MappingFragment StoreEntitySet="LinkRole">
+          <ScalarProperty Name="Parent" ColumnName="Parent" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="LinkId" ColumnName="LinkId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vwPolicies">
+      <EntityTypeMapping TypeName="Flex.Model.vwPolicy">
+        <MappingFragment StoreEntitySet="vwPolicy">
+          <ScalarProperty Name="agentLocation" ColumnName="agentLocation" />
+          <ScalarProperty Name="exitdate" ColumnName="exitdate" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="accdate" ColumnName="accdate" />
+          <ScalarProperty Name="agentname" ColumnName="agentname" />
+          <ScalarProperty Name="locdesc" ColumnName="locdesc" />
+          <ScalarProperty Name="srn" ColumnName="srn" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="agentcode" ColumnName="agentcode" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="balance" ColumnName="balance" />
+          <ScalarProperty Name="othername" ColumnName="othername" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="poltype" ColumnName="poltype" />
+          <ScalarProperty Name="premium" ColumnName="premium" />
+          <ScalarProperty Name="policyno" ColumnName="policyno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OnlineReciepts">
+      <EntityTypeMapping TypeName="Flex.Model.OnlineReciept">
+        <MappingFragment StoreEntitySet="OnlineReciept">
+          <ScalarProperty Name="FinalResponseDecription" ColumnName="FinalResponseDecription" />
+          <ScalarProperty Name="FinalPaymentDate" ColumnName="FinalPaymentDate" />
+          <ScalarProperty Name="FinalResponseCode" ColumnName="FinalResponseCode" />
+          <ScalarProperty Name="IntialResponseDecription" ColumnName="IntialResponseDecription" />
+          <ScalarProperty Name="InitialPaymentDate" ColumnName="InitialPaymentDate" />
+          <ScalarProperty Name="InitialResponseCode" ColumnName="InitialResponseCode" />
+          <ScalarProperty Name="TransactionStatus" ColumnName="TransactionStatus" />
+          <ScalarProperty Name="IsSynched" ColumnName="IsSynched" />
+          <ScalarProperty Name="Policyno" ColumnName="Policyno" />
+          <ScalarProperty Name="Product" ColumnName="Product" />
+          <ScalarProperty Name="FinalAmount" ColumnName="FinalAmount" />
+          <ScalarProperty Name="InitialAmount" ColumnName="InitialAmount" />
+          <ScalarProperty Name="PaymentChannel" ColumnName="PaymentChannel" />
+          <ScalarProperty Name="ReceiptNo" ColumnName="ReceiptNo" />
+          <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="fl_premrateRules">
+      <EntityTypeMapping TypeName="Flex.Model.fl_premrateRules">
+        <MappingFragment StoreEntitySet="fl_premrateRules">
+          <ScalarProperty Name="PremRateId" ColumnName="PremRateId" />
+          <ScalarProperty Name="CommBound" ColumnName="CommBound" />
+          <ScalarProperty Name="IntrBound" ColumnName="IntrBound" />
+          <ScalarProperty Name="Mkt_CommRate" ColumnName="Mkt_CommRate" />
+          <ScalarProperty Name="CommRate" ColumnName="CommRate" />
+          <ScalarProperty Name="Interest" ColumnName="Interest" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="fl_payclaim">
+      <EntityTypeMapping TypeName="Flex.Model.fl_payclaim">
+        <MappingFragment StoreEntitySet="fl_payclaim">
+          <ScalarProperty Name="cumuldep_intr" ColumnName="cumuldep_intr" />
+          <ScalarProperty Name="curdep_intr" ColumnName="curdep_intr" />
+          <ScalarProperty Name="deposit" ColumnName="deposit" />
+          <ScalarProperty Name="opendeposit" ColumnName="opendeposit" />
+          <ScalarProperty Name="openbalance" ColumnName="openbalance" />
+          <ScalarProperty Name="doctype" ColumnName="doctype" />
+          <ScalarProperty Name="loanamt" ColumnName="loanamt" />
+          <ScalarProperty Name="cumul_intr" ColumnName="cumul_intr" />
+          <ScalarProperty Name="cur_intr" ColumnName="cur_intr" />
+          <ScalarProperty Name="gir" ColumnName="gir" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="trandate" ColumnName="trandate" />
+          <ScalarProperty Name="orig_date" ColumnName="orig_date" />
+          <ScalarProperty Name="poltype" ColumnName="poltype" />
+          <ScalarProperty Name="pcn" ColumnName="pcn" />
+          <ScalarProperty Name="grpcode" ColumnName="grpcode" />
+          <ScalarProperty Name="period" ColumnName="period" />
+          <ScalarProperty Name="receiptno" ColumnName="receiptno" />
+          <ScalarProperty Name="policyno" ColumnName="policyno" />
+          <ScalarProperty Name="srn" ColumnName="srn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Modules">
+      <EntityTypeMapping TypeName="Flex.Model.Module">
+        <MappingFragment StoreEntitySet="Modules">
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="PolicyType" ColumnName="PolicyType" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="fl_grouptype">
+      <EntityTypeMapping TypeName="Flex.Model.fl_grouptype">
+        <MappingFragment StoreEntitySet="fl_grouptype">
+          <ScalarProperty Name="annmonth" ColumnName="annmonth" />
+          <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="grpclass" ColumnName="grpclass" />
+          <ScalarProperty Name="accountcode" ColumnName="accountcode" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="grpname" ColumnName="grpname" />
+          <ScalarProperty Name="grpcode" ColumnName="grpcode" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="fl_payinput">
+      <EntityTypeMapping TypeName="Flex.Model.fl_payinput">
+        <MappingFragment StoreEntitySet="fl_payinput">
+          <ScalarProperty Name="poltype" ColumnName="poltype" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="datecreated" ColumnName="datecreated" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="payindicator" ColumnName="payindicator" />
+          <ScalarProperty Name="chequeno" ColumnName="chequeno" />
+          <ScalarProperty Name="totamt" ColumnName="totamt" />
+          <ScalarProperty Name="effdate" ColumnName="effdate" />
+          <ScalarProperty Name="trandate" ColumnName="trandate" />
+          <ScalarProperty Name="reverseind" ColumnName="reverseind" />
+          <ScalarProperty Name="pcn" ColumnName="pcn" />
+          <ScalarProperty Name="grpcode" ColumnName="grpcode" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="receiptno" ColumnName="receiptno" />
+          <ScalarProperty Name="policyno" ColumnName="policyno" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="fl_payhistory">
+      <EntityTypeMapping TypeName="Flex.Model.fl_payhistory">
+        <MappingFragment StoreEntitySet="fl_payhistory">
+          <ScalarProperty Name="cumuldep_intr" ColumnName="cumuldep_intr" />
+          <ScalarProperty Name="curdep_intr" ColumnName="curdep_intr" />
+          <ScalarProperty Name="deposit" ColumnName="deposit" />
+          <ScalarProperty Name="opendeposit" ColumnName="opendeposit" />
+          <ScalarProperty Name="openbalance" ColumnName="openbalance" />
+          <ScalarProperty Name="doctype" ColumnName="doctype" />
+          <ScalarProperty Name="loanamt" ColumnName="loanamt" />
+          <ScalarProperty Name="cumul_intr" ColumnName="cumul_intr" />
+          <ScalarProperty Name="cur_intr" ColumnName="cur_intr" />
+          <ScalarProperty Name="gir" ColumnName="gir" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="trandate" ColumnName="trandate" />
+          <ScalarProperty Name="orig_date" ColumnName="orig_date" />
+          <ScalarProperty Name="poltype" ColumnName="poltype" />
+          <ScalarProperty Name="pcn" ColumnName="pcn" />
+          <ScalarProperty Name="grpcode" ColumnName="grpcode" />
+          <ScalarProperty Name="period" ColumnName="period" />
+          <ScalarProperty Name="receiptno" ColumnName="receiptno" />
+          <ScalarProperty Name="policyno" ColumnName="policyno" />
+          <ScalarProperty Name="srn" ColumnName="srn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClaimRequests">
+      <EntityTypeMapping TypeName="Flex.Model.ClaimRequest">
+        <MappingFragment StoreEntitySet="ClaimRequest">
+          <ScalarProperty Name="FundAmount" ColumnName="FundAmount" />
+          <ScalarProperty Name="ApprovedAmount" ColumnName="ApprovedAmount" />
+          <ScalarProperty Name="Interest" ColumnName="Interest" />
+          <ScalarProperty Name="EffectiveDate" ColumnName="EffectiveDate" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="PolicyNo" ColumnName="PolicyNo" />
+          <ScalarProperty Name="ClaimNo" ColumnName="ClaimNo" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="fl_state">
+      <EntityTypeMapping TypeName="Flex.Model.fl_state">
+        <MappingFragment StoreEntitySet="fl_state">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ac_rctheader">
+      <EntityTypeMapping TypeName="Flex.Model.ac_rctheader">
+        <MappingFragment StoreEntitySet="ac_rctheader">
+          <ScalarProperty Name="kobo" ColumnName="kobo" />
+          <ScalarProperty Name="naira" ColumnName="naira" />
+          <ScalarProperty Name="deletedby" ColumnName="deletedby" />
+          <ScalarProperty Name="datedeleted" ColumnName="datedeleted" />
+          <ScalarProperty Name="dateupdated" ColumnName="dateupdated" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+          <ScalarProperty Name="datecreated" ColumnName="datecreated" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="rcth_indicator" ColumnName="rcth_indicator" />
+          <ScalarProperty Name="rcth_remark" ColumnName="rcth_remark" />
+          <ScalarProperty Name="rcth_total" ColumnName="rcth_total" />
+          <ScalarProperty Name="rcth_credit" ColumnName="rcth_credit" />
+          <ScalarProperty Name="rcth_debit" ColumnName="rcth_debit" />
+          <ScalarProperty Name="rcth_bank" ColumnName="rcth_bank" />
+          <ScalarProperty Name="rcth_policy" ColumnName="rcth_policy" />
+          <ScalarProperty Name="rcth_date" ColumnName="rcth_date" />
+          <ScalarProperty Name="rcth_type" ColumnName="rcth_type" />
+          <ScalarProperty Name="rcth_class" ColumnName="rcth_class" />
+          <ScalarProperty Name="rcth_cheque" ColumnName="rcth_cheque" />
+          <ScalarProperty Name="rcth_refnumber" ColumnName="rcth_refnumber" />
+          <ScalarProperty Name="rcth_address" ColumnName="rcth_address" />
+          <ScalarProperty Name="rcth_name" ColumnName="rcth_name" />
+          <ScalarProperty Name="rcth_number" ColumnName="rcth_number" />
+          <ScalarProperty Name="rcth_unitcode" ColumnName="rcth_unitcode" />
+          <ScalarProperty Name="Branch_code" ColumnName="Branch_code" />
+          <ScalarProperty Name="coy_code" ColumnName="coy_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="fl_payinput2">
+      <EntityTypeMapping TypeName="Flex.Model.fl_payinput2">
+        <MappingFragment StoreEntitySet="fl_payinput2">
+          <ScalarProperty Name="cc" ColumnName="cc" />
+          <ScalarProperty Name="psc" ColumnName="psc" />
+          <ScalarProperty Name="av" ColumnName="av" />
+          <ScalarProperty Name="ee" ColumnName="ee" />
+          <ScalarProperty Name="er" ColumnName="er" />
+          <ScalarProperty Name="ps" ColumnName="ps" />
+          <ScalarProperty Name="datecreated" ColumnName="datecreated" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="payindicator" ColumnName="payindicator" />
+          <ScalarProperty Name="chequeno" ColumnName="chequeno" />
+          <ScalarProperty Name="totamt" ColumnName="totamt" />
+          <ScalarProperty Name="effdate" ColumnName="effdate" />
+          <ScalarProperty Name="trandate" ColumnName="trandate" />
+          <ScalarProperty Name="reverseind" ColumnName="reverseind" />
+          <ScalarProperty Name="pcn" ColumnName="pcn" />
+          <ScalarProperty Name="grpcode" ColumnName="grpcode" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="poltype" ColumnName="poltype" />
+          <ScalarProperty Name="receiptno" ColumnName="receiptno" />
+          <ScalarProperty Name="policyno" ColumnName="policyno" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="fl_translog">
+      <EntityTypeMapping TypeName="Flex.Model.fl_translog">
+        <MappingFragment StoreEntitySet="fl_translog">
+          <ScalarProperty Name="grpcode" ColumnName="grpcode" />
+          <ScalarProperty Name="poltype" ColumnName="poltype" />
+          <ScalarProperty Name="chequeno" ColumnName="chequeno" />
+          <ScalarProperty Name="Isreversed" ColumnName="Isreversed" />
+          <ScalarProperty Name="Instrument" ColumnName="Instrument" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="policyno" ColumnName="policyno" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="paymentmethod" ColumnName="paymentmethod" />
+          <ScalarProperty Name="payee" ColumnName="payee" />
+          <ScalarProperty Name="income_ledger" ColumnName="income_ledger" />
+          <ScalarProperty Name="bank_ledger" ColumnName="bank_ledger" />
+          <ScalarProperty Name="trandate" ColumnName="trandate" />
+          <ScalarProperty Name="receiptno" ColumnName="receiptno" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ac_rctdetails">
+      <EntityTypeMapping TypeName="Flex.Model.ac_rctdetails">
+        <MappingFragment StoreEntitySet="ac_rctdetails">
+          <ScalarProperty Name="rct_partfull" ColumnName="rct_partfull" />
+          <ScalarProperty Name="rct_grossnet" ColumnName="rct_grossnet" />
+          <ScalarProperty Name="rct_othercharge" ColumnName="rct_othercharge" />
+          <ScalarProperty Name="rct_policyloan" ColumnName="rct_policyloan" />
+          <ScalarProperty Name="rct_premloan" ColumnName="rct_premloan" />
+          <ScalarProperty Name="rct_premium" ColumnName="rct_premium" />
+          <ScalarProperty Name="rct_class" ColumnName="rct_class" />
+          <ScalarProperty Name="deletemarker" ColumnName="deletemarker" />
+          <ScalarProperty Name="deletedby" ColumnName="deletedby" />
+          <ScalarProperty Name="datedeleted" ColumnName="datedeleted" />
+          <ScalarProperty Name="datecreated" ColumnName="datecreated" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="Branch_code" ColumnName="Branch_code" />
+          <ScalarProperty Name="coy_code" ColumnName="coy_code" />
+          <ScalarProperty Name="rct_bank" ColumnName="rct_bank" />
+          <ScalarProperty Name="rct_remark" ColumnName="rct_remark" />
+          <ScalarProperty Name="rct_credit" ColumnName="rct_credit" />
+          <ScalarProperty Name="rct_debit" ColumnName="rct_debit" />
+          <ScalarProperty Name="rct_code" ColumnName="rct_code" />
+          <ScalarProperty Name="rct_type" ColumnName="rct_type" />
+          <ScalarProperty Name="rct_account" ColumnName="rct_account" />
+          <ScalarProperty Name="rct_number" ColumnName="rct_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="fl_PublicHoliday">
+      <EntityTypeMapping TypeName="Flex.Model.fl_PublicHoliday">
+        <MappingFragment StoreEntitySet="fl_PublicHoliday">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="HolidayMsg" ColumnName="HolidayMsg" />
+          <ScalarProperty Name="holidaymonth" ColumnName="holidaymonth" />
+          <ScalarProperty Name="Holidayday" ColumnName="Holidayday" />
+          <ScalarProperty Name="HolidayName" ColumnName="HolidayName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vProductions">
+      <EntityTypeMapping TypeName="Flex.Model.vProduction">
+        <MappingFragment StoreEntitySet="vProduction">
+          <ScalarProperty Name="agentLocation" ColumnName="agentLocation" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="othername" ColumnName="othername" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="trandate" ColumnName="trandate" />
+          <ScalarProperty Name="totamt" ColumnName="totamt" />
+          <ScalarProperty Name="chequeno" ColumnName="chequeno" />
+          <ScalarProperty Name="receiptno" ColumnName="receiptno" />
+          <ScalarProperty Name="accdate" ColumnName="accdate" />
+          <ScalarProperty Name="agentcode" ColumnName="agentcode" />
+          <ScalarProperty Name="agentname" ColumnName="agentname" />
+          <ScalarProperty Name="policyno" ColumnName="policyno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vwPolicyHistories">
+      <EntityTypeMapping TypeName="Flex.Model.vwPolicyHistory">
+        <MappingFragment StoreEntitySet="vwPolicyHistory">
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="orig_date" ColumnName="orig_date" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="gir" ColumnName="gir" />
+          <ScalarProperty Name="cur_intr" ColumnName="cur_intr" />
+          <ScalarProperty Name="doctype" ColumnName="doctype" />
+          <ScalarProperty Name="locdesc" ColumnName="locdesc" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="cumul_intr" ColumnName="cumul_intr" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="trandate" ColumnName="trandate" />
+          <ScalarProperty Name="period" ColumnName="period" />
+          <ScalarProperty Name="receiptno" ColumnName="receiptno" />
+          <ScalarProperty Name="policyno" ColumnName="policyno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="fl_premrate">
+      <EntityTypeMapping TypeName="Flex.Model.fl_premrate">
+        <MappingFragment StoreEntitySet="fl_premrate">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Datecreated" ColumnName="Datecreated" />
+          <ScalarProperty Name="mkt_commrate" ColumnName="mkt_commrate" />
+          <ScalarProperty Name="retention" ColumnName="retention" />
+          <ScalarProperty Name="commrate" ColumnName="commrate" />
+          <ScalarProperty Name="interest" ColumnName="interest" />
+          <ScalarProperty Name="period" ColumnName="period" />
+          <ScalarProperty Name="grpcode" ColumnName="grpcode" />
+          <ScalarProperty Name="poltypeId" ColumnName="poltypeId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,1085 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Flex.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="FlexEntities" annotation:LazyLoadingEnabled="true">
+    <!--<AssociationSet Name="PersonalDetailsStagingNextofKin_BeneficiaryStaging" Association="Flex.Model.PersonalDetailsStagingNextofKin_BeneficiaryStaging">
+            <End Role="PersonalDetailsStaging" EntitySet="PersonalDetailsStagings" />
+            <End Role="NextofKin_BeneficiaryStaging" EntitySet="NextofKin_BeneficiaryStaging" />
+          </AssociationSet>-->
+    <!--<AssociationSet Name="CustomerUserUserSession" Association="Flex.Model.CustomerUserUserSession">
+            <End Role="CustomerUser" EntitySet="CustomerUsers" />
+            <End Role="UserSession" EntitySet="UserSessions" />
+          </AssociationSet>-->
+    <EntitySet Name="CustomerUsers" EntityType="Flex.Model.CustomerUser" />
+    <EntitySet Name="fl_password" EntityType="Flex.Model.fl_password" />
+    <EntitySet Name="NextofKin_BeneficiaryStaging" EntityType="Flex.Model.NextofKin_BeneficiaryStaging" />
+    <EntitySet Name="UserSessions" EntityType="Flex.Model.UserSession" />
+    <EntitySet Name="CustomerPolicies" EntityType="Flex.Model.CustomerPolicy" />
+    <AssociationSet Name="FK_CustomerPolicies_CustomerUser" Association="Flex.Model.FK_CustomerPolicies_CustomerUser">
+      <End Role="CustomerUser" EntitySet="CustomerUsers" />
+      <End Role="CustomerPolicy" EntitySet="CustomerPolicies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserSession_CustomerUser" Association="Flex.Model.FK_UserSession_CustomerUser">
+      <End Role="CustomerUser" EntitySet="CustomerUsers" />
+      <End Role="UserSession" EntitySet="UserSessions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserSession_fl_password" Association="Flex.Model.FK_UserSession_fl_password">
+      <End Role="fl_password" EntitySet="fl_password" />
+      <End Role="UserSession" EntitySet="UserSessions" />
+    </AssociationSet>
+    <EntitySet Name="PendingEmails" EntityType="Flex.Model.PendingEmail" />
+    <EntitySet Name="Roles" EntityType="Flex.Model.Role" />
+    <EntitySet Name="Tabs" EntityType="Flex.Model.Tab" />
+    <EntitySet Name="UserRoles" EntityType="Flex.Model.UserRole" />
+    <AssociationSet Name="FK_UserRole_fl_password" Association="Flex.Model.FK_UserRole_fl_password">
+      <End Role="fl_password" EntitySet="fl_password" />
+      <End Role="UserRole" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_Role" Association="Flex.Model.FK_UserRole_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="UserRole" EntitySet="UserRoles" />
+    </AssociationSet>
+    <EntitySet Name="Portlets" EntityType="Flex.Model.Portlet" />
+    <AssociationSet Name="FK_Tabs_Portlet" Association="Flex.Model.FK_Tabs_Portlet">
+      <End Role="Portlet" EntitySet="Portlets" />
+      <End Role="Tab" EntitySet="Tabs" />
+    </AssociationSet>
+    <EntitySet Name="fl_system" EntityType="Flex.Model.fl_system" />
+    <EntitySet Name="fl_poltype" EntityType="Flex.Model.fl_poltype" />
+    <EntitySet Name="fl_pendingSMS" EntityType="Flex.Model.fl_pendingSMS" />
+    <EntitySet Name="fl_location" EntityType="Flex.Model.fl_location" />
+    <EntitySet Name="fl_policyinput" EntityType="Flex.Model.fl_policyinput" />
+    <AssociationSet Name="FK_fl_policyinput_fl_location" Association="Flex.Model.FK_fl_policyinput_fl_location">
+      <End Role="fl_location" EntitySet="fl_location" />
+      <End Role="fl_policyinput" EntitySet="fl_policyinput" />
+    </AssociationSet>
+    <EntitySet Name="fl_receiptcontrol" EntityType="Flex.Model.fl_receiptcontrol" />
+    <AssociationSet Name="FK_fl_receiptcontrol_fl_poltype" Association="Flex.Model.FK_fl_receiptcontrol_fl_poltype">
+      <End Role="fl_poltype" EntitySet="fl_poltype" />
+      <End Role="fl_receiptcontrol" EntitySet="fl_receiptcontrol" />
+    </AssociationSet>
+    <EntitySet Name="PersonalDetailsStagings" EntityType="Flex.Model.PersonalDetailsStaging" />
+    <AssociationSet Name="FK_NextofKin_BeneficiaryStaging_PersonalDetailsStaging" Association="Flex.Model.FK_NextofKin_BeneficiaryStaging_PersonalDetailsStaging">
+      <End Role="PersonalDetailsStaging" EntitySet="PersonalDetailsStagings" />
+      <End Role="NextofKin_BeneficiaryStaging" EntitySet="NextofKin_BeneficiaryStaging" />
+    </AssociationSet>
+    <EntitySet Name="acccharts" EntityType="Flex.Model.accchart" />
+    <EntitySet Name="ac_costCenter" EntityType="Flex.Model.ac_costCenter" />
+    <EntitySet Name="fl_agents" EntityType="Flex.Model.fl_agents" />
+    <AssociationSet Name="FK_fl_agents_ac_costCenter" Association="Flex.Model.FK_fl_agents_ac_costCenter">
+      <End Role="ac_costCenter" EntitySet="ac_costCenter" />
+      <End Role="fl_agents" EntitySet="fl_agents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PersonalDetailsStaging_fl_poltype" Association="Flex.Model.FK_PersonalDetailsStaging_fl_poltype">
+      <End Role="fl_poltype" EntitySet="fl_poltype" />
+      <End Role="PersonalDetailsStaging" EntitySet="PersonalDetailsStagings" />
+    </AssociationSet>
+    <EntitySet Name="LinkRoles" EntityType="Flex.Model.LinkRole" />
+    <AssociationSet Name="FK_LinkRole_Role" Association="Flex.Model.FK_LinkRole_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="LinkRole" EntitySet="LinkRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NextofKin_BeneficiaryStaging_fl_policyinput" Association="Flex.Model.FK_NextofKin_BeneficiaryStaging_fl_policyinput">
+      <End Role="fl_policyinput" EntitySet="fl_policyinput" />
+      <End Role="NextofKin_BeneficiaryStaging" EntitySet="NextofKin_BeneficiaryStaging" />
+    </AssociationSet>
+    <EntitySet Name="vwPolicies" EntityType="Flex.Model.vwPolicy" />
+    <EntitySet Name="OnlineReciepts" EntityType="Flex.Model.OnlineReciept" />
+    <EntitySet Name="fl_premrateRules" EntityType="Flex.Model.fl_premrateRules" />
+    <EntitySet Name="fl_payclaim" EntityType="Flex.Model.fl_payclaim" />
+    <EntitySet Name="Modules" EntityType="Flex.Model.Module" />
+    <EntitySet Name="fl_grouptype" EntityType="Flex.Model.fl_grouptype" />
+    <EntitySet Name="fl_payinput" EntityType="Flex.Model.fl_payinput" />
+    <EntitySet Name="fl_payhistory" EntityType="Flex.Model.fl_payhistory" />
+    <EntitySet Name="ClaimRequests" EntityType="Flex.Model.ClaimRequest" />
+    <EntitySet Name="fl_state" EntityType="Flex.Model.fl_state" />
+    <EntitySet Name="ac_rctheader" EntityType="Flex.Model.ac_rctheader" />
+    <EntitySet Name="fl_payinput2" EntityType="Flex.Model.fl_payinput2" />
+    <EntitySet Name="fl_translog" EntityType="Flex.Model.fl_translog" />
+    <EntitySet Name="ac_rctdetails" EntityType="Flex.Model.ac_rctdetails" />
+    <EntitySet Name="fl_PublicHoliday" EntityType="Flex.Model.fl_PublicHoliday" />
+    <EntitySet Name="vProductions" EntityType="Flex.Model.vProduction" />
+    <EntitySet Name="vwPolicyHistories" EntityType="Flex.Model.vwPolicyHistory" />
+    <EntitySet Name="fl_premrate" EntityType="Flex.Model.fl_premrate" />
+    <AssociationSet Name="FK_fl_premrate_fl_poltype" Association="Flex.Model.FK_fl_premrate_fl_poltype">
+      <End Role="fl_poltype" EntitySet="fl_poltype" />
+      <End Role="fl_premrate" EntitySet="fl_premrate" />
+    </AssociationSet>
+  </EntityContainer>
+  <EnumType Name="UserStatus" a:ExternalTypeName="Flex.Data.Enum.UserStatus" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+  <EnumType Name="UserSessionStatus" a:ExternalTypeName="Flex.Data.Enum.UserSessionStatus" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+  <EntityType Name="CustomerUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="createdby" Type="Int64" />
+    <Property Name="datecreated" Type="DateTime" Precision="7" />
+    <Property Name="passworddate" Type="DateTime" Precision="7" />
+    <Property Name="modifydate" Type="DateTime" Precision="7" />
+    <Property Name="modifyby" Type="Int64" />
+    <Property Name="lastLoginDate" Type="DateTime" Precision="3" />
+    <Property Name="firstLoginDate" Type="DateTime" Precision="3" />
+    <Property Name="status" Type="Flex.Model.UserStatus" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CustomerPolicies" Relationship="Flex.Model.FK_CustomerPolicies_CustomerUser" FromRole="CustomerUser" ToRole="CustomerPolicy" />
+    <NavigationProperty Name="UserSessions" Relationship="Flex.Model.FK_UserSession_CustomerUser" FromRole="CustomerUser" ToRole="UserSession" />
+    <Property Name="IsDeleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="fl_password">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userid" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="userpassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="userdept" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="createdby" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="datecreated" Type="DateTime" Precision="3" />
+    <Property Name="expirydate" Type="DateTime" Precision="3" />
+    <Property Name="passworddate" Type="DateTime" Precision="3" />
+    <Property Name="Deleteddate" Type="DateTime" Precision="3" />
+    <Property Name="Deletedby" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="modifydate" Type="DateTime" Precision="3" />
+    <Property Name="modifyby" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="lastlogindate" Type="DateTime" Precision="3" />
+    <Property Name="status" Type="Flex.Model.UserStatus" />
+    <Property Name="branch" Type="Int32" />
+    <NavigationProperty Name="UserSessions" Relationship="Flex.Model.FK_UserSession_fl_password" FromRole="fl_password" ToRole="UserSession" />
+    <NavigationProperty Name="UserRoles" Relationship="Flex.Model.FK_UserRole_fl_password" FromRole="fl_password" ToRole="UserRole" />
+    <Property Name="mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="NextofKin_BeneficiaryStaging">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RegNo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="Flex.Model.Type" Nullable="false" />
+    <Property Name="Dob" Type="DateTime" Precision="7" />
+    <Property Name="RelationShip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Category" Type="Flex.Model.Category" Nullable="false" />
+    <Property Name="PersonalDetailsStagingId" Type="Int64" />
+    <Property Name="Proportion" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ApprovalStatus" Type="Flex.Model.ApprovalStatus" />
+    <Property Name="IsSynched" Type="Boolean" />
+    <NavigationProperty Name="PersonalDetailsStaging" Relationship="Flex.Model.FK_NextofKin_BeneficiaryStaging_PersonalDetailsStaging" FromRole="NextofKin_BeneficiaryStaging" ToRole="PersonalDetailsStaging" />
+    <Property Name="PolicyId" Type="Int64" />
+    <NavigationProperty Name="fl_policyinput" Relationship="Flex.Model.FK_NextofKin_BeneficiaryStaging_fl_policyinput" FromRole="NextofKin_BeneficiaryStaging" ToRole="fl_policyinput" />
+  </EntityType>
+  <EntityType Name="UserSession">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="DateCreated" Type="DateTime" Precision="7" />
+    <Property Name="LastModifiedDate" Type="DateTime" Precision="7" />
+    <Property Name="CustomerUserID" Type="Int64" />
+    <Property Name="ExpiryDate" Type="DateTime" Precision="3" />
+    <Property Name="LastAccessed" Type="DateTime" Precision="3" />
+    <Property Name="LogoutDate" Type="DateTime" Precision="3" />
+    <Property Name="SessionStatus" Type="Flex.Model.UserSessionStatus" />
+    <Property Name="AccessCount" Type="Int64" />
+    <Property Name="Token" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="Int64" />
+    <NavigationProperty Name="CustomerUser" Relationship="Flex.Model.FK_UserSession_CustomerUser" FromRole="UserSession" ToRole="CustomerUser" />
+    <NavigationProperty Name="fl_password" Relationship="Flex.Model.FK_UserSession_fl_password" FromRole="UserSession" ToRole="fl_password" />
+  </EntityType>
+  <EntityType Name="CustomerPolicy">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerUserId" Type="Int64" />
+    <Property Name="Policyno" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CustomerUser" Relationship="Flex.Model.FK_CustomerPolicies_CustomerUser" FromRole="CustomerPolicy" ToRole="CustomerUser" />
+  </EntityType>
+  <Association Name="FK_CustomerPolicies_CustomerUser">
+    <End Type="Flex.Model.CustomerUser" Role="CustomerUser" Multiplicity="0..1" />
+    <End Type="Flex.Model.CustomerPolicy" Role="CustomerPolicy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CustomerPolicy">
+        <PropertyRef Name="CustomerUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserSession_CustomerUser">
+    <End Type="Flex.Model.CustomerUser" Role="CustomerUser" Multiplicity="0..1" />
+    <End Type="Flex.Model.UserSession" Role="UserSession" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserSession">
+        <PropertyRef Name="CustomerUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserSession_fl_password">
+    <End Type="Flex.Model.fl_password" Role="fl_password" Multiplicity="0..1" />
+    <End Type="Flex.Model.UserSession" Role="UserSession" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="fl_password">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserSession">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EnumType Name="ApprovalStatus" a:ExternalTypeName="Flex.Data.Enum.ApprovalStatus" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+  <EntityType Name="PendingEmail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Subject" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="DueDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="From" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="To" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Bcc" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="CC" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ErrorMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsBodyHtml" Type="Boolean" />
+    <Property Name="ReplyTo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Sender" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Retries" Type="Int32" />
+    <Property Name="Priority" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ThrewException" Type="Boolean" />
+    <Property Name="RetryCount" Type="Int32" />
+    <Property Name="IsSent" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="UserRoles" Relationship="Flex.Model.FK_UserRole_Role" FromRole="Role" ToRole="UserRole" />
+    <NavigationProperty Name="LinkRoles" Relationship="Flex.Model.FK_LinkRole_Role" FromRole="Role" ToRole="LinkRole" />
+  </EntityType>
+  <EntityType Name="Tab">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PortletId" Type="Int32" />
+    <Property Name="icon" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Controller" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Action" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Order" Type="Int32" />
+    <NavigationProperty Name="Portlet" Relationship="Flex.Model.FK_Tabs_Portlet" FromRole="Tab" ToRole="Portlet" />
+    <Property Name="View" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" />
+    <Property Name="RoleId" Type="Int32" />
+    <Property Name="UserId" Type="Int64" />
+    <NavigationProperty Name="fl_password" Relationship="Flex.Model.FK_UserRole_fl_password" FromRole="UserRole" ToRole="fl_password" />
+    <NavigationProperty Name="Role" Relationship="Flex.Model.FK_UserRole_Role" FromRole="UserRole" ToRole="Role" />
+  </EntityType>
+  <Association Name="FK_UserRole_fl_password">
+    <End Type="Flex.Model.fl_password" Role="fl_password" Multiplicity="0..1" />
+    <End Type="Flex.Model.UserRole" Role="UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="fl_password">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_Role">
+    <End Type="Flex.Model.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="Flex.Model.UserRole" Role="UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Portlet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ImageUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Background" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Order" Type="Int32" />
+    <NavigationProperty Name="Tabs" Relationship="Flex.Model.FK_Tabs_Portlet" FromRole="Portlet" ToRole="Tab" />
+  </EntityType>
+  <Association Name="FK_Tabs_Portlet">
+    <End Type="Flex.Model.Portlet" Role="Portlet" Multiplicity="0..1" />
+    <End Type="Flex.Model.Tab" Role="Tab" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Portlet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tab">
+        <PropertyRef Name="PortletId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="fl_system">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="coycode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="coyname" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="coyaddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="town" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="lg" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="state" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="telephone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="box" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="processyear" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="processmonth" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="installdate" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="createdby" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="datecreated" Type="DateTime" Precision="3" />
+    <Property Name="serialnumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="reassurance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="fl_poltype">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="poltype" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="poldesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="actype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="term" Type="Int32" />
+    <Property Name="matage" Type="Int32" />
+    <Property Name="maxloan" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="income_account" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="liability_account" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="expense_account" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="vat_account" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Datecreated" Type="DateTime" Precision="7" />
+    <Property Name="CreatedBy" Type="DateTime" Precision="7" />
+    <Property Name="DateModified" Type="DateTime" Precision="7" />
+    <Property Name="ModifiedBy" Type="DateTime" Precision="7" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="fl_receiptcontrol" Relationship="Flex.Model.FK_fl_receiptcontrol_fl_poltype" FromRole="fl_poltype" ToRole="fl_receiptcontrol" />
+    <NavigationProperty Name="PersonalDetailsStagings" Relationship="Flex.Model.FK_PersonalDetailsStaging_fl_poltype" FromRole="fl_poltype" ToRole="PersonalDetailsStaging" />
+    <Property Name="code" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="fl_premrate" Relationship="Flex.Model.FK_fl_premrate_fl_poltype" FromRole="fl_poltype" ToRole="fl_premrate" />
+  </EntityType>
+  <EntityType Name="fl_pendingSMS">
+    <Key>
+      <PropertyRef Name="srn" />
+    </Key>
+    <Property Name="srn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="telephone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="isSent" Type="Boolean" />
+    <Property Name="retrycount" Type="Int32" />
+    <Property Name="Application" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EnumType Name="Instrument" a:ExternalTypeName="Flex.Data.Enum.Instrument" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+  <EnumType Name="PaymentMethod" a:ExternalTypeName="Flex.Data.Enum.PaymentMethod" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+  <EntityType Name="fl_location">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="locdesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="locstate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="loccode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="datecreated" Type="DateTime" Precision="7" />
+    <Property Name="createdby" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="datemodified" Type="DateTime" Precision="7" />
+    <Property Name="modifiedby" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Isdeleted" Type="Boolean" />
+    <NavigationProperty Name="fl_policyinput" Relationship="Flex.Model.FK_fl_policyinput_fl_location" FromRole="fl_location" ToRole="fl_policyinput" />
+  </EntityType>
+  <EntityType Name="fl_policyinput">
+    <Key>
+      <PropertyRef Name="srn" />
+    </Key>
+    <Property Name="srn" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pcn" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
+    <Property Name="grpcode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="sex" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+    <Property Name="title" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="surname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="othername" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="peradd" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="dob" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="nok" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="datecreated" Type="DateTime" Precision="0" />
+    <Property Name="createdby" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="datemodified" Type="DateTime" Precision="0" />
+    <Property Name="modifiedby" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="accdate" Type="DateTime" Precision="3" />
+    <Property Name="quoteno" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="policyno" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="poltype" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="exitdate" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="location" Type="Int32" />
+    <Property Name="agentcode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="premium" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="telephone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="pinword" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="religion" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="fl_location" Relationship="Flex.Model.FK_fl_policyinput_fl_location" FromRole="fl_policyinput" ToRole="fl_location" />
+    <Property Name="status" Type="Flex.Model.Status" />
+    <NavigationProperty Name="NextofKin_BeneficiaryStaging" Relationship="Flex.Model.FK_NextofKin_BeneficiaryStaging_fl_policyinput" FromRole="fl_policyinput" ToRole="NextofKin_BeneficiaryStaging" />
+    <Property Name="pwd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PictureFile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_fl_policyinput_fl_location">
+    <End Type="Flex.Model.fl_location" Role="fl_location" Multiplicity="0..1" />
+    <End Type="Flex.Model.fl_policyinput" Role="fl_policyinput" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="fl_location">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="fl_policyinput">
+        <PropertyRef Name="location" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="fl_receiptcontrol">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PolTypeId" Type="Int32" />
+    <Property Name="PaymentMethod" Type="Flex.Model.PaymentMethod" />
+    <Property Name="Income_ledger" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Bank_ledger" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BankAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Bankname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Receiptcounter" Type="Int32" />
+    <Property Name="DateCreated" Type="DateTime" Precision="7" />
+    <Property Name="CreatedBy" Type="Int64" />
+    <Property Name="DateModified" Type="DateTime" Precision="7" />
+    <Property Name="ModifiedBy" Type="Int64" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="fl_poltype" Relationship="Flex.Model.FK_fl_receiptcontrol_fl_poltype" FromRole="fl_receiptcontrol" ToRole="fl_poltype" />
+  </EntityType>
+  <Association Name="FK_fl_receiptcontrol_fl_poltype">
+    <End Type="Flex.Model.fl_poltype" Role="fl_poltype" Multiplicity="0..1" />
+    <End Type="Flex.Model.fl_receiptcontrol" Role="fl_receiptcontrol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="fl_poltype">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="fl_receiptcontrol">
+        <PropertyRef Name="PolTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PersonalDetailsStaging">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RegNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OtherNames" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ResAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="OffAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PosAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="dob" Type="DateTime" Precision="7" />
+    <Property Name="Occupation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ContribAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ContribFreq" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="CommencementDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Duration" Type="Int32" />
+    <Property Name="Type" Type="Int32" />
+    <Property Name="PolicyType" Type="Int32" />
+    <Property Name="ApprovalStatus" Type="Flex.Model.ApprovalStatus" />
+    <Property Name="IsSynched" Type="Boolean" />
+    <Property Name="DateCreated" Type="DateTime" Precision="7" />
+    <Property Name="ApprovedBy" Type="Int64" />
+    <Property Name="Location" Type="Int32" />
+    <NavigationProperty Name="NextofKin_BeneficiaryStaging" Relationship="Flex.Model.FK_NextofKin_BeneficiaryStaging_PersonalDetailsStaging" FromRole="PersonalDetailsStaging" ToRole="NextofKin_BeneficiaryStaging" />
+    <NavigationProperty Name="fl_poltype" Relationship="Flex.Model.FK_PersonalDetailsStaging_fl_poltype" FromRole="PersonalDetailsStaging" ToRole="fl_poltype" />
+  </EntityType>
+  <Association Name="FK_NextofKin_BeneficiaryStaging_PersonalDetailsStaging">
+    <End Type="Flex.Model.PersonalDetailsStaging" Role="PersonalDetailsStaging" Multiplicity="0..1" />
+    <End Type="Flex.Model.NextofKin_BeneficiaryStaging" Role="NextofKin_BeneficiaryStaging" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PersonalDetailsStaging">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NextofKin_BeneficiaryStaging">
+        <PropertyRef Name="PersonalDetailsStagingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="accchart">
+    <Key>
+      <PropertyRef Name="acctnumber" />
+    </Key>
+    <Property Name="acctcode1" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="acctcode2" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="acctcode3" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="acctcode4" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="acctcode5" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="acctcode6" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Name="acctnumber" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="acctcode7" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="oldnumber" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="acctype" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="acctsubtype" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="effdate" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="ledgerpasswd" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ledgerpasswd2" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="subcode" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Name="blgroup1" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="blgroup2" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="blgroup3" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="blgroup4" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="blgroupdes1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="blgroupdes2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="blgroupdes3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="blgroupdes4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="blsum1" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="blsum2" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="blsum3" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="blsum4" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="blsumdesc1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="blsumdesc2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="blsumdesc3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="blsumdesc4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cfgroup1" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="cfgroup2" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="cfgroup3" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="cfgroup4" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="cfgroupdes1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cfgroupdes2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cfgroupdes3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cfgroupdes4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cfsumdesc1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cfsumdesc2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cfsumdesc3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cfsumdesc4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="createdby" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="datecreated" Type="DateTime" Precision="3" />
+    <Property Name="address1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="address2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="address3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="trade" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="dateblocked" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EnumType Name="AgentType" a:ExternalTypeName="Flex.Data.Enum.AgentType" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+  <EntityType Name="ac_costCenter">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Desc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="fl_agents" Relationship="Flex.Model.FK_fl_agents_ac_costCenter" FromRole="ac_costCenter" ToRole="fl_agents" />
+  </EntityType>
+  <EntityType Name="fl_agents">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="agentcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="agentname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="locationId" Type="Int32" />
+    <Property Name="agenttype" Type="Flex.Model.AgentType" />
+    <Property Name="CommissionRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="createdBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="datecreated" Type="DateTime" Precision="7" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="datemodified" Type="DateTime" Precision="7" />
+    <Property Name="modifiedby" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="agentaddr" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ac_costCenter" Relationship="Flex.Model.FK_fl_agents_ac_costCenter" FromRole="fl_agents" ToRole="ac_costCenter" />
+    <Property Name="agentphone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Flex.Model.Status" />
+    <Property Name="exitdate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_fl_agents_ac_costCenter">
+    <End Type="Flex.Model.ac_costCenter" Role="ac_costCenter" Multiplicity="0..1" />
+    <End Type="Flex.Model.fl_agents" Role="fl_agents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ac_costCenter">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="fl_agents">
+        <PropertyRef Name="locationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PersonalDetailsStaging_fl_poltype">
+    <End Type="Flex.Model.fl_poltype" Role="fl_poltype" Multiplicity="0..1" />
+    <End Type="Flex.Model.PersonalDetailsStaging" Role="PersonalDetailsStaging" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="fl_poltype">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PersonalDetailsStaging">
+        <PropertyRef Name="PolicyType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EnumType Name="LinkType" a:ExternalTypeName="Flex.Data.Enum.LinkType" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+  <EntityType Name="LinkRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LinkId" Type="Int32" />
+    <Property Name="RoleID" Type="Int32" />
+    <Property Name="Type" Type="Flex.Model.LinkType" Nullable="false" />
+    <Property Name="Parent" Type="Int32" />
+    <NavigationProperty Name="Role" Relationship="Flex.Model.FK_LinkRole_Role" FromRole="LinkRole" ToRole="Role" />
+  </EntityType>
+  <Association Name="FK_LinkRole_Role">
+    <End Type="Flex.Model.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="Flex.Model.LinkRole" Role="LinkRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LinkRole">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EnumType Name="Status" a:ExternalTypeName="Flex.Data.Enum.Status" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+  <Association Name="FK_NextofKin_BeneficiaryStaging_fl_policyinput">
+    <End Type="Flex.Model.fl_policyinput" Role="fl_policyinput" Multiplicity="0..1" />
+    <End Type="Flex.Model.NextofKin_BeneficiaryStaging" Role="NextofKin_BeneficiaryStaging" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="fl_policyinput">
+        <PropertyRef Name="srn" />
+      </Principal>
+      <Dependent Role="NextofKin_BeneficiaryStaging">
+        <PropertyRef Name="PolicyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EnumType Name="Category" a:ExternalTypeName="Flex.Data.Enum.Category" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+  <EnumType Name="Type" a:ExternalTypeName="Flex.Data.Enum.Type" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+  <EntityType Name="vwPolicy">
+    <Key>
+      <PropertyRef Name="policyno" />
+      <PropertyRef Name="srn" />
+    </Key>
+    <Property Name="policyno" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="premium" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="poltype" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="location" Type="Int32" />
+    <Property Name="telephone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="surname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="othername" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="balance" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="status" Type="Flex.Model.Status" />
+    <Property Name="agentcode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="srn" Type="Int64" Nullable="false" />
+    <Property Name="locdesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="agentname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="accdate" Type="DateTime" Precision="3" />
+    <Property Name="title" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="exitdate" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="agentLocation" Type="Int32" />
+  </EntityType>
+  <EntityType Name="OnlineReciept">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaymentDate" Type="DateTime" Precision="7" />
+    <Property Name="ReceiptNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentChannel" Type="Int32" />
+    <Property Name="InitialAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="FinalAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Product" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Policyno" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="IsSynched" Type="Boolean" />
+    <Property Name="TransactionStatus" Type="Int32" />
+    <Property Name="InitialResponseCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="InitialPaymentDate" Type="DateTime" Precision="7" />
+    <Property Name="IntialResponseDecription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FinalResponseCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="FinalPaymentDate" Type="DateTime" Precision="7" />
+    <Property Name="FinalResponseDecription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EnumType Name="ClaimType" a:ExternalTypeName="Flex.Data.Enum.ClaimType" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+  <EntityType Name="fl_premrateRules">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Interest" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CommRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Mkt_CommRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IntrBound" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CommBound" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="PremRateId" Type="Int32" />
+  </EntityType>
+  <EnumType Name="ClaimStatus" a:ExternalTypeName="Flex.Data.Enum.Status" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+  <EntityType Name="fl_payclaim">
+    <Key>
+      <PropertyRef Name="srn" />
+    </Key>
+    <Property Name="srn" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="policyno" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="receiptno" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="period" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Name="grpcode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="pcn" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
+    <Property Name="poltype" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="orig_date" Type="DateTime" Precision="0" />
+    <Property Name="trandate" Type="DateTime" Precision="0" />
+    <Property Name="amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="gir" Type="Single" />
+    <Property Name="cur_intr" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="cumul_intr" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="loanamt" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="doctype" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="openbalance" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="opendeposit" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="deposit" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="curdep_intr" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="cumuldep_intr" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="Module">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PolicyType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="fl_grouptype">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="grpcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="grpname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="accountcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="grpclass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="DateCreated" Type="DateTime" Precision="7" />
+    <Property Name="Createdby" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="annmonth" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="fl_payinput">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="policyno" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="receiptno" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="type" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="grpcode" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="pcn" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
+    <Property Name="reverseind" Type="Boolean" />
+    <Property Name="trandate" Type="DateTime" Precision="7" />
+    <Property Name="effdate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="totamt" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="chequeno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="payindicator" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="createdby" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="datecreated" Type="DateTime" Precision="7" />
+    <Property Name="amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="poltype" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="fl_payhistory">
+    <Key>
+      <PropertyRef Name="srn" />
+    </Key>
+    <Property Name="srn" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="policyno" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="receiptno" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="period" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Name="grpcode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="pcn" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
+    <Property Name="poltype" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="orig_date" Type="DateTime" Precision="0" />
+    <Property Name="trandate" Type="DateTime" Precision="0" />
+    <Property Name="amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="gir" Type="Single" />
+    <Property Name="cur_intr" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="cumul_intr" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="loanamt" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="doctype" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="openbalance" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="opendeposit" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="deposit" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="curdep_intr" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="cumuldep_intr" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="ClaimRequest">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClaimNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PolicyNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ClaimType" Type="Flex.Model.ClaimType" />
+    <Property Name="Status" Type="Flex.Model.ClaimStatus" />
+    <Property Name="DateCreated" Type="DateTime" Precision="7" />
+    <Property Name="EffectiveDate" Type="DateTime" Precision="7" />
+    <Property Name="Interest" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ApprovedAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="FundAmount" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="fl_state">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ac_rctheader">
+    <Key>
+      <PropertyRef Name="coy_code" />
+      <PropertyRef Name="Branch_code" />
+      <PropertyRef Name="rcth_unitcode" />
+      <PropertyRef Name="rcth_number" />
+      <PropertyRef Name="rcth_class" />
+      <PropertyRef Name="rcth_type" />
+      <PropertyRef Name="rcth_date" />
+      <PropertyRef Name="rcth_bank" />
+      <PropertyRef Name="rcth_indicator" />
+    </Key>
+    <Property Name="coy_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Branch_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="rcth_unitcode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="rcth_number" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="rcth_name" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="rcth_address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="rcth_refnumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="rcth_cheque" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="rcth_class" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="rcth_type" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="rcth_date" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="rcth_policy" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="rcth_bank" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="rcth_debit" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="rcth_credit" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="rcth_total" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="rcth_remark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="rcth_indicator" Type="Boolean" Nullable="false" />
+    <Property Name="createdby" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="datecreated" Type="DateTime" Precision="3" />
+    <Property Name="updatedby" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="dateupdated" Type="DateTime" Precision="3" />
+    <Property Name="datedeleted" Type="DateTime" Precision="3" />
+    <Property Name="deletedby" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="naira" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="kobo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="fl_payinput2">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="policyno" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="receiptno" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="poltype" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="type" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="grpcode" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="pcn" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="reverseind" Type="Boolean" />
+    <Property Name="trandate" Type="DateTime" Precision="7" />
+    <Property Name="effdate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="totamt" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="chequeno" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="payindicator" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Flex.Model.Status" />
+    <Property Name="createdby" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="datecreated" Type="DateTime" Precision="7" />
+    <Property Name="ps" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="er" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ee" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="av" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="psc" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="cc" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="fl_translog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="receiptno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="trandate" Type="DateTime" Precision="7" />
+    <Property Name="bank_ledger" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="income_ledger" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="payee" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="paymentmethod" Type="Flex.Model.PaymentMethod" />
+    <Property Name="amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="policyno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Instrument" Type="Flex.Model.Instrument" />
+    <Property Name="Isreversed" Type="Boolean" />
+    <Property Name="chequeno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="poltype" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="grpcode" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ac_rctdetails">
+    <Key>
+      <PropertyRef Name="rct_number" />
+      <PropertyRef Name="rct_account" />
+      <PropertyRef Name="rct_type" />
+      <PropertyRef Name="rct_code" />
+    </Key>
+    <Property Name="rct_number" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="rct_account" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="rct_type" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="rct_code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="rct_debit" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="rct_credit" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="rct_remark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="rct_bank" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="coy_code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Branch_code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="createdby" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="datecreated" Type="DateTime" Precision="3" />
+    <Property Name="datedeleted" Type="DateTime" Precision="3" />
+    <Property Name="deletedby" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="deletemarker" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="rct_class" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="rct_premium" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="rct_premloan" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="rct_policyloan" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="rct_othercharge" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="rct_grossnet" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Name="rct_partfull" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="fl_PublicHoliday">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HolidayName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Holidayday" Type="Int32" />
+    <Property Name="holidaymonth" Type="Int32" />
+    <Property Name="HolidayMsg" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="vProduction">
+    <Key>
+      <PropertyRef Name="policyno" />
+      <PropertyRef Name="receiptno" />
+    </Key>
+    <Property Name="policyno" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="agentname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="agentcode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="accdate" Type="DateTime" Precision="3" />
+    <Property Name="receiptno" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="chequeno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="totamt" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="trandate" Type="DateTime" Precision="7" />
+    <Property Name="amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="surname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="othername" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="title" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="location" Type="Int32" />
+    <Property Name="agentLocation" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vwPolicyHistory">
+    <Key>
+      <PropertyRef Name="policyno" />
+      <PropertyRef Name="receiptno" />
+      <PropertyRef Name="gir" />
+    </Key>
+    <Property Name="policyno" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="receiptno" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="period" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Name="trandate" Type="DateTime" Precision="0" />
+    <Property Name="amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="cumul_intr" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Name" Type="String" MaxLength="61" FixedLength="false" Unicode="true" />
+    <Property Name="locdesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="doctype" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="cur_intr" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="gir" Type="Single" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="orig_date" Type="DateTime" Precision="0" />
+    <Property Name="telephone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="fl_premrate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="poltypeId" Type="Int32" Nullable="false" />
+    <Property Name="grpcode" Type="Int32" />
+    <Property Name="period" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="interest" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="commrate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="retention" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="mkt_commrate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Datecreated" Type="DateTime" Precision="7" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DateModified" Type="DateTime" Precision="7" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="fl_poltype" Relationship="Flex.Model.FK_fl_premrate_fl_poltype" FromRole="fl_premrate" ToRole="fl_poltype" />
+  </EntityType>
+  <Association Name="FK_fl_premrate_fl_poltype">
+    <End Type="Flex.Model.fl_poltype" Role="fl_poltype" Multiplicity="1" />
+    <End Type="Flex.Model.fl_premrate" Role="fl_premrate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="fl_poltype">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="fl_premrate">
+        <PropertyRef Name="poltypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--<Association Name="PersonalDetailsStagingNextofKin_BeneficiaryStaging">
+          <End Type="Flex.Model.PersonalDetailsStaging" Role="PersonalDetailsStaging" Multiplicity="1" />
+          <End Type="Flex.Model.NextofKin_BeneficiaryStaging" Role="NextofKin_BeneficiaryStaging" Multiplicity="*" />
+        </Association>-->
+  <!--<Association Name="CustomerUserUserSession">
+          <End Type="Flex.Model.CustomerUser" Role="CustomerUser" Multiplicity="1" />
+          <End Type="Flex.Model.UserSession" Role="UserSession" Multiplicity="*" />
+        </Association>-->
+</Schema>

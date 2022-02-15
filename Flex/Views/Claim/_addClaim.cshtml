@@ -1,0 +1,60 @@
+﻿<ul class="nav nav-tabs border-none">
+    <li role="presentation" class="active">
+        <a class="border-none uppercase bold padding-horizontal-md margin-right-xs">Claim Calculation</a>
+    </li>
+</ul>
+<div class="padding-md panel margin-top-sm">
+    <form id="pclaim">
+        <div class="padding-md">
+            <div class="row">
+                <div class="form-group col-md-6 ss-item-required">
+                    <label for="Code" class="color-transparent-darker lite small uppercase">Policy</label>
+                    @*<input type="text" name="policyno" class="form-control input-md" id="policyno" />*@
+                    <input type="text" class="form-control input-md" data-autocomplete="@Url.Action("PolicynoAutoComplete","CustPolicy")" />
+                    <input type="hidden" value="" id="policyno" data-autocomplete-id="true" name="policyno" />
+                </div>
+                <div class="form-group col-md-6 ss-item-required">
+                    <label for="Name" class="color-transparent-darker lite small uppercase">Claim Type</label>
+                    <div class="row" id="grpclass">
+                        @{
+                            var clmType = ViewBag.clmTypes as SelectList;
+                            foreach (var item in clmType)
+                            {
+                                <label class="radio-inline">
+                                    <input type="radio" value="@item.Value" name="clmType" onchange="showAmount(this);"> @item.Text
+                                </label>
+                            }
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6 ss-item-required">
+                    <label for="Commission" class="color-transparent-darker lite small uppercase">Effective Date</label>
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control datepicker" value="@DateTime.Today.ToString("yyyy-MM-dd")" name="effDate" readonly />
+                        <span class="input-group-btn" style="padding-top:1px;">
+                            <button type="button" class="btn btn-default" onclick="openDatePicker(this)"><i class="fa fa-calendar"></i></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 ss-item-required">
+                    <label for="Code" class="color-transparent-darker lite small uppercase">Interest Rate</label>
+                    <input type="text" name="intr" class="form-control input-md" />
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6" style="display:none" id="divamt">
+                    <label for="Commission" class="color-transparent-darker lite small uppercase">Amount</label>
+                    <input type="text" name="amount" class="form-control input-md" required />
+                </div>
+
+
+            </div>
+            <input type="button" class="btn btn-block btn-success" value="Submit" onclick="processClaim()" />
+        </div>
+    </form>
+</div>
+

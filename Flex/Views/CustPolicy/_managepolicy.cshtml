@@ -1,0 +1,37 @@
+﻿@using Flex.Data.ViewModel
+@model SignUpBindingModel
+
+
+@{
+    Layout = null;
+    var Id = ViewBag.Id;
+}
+<input type="hidden" value="@Id" id="id" />
+<div class="item form-group">
+    <div class="panel"> Manage Policy [@Model.PersonalInfo.RegNo] Details </div>
+    <div class="row">
+            <div class="form-group col-md-9">
+                <div>
+                    <label class="radio-inline">
+                        <input type="radio" name="polmgt" id="inlineRadio1" value="pDetails" onclick="toggleManagePolicy(this.value)"> Personal Details
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="polmgt" id="inlineRadio2" value="NOK" onclick="toggleManagePolicy(this.value)"> Next of Kin
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="polmgt" id="inlineRadio3" value="Ben" onclick="toggleManagePolicy(this.value)"> Beneficiaries
+                    </label>
+                </div>
+            </div>
+    </div>
+    <div class="row" style="display:none" id="divpDetails">
+        @Html.Partial("_editPersonalDetails",@Model)
+    </div>
+    <div class="row" style="display:none" id="divnok">
+        @Html.Partial("_editNextKin")
+    </div>
+    <div class="row" style="display:none" id="divben">
+        @Html.Partial("_editBeneficiary")
+    </div>
+</div>
+

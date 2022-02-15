@@ -1,0 +1,62 @@
+﻿@model List<Flex.Data.ViewModel.PendingPolicy>
+
+@{
+    if (Model != null && Model.Any())
+    {
+        @*<div class="padding-sm">*@
+        <span class="pull-right" id="spApproval">
+            <a class="btn btn-warning btn-sm" id="btnApprove" onclick="retrieveApprovedQuaotations2(this,'pdf')" data-url="@Url.Action("ApprovedPolicy")" ><span class="fa fa-download"></span> &nbsp; pdf</a>
+        </span>
+            @*</div>*@
+    }
+}
+<table class="table table-common table-striped table-hover border-bottom table-condensed" id="tblppolicy">
+    <thead>
+        <tr>
+            <th style="width:10%;">Reg. No</th>
+            <th style="width:17%;">Surname</th>
+            <th style="width:10%;">OtherNames</th>
+            <th style="width:9%;">Address</th>
+            <th style="width:6%;">Email</th>
+            <th style="width:18%;">Phone Number</th>
+            <th style="width:10%;">Policy Type</th>
+            <th style="width:9%;">Contrib. Freq.</th>
+            <th style="width:10%;">Contrib. Amount</th>
+            <th style="width:10%;">Date Approved</th>
+            @*<th style="width:6%;">Payment Status</th>*@
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            if (Model != null)
+            {
+                foreach (var pPolicy in Model)
+                {
+                    <tr class="pointer">
+                        <td>@pPolicy.Regno</td>
+                        <td>@pPolicy.Surname</td>
+                        <td>@pPolicy.Othernames</td>
+                        <td>@pPolicy.Address</td>
+                        <td>@pPolicy.Email</td>
+                        <td>@pPolicy.Phone</td>
+                        <td>@pPolicy.PolicyType</td>
+                        <td>@pPolicy.ContribFreq</td>
+                        <td>@pPolicy.Amount</td>
+                        <td>@pPolicy.ApprovedDate</td>
+                    </tr>
+                }
+            }
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="10" class="pagination-summary small">
+                <paging-summary ng-model="model.currentPage" items-per-page="model.pageSize" total-items="model.totalItems"></paging-summary>
+                <!--<pagination boundary-links="true" total-items="model.totalItems" items-per-page="model.pageSize" max-size="5" ng-model="model.currentPage" class="pagination-sm" previous-text="&lsaquo; Prev" next-text="Next &rsaquo;" first-text="&laquo;" last-text="&raquo;" ng-change="submit(model)"></pagination>-->
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+
+

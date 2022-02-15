@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Flex.Data.ViewModel.UserAuthViewModel>
+
+@{
+    foreach (var item in Model)
+    {
+        <div class="col-md-4">
+            <div class="panel">
+                <div class="panel-body padding-sm">
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <h4 class="margin-top-none margin-bottom-xs ellipsis titlecase" title="@item.Name">@item.Name &nbsp; </h4>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="col-sm-6">
+                                <a data-url="@Url.Action("EditUser","UserRole")" class="fa fa-edit" style="width:20px;cursor:pointer;" onclick="editUser(this, '@item.Id')"></a>
+                            </div>
+                            <div class="col-sm-6">
+                                <a data-url="@Url.Action("ConfirmDeleteUser","UserRole")" class="fa fa-remove" style="width:20px;cursor:pointer" onclick="confirmdeleteUser(this, '@item.Id')"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-gray block ellipsis"><span class="fa fa-envelope" style="width:20px;"></span>@item.Email</div>
+                    <div class="text-gray block ellipsis"><span class="fa fa-phone" style="width:20px;"></span>@item.Mobile</div>
+                    <div class="padding-vertical-xs" style="margin-bottom:-25px;">
+                        <button type="button" onclick="showUserresetPwd(this)" class="btn btn-xs btn-info smaller" data-url="@Url.Action("ResetPassword","UserRole")" data-id="@item.Id"><span class="fa fa-refresh"></span> RESET PASSWORD</button>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <span class="small lowercase">Username: <strong>@item.Username</strong></span>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+

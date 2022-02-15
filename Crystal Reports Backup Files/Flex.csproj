@@ -1,0 +1,722 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{37BCFECD-09A8-4EB2-A72A-C547ABA4CED4}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Flex</RootNamespace>
+    <AssemblyName>Flex</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Design, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="EPPlus, Version=5.4.0.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.5.4.0\lib\net45\EPPlus.dll</HintPath>
+    </Reference>
+    <!-- <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=x86"> -->
+    <!-- <SpecificVersion>False</SpecificVersion> -->
+    <!-- <HintPath>..\..\Dependencies\log4net.dll</HintPath> -->
+    <!-- </Reference> -->
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\Flex.Data\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\Flex.Data\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\Flex.Data\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\Flex.Data\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\Flex.Data\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\Flex.Data\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\Flex.Data\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\Flex.Data\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\Flex.Data\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\Flex.Data\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\Flex.Data\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\Flex.Data\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\Flex.Data\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\Flex.Data\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\Flex.Data\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\Flex.Data\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\Flex.Data\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\Flex.Data\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\Flex.Data\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\Flex.Data\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\Flex.Data\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\Flex.Data\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\Flex.Data\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\Flex.Data\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\Flex.Data\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ClaimController.cs" />
+    <Compile Include="Controllers\ContainerController.cs" />
+    <Compile Include="Controllers\CustPolicyController.cs" />
+    <Compile Include="Controllers\DashBoardController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\UserRoleController.cs" />
+    <Compile Include="Controllers\Util\ReportActionFileResult.cs" />
+    <Compile Include="Filters\AuthFilter.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ReportModel\rptModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Controllers\SetUpController.cs" />
+    <Compile Include="Reports\location.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>location.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rctenquirylist.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rctenquirylist.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Startup.cs" />
+    <Compile Include="Util\DataBaseHelper.cs" />
+    <Compile Include="Util\ReportUtil.cs" />
+    <Compile Include="Util\WebSecurity.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="appFiles\changePassword.html" />
+    <Content Include="Assests\fonts\fontawesome-webfont.svg" />
+    <Content Include="Assests\scripts\affix.js" />
+    <Content Include="Assests\scripts\alert.js" />
+    <Content Include="Assests\scripts\Auth.js" />
+    <Content Include="Assests\scripts\autocompleteUtils.js" />
+    <Content Include="Assests\scripts\bootstrap-datepicker.js" />
+    <Content Include="Assests\scripts\button.js" />
+    <Content Include="Assests\scripts\carousel.js" />
+    <Content Include="Assests\scripts\claim.js" />
+    <Content Include="Assests\scripts\collapse.js" />
+    <Content Include="Assests\scripts\custpolicy.js" />
+    <Content Include="Assests\scripts\dataService.js" />
+    <Content Include="Assests\scripts\datetimepicker.js" />
+    <Content Include="Assests\scripts\dropdown.js" />
+    <Content Include="Assests\scripts\jquery-ui.min.js" />
+    <Content Include="Assests\scripts\jquery.validate.min.js" />
+    <Content Include="Assests\scripts\js.cookie.js" />
+    <Content Include="Assests\scripts\menu.js" />
+    <Content Include="Assests\scripts\modal.js" />
+    <Content Include="Assests\scripts\model.js" />
+    <Content Include="Assests\scripts\payment.js" />
+    <Content Include="Assests\scripts\popover.js" />
+    <Content Include="Assests\scripts\profile.js" />
+    <Content Include="Assests\scripts\report.js" />
+    <Content Include="Assests\scripts\scrollspy.js" />
+    <Content Include="Assests\scripts\select2Util.js" />
+    <Content Include="Assests\scripts\serializeObject.js" />
+    <Content Include="Assests\scripts\setUp.js" />
+    <Content Include="Assests\scripts\tab.js" />
+    <Content Include="Assests\scripts\toastr.js" />
+    <Content Include="Assests\scripts\tooltip.js" />
+    <Content Include="Assests\scripts\transition.js" />
+    <Content Include="Assests\fonts\fontawesome-webfont.eot" />
+    <Content Include="Assests\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Assests\fonts\fontawesome-webfont.woff" />
+    <Content Include="Assests\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Assests\fonts\FontAwesome.otf" />
+    <Content Include="appFiles\_AddUser.cshtml" />
+    <None Include="Assests\scripts\_references.js" />
+    <Content Include="Assests\scripts\UserDetails.js" />
+    <Content Include="Assests\scripts\userRole.js" />
+    <Content Include="Assests\scripts\util.js" />
+    <Content Include="Assests\scripts\validation.js" />
+    <Content Include="Assests\select2\select2-spinner.gif" />
+    <Content Include="Assests\select2\select2.css" />
+    <Content Include="Assests\select2\select2.js" />
+    <Content Include="Assests\select2\select2.png" />
+    <Content Include="Assests\select2\select2x2.png" />
+    <Content Include="Assests\styles\bootstrap.css" />
+    <Content Include="Assests\styles\bootstrap.min.css" />
+    <Content Include="Assests\styles\datepicker.css" />
+    <Content Include="Assests\styles\def.css" />
+    <Content Include="Assests\styles\def.min.css" />
+    <Content Include="Assests\styles\font-awesome.css" />
+    <Content Include="Assests\styles\font-awesome.min.css" />
+    <Content Include="Assests\styles\jquery-ui.min.css" />
+    <Content Include="Assests\styles\style.css" />
+    <Content Include="Assests\styles\style.min.css" />
+    <Content Include="Assests\styles\toastr.css">
+      <DependentUpon>toastr.less</DependentUpon>
+    </Content>
+    <Content Include="Assests\styles\toastr.min.css">
+      <DependentUpon>toastr.css</DependentUpon>
+    </Content>
+    <Content Include="Assests\styles\variables.css" />
+    <Content Include="Assests\styles\variables.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Assests\styles\alerts.less" />
+    <Content Include="Assests\styles\badges.less" />
+    <Content Include="Assests\styles\bootstrap.css.map" />
+    <Content Include="Assests\styles\bootstrap.less" />
+    <Content Include="Assests\styles\breadcrumbs.less" />
+    <Content Include="Assests\styles\button-groups.less" />
+    <Content Include="Assests\styles\buttons.less" />
+    <Content Include="Assests\styles\carousel.less" />
+    <Content Include="Assests\styles\close.less" />
+    <Content Include="Assests\styles\code.less" />
+    <Content Include="Assests\styles\component-animations.less" />
+    <Content Include="Assests\styles\def.css.map" />
+    <Content Include="Assests\styles\def.less" />
+    <Content Include="Assests\styles\dropdowns.less" />
+    <Content Include="Assests\styles\forms.less" />
+    <Content Include="Assests\styles\glyphicons.less" />
+    <Content Include="Assests\styles\grid.less" />
+    <Content Include="Assests\styles\input-groups.less" />
+    <Content Include="Assests\styles\jumbotron.less" />
+    <Content Include="Assests\styles\labels.less" />
+    <Content Include="Assests\styles\list-group.less" />
+    <Content Include="Assests\styles\margin.less" />
+    <Content Include="Assests\styles\media.less" />
+    <Content Include="Assests\styles\mixins.less" />
+    <Content Include="Assests\styles\mixins\alerts.less" />
+    <Content Include="Assests\styles\mixins\background-variant.less" />
+    <Content Include="Assests\styles\mixins\border-radius.less" />
+    <Content Include="Assests\styles\mixins\buttons.less" />
+    <Content Include="Assests\styles\mixins\center-block.less" />
+    <Content Include="Assests\styles\mixins\clearfix.less" />
+    <Content Include="Assests\styles\mixins\forms.less" />
+    <Content Include="Assests\styles\mixins\gradients.less" />
+    <Content Include="Assests\styles\mixins\grid-framework.less" />
+    <Content Include="Assests\styles\mixins\grid.less" />
+    <Content Include="Assests\styles\mixins\hide-text.less" />
+    <Content Include="Assests\styles\mixins\image.less" />
+    <Content Include="Assests\styles\mixins\labels.less" />
+    <Content Include="Assests\styles\mixins\list-group.less" />
+    <Content Include="Assests\styles\mixins\nav-divider.less" />
+    <Content Include="Assests\styles\mixins\nav-vertical-align.less" />
+    <Content Include="Assests\styles\mixins\opacity.less" />
+    <Content Include="Assests\styles\mixins\pagination.less" />
+    <Content Include="Assests\styles\mixins\panels.less" />
+    <Content Include="Assests\styles\mixins\progress-bar.less" />
+    <Content Include="Assests\styles\mixins\reset-filter.less" />
+    <Content Include="Assests\styles\mixins\reset-text.less" />
+    <Content Include="Assests\styles\mixins\resize.less" />
+    <Content Include="Assests\styles\mixins\responsive-visibility.less" />
+    <Content Include="Assests\styles\mixins\size.less" />
+    <Content Include="Assests\styles\mixins\tab-focus.less" />
+    <Content Include="Assests\styles\mixins\table-row.less" />
+    <Content Include="Assests\styles\mixins\text-emphasis.less" />
+    <Content Include="Assests\styles\mixins\text-overflow.less" />
+    <Content Include="Assests\styles\mixins\vendor-prefixes.less" />
+    <Content Include="Assests\styles\modals.less" />
+    <Content Include="Assests\styles\navbar.less" />
+    <Content Include="Assests\styles\navs.less" />
+    <Content Include="Assests\styles\normalize.less" />
+    <Content Include="Assests\styles\padding.less" />
+    <Content Include="Assests\styles\pager.less" />
+    <Content Include="Assests\styles\pagination.less" />
+    <Content Include="Assests\styles\panels.less" />
+    <Content Include="Assests\styles\popovers.less" />
+    <Content Include="Assests\styles\print.less" />
+    <Content Include="Assests\styles\progress-bars.less" />
+    <Content Include="Assests\styles\responsive-embed.less" />
+    <Content Include="Assests\styles\responsive-utilities.less" />
+    <Content Include="Assests\styles\scaffolding.less" />
+    <Content Include="Assests\styles\style.css.map" />
+    <Content Include="Assests\styles\style.less" />
+    <Content Include="Assests\styles\tables.less" />
+    <Content Include="Assests\styles\theme.less" />
+    <Content Include="Assests\styles\thumbnails.less" />
+    <Content Include="Assests\styles\tooltip.less" />
+    <Content Include="Assests\styles\type.less" />
+    <Content Include="Assests\styles\utilities.less" />
+    <Content Include="Assests\styles\variables.css.map" />
+    <Content Include="Assests\styles\variables.less" />
+    <Content Include="Assests\styles\wells.less" />
+    <Content Include="Assests\styles\toastr.less" />
+    <Content Include="Assests\styles\toastr.css.map">
+      <DependentUpon>toastr.css</DependentUpon>
+    </Content>
+    <Content Include="images\setup.png" />
+    <Content Include="log4net.config" />
+    <Content Include="Message.json" />
+    <None Include="Properties\PublishProfiles\flex.pubxml" />
+    <Content Include="Pictures\default.png" />
+    <Content Include="Reports\claim.rpt" />
+    <Content Include="Reports\Claimsumm.rpt" />
+    <Content Include="Reports\Claimsumm2.rpt" />
+    <Content Include="Reports\claimsumm_GRP.rpt" />
+    <Content Include="Reports\claim_grp.rpt" />
+    <Content Include="Reports\claim_GRPEAR.rpt" />
+    <Content Include="Reports\claim_GRPER.rpt" />
+    <Content Include="Reports\claim_GRPERT.rpt" />
+    <Content Include="Reports\claim_GRPPAC.rpt" />
+    <Content Include="Reports\claim_GRPPC.rpt" />
+    <Content Include="Reports\claim_grpTC.rpt" />
+    <Content Include="Reports\claim_GRPTRV.rpt" />
+    <Content Include="Reports\commanalysistsp.rpt" />
+    <Content Include="Reports\commission.rpt" />
+    <Content Include="Reports\commissiontsp.rpt" />
+    <Content Include="Reports\commissionXXX.rpt" />
+    <Content Include="Reports\commsummary.rpt" />
+    <Content Include="Reports\detailreceipt.rpt" />
+    <Content Include="Reports\filelist1.rpt" />
+    <Content Include="Reports\filelist2.rpt" />
+    <Content Include="Reports\filelist3.rpt" />
+    <Content Include="Reports\filelist4.rpt" />
+    <Content Include="Reports\fundgroups.rpt" />
+    <Content Include="Reports\inputreceipt.rpt" />
+    <Content Include="Reports\inputreceipt2.rpt" />
+    <Content Include="Reports\liferate.rpt" />
+    <Content Include="Reports\maturity.rpt" />
+    <Content Include="Reports\maturity_02072015.rpt" />
+    <Content Include="Reports\maturity_bad.rpt" />
+    <Content Include="Reports\memberlist.rpt" />
+    <Content Include="Reports\memberlistA.rpt" />
+    <Content Include="Reports\membersagent.rpt" />
+    <Content Include="Reports\membersloc.rpt" />
+    <Content Include="Reports\outprop.rpt" />
+    <Content Include="Reports\pollocation.rpt" />
+    <Content Include="Reports\polsch.rpt" />
+    <Content Include="Reports\poltype.rpt" />
+    <Content Include="Reports\prodanalysis.rpt" />
+    <Content Include="Reports\production.rpt" />
+    <Content Include="Reports\productionbrk.rpt" />
+    <Content Include="Reports\productionnew.rpt" />
+    <Content Include="Reports\production_brksum.rpt" />
+    <Content Include="Reports\production_sum.rpt" />
+    <Content Include="Reports\proposalapr.rpt" />
+    <Content Include="Reports\receiptsummary.rpt" />
+    <Content Include="Reports\receiptsummaryp.rpt" />
+    <Content Include="Reports\receiptsummary_26112015.rpt" />
+    <Content Include="Reports\Recieptlist.rpt" />
+    <Content Include="Reports\rptauditlist.rpt" />
+    <Content Include="Reports\rptaudittrail.rpt" />
+    <Content Include="Reports\statemensumm_GRPALL.rpt" />
+    <Content Include="Reports\statement.rpt" />
+    <Content Include="Reports\statementsumm.rpt" />
+    <Content Include="Reports\statementsumm_GRP.rpt" />
+    <Content Include="Reports\statementsumm_GRPAC.rpt" />
+    <Content Include="Reports\statementsumm_GRPALL.rpt" />
+    <Content Include="Reports\statementsumm_GRPC.rpt" />
+    <Content Include="Reports\statementsumm_GRPEAR.rpt" />
+    <Content Include="Reports\statementsumm_GRPER.rpt" />
+    <Content Include="Reports\statementsumm_GRPERT.rpt" />
+    <Content Include="Reports\statementsumm_GRPPAC.rpt" />
+    <Content Include="Reports\statementsumm_GRPPC.rpt" />
+    <Content Include="Reports\statementsumm_GRPPERT.rpt" />
+    <Content Include="Reports\statementsumm_GRPTC.rpt" />
+    <Content Include="Reports\statementsumm_GRPTCP.rpt" />
+    <Content Include="Reports\statementsumm_GRPTRV.rpt" />
+    <Content Include="Reports\statement_GRP.rpt" />
+    <Content Include="Reports\statement_GRPALL.rpt" />
+    <Content Include="Reports\statement_GRPC.rpt" />
+    <Content Include="Reports\statement_GRPEAR.rpt" />
+    <Content Include="Reports\statement_GRPER.rpt" />
+    <Content Include="Reports\statement_GRPERT.rpt" />
+    <Content Include="Reports\statement_GRPPAC.rpt" />
+    <Content Include="Reports\statement_GRPPC.rpt" />
+    <Content Include="Reports\statement_GRPPERT.rpt" />
+    <Content Include="Reports\statement_GRPTC.rpt" />
+    <Content Include="Reports\statement_GRPTCP.rpt" />
+    <Content Include="Reports\statement_GRPTRV.rpt" />
+    <Content Include="Reports\summaryreport.rpt" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="images\Customer.png" />
+    <Content Include="images\loading.png" />
+    <Content Include="images\loading2.png" />
+    <Content Include="images\Nlpc.png" />
+    <Content Include="images\nlpcLoading.gif" />
+    <Content Include="Reports\fl_qrystatement %282%29.txt" />
+    <Content Include="Reports\fl_qrystatement.txt" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="appFiles\addUser.html" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\DashBoard\Index.cshtml" />
+    <Content Include="Views\Shared\_profile.cshtml" />
+    <Content Include="Views\Shared\_menu.cshtml" />
+    <Content Include="Views\Shared\Index.cshtml" />
+    <Content Include="Views\CustPolicy\_pendingPolicy.cshtml" />
+    <Content Include="Views\CustPolicy\_tbppolicies.cshtml" />
+    <Content Include="Views\CustPolicy\_proposalLayout.cshtml" />
+    <Content Include="Views\CustPolicy\acceptedProposalSearch.cshtml" />
+    <Content Include="Views\Container\Indexxxx.cshtml" />
+    <Content Include="Views\SetUp\_CoyProfileView.cshtml" />
+    <Content Include="Views\SetUp\_coyProfileLayOut.cshtml" />
+    <Content Include="Views\SetUp\_CoyProfileInput.cshtml" />
+    <Content Include="Views\CustPolicy\_customers.cshtml" />
+    <Content Include="Views\SetUp\_groups.cshtml" />
+    <Content Include="Views\SetUp\_addEditGroup.cshtml" />
+    <Content Include="Views\SetUp\_agents.cshtml" />
+    <Content Include="Views\SetUp\_tbAgents.cshtml" />
+    <Content Include="Views\SetUp\_addEditAgents.cshtml" />
+    <Content Include="Views\SetUp\_location.cshtml" />
+    <Content Include="Views\SetUp\_AddEditLocation.cshtml" />
+    <Content Include="Views\SetUp\_policyType.cshtml" />
+    <Content Include="Views\SetUp\_addEditPolicyType.cshtml" />
+    <Content Include="Views\SetUp\_lifeRate.cshtml" />
+    <Content Include="Views\SetUp\_tbrates.cshtml" />
+    <Content Include="Views\SetUp\_addRate.cshtml" />
+    <Content Include="Views\Payment\_payments.cshtml" />
+    <Content Include="Views\Payment\_tbPayments.cshtml" />
+    <Content Include="Views\Payment\_paymentAccounts.cshtml" />
+    <Content Include="Views\Payment\_tbPaymentAccount.cshtml" />
+    <Content Include="Views\Payment\_addEditPaymentAccount.cshtml" />
+    <Content Include="Views\Payment\_transactionPost.cshtml" />
+    <Content Include="Views\CustPolicy\_resetPwd.cshtml" />
+    <Content Include="Views\CustPolicy\_addPolicy.cshtml" />
+    <Content Include="Views\CustPolicy\_tbCustomers.cshtml" />
+    <Content Include="Views\SetUp\_tbGroups.cshtml" />
+    <Content Include="Views\SetUp\_tbLocation.cshtml" />
+    <Content Include="Views\CustPolicy\_tbappolicies.cshtml" />
+    <Content Include="Views\Shared\_deleteConfirmation.cshtml" />
+    <Content Include="Views\UserRole\_users.cshtml" />
+    <Content Include="Views\UserRole\_tbUsers.cshtml" />
+    <Content Include="Views\UserRole\_AddUser.cshtml" />
+    <Content Include="Views\UserRole\_roles.cshtml" />
+    <Content Include="Views\UserRole\_addRole.cshtml" />
+    <Content Include="Views\CustPolicy\_policy.cshtml" />
+    <Content Include="Views\CustPolicy\_policyLayout.cshtml" />
+    <Content Include="Views\CustPolicy\_tbPolicies.cshtml" />
+    <Content Include="Views\CustPolicy\_step1.cshtml" />
+    <Content Include="Views\CustPolicy\_step2.cshtml" />
+    <Content Include="Views\CustPolicy\_step3.cshtml" />
+    <Content Include="Views\CustPolicy\_newPolicy.cshtml" />
+    <Content Include="Views\CustPolicy\_beneficiaries.cshtml" />
+    <Content Include="Views\CustPolicy\_viewPolicyDetails.cshtml" />
+    <Content Include="Views\UserRole\_resetPwd.cshtml" />
+    <Content Include="Views\Report\_memberRegister.cshtml" />
+    <Content Include="Views\Report\_stmtAcct.cshtml" />
+    <Content Include="Views\Report\_invHis.cshtml" />
+    <Content Include="Views\Report\_production.cshtml" />
+    <Content Include="Views\Report\_receiptList.cshtml" />
+    <Content Include="Views\Report\_commission.cshtml" />
+    <Content Include="Views\Report\_fundGroup.cshtml" />
+    <Content Include="Views\Claim\_claimRequest.cshtml" />
+    <Content Include="Views\Claim\_tbclmReq.cshtml" />
+    <Content Include="Views\Claim\_claimProcess.cshtml" />
+    <Content Include="Views\SetUp\_rateRules.cshtml" />
+    <Content Include="Views\Claim\_claimApproval.cshtml" />
+    <Content Include="Views\Claim\_addClaim.cshtml" />
+    <Content Include="Views\Claim\_claimPayment.cshtml" />
+    <Content Include="Views\Claim\_tbclmPayments.cshtml" />
+    <Content Include="Views\Claim\_claimPayInput.cshtml" />
+    <Content Include="Views\Claim\_clmReport.cshtml" />
+    <Content Include="Views\Claim\_claimwithDateRange.cshtml" />
+    <Content Include="Views\Claim\_policyReactivation.cshtml" />
+    <Content Include="Views\CustPolicy\_editPersonalDetails.cshtml" />
+    <Content Include="Views\CustPolicy\_editNextKin.cshtml" />
+    <Content Include="Views\CustPolicy\_editBeneficiary.cshtml" />
+    <Content Include="Views\CustPolicy\_managepolicy.cshtml" />
+    <Content Include="Views\Shared\_pagination.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\CustPolicy\_policyUpload.cshtml" />
+    <Content Include="Views\Payment\_paymentLayout.cshtml" />
+    <Content Include="Views\Payment\_paymentUpload.cshtml" />
+    <Content Include="Views\Payment\_paymentListLayout.cshtml" />
+    <Content Include="Views\Payment\_gratuityPayments.cshtml" />
+    <Content Include="Views\Payment\_tbGPayments.cshtml" />
+    <Content Include="Views\Payment\_gpaymentDetails.cshtml" />
+    <Content Include="Views\Report\_maturitylist.cshtml" />
+    <Content Include="Views\CustPolicy\_policySummary.cshtml" />
+    <Content Include="Views\Payment\_paymentUpdate.cshtml" />
+    <Content Include="Views\Payment\_paymentUpdateLayout.cshtml" />
+    <Content Include="Views\SetUp\_publicholiday.cshtml" />
+    <Content Include="Views\SetUp\_tbHolidays.cshtml" />
+    <Content Include="Views\SetUp\_addEditHoliday.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="PDFReport\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reports\claimapproval.rpt" />
+    <EmbeddedResource Include="Reports\location.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>location.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Content Include="Reports\polsch_or.rpt" />
+    <Content Include="Reports\proposalapr_or.rpt" />
+    <EmbeddedResource Include="Reports\rctenquirylist.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rctenquirylist.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Flex.Business\Flex.Business.csproj">
+      <Project>{bfdf6ad1-b8e1-49a4-a460-db78936c90cf}</Project>
+      <Name>Flex.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Flex.Data\Flex.Data.csproj">
+      <Project>{a6ba9569-66cf-4167-9c25-a98de5810498}</Project>
+      <Name>Flex.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Flex.Utility\Flex.Utility.csproj">
+      <Project>{0631ab17-95e9-4242-9159-081ab2b2856c}</Project>
+      <Name>Flex.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SerialNumber\SerialNumber.csproj">
+      <Project>{73A64382-1EC1-4961-93C7-BCD8E7E42646}</Project>
+      <Name>SerialNumber</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>59733</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:59733/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

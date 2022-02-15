@@ -1,0 +1,1 @@
+Alter table fl_policyinput add PictureFile nvarchar(max)

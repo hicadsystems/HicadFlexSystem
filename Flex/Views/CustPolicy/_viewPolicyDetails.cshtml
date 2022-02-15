@@ -1,0 +1,30 @@
+﻿@using Flex.Data.ViewModel
+@model SignUpBindingModel
+
+<div class="form-top">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#personalInfo" aria-controls="personalInfo" role="tab" data-toggle="tab">Personal Information</a>
+        </li>
+        <li role="presentation">
+            <a href="#nextKin" aria-controls="nextKin" role="tab" data-toggle="tab">Next of Kin</a>
+        </li>
+        <li role="presentation">
+            <a href="#beneficiary" aria-controls="beneficiary" role="tab" data-toggle="tab">Beneficiaries</a>
+        </li>
+    </ul>
+</div>
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="personalInfo">
+       @Html.Partial("_step1", @Model)
+    </div>
+    <div role="tabpanel" class="tab-pane" id="nextKin">
+        @Html.Partial("_step2",Model)
+    </div>
+    <div role="tabpanel" class="tab-pane" id="beneficiary">
+        @Html.Partial("_step3",Model)
+    </div>
+
+</div>
+
+

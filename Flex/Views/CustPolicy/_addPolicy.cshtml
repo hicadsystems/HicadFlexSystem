@@ -1,0 +1,16 @@
+﻿@{
+    var id = ViewBag.Id;
+}
+<div class="padding-md">
+    <input type="hidden" value="@id" name="Id" id="Id" />
+    <div class="row">
+        <div class="form-group col-md-9">
+            <div class="col-md-5 text-left padding-top-xs">
+                <label for="Policyno" class="color-transparent-darker lite small uppercase">Policy Number</label>
+            </div>
+            <div class="col-md-7">
+                <input type="text" name="Policyno" class="form-control input-md" required id="Policyno" />
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,5 @@
+[Flex Customer Logger Started] 
+2021-10-22 09:10:16,717 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132793637869594760] Starting... @ BaseDir is [E:\ProjectsTom\temiowode-flex-system-ca7dddf7c581\CustomerPortal\]
+[Flex Customer Logger Started] 
+2021-10-22 09:11:23,702 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132793638764827109] Starting... @ BaseDir is [E:\ProjectsTom\temiowode-flex-system-ca7dddf7c581\CustomerPortal\]
+2021-10-22 09:29:11,006 [15] INFO  CustomerPortal - Inside post signUp

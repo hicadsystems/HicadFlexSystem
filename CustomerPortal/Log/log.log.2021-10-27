@@ -1,0 +1,38 @@
+[Flex Customer Logger Started] 
+2021-10-27 16:11:51,270 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132798211060625924] Starting... @ BaseDir is [E:\ProjectsTom\temiowode-flex-system-ca7dddf7c581\CustomerPortal\]
+[Flex Customer Logger Started] 
+2021-10-27 16:21:11,284 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132798216697536831] Starting... @ BaseDir is [E:\ProjectsTom\temiowode-flex-system-ca7dddf7c581\CustomerPortal\]
+[Flex Customer Logger Started] 
+2021-10-27 16:26:18,879 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132798219776656440] Starting... @ BaseDir is [E:\ProjectsTom\temiowode-flex-system-ca7dddf7c581\CustomerPortal\]
+[Flex Customer Logger Started] 
+2021-10-27 17:21:08,462 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132798252655919578] Starting... @ BaseDir is [E:\ProjectsTom\temiowode-flex-system-ca7dddf7c581\CustomerPortal\]
+[Flex Customer Logger Started] 
+2021-10-27 17:35:25,078 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132798261223173155] Starting... @ BaseDir is [E:\ProjectsTom\temiowode-flex-system-ca7dddf7c581\CustomerPortal\]
+[Flex Customer Logger Started] 
+2021-10-27 17:51:12,554 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132798270684656305] Starting... @ BaseDir is [E:\ProjectsTom\temiowode-flex-system-ca7dddf7c581\CustomerPortal\]
+2021-10-27 17:53:55,239 [7] ERROR CustomerPortal - Error Occurred. Details  [System.ServiceModel.EndpointNotFoundException: There was no endpoint listening at net.pipe://localhost/SerialNumberGenerator.Service/SerialNumberService/ that could accept the message. This is often caused by an incorrect address or SOAP action. See InnerException, if present, for more details. ---> System.IO.PipeException: The pipe endpoint 'net.pipe://localhost/SerialNumberGenerator.Service/SerialNumberService/' could not be found on your local machine. 
+   --- End of inner exception stack trace ---
+
+Server stack trace: 
+   at System.ServiceModel.Channels.PipeConnectionInitiator.GetPipeName(Uri uri, IPipeTransportFactorySettings transportFactorySettings)
+   at System.ServiceModel.Channels.NamedPipeConnectionPoolRegistry.NamedPipeConnectionPool.GetPoolKey(EndpointAddress address, Uri via)
+   at System.ServiceModel.Channels.CommunicationPool`2.TakeConnection(EndpointAddress address, Uri via, TimeSpan timeout, TKey& key)
+   at System.ServiceModel.Channels.ConnectionPoolHelper.EstablishConnection(TimeSpan timeout)
+   at System.ServiceModel.Channels.ClientFramingDuplexSessionChannel.OnOpen(TimeSpan timeout)
+   at System.ServiceModel.Channels.CommunicationObject.Open(TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannel.OnOpen(TimeSpan timeout)
+   at System.ServiceModel.Channels.CommunicationObject.Open(TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannel.CallOpenOnce.System.ServiceModel.Channels.ServiceChannel.ICallOnce.Call(ServiceChannel channel, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannel.CallOnceManager.CallOnce(TimeSpan timeout, CallOnceManager cascade)
+   at System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   at System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   at System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   at SerialNumberGenerator.Interfaces.ISerialNumber.GetNextNumber(String contextKey)
+   at SerialNumber.SerialNumberSource.GetNextNumber(String contextKey) in E:\ProjectsTom\temiowode-flex-system-ca7dddf7c581\SerialNumber\SerialNumberSource.cs:line 32
+   at CustomerPortal.Controllers.PolicyController.Create(PolicyBindingModel model) in E:\ProjectsTom\temiowode-flex-system-ca7dddf7c581\CustomerPortal\Controllers\PolicyController.cs:line 58]
+[Flex Customer Logger Started] 
+2021-10-27 18:10:54,635 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132798282530091139] Starting... @ BaseDir is [E:\ProjectsTom\temiowode-flex-system-ca7dddf7c581\CustomerPortal\]

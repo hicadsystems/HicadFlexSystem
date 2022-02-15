@@ -1,0 +1,116 @@
+﻿
+@{
+    var datefrom = DateTime.Today.AddDays(-30).ToString("yyyy-MM-dd");
+    var dateto = DateTime.Today.ToString("yyyy-MM-dd");
+}
+
+<ul class="nav nav-tabs border-none">
+    <li role="presentation" class="active">
+        <a class="border-none uppercase bold padding-horizontal-md margin-right-xs">Production</a>
+    </li>
+</ul>
+
+<div class="padding-top-md">
+    <form id="production">
+        <div class="panel">
+            <div class="padding-sm">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <div class="radio" style="margin-bottom:0px;">
+                                <label class="color-transparent-darker lite small uppercase">
+                                    <input type="radio" name="rptOption" value="detail" checked> Detailed Report
+                                </label>
+                            </div>
+                            <div class="radio" style="margin-bottom:0px;">
+                                <label class="color-transparent-darker lite small uppercase">
+                                    <input type="radio" name="rptOption" value="summary" required>Summary
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <div class="radio" style="margin-bottom:0px;">
+                                <label class="color-transparent-darker lite small uppercase">
+                                    <input type="radio" name="sortOrder" value="policy" checked onchange="toggleSortOrder(this);"> Policy
+                                </label>
+                            </div>
+                            <div class="radio" style="margin-bottom:0px;">
+                                <label class="color-transparent-darker lite small uppercase">
+                                    <input type="radio" name="sortOrder" value="agent" required onchange="toggleSortOrder(this);">Agent
+                                </label>
+                            </div>
+                            <div class="radio" style="margin-bottom:0px;">
+                                <label class="color-transparent-darker lite small uppercase">
+                                    <input type="radio" name="sortOrder" value="location" required onchange="toggleSortOrder(this);">Location
+                                </label>
+                            </div>
+                            <div class="radio" style="margin-bottom:0px;">
+                                <label class="color-transparent-darker lite small uppercase">
+                                    <input type="radio" name="sortOrder" value="custlocation" required onchange="toggleSortOrder(this);">Customer Location
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="col-sm-12">
+                            <div class="checkbox">
+                                <label class="color-transparent-darker lite small uppercase">
+                                    <input type="checkbox" name="prodAnalysis" value="ProdAnalysis"> Production Analysis
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12" id="divPolicy">
+                            <label for="Code" class="color-transparent-darker lite small uppercase">Policy</label>
+                            <input type="text" class="form-control" data-autocomplete="@Url.Action("PolicynoAutoComplete","CustPolicy")" style="width: 200px" />
+                            <input type="hidden" value="" id="policyno" data-autocomplete-id="true" name="Policy" />
+                        </div>
+                        <div class="col-sm-12" id="divAgent" style="display:none;">
+                            <label for="Agent" class="color-transparent-darker lite small uppercase">Agent</label>
+                            @Html.DropDownList("Agent", (IEnumerable<SelectListItem>)ViewBag.Agents, String.Empty, new { @class = "form-control input-md", @required = true })
+                        </div>
+                        <div class="col-sm-12" id="divLocation" style="display:none;">
+                            <label for="Agent" class="color-transparent-darker lite small uppercase">Location</label>
+                            @Html.DropDownList("Location", (IEnumerable<SelectListItem>)ViewBag.Location, String.Empty, new { @class = "form-control input-md" })
+                        </div>
+                        <div class="col-sm-12" id="divCustomerLocation" style="display:none;">
+                            <label for="Agent" class="color-transparent-darker lite small uppercase">Customer Location</label>
+                            @Html.DropDownList("CustLocation", (IEnumerable<SelectListItem>)ViewBag.CustLocation, String.Empty, new { @class = "form-control input-md", @required = true })
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-3 ss-item-required">
+                        <label for="Code" class="color-transparent-darker lite small uppercase">Start Date</label>
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control datepicker" value="@datefrom" name="sDate" readonly />
+                            <span class="input-group-btn" style="padding-top:1px;">
+                                <button type="button" class="btn btn-default" onclick="openDatePicker(this)"><i class="fa fa-calendar"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 ss-item-required">
+                        <label for="Code" class="color-transparent-darker lite small uppercase">End Date</label>
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control datepicker" value="@dateto" name="eDate" readonly />
+                            <span class="input-group-btn" style="padding-top:1px;">
+                                <button type="button" class="btn btn-default" onclick="openDatePicker(this)"><i class="fa fa-calendar"></i></button>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <input type="button" class="btn btn-info btn-sm" value="Submit" id="btnsubmit" onclick="production();" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

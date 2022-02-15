@@ -1,0 +1,94 @@
+﻿@using Flex.Data.Model
+@using Flex.Data.ViewModel
+@model PagedResult<fl_translog>
+@{
+    if (Model != null && Model.Items.Any())
+    {
+        @*<div class="padding-sm">*@
+        <span class="pull-right" id="spApproval">
+            <a class="btn btn-warning btn-sm" id="btnApprove" data-url="@Url.Action("ApprovePolicy","CustPolicy")"><span class="fa fa-download"></span> &nbsp; xls</a>
+            <a class="btn btn-warning btn-sm" id="btnApprove" data-url="@Url.Action("ApprovePolicy","CustPolicy")"><span class="fa fa-download"></span> &nbsp; pdf</a>
+        </span>
+        @*</div>*@
+    }
+}
+@{
+    var lshowing = Model.RowCount > 0 ? (Model.CurrentPage - 1) * Model.PageSize + 1 : 0;
+    var hshowing = ((Model.CurrentPage - 1) * Model.PageSize) + Model.RowCount;
+    var pageSumm = string.Format("Showing {0}-{1} of {2}", lshowing, hshowing, Model.LongRowCount);
+}
+
+<table class="table table-common table-striped table-hover border-bottom table-condensed" id="tblagent">
+    <thead>
+        <tr>
+            <th style="width:10%;">Reciept No.</th>
+            <th style="width:9%;">Bank Ledger</th>
+            <th style="width:10%;">Amount</th>
+            <th style="width:15%;">Group</th>
+            <th style="width:20%;">Date</th>
+            @*<th style="width:5%;"></th>*@
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            if (Model != null)
+            {
+                foreach (var trans in Model.Items)
+                {
+                    <tr class="pointer">
+                        <td><a data-url="@Url.Action("ViewPaymentDetails","Payment", new { ReceiptNo= @trans.receiptno})" onclick="showpaymentDetails(this)" style="cursor:pointer;">@trans.receiptno</a></td>
+                        <td>@trans.bank_ledger</td>
+                        <td>@trans.amount</td>
+                        <td>@trans.grpcode</td>
+                        <td>@trans.trandate.GetValueOrDefault().ToString("dd/MM/yyyy")</td>
+                        <!--<td>
+                            <button class="btn btn-primary btn-sm fa fa-recycle" data-id="@trans.Id" data-url="@Url.Action("GUpdateTransaction", "Payment")" onclick="updatepayment(this)">
+                                Update
+                            </button>-->
+                            @*data-submiturl="@Url.Action("GUpdateTransactions", "Payment")" onclick="ShowdelItem(this,@trans.Id, 'Reverse Payment');"*@
+                            <!--@{ if (trans.Isreversed == false || trans.Isreversed == null)
+                                {
+                        <button class="btn btn-danger btn-sm fa fa-recycle" data-id="@trans.Id" data-url="@Url.Action("GConfirmReverse", "Payment")"
+                                data-submiturl="@Url.Action("GReverseTransaction", "Payment")" onclick="ShowdelItem2(this,@trans.Id, 'Reverse Payment');">
+                            Reverse
+                        </button> } }
+                        </td>-->
+                    </tr>
+                }
+            }
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="10" class="pagination-summary small">
+                @*<paging-summary ng-model="model.currentPage" items-per-page="model.pageSize" total-items="model.totalItems"></paging-summary>*@
+                <span class="pull-right">@pageSumm</span>
+                <!--<pagination boundary-links="true" total-items="model.totalItems" items-per-page="model.pageSize" max-size="5" ng-model="model.currentPage" class="pagination-sm" previous-text="&lsaquo; Prev" next-text="Next &rsaquo;" first-text="&laquo;" last-text="&raquo;" ng-change="submit(model)"></pagination>-->
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+<div class="col-md-6 text-left">
+    <ul class="pagination pagination-sm">
+        <li>
+            <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        @{
+            for (int i = 0; i < Model.PageCount; i++)
+            {
+                var x = i + 1;
+                <li><a href="#">@x</a></li>
+            }
+        }
+        <li>
+            <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+

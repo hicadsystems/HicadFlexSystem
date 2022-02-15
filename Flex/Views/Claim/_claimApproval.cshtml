@@ -1,0 +1,41 @@
+﻿
+@model Flex.Data.Model.ClaimRequest
+<form id="apclaim">
+    <div class="padding-md">
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="Code" class="color-transparent-darker lite small uppercase">Policy</label>
+                <input name="policy" value="@ViewBag.PolicyName" class="form-control input-md" readonly />
+                <input type="hidden" value="@Model.PolicyNo" name="policyno" />
+                <input type="hidden" value="@Model.Id" name="Id" />
+            </div>
+            <div class="form-group col-md-6">
+                <label for="Commission" class="color-transparent-darker lite small uppercase">Effective Date</label>
+                <input type="text" class="form-control" value="@Model.EffectiveDate.GetValueOrDefault().ToString("yyyy-MM-dd")" name="effDate" readonly />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="Name" class="color-transparent-darker lite small uppercase">Claim Type</label>
+                <input type="text" class="form-control" value="@Model.ClaimType" name="clmType" readonly />
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="Commission" class="color-transparent-darker lite small uppercase">Amount</label>
+                <input type="text" name="amount" class="form-control input-md" value="@Model.Amount" readonly />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="Commission" class="color-transparent-darker lite small uppercase">Interest Rate</label>
+                <input type="number" name="intr" class="form-control input-md" value="@Model.Interest" required readonly />
+            </div>
+
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="Commission" class="color-transparent-darker lite small uppercase">Approved Amount</label>
+                <input type="number" name="apprvAmt" class="form-control input-md" required />
+            </div>
+        </div>
+    </div>
+</form>
+

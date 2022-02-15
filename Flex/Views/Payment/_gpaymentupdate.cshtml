@@ -1,0 +1,54 @@
+﻿@using Flex.Data.ViewModel
+@using Flex.Util
+@model SignUpBindingModel
+
+@{ Layout = null;
+    var chksms = false;
+    }
+
+<div class="padding-top-md">
+    <div class="panel">
+        <div class="padding-sm">
+            <form action="@Url.Action("GUpdateTransactions","Payment")" method="post" name="form">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="CustomerId" class="uppercase smaller lite margin-top-sm margin-right-sm">Receipt No.</label>
+                        @*@Html.DropDownList("PolicyType", (IEnumerable<SelectListItem>)ViewBag.polType, String.Empty, new { @class = "form-control input-md", @required = "true", @id = "poltype" })*@
+                        @*@Html.DropDownList("PolicyType", ViewBag.polType as SelectList, String.Empty, new { @class = "form-control input-md", @required = "true", @id = "poltype" })*@
+                        @Html.DropDownList("ReceiptNo", (IEnumerable<SelectListItem>)ViewBag.rt, "Select...", new { @class = "form-control input-md", @required = "true", @id = "receiptno" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="CustomerId" class="uppercase smaller lite margin-top-sm margin-right-sm">Policy Type</label>
+                        @*@Html.DropDownList("PolicyType", (IEnumerable<SelectListItem>)ViewBag.polType, String.Empty, new { @class = "form-control input-md", @required = "true", @id = "poltype" })*@
+                        @Html.DropDownList("PolicyType", ViewBag.polType as SelectList, String.Empty, new { @class = "form-control input-md", @required = "true", @id = "poltype" })
+                        @*@Html.DropDownList("rt", (IEnumerable<SelectListItem>)ViewBag.rt, "Select...", new { @class = "form-control input-md", @id = "receiptno" })*@
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="Remark" class="uppercase smaller lite margin-top-sm margin-right-sm">Remark e.g being January 2020 contribution</label>
+                        <input type="text" class="form-control input-sm"  name="Remark" required/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label for="SMS" class="checkbox-inline">
+                            <input type="checkbox" value="1" name="SMS"> SMS
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <input type="button" class="btn btn-info btn-sm" value="Update" id="btnppsearch" data-url="@Url.Action("Update","Payment")" onclick="gUpdateTransaction()" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+

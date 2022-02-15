@@ -1,0 +1,12 @@
+C:\Users\HICADB\OneDrive\Desktop\CPO_NNPEFBackup\temiowode-flex-system-ca7dddf7c581\Flex.Data\bin\Debug\Flex.Data.dll.config
+C:\Users\HICADB\OneDrive\Desktop\CPO_NNPEFBackup\temiowode-flex-system-ca7dddf7c581\Flex.Data\bin\Debug\Flex.Data.dll
+C:\Users\HICADB\OneDrive\Desktop\CPO_NNPEFBackup\temiowode-flex-system-ca7dddf7c581\Flex.Data\bin\Debug\Flex.Data.pdb
+C:\Users\HICADB\OneDrive\Desktop\CPO_NNPEFBackup\temiowode-flex-system-ca7dddf7c581\Flex.Data\bin\Debug\EntityFramework.dll
+C:\Users\HICADB\OneDrive\Desktop\CPO_NNPEFBackup\temiowode-flex-system-ca7dddf7c581\Flex.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\HICADB\OneDrive\Desktop\CPO_NNPEFBackup\temiowode-flex-system-ca7dddf7c581\Flex.Data\bin\Debug\EntityFramework.xml
+C:\Users\HICADB\OneDrive\Desktop\CPO_NNPEFBackup\temiowode-flex-system-ca7dddf7c581\Flex.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\HICADB\OneDrive\Desktop\CPO_NNPEFBackup\temiowode-flex-system-ca7dddf7c581\Flex.Data\obj\Debug\Flex.Data.csproj.AssemblyReference.cache
+C:\Users\HICADB\OneDrive\Desktop\CPO_NNPEFBackup\temiowode-flex-system-ca7dddf7c581\Flex.Data\obj\Debug\Flex.Data.csproj.CoreCompileInputs.cache
+C:\Users\HICADB\OneDrive\Desktop\CPO_NNPEFBackup\temiowode-flex-system-ca7dddf7c581\Flex.Data\obj\Debug\Flex.Data.csproj.CopyComplete
+C:\Users\HICADB\OneDrive\Desktop\CPO_NNPEFBackup\temiowode-flex-system-ca7dddf7c581\Flex.Data\obj\Debug\Flex.Data.dll
+C:\Users\HICADB\OneDrive\Desktop\CPO_NNPEFBackup\temiowode-flex-system-ca7dddf7c581\Flex.Data\obj\Debug\Flex.Data.pdb

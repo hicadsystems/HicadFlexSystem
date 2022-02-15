@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Flex.Data.Model.fl_premrate>
+
+@{
+    if (Model != null && Model.Any())
+    {
+        @*<div class="padding-sm">*@
+        <span class="pull-right" id="spApproval">
+             <a class="btn btn-warning btn-sm" id="btnApprove" onclick="exportLifeRate('pdf')"><span class="fa fa-download"></span> &nbsp; pdf</a>
+        </span>
+        @*</div>*@
+    }
+}
+
+
+
+
+<table class="table table-common table-striped table-hover border-bottom table-condensed" id="tblagent">
+    <thead>
+        <tr>
+            <th style="width:10%;">Policy Type</th>
+            <th style="width:17%;">Group</th>
+            <th style="width:9%;">Period</th>
+            <th style="width:9%;"></th>
+            @*<th style="width:15%;">Commission Rate</th>
+            <th style="width:10%;">Marketer Commission Rate</th>
+            <th style="width:10%;">Retention</th>*@
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            if (Model != null)
+            {
+                foreach (var rate in Model)
+                {
+                    <tr class="pointer">
+                        <td>@rate.fl_poltype.poldesc</td>
+                        <td>@rate.grpcode</td>
+                        <td>@rate.period</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm fa fa-pencil" data-id="@rate.Id"
+                                     onclick="viewRateRules(@rate.Id)">
+                                View Rules
+                            </button>
+                        </td>
+                        @*<td>@rate.commrate</td>
+                        <td>@rate.mkt_commrate</td>
+                        <td>@rate.retention</td>*@
+                    </tr>
+                }
+            }
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="10" class="pagination-summary small">
+                <paging-summary ng-model="model.currentPage" items-per-page="model.pageSize" total-items="model.totalItems"></paging-summary>
+                <!--<pagination boundary-links="true" total-items="model.totalItems" items-per-page="model.pageSize" max-size="5" ng-model="model.currentPage" class="pagination-sm" previous-text="&lsaquo; Prev" next-text="Next &rsaquo;" first-text="&laquo;" last-text="&raquo;" ng-change="submit(model)"></pagination>-->
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+

@@ -1,0 +1,103 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Nigeria Life and Provident Company</title>
+    <link href="~/Assests/styles/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Assests/styles/style.min.css" rel="stylesheet">
+    <link href="~/Assests/styles/toastr.min.css" rel="stylesheet">
+   
+</head>
+<body>
+    <form method="post" name="loginForm" action="@Url.Action("login","Login")" id="loginForm">
+        <div class="row">
+            <div class="col-md-9 forWideScreen">
+
+            </div>
+            @*<div class="col-md-3" style="background-color:white;">
+                    login box
+                </div>*@
+            <div class="col-md-3 login-box" style="padding-top:10.4%; padding-bottom:10.4%;">
+                <div class="col-md-12">
+                    <div class="row padding-top-lg padding-bottom-md">
+                        <div class="col-md-12 text-center">
+                            <a ui-sref="home"> <img src="images/Nlpc.png" /></a>
+                        </div>
+                    </div>
+                    <div class="row padding-left-md padding-right-md">
+                        <div class="form-group has-feedback text-left">
+                            <!-- <label class="color-transparent-darker bold">Email</label>-->
+                            <input type="text" class="form-control input-md" placeholder="Username" name="username" required autofocus autocomplete="off" id="username" />
+                            <span class="ion-at form-control-feedback"></span>
+                        </div>
+                        <div class="form-group  has-feedback text-left">
+                            <!--<label class="color-transparent-darker bold">Password</label>-->
+                            <input type="password" class="form-control input-md" placeholder="Password" name="password" required autocomplete="off" id="password" />
+                            <span class="ion-at form-control-feedback"></span>
+                        </div>
+                        <input type="button" class="btn btn-block btn-login padding-sm margin-vertical-md" id="btnlogin" value="LOGIN"></input>
+                    </div>
+                    @*<div class="row padding-left-md padding-right-md">
+                        <div><a href="" class="block pull-right" ui-sref="forgotpassword">Forgot Password?</a></div>
+
+                    </div>*@
+                    <div class="row padding-left-md padding-right-md padding-top-md padding-bottom-md">
+                        <div class="login-info">
+                            <div>Don't have a NLPC Policy?</div>
+                            <div><a href="@Url.Action("Index","SignUp")">SignUp for a Policy Now</a></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+    <div class="modal fade" id="ajax" tabindex="-1" role="basic" aria-hidden="true">
+        <img src="~/Images/nlpcLoading.gif" alt="" class="loading">
+    </div>
+    <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="myModal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="title"></h4>
+                </div>
+                <div class="modal-body" id="modalbody">
+
+                </div>
+                <div class="margin-bottom-sm modal-footer">
+                    <div class="inline-block"></div>
+                    <button class="btn btn-success" id="modalSubmit" data-click="" onclick="">Submit</button>
+                    <button class="btn btn-warning" onclick="hideModal();">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+     var dashboardurl='@Url.Action("Index", "DashBoard")';
+    </script>
+    <script type="text/javascript">
+    var loginurl='@Url.Action("Index", "Login")';
+    </script>
+    <script type="text/javascript">
+    var changePasswordUrl='@Url.Action("ChangePassword", "Login")';
+    </script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Assests/scripts/toastr.js"></script>
+    <script src="~/Assests/scripts/modal.js"></script>
+    <script src="~/Assests/scripts/Auth.js"></script>
+    <script src="~/Assests/scripts/js.cookie.js"></script>
+    <script src="~/Assests/scripts/util.js"></script>
+    <script src="~/Assests/scripts/serializeObject.js"></script>
+    <script src="~/Assests/scripts/dataService.js"></script>
+    <script src="~/Assests/scripts/UserDetails.js"></script>
+
+</body>
+</html>

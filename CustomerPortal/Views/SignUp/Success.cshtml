@@ -1,0 +1,31 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <link href="~/Assests/styles/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Assests/styles/style.min.css" rel="stylesheet">
+
+    <title>Success</title>
+</head>
+<body>
+    <div style="position:fixed; top:0; right:0; bottom:0; left:0;">
+        <div class="bg-primary-alt" style="height:100%; margin-bottom:-100%;">
+            <div style="width:350px; height:240px; color:#fff; text-align:center; position:absolute; left:50%; top:50%; margin:-120px 0 0 -175px;">
+                <div class="padding-horizontal-md" style="border:1px solid #fff;">
+                    <h1 class="margin-top-sm"><span class="fa fa-check-circle"></span></h1>
+                    <h3>Congratulations!</h3>
+                    <h5 style="line-height:1.45;">Your Policy has been successfully registered!</h5>
+                </div>
+                <a href="@Url.Action("Index","Login")"  class="pull-right small padding-top-xs" style="color:#fff;"><em>&rsaquo;&rsaquo;&rsaquo; click HERE to go back</em></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

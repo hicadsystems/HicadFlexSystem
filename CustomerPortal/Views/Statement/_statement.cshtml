@@ -1,0 +1,149 @@
+﻿@using Flex.Data.Model
+@using Flex.Data.ViewModel
+@model PagedResult<vwPolicyHistory>
+
+<div class="padding-top-md">
+    <div class="panel">
+        <form id="stmtSearch">
+            <div class="padding-sm">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="row">
+                            @*<div class="col-sm-3 text-right padding-none">
+                            <label for="Type" class="color-transparent-darker lite small uppercase margin-top-sm margin-right-sm">Type</label>
+                        </div>*@
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <select class="form-control input-md" id="searchoption" onchange="toggleSearchoption();">
+                                        <option value="0">Statement Summary</option>
+                                        <option value="1">Date Range</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4" id="divmth">
+                        <div class="row">
+                            <div class="col-sm-3 text-right padding-none" style="margin-left:-30px;">
+                                <label for="Location" class="color-transparent-darker lite small uppercase margin-top-sm margin-right-sm">Month</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="form-group">
+                                    <select class="form-control input-md" name="Month">
+                                        <option value=""></option>
+                                        <option value="01">January</option>
+                                        <option value="02">Feburary</option>
+                                        <option value="03">March</option>
+                                        <option value="04">April</option>
+                                        <option value="05">May</option>
+                                        <option value="06">June</option>
+                                        <option value="07">July</option>
+                                        <option value="08">August</option>
+                                        <option value="09">September</option>
+                                        <option value="10">October</option>
+                                        <option value="11">November</option>
+                                        <option value="12">December</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-4" id="divyr">
+                        <div class="row">
+                            <div class="col-sm-3 text-right padding-none" style="margin-left:-30px;">
+                                <label for="Year" class="color-transparent-darker lite small uppercase margin-top-sm margin-right-sm">Year</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="form-group">
+                                    <select class="form-control input-md" name="Year">
+                                        <option value=""></option>
+                                        @{
+                                            for (int i = 2000; i <= DateTime.Now.Year; i++)
+                                            {
+                                                <option value=@i>@i</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-4" id="divdatefrom" style="display:none; margin-left:-30px;">
+                        <div class="row">
+                            <div class="col-sm-3 text-right padding-none">
+                                <label for="Location" class="color-transparent-darker lite small uppercase margin-top-sm margin-right-sm">From</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control datepicker" name="DateFrom" readonly/>
+                                    <span class="input-group-btn" style="padding-top:1px;">
+                                        <button type="button" class="btn btn-default" onclick="openDatePicker(this)"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-4" id="divdateto" style="display:none; margin-left:-30px;">
+                        <div class="row">
+                            <div class="col-sm-3 text-right padding-none">
+                                <label for="Location" class="color-transparent-darker lite small uppercase margin-top-sm margin-right-sm">To</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control datepicker" name="DateTo" readonly/>
+                                    <span class="input-group-btn" style="padding-top:1px;">
+                                        <button type="button" class="btn btn-default" onclick="openDatePicker(this)"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="row">
+                            <div class="col-sm-4 text-right padding-none">
+                                <label for="PolicyNo" class="color-transparent-darker lite small uppercase margin-top-sm margin-right-sm">Policy Number</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    @Html.DropDownList("PolicyNo", (IEnumerable<SelectListItem>)ViewBag.Policyno,
+                                        new { @class = "form-control input-md" })
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <input type="button" class="btn btn-info btn-sm" value="SEARCH" id="btnppsearch" data-url="@Url.Action("SearchStatement","Statement")" onclick="searchStatement(this);" />
+                    </div>
+                </div>
+            </div>
+        </form>
+        
+
+        @{
+            var dispaly = string.Empty;
+
+            dispaly = Model.Items.Any() ? "block" : "none";
+        }
+        <div id="tbstmt" class="table-responsive" style="display:@dispaly;">
+            @Html.Partial("_tbStmt", Model)
+        </div>
+
+    </div>
+</div>
+

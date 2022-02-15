@@ -1,0 +1,60 @@
+﻿
+@using Flex.Data.ViewModel
+@model SignUpBindingModel
+
+@{
+    Layout = null;
+}
+<form name="step1" id="pDetails">
+    <div class="bg-white col-md-12">
+        <div class="row">
+            <div class="form-group col-md-4 ss-item-required">
+                <label for="Surname" class="color-transparent-darker lite small">SURNAME</label>
+                <input type="text" name="Surname" class="form-control input-md" autofocus required value="@Model.PersonalInfo.Surname" />
+            </div>
+            <div class="form-group col-md-4 ss-item-required">
+                <label for="OtherNames" class="color-transparent-darker lite small">OTHER NAMES</label>
+                <input type="email" name="OtherNames" class="form-control input-md" required value="@Model.PersonalInfo.Othernames" />
+            </div>
+            <div class="form-group col-md-4 ss-item-required">
+                <label for="ResidentialAddress" class="color-transparent-darker lite small">RESIDENTIAL ADDRESS</label>
+                <textarea name="ResidentialAddress" class="form-control input-md" rows="2" value="@Model.PersonalInfo.ResAddress"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="OfficeAddress" class="color-transparent-darker lite small">OFFICE ADDRESS</label>
+                <textarea name="OfficeAddress" class="form-control input-md" rows="2" value="@Model.PersonalInfo.OfficeAddress"></textarea>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="PostalAddress" class="color-transparent-darker lite small">POSTAL ADDRESS</label>
+                <textarea name="PostalAddress" class="form-control input-md" rows="2" required value="@Model.PersonalInfo.PostalAddress"></textarea>
+            </div>
+            <div class="form-group col-md-4 ss-item-required">
+                <label for="Phone" class="color-transparent-darker lite small">PHONE NUMBER</label>
+                <input type="number" name="Phone" class="form-control input-md" required value="@Model.PersonalInfo.Phone" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4 ss-item-required">
+                <label for="Email" class="color-transparent-darker lite small">EMAIL</label>
+                <input type="email" name="Email" class="form-control input-md" value="@Model.PersonalInfo.Email" />
+            </div>
+            <div class="form-group col-md-4 ss-item-required">
+                <label for="Dob" class="color-transparent-darker lite small ">DATE of BIRTH</label>
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control datepicker" name="Dob" id="Dob" value="@Model.PersonalInfo.Dob.GetValueOrDefault().ToShortDateString()" readonly />
+                    <span class="input-group-btn" style="padding-top:1px;">
+                        <button type="button" class="btn btn-default" onclick="openDatePicker(this)"><i class="fa fa-calendar"></i></button>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="Occupation" class="color-transparent-darker lite small">OCCUPATION</label>
+                <input type="text" name="Occupation" class="form-control input-md" value="@Model.PersonalInfo.Occupation" />
+            </div>
+        </div>
+        <input type="button" class="btn btn-block btn-success" value="Submit" onclick="createPolicy(1)" />
+    </div>
+</form>
+

@@ -1,0 +1,14 @@
+﻿<div class="padding-top-md">
+    <div class="panel">
+        <div class="padding-sm">
+            <div class="row">
+                <div id="divstep1" style="display:block">@Html.Action("Step1", "CustPolicy")</div>
+                <div id="divstep2" style="display:none">@Html.Action("Step2", "CustPolicy")</div>
+                @*<div id="divstep3" style="display:none">@Html.Partial("_step3")</div>*@
+                <div id="divstep3" style="display:none">@Html.Action("Step3", "CustPolicy")</div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

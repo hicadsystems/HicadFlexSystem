@@ -1,0 +1,73 @@
+﻿@using Flex.Data.Enum
+@model List<Flex.Data.Model.ClaimRequest>
+
+@*@{
+    if (Model != null && Model.Any())
+    {
+        <span class="pull-right" id="spApproval">
+            <a class="btn btn-warning btn-sm" id="btnApprove" onclick="retrieveApprovedQuaotations(this,'pdf')" data-url="@Url.Action("ApprovedPolicy")" ><span class="fa fa-download"></span> &nbsp; pdf</a>
+        </span>
+    }
+}*@
+<table class="table table-common table-striped table-hover border-bottom table-condensed" id="tblppolicy">
+    <thead>
+        <tr>
+            <th style="width:20%;">Policy No.</th>
+            <th style="width:17%;">Amount</th>
+            <th style="width:10%;">Claim Type</th>
+            <th style="width:9%;">Status</th>
+            <th style="width:10%;">Date</th>
+            <th style="width:5%;"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            if (Model != null)
+            {
+                foreach (var clmReq in Model)
+                {
+                    <tr class="pointer">
+                        <td>@clmReq.PolicyNo</td>
+                        <td>@clmReq.Amount</td>
+                        <td>@clmReq.ClaimType</td>
+                        @{
+                            var cssClass = "label-default";
+                            if (clmReq.Status == ClaimStatus.Disapproved)
+                            {
+                                cssClass = "label-danger";
+                            }
+                            else if (clmReq.Status == ClaimStatus.Processing)
+                            {
+                                cssClass = "label-warning";
+                            }
+                            else if (clmReq.Status == ClaimStatus.Approved)
+                            {
+                                cssClass = "label-success";
+                            }
+                        }
+                        <td><span class="label @cssClass">@clmReq.Status</span> </td>
+                        <td>@clmReq.EffectiveDate</td>
+                        <td>
+                            @if (clmReq.Status == ClaimStatus.Pending)
+                            {
+                                <button class="btn btn-danger btn-sm fa fa-remove" onclick="cancelClaim(@clmReq.Id)">Cancel</button>
+                            }
+                        </td>
+                            @*<td><button class="btn btn-success fa fa-check"></button></td>*@
+                    </tr>
+                                }
+                            }
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="10" class="pagination-summary small">
+                <paging-summary ng-model="model.currentPage" items-per-page="model.pageSize" total-items="model.totalItems"></paging-summary>
+                <!--<pagination boundary-links="true" total-items="model.totalItems" items-per-page="model.pageSize" max-size="5" ng-model="model.currentPage" class="pagination-sm" previous-text="&lsaquo; Prev" next-text="Next &rsaquo;" first-text="&laquo;" last-text="&raquo;" ng-change="submit(model)"></pagination>-->
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+
+

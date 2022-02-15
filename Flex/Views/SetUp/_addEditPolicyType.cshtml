@@ -1,0 +1,71 @@
+﻿@model Flex.Data.Model.fl_poltype
+
+<form id="frmPolType">
+    <div class="padding-md">
+        <input type="hidden" value="@Model.Id" name="Id" />
+        <div class="row">
+            <div class="form-group col-md-3 ss-item-required">
+                <label for="Code" class="color-transparent-darker lite small uppercase">Policy Class</label>
+                <input type="text" name="PolType" class="form-control input-md" required value="@Model.poltype" />
+            </div>
+            <div class="form-group col-md-3  ss-item-required">
+                <label for="Code" class="color-transparent-darker lite small uppercase">Code</label>
+                <input type="text" name="Code" class="form-control input-md" required value="@Model.code" />
+            </div>
+            <div class="form-group col-md-6">
+                <label for="Desc" class="color-transparent-darker lite small uppercase">Description</label>
+                <input type="text" name="Desc" class="form-control input-md" value="@Model.poldesc" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="Type" class="color-transparent-darker lite small uppercase">Type</label>
+                <input name="Type" class="form-control input-md" value="@Model.actype" />
+            </div>
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="Term" class="color-transparent-darker lite small uppercase">Term</label>
+                <input type="number" name="Term" class="form-control input-md" value="@Model.term" min="1" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="Matage" class="color-transparent-darker lite small color-gray">Maturity Age</label>
+                <input type="number" name="Matage" class="form-control input-md" required value="@Model.matage"  min="1"/>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="MaxLoan" class="color-transparent-darker lite small color-gray">Maximum Loan</label>
+                <input type="number" name="MaxLoan" class="form-control input-md" required value="@Model.maxloan.GetValueOrDefault()" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="Income" class="color-transparent-darker lite small color-gray">Income Account</label>
+                @*<input type="text" name="Income" class="form-control input-md" required value="@Model.income_account" />*@
+                @Html.DropDownList("Income", (IEnumerable<SelectListItem>)ViewBag.IncomeAcct, String.Empty,
+                    new { @class = "form-control input-md select2", @id = "Income" })
+            </div>
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="Liability" class="color-transparent-darker lite small color-gray">Liability Account</label>
+                @*<input type="text" name="Liability" class="form-control input-md" required value="@Model.liability_account" />*@
+                @Html.DropDownList("Liability", (IEnumerable<SelectListItem>)ViewBag.LiabilityAcct, String.Empty,
+                    new { @class = "form-control input-md select2", @id = "Liability" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="Expense" class="color-transparent-darker lite small color-gray">Expense Account</label>
+                @*<input type="text" name="Expense" class="form-control input-md" required value="@Model.expense_account" />*@
+                @Html.DropDownList("Expense", (IEnumerable<SelectListItem>)ViewBag.ExpenseAcct, String.Empty,
+                            new { @class = "form-control input-md select2", @id = "Expense" })
+            </div>
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="Vat" class="color-transparent-darker lite small color-gray">Vat Account</label>
+                @*<input type="text" name="Vat" class="form-control input-md" required value="@Model.vat_account" />*@
+                @Html.DropDownList("Vat", (IEnumerable<SelectListItem>)ViewBag.VatAcct, String.Empty,
+                                     new { @class = "form-control input-md select2", @id = "Vat" })
+            </div>
+        </div>
+    </div>
+</form>
+

@@ -1,0 +1,51 @@
+﻿@model List<Flex.Data.Model.vwPolicy>
+
+<div class="panel panel-info margin-top-sm">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Policy Listing</div>
+    @*<div class="panel-body">
+    </div>*@
+
+    <!-- Table -->
+    <table class="table table-common table-striped table-hover border-bottom table-condensed" id="tblppolicy">
+        <thead>
+            <tr>
+                <th style="width:2%;">s/n</th>
+                <th style="width:10%;">Policy No.</th>
+                <th style="width:9%;">Policy Type</th>
+                <th style="width:6%;">Balance</th>
+                <th style="width:8%;">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if (Model != null)
+                {
+                    var i = 1;
+                    foreach (var pPolicy in Model)
+                    {
+                        <tr class="pointer">
+                            <td>@i</td>
+                            <td>@pPolicy.policyno</td>
+                            <td>@pPolicy.poltype</td>
+                            <td>@pPolicy.balance</td>
+                            <td>@pPolicy.status</td>
+
+                        </tr>
+                        ++i;
+                    }
+                }
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="10" class="pagination-summary small">
+                    <paging-summary ng-model="model.currentPage" items-per-page="model.pageSize" total-items="model.totalItems"></paging-summary>
+                    <!--<pagination boundary-links="true" total-items="model.totalItems" items-per-page="model.pageSize" max-size="5" ng-model="model.currentPage" class="pagination-sm" previous-text="&lsaquo; Prev" next-text="Next &rsaquo;" first-text="&laquo;" last-text="&raquo;" ng-change="submit(model)"></pagination>-->
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+

@@ -1,0 +1,61 @@
+﻿@{
+    var datefrom = DateTime.Today.AddDays(-30).ToString("yyyy-MM-dd");
+    var dateto = DateTime.Today.ToString("yyyy-MM-dd");
+}
+
+<ul class="nav nav-tabs border-none">
+    <li role="presentation" class="active">
+        <a class="border-none uppercase bold padding-horizontal-md margin-right-xs">Commission Statement</a>
+    </li>
+</ul>
+
+<div class="padding-top-md">
+    <form id="commision">
+        <div class="panel">
+            <div class="padding-sm">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <div class="radio">
+                                <label class="color-transparent-darker lite small uppercase">
+                                    <input type="radio" name="option" value="Details" checked> Detailed Report
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label class="color-transparent-darker lite small uppercase">
+                                    <input type="radio" name="option" value="Summary" required> Summary
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-3 ss-item-required">
+                        <label for="Code" class="color-transparent-darker lite small uppercase">Start Date</label>
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control datepicker" value="@datefrom" name="sDate" readonly />
+                            <span class="input-group-btn" style="padding-top:1px;">
+                                <button type="button" class="btn btn-default" onclick="openDatePicker(this)"><i class="fa fa-calendar"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 ss-item-required">
+                        <label for="Code" class="color-transparent-darker lite small uppercase">End Date</label>
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control datepicker" value="@dateto" name="eDate" readonly />
+                            <span class="input-group-btn" style="padding-top:1px;">
+                                <button type="button" class="btn btn-default" onclick="openDatePicker(this)"><i class="fa fa-calendar"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <input type="button" class="btn btn-info btn-sm" value="Submit" id="btnsubmit" onclick="commission();" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

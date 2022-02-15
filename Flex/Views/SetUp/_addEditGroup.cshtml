@@ -1,0 +1,52 @@
+﻿@model Flex.Data.Model.fl_grouptype
+
+<form id="frmGrp">
+    <div class="padding-md">
+        <input type="hidden" value="@Model.Id" name="Id" />
+        <div class="row">
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="Code" class="color-transparent-darker lite small uppercase">Code</label>
+                <input type="text" name="Code" class="form-control input-md" required value="@Model.grpcode" data-rule-required="true" />
+            </div>
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="Name" class="color-transparent-darker lite small uppercase">Name</label>
+                <input type="text" name="Name" class="form-control input-md" value="@Model.grpname" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="Address" class="color-transparent-darker lite small uppercase">Address</label>
+                <textarea name="Address" class="form-control input-md">@Model.Address</textarea>
+            </div>
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="Account" class="color-transparent-darker lite small uppercase">Account</label>
+                @Html.DropDownList("Account", (IEnumerable<SelectListItem>)ViewBag.Accounts, String.Empty,
+                                 new { @class = "form-control input-md", @id = "Account" })
+
+                @*<input type="text" name="Account" class="form-control input-md" required value="@Model.accountcode" />*@
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label for="Name" class="color-transparent-darker lite small uppercase">Anniversary Month</label>
+                <input type="text" name="Month" class="form-control input-md" value="@Model.annmonth" />
+            </div>
+            <div class="form-group col-md-2">
+                
+            </div>
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="Report" class="color-transparent-darker lite small color-gray">Report Type</label>
+                <div class="row" id="grpclass">
+                    @{ var grpclass = ViewBag.grpClass as SelectList;
+                                    foreach (var item in grpclass)
+                                    {
+                                        bool Ischecked = Model.Class != null && Model.Class.Any() && Model.Class.Contains(item.Value) ? true : false;
+                        <label class="checkbox-inline">
+                            <input type="checkbox" value="@item.Value" name="grpclass" checked="@Ischecked"> @item.Text
+                        </label> } }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

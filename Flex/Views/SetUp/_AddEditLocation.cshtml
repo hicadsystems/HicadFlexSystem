@@ -1,0 +1,24 @@
+﻿@model Flex.Data.Model.fl_location
+
+<form id="frmLoc">
+    <div class="padding-md">
+        <input type="hidden" value="@Model.Id" name="Id" />
+        <div class="row">
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="Code" class="color-transparent-darker lite small uppercase">Code</label>
+                <input type="text" name="Code" class="form-control input-md" required value="@Model.loccode" />
+            </div>
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="Desc" class="color-transparent-darker lite small uppercase">Description</label>
+                <input type="text" name="Desc" class="form-control input-md" value="@Model.locdesc" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 ss-item-required">
+                <label for="State" class="color-transparent-darker lite small uppercase">State</label>
+                @Html.DropDownList("State", (IEnumerable<SelectListItem>)ViewBag.States, String.Empty,new { @class = "form-control input-md select2" })
+                @*<input type="text" name="State" class="form-control input-md" value="@Model.locstate">*@
+            </div>
+        </div>
+    </div>
+</form>

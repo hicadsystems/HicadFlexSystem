@@ -1,0 +1,43 @@
+﻿@using Flex.Data.Model
+@model List<fl_payinput2>
+<table class="table table-common table-striped table-hover border-bottom table-condensed" id="tblagent">
+    <thead>
+        <tr>
+            <th style="width:20%;">Policy No.</th>
+            @*<th style="width:10%;">TRV</th>*@
+            <th style="width:10%;">ER</th>
+            <th style="width:10%;">EE</th>
+            <th style="width:10%;">AV</th>
+            <th style="width:10%;">CC</th>
+            <th style="width:10%;">PSC</th>
+            <th style="width:10%;">Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            if (Model != null)
+            {
+                foreach (var trans in Model)
+                {
+                    <tr class="pointer">
+                        <td>@trans.policyno</td>
+                        @*<td>@trans.</td>*@
+                        <td>@trans.er</td>
+                        <td>@trans.ee</td>
+                        <td>@trans.av</td>
+                        <td>@trans.cc</td>
+                        <td>@trans.ps</td>
+                        <td>@trans.totamt</td>
+                    </tr>
+                }
+            }
+        }
+    </tbody>
+    @*<tfoot>
+            <tr>
+                <td colspan="10" class="pagination-summary small">
+                    <span class="pull-right">@pageSumm</span>
+                </td>
+            </tr>
+        </tfoot>*@
+</table>

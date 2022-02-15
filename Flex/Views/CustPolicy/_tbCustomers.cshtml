@@ -1,0 +1,35 @@
+﻿@using Flex.Data.ViewModel
+@model PagedResult<CustomerViewModel>
+
+@{
+    foreach (var customer in Model.Items)
+    {
+        <div class="col-md-4">
+            <div class="panel">
+                <div class="panel-body padding-top-sm">
+                    @{
+        var custName = string.Format("{0} [{1}]", customer.Name.ToUpper(), customer.Username);
+                    }
+                    <a><h4 class="margin-top-none margin-bottom-xs ellipsis">@custName</h4></a>
+                    <div class="text-gray ellipsis"><span class="fa fa-envelope" style="width:20px;"></span>@customer.Email</div>
+                    <div class="text-gray ellipsis"><span class="fa fa-phone" style="width:20px;"></span>@customer.Phone</div>
+                    <!--<div class="padding-vertical-xs pull-right" style="margin-bottom:-15px;">
+                        <button type="button" ng-click="actions.EditBeneficiary(beneficiary.Id)" class="btn btn-xs btn-info"><span class="fa fa-pencil-square-o"></span></button>
+                    </div>-->
+                    <div class="padding-vertical-xs pull-right" style="margin-bottom:-15px;">
+                        <button type="button" onclick="showresetPwd(this);" class="btn btn-xs btn-warning" data-url="@Url.Action("ResetPassword", "CustPolicy")" data-id="@customer.Id"><span class="fa fa-check-circle"></span>Reset Password</button>
+                        <button type="button" onclick="showaddpolicy(this);" class="btn btn-xs btn-success" data-url="@Url.Action("AddPolicy", "CustPolicy")" data-id="@customer.Id"><span class="fa fa-plus-circle"></span>Add Policy</button>
+                        <button type="button" onclick="showpolicy(this);" class="btn btn-xs btn-success" data-url="@Url.Action("ViewCustPolicies", "CustPolicy")" data-id="@customer.Id"><span class="fa fa-eye-circle"></span>View Policies</button>
+                        @*<button type="button" onclick="" class="btn btn-xs btn-danger" data-url="@Url.Action("ResetPassword", "CustPolicy")" data-id="@customer.Id"><span class="fa fa-cut"></span> De-Activate</button>*@
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="small">Username: <strong>@customer.Username</strong></div>
+                    <div class="small">Policies: <strong><span class="badge bg-success">@customer.Policies</span></strong></div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+

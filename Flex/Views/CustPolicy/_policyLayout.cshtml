@@ -1,0 +1,26 @@
+﻿<div class="form-top">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#policylist" aria-controls="policylist" role="tab" data-toggle="tab">Policy Listing</a>
+        </li>
+        <li role="presentation">
+            <a href="#newpolicy" aria-controls="newpolicy" role="tab" data-toggle="tab">Direct Policy Capture</a>
+        </li>
+        <li role="presentation">
+            <a href="#policyUpload" aria-controls="policyUpload" role="tab" data-toggle="tab">Direct Policy File Upload</a>
+        </li>
+    </ul>
+</div>
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="policylist">
+        @Html.Action("Policies", "CustPolicy")
+    </div>
+    <div role="tabpanel" class="tab-pane" id="newpolicy">
+        @Html.Partial("_newPolicy")
+    </div>
+    <div role="tabpanel" class="tab-pane" id="policyUpload">
+        @Html.Action("PolicyUpload", "CustPolicy")
+    </div>
+
+</div>
+

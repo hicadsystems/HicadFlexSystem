@@ -1,0 +1,105 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Flex</title>
+    <link href="~/Assests/styles/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Assests/styles/style.min.css" rel="stylesheet">
+    <link href="~/Assests/styles/toastr.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <form method="post" id="loginForm" action="@Url.Action("Login")" data-ajax="true">
+        @Html.AntiForgeryToken()
+        <div class="row">
+            <div class="col-md-4 forWideScreen">
+
+            </div>
+            <div class="col-md-4 login-box" style="margin-top:10%; margin-bottom:10%;padding-bottom:5%;">
+                <div class="col-md-12">
+                    <div class="row padding-top-lg padding-bottom-md">
+                        <div class="col-md-12 text-center">
+                            <a ui-sref="home"> <img src="images/Nlpc.png" /></a>
+                        </div>
+                    </div>
+                    <div class="row padding-left-md padding-right-md">
+                        <div class="form-group has-feedback text-left">
+                            <!-- <label class="color-transparent-darker bold">Email</label>-->
+                            <input type="text" class="form-control input-md" placeholder="Username" name="username" required autofocus id="username"/>
+                            <span class="ion-at form-control-feedback"></span>
+                        </div>
+                        <div class="form-group  has-feedback text-left">
+                            <!--<label class="color-transparent-darker bold">Password</label>-->
+                            <input type="password" class="form-control input-md" placeholder="Password" name="password" required id="password" />
+                            <span class="ion-at form-control-feedback"></span>
+                        </div>
+                        <div class="form-group  has-feedback text-left">
+                            <!--<label class="color-transparent-darker bold">Password</label>-->
+                            @Html.DropDownList("Module", (IEnumerable<SelectListItem>)ViewBag.Modules, "Select a Module",
+                             new { @class = "form-control input-md", @required="true", })
+                        </div>
+                        <input type="submit" class="btn btn-block btn-login padding-sm margin-vertical-md" value="LOGIN" />
+                    </div>
+                    
+                </div>
+
+            </div>
+
+            <div class="row">
+
+            </div>
+        </div>
+
+    </form>
+    <div class="modal fade" id="ajax" tabindex="-1" role="basic" aria-hidden="true">
+        <img src="~/Images/nlpcLoading.gif" alt="" class="loading">
+    </div>
+    <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="myModal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="title"></h4>
+                </div>
+                <div class="modal-body" id="modalbody">
+
+                </div>
+                <div class="margin-bottom-sm modal-footer">
+                    <div class="inline-block"></div>
+                    <button class="btn btn-success" id="modalSubmit" data-click="" onclick="">Submit</button>
+                    <button class="btn btn-warning" onclick="hideModal();">Cancel</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+ <script type="text/javascript">
+     var dashboardurl='@Url.Action("Index", "DashBoard")';
+ </script>
+<script type="text/javascript">
+    var loginurl='@Url.Action("Index", "Login")';
+</script>
+    <script>
+        var applicationBaseUrl = @Html.Raw(HttpUtility.JavaScriptStringEncode(
+        new Uri(
+                   new Uri(this.Context.Request.Url.GetLeftPart(UriPartial.Authority)),
+                   Url.Content("~/")
+               ).ToString(), true));
+    </script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Assests/scripts/js.cookie.js"></script>
+    <script src="~/Assests/scripts/toastr.js"></script>
+    <script src="~/Assests/scripts/modal.js"></script>
+    <script src="~/Assests/scripts/Auth.js"></script>
+    <script src="~/Assests/scripts/util.js"></script>
+    <script src="~/Assests/scripts/serializeObject.js"></script>
+    <script src="~/Assests/scripts/dataService.js"></script>
+    <script src="~/Assests/scripts/UserDetails.js"></script>
+</body>
+</html>

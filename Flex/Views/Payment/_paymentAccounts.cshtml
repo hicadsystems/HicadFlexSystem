@@ -1,0 +1,71 @@
+﻿@using Flex.Data.Model
+@using Flex.Data.ViewModel
+@model PagedResult<fl_receiptcontrol>
+<ul class="nav nav-tabs border-none">
+    <li role="presentation" class="active">
+        <a class="border-none uppercase bold padding-horizontal-md margin-right-xs">Payment Posting Parameter</a>
+    </li>
+    <li class="pull-right">
+        <button type="button" onclick="showPaymetSetUpInput(this,0);" class="btn btn-success btn-sm" data-url="@Url.Action("AddEditPaymentAccount", "Payment")"><span class="fa fa-plus"></span>Setup Payment Account</button>
+    </li>
+
+</ul>
+<div class="padding-top-md">
+    <div class="panel">
+        <div class="padding-sm">
+            <form id="frmSearch">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="row">
+                            <div class="col-sm-5 text-right padding-none">
+                                <label for="DateFrom" class="uppercase smaller lite margin-top-sm margin-right-sm">Policy Type</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="form-group">
+                                     @Html.DropDownList("PolicyType", (IEnumerable<SelectListItem>)ViewBag.polTypes, String.Empty,
+                                                                 new { @class = "form-control input-md", @id = "PolType" })
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="row">
+                            <div class="col-sm-5 text-right padding-none">
+                                <label for="Instrument" class="uppercase smaller lite margin-top-sm margin-right-sm">Payment Method</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="form-group">
+                                    @Html.DropDownList("PaymentMethod", (IEnumerable<SelectListItem>)ViewBag.paymentMethods, String.Empty,
+                                                        new { @class = "form-control input-md", @id = "PaymentMethod" })
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <input type="button" class="btn btn-info btn-sm" value="SEARCH" id="btnppsearch" data-url="@Url.Action("SearchPaymentAccounts", "Payment")" onclick="searchPaymentAccount(this);" />
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        @{
+            var dispaly = string.Empty;
+
+            dispaly = Model.Items.Any() ? "block" : "none";
+        }
+        <div id="tbtrans" class="table-responsive">
+            @Html.Partial("_tbPaymentAccount", Model)
+        </div>
+
+    </div>
+</div>
+
+
+
+
+

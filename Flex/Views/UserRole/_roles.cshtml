@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Flex.Data.Model.Role>
+
+<ul class="nav nav-tabs border-none">
+    <li role="presentation" class="active">
+        <a class="border-none uppercase bold padding-horizontal-md margin-right-xs">Roles</a>
+    </li>
+    <li class="pull-right">
+        <button type="button" class="btn btn-success btn-md" onclick="loadRoleInput(this,0)" data-url="@Url.Action("AddEditRole","UserRole")"><span class="fa fa-plus"></span> &nbsp; ADD ROLE</button>
+    </li>
+</ul>
+
+<div class="margin-top-xs">
+    <table class="table table-common table-striped table-hover border-bottom table-condensed" id="tblppolicy">
+        <thead>
+            <tr>
+                <th style="width:10%;">Name</th>
+                <th style="width:10%;">Description</th>
+                <th style="width:5%;"></th>
+                @*<th style="width:5%;"></th>*@
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if (Model != null)
+                {
+                    foreach (var role in Model)
+                    {
+                        <tr class="pointer">
+                            <td>@role.Name</td>
+                            <td>@role.Description</td>
+                            <td>
+                                <button class="btn btn-warning btn-sm fa fa-pencil" data-id="@role.Id"
+                                        data-url="@Url.Action("AddEditRole", "UserRole")" onclick="loadRoleInput(this,@role.Id)">
+                                    Edit
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
