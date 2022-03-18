@@ -1,4 +1,5 @@
-﻿using Flex.Data.Model;
+﻿using Flex.Data.Enum;
+using Flex.Data.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -32,8 +33,8 @@ namespace Flex.Business
                 xDateTo = Convert.ToDateTime(xDateTo, culInfo).Date.AddDays(1).AddSeconds(-1);
 
                 var allclaimReq = new CoreSystem<ClaimRequest>(_context).FindAll(x => x.DateCreated >= xDateFrom
-                                    && x.DateCreated <= xDateTo && (x.Status == Data.Enum.ClaimStatus.Pending
-                                    || x.Status == Data.Enum.ClaimStatus.Processing));
+                                    && x.DateCreated <= xDateTo && (x.Status == (Status)ClaimStatus.Pending
+                                    || x.Status == (Status)ClaimStatus.Processing));
                 return allclaimReq.ToList();
             }
             catch (Exception ex)
@@ -80,7 +81,7 @@ namespace Flex.Business
                 xDateTo = Convert.ToDateTime(xDateTo, culInfo).Date.AddDays(1).AddSeconds(-1);
 
                 var allclaimReq = new CoreSystem<ClaimRequest>(_context).FindAll(x => x.DateCreated >= xDateFrom
-                                    && x.DateCreated <= xDateTo && (x.Status == Data.Enum.ClaimStatus.Approved));
+                                    && x.DateCreated <= xDateTo && (x.Status == (Status)ClaimStatus.Approved));
 
                 if (!string.IsNullOrEmpty(policyno))
                 {

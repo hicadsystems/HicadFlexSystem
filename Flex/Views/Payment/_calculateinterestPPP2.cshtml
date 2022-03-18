@@ -1,0 +1,85 @@
+﻿@{
+    var date = DateTime.Today.ToString("yyyy-MM-dd");
+}
+
+<ul class="nav nav-tabs border-none">
+    <li role="presentation" class="active">
+        <a class="border-none uppercase bold padding-horizontal-md margin-right-xs">Interest Calculation PPP 2</a>
+    </li>
+</ul>
+
+
+<div class="padding-top-md">
+    <form id="calculateInterestTSP">
+        <div class="panel">
+            <div class="padding-sm">
+                <div class="row">
+                    <div class="col-sm-3 ss-item-required">
+                        <label for="Code" class="color-transparent-darker lite small uppercase">Date</label>
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control datepicker" value="@date" name="Date" readonly />
+                            <span class="input-group-btn" style="padding-top:1px;">
+                                <button type="button" class="btn btn-default" onclick="openDatePicker(this)"><i class="fa fa-calendar"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3">
+                        <label for="CustomerId" class="color-transparent-darker lite small uppercase">Group</label>
+                        @Html.DropDownList("GroupCode", (IEnumerable<SelectListItem>)ViewBag.grp, "Select...", new { @class = "form-control input-md select2", @id = "grpcode" })
+
+                    </div>
+                    <div class="col-sm-1"></div>
+                    <div class="col-md-3">
+                        <label for="CustomerId" class="color-transparent-darker lite small uppercase">Policy Type</label>
+                        @Html.DropDownList("PolicyType", ViewBag.polType as SelectList, String.Empty, new { @class = "form-control input-md", @required = "true", @id = "poltype" })
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-sm-4">
+                        <label for="Code" class="color-transparent-darker lite small uppercase">Interest 1</label>
+                        <input type="number" class="form-control" style="width: 200px" id="interest" name="Interest1" />
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="Code" class="color-transparent-darker lite small uppercase">Interest 2</label>
+                        <input type="number" class="form-control" style="width: 200px" id="interest" name="Interest2" />
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="Code" class="color-transparent-darker lite small uppercase">Interest 3</label>
+                        <input type="number" class="form-control" style="width: 200px" id="interest" name="Interest3" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="Code" class="color-transparent-darker lite small uppercase">Interest 4</label>
+                        <input type="number" class="form-control" style="width: 200px" id="interest" name="Interest4" />
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="Code" class="color-transparent-darker lite small uppercase">Interest 5</label>
+                        <input type="number" class="form-control" style="width: 200px" id="interest" name="Interest5" />
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="checkbox">
+                            <label class="color-transparent-darker lite medium uppercase" style="margin-top:30px;">
+                                <input type="checkbox" name="Option" value="interest"> Interest
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+                @*<div class="row">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-6"></div>
+                </div>*@
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <input type="button" class="btn btn-info btn-sm" value="Submit" id="calcintr" disabled onclick="calculateintrTSP();" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

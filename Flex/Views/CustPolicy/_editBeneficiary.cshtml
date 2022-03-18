@@ -1,31 +1,31 @@
 ﻿@using Flex.Data.ViewModel
 @model SignUpBindingModel
 
-<form name="step3" id="beneficiary">
+<form name="step3" action="@Url.Action("DirectPolicyUpdate","CustPolicy")" id="beneficiary">
     <div class="col-md-12 bg-white">
         <div class="row">
             <div class="form-group col-md-4 ss-item-required">
                 <label class="color-transparent-darker lite small" for="Name">Name</label>
-                <input type="text" name="Name" class="form-control input-md" required autofocus id="benName">
+                <input type="text" name="Name" class="form-control input-md" required autofocus id="editbenName">
             </div>
             <div class="form-group col-md-4 ss-item-required">
                 <label class="color-transparent-darker lite small" for="Address">Address</label>
-                <textarea name="Address" class="form-control input-md" required rows="2" id="benAdd"></textarea>
+                <textarea name="Address" class="form-control input-md" required rows="2" id="editbenAdd"></textarea>
             </div>
             <div class="form-group col-md-4 ss-item-required">
                 <label class="color-transparent-darker lite small" for="Phone">Phone</label>
-                <input type="number" name="Phone" class="form-control input-md" required id="benPhone" />
+                <input type="number" name="Phone" class="form-control input-md" required id="editbenPhone" />
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-md-4 ss-item-required">
+            <div class="form-group col-md-4">
                 <label class="color-transparent-darker lite small" for="Email">Email</label>
-                <input type="email" name="Email" class="form-control input-md" required id="benEmail" />
+                <input type="email" name="Email" class="form-control input-md" required id="editbenEmail" />
             </div>
-            <div class="form-group col-md-4 ss-item-required">
+            <div class="form-group col-md-4">
                 <label for="dob" class="color-transparent-darker lite small">DATE of BIRTH</label>
                 <div class="input-group input-group-sm">
-                    <input type="text" class="form-control datepicker" name="dob" id="benDob" />
+                    <input type="text" class="form-control datepicker" name="dob" id="editbenDob" />
                     <span class="input-group-btn" style="padding-top:1px;">
                         <button type="button" class="btn btn-default" onclick="openDatePicker(this)"><i class="fa fa-calendar"></i></button>
                     </span>
@@ -34,29 +34,40 @@
             <div class="form-group col-md-4">
                 <label class="color-transparent-darker lite small" for="Relationship">Relationship</label>
                 @Html.DropDownList("Relationship", (IEnumerable<SelectListItem>)ViewBag.relationships, String.Empty,
-                             new { @class = "form-control input-md", @required = "true", @id = "benRelat" })
+                             new { @class = "form-control input-md", @required = "true", @id = "editbenRelat" })
 
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-md-4 ss-item-required">
+            <div class="form-group col-md-4">
                 <label class="color-transparent-darker lite small" for="Proportion">Proportion</label>
                 <div class="input-group">
-                    <input type="text" name="Proportion" class="form-control input-md" aria-describedby="basic-addon2" required id="benProp">
+                    <input type="text" name="Proportion" class="form-control input-md" aria-describedby="basic-addon2" id="editbenProp">
                     <span class="input-group-addon" id="basic-addon2">%</span>
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <div class="input-group">
+                    <input type="hidden" name="Id" class="form-control input-md" aria-describedby="basic-addon2" id="editbenId">
+                    @*<span class="input-group-addon" id="basic-addon2">%</span>*@
+                </div>
+                <div class="input-group">
+                    <input type="hidden" name="PolicyId" class="form-control input-md" aria-describedby="basic-addon2" id="benpolicyId" value="@ViewBag.Id">
+                    @*<span class="input-group-addon" id="basic-addon2">%</span>*@
                 </div>
             </div>
         </div>
         <div class="form-group col-md-12">
-            <a type="button" class="pull-left btn btn-danger btn-sm fa fa-plus" id="btnaddBen" onclick="saveBeneficiary()">Add Beneficiary</a>
+            <a type="button" class="pull-left btn btn-danger btn-sm fa fa-plus" id="btnaddBen" onclick="updateBeneficiary()">Add Beneficiary</a>
         </div>
-        <div id="divBen">
-            @Html.Partial("_beneficiaries",@Model)
+        <div id="divBenEdit">
+            @Html.Partial("_beneficiariesEdit",@Model)
         </div>
 
         <div class="col-md-offset-1">
-            <input type="button" class="btn btn-gray btn-lg margin-right-md" value="back" onclick="moveBack(2)" />
-            <input type="button" class="btn btn-success btn-lg padding-lg-h" value="Submit" onclick="createPolicy(3)" />
+            <input type="button" class="btn btn-gray btn-lg margin-right-md" value="back" onclick="moveBackEdit(2)" />
+            @*<input type="button" class="btn btn-success btn-lg padding-lg-h" value="Submit" onclick="editPolicy(3)" />*@
+            <input type="button" class="btn btn-success btn-lg padding-lg-h" value="Submit" onclick="updatePolicy()" />
         </div>
     </div>
     @*</div>*@

@@ -608,6 +608,7 @@ function saveUpdatePolType() {
 }
 
 function showRateInput(el) {
+   
     console.log('About to add Rate');
     ShowLoading();
     var url = $(el).attr('data-url');
@@ -615,6 +616,38 @@ function showRateInput(el) {
     var coyProfilePromise = Post(url, data, 'Get');
 
     coyProfilePromise.done(function (resp) {
+      
+
+        /*document.getElementById('rateRulesPPP').style.display = "none";*/
+        /*$('#rateRulesPPP').hide();*/
+        var func = 'saveRate()';
+        showModal(resp, 'Rate', func);
+        HideLoading();
+    });
+
+    coyProfilePromise.fail(function (resp) {
+        if (resp.status === 401) {
+            window.location.href = loginurl;
+        }
+        toastr.error(resp.statusText, "Error");
+        HideLoading();
+    });
+    //HideLoading();
+};
+
+function showRateInput2(el) {
+
+    console.log('About to add Rate');
+    ShowLoading();
+    var url = $(el).attr('data-url');
+    var data = {};
+    var coyProfilePromise = Post(url, data, 'Get');
+
+    coyProfilePromise.done(function (resp) {
+
+
+        /*document.getElementById('rateRulesPPP').style.display = "none";*/
+        /*$('#rateRulesPPP').hide();*/
         var func = 'saveRate()';
         showModal(resp, 'Rate', func);
         HideLoading();
@@ -632,7 +665,43 @@ function showRateInput(el) {
 
 function saveRate() {
     console.log('about to save Rate');
-    if (rateRules.length > 0) {
+
+    if (rateRules.length === null || rateRules.length===0) {
+        var isvallid = ValidateInput('#rate1')
+        if (isvallid) {
+            ShowLoading();
+            hideModal();
+            var rate = $("#rate1").serializeObject();
+
+            //rate.rateRules = rateRules;
+
+            var model = JSON.stringify(rate);
+            var data = { model: model };
+
+            var url = applicationBaseUrl + '/SetUp/Saveliferate';
+
+            var coyPromise = Post(url, data, 'Post');
+
+            coyPromise.done(function (resp) {
+                rateRules = new Array();
+                var pageview = document.getElementById('custpolContent');
+                pageview.innerHTML = resp;
+                HideLoading();
+            });
+
+            coyPromise.fail(function (resp) {
+                if (resp.status === 401) {
+                    window.location.href = loginurl;
+                }
+                toastr.error(resp.statusText, "Error");
+                HideLoading();
+            });
+            //HideLoading();
+
+        }
+    }
+
+    else if (rateRules.length > 0) {
         var isvallid = ValidateInput('#rate')
         if (isvallid) {
             ShowLoading();

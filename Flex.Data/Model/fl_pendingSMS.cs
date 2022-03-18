@@ -28,8 +28,6 @@ public partial class fl_pendingSMS
 
     public Nullable<int> retrycount { get; set; }
 
-    public string Application { get; set; }
-
 }
 
 }

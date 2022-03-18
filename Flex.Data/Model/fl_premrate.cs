@@ -18,11 +18,19 @@ using System;
 public partial class fl_premrate
 {
 
+    public fl_premrate()
+    {
+
+        this.fl_premrateRules = new HashSet<fl_premrateRules>();
+
+    }
+
+
     public int Id { get; set; }
 
     public int poltypeId { get; set; }
 
-    public Nullable<int> grpcode { get; set; }
+    public Nullable<int> grpcodeId { get; set; }
 
     public string period { get; set; }
 
@@ -44,9 +52,17 @@ public partial class fl_premrate
 
     public Nullable<bool> IsDeleted { get; set; }
 
+    public string poltype { get; set; }
 
+    public string grpcode { get; set; }
+
+
+
+    public virtual fl_grouptype fl_grouptype { get; set; }
 
     public virtual fl_poltype fl_poltype { get; set; }
+
+    public virtual ICollection<fl_premrateRules> fl_premrateRules { get; set; }
 
 }
 

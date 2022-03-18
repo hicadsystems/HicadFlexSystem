@@ -18,15 +18,9 @@ using System;
 public partial class fl_policyinput
 {
 
-    public fl_policyinput()
-    {
-
-        this.NextofKin_BeneficiaryStaging = new HashSet<NextofKin_BeneficiaryStaging>();
-
-    }
-
-
     public long srn { get; set; }
+
+    public string policyno { get; set; }
 
     public string pcn { get; set; }
 
@@ -58,8 +52,6 @@ public partial class fl_policyinput
 
     public string quoteno { get; set; }
 
-    public string policyno { get; set; }
-
     public string poltype { get; set; }
 
     public string exitdate { get; set; }
@@ -78,17 +70,15 @@ public partial class fl_policyinput
 
     public string religion { get; set; }
 
-    public Nullable<Flex.Data.Enum.Status> status { get; set; }
+    public Nullable<int> status { get; set; }
 
     public string pwd { get; set; }
 
-    public string PictureFile { get; set; }
+    public byte[] PictureFile { get; set; }
 
 
 
     public virtual fl_location fl_location { get; set; }
-
-    public virtual ICollection<NextofKin_BeneficiaryStaging> NextofKin_BeneficiaryStaging { get; set; }
 
 }
 

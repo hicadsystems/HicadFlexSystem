@@ -1,12 +1,17 @@
 ﻿@model IEnumerable<Flex.Data.Model.fl_premrate>
+@using Flex.Util
 
 <ul class="nav nav-tabs border-none">
     <li role="presentation" class="active">
         <a class="border-none uppercase bold padding-horizontal-md margin-right-xs">Rates</a>
     </li>
+   
     <li class="pull-right">
         <button type="button" onclick="showRateInput(this);" class="btn btn-success btn-sm" data-url="@Url.Action("AddRate", "SetUp")"><span class="fa fa-plus"></span> &nbsp; ADD Rate</button>
     </li>
+    
+   
+
 </ul>
 
 <div class="padding-top-md">
@@ -36,7 +41,7 @@
                             <div class="form-group">
                                 @*<input type="text" name="PolType" class="form-control input-md" />*@
                                 @Html.DropDownList("PolType", (IEnumerable<SelectListItem>)ViewBag.polType, String.Empty,
-                                                   new { @class = "form-control input-md", @id = "PolType" })
+                                                        new { @class = "form-control input-md", @id = "PolType" })
                             </div>
 
                         </div>
@@ -51,7 +56,7 @@
                             <div class="form-group">
                                 @*<input type="text" name="Group" class="form-control input-md" />*@
                                 @Html.DropDownList("Group", (IEnumerable<SelectListItem>)ViewBag.grp, String.Empty,
-                                          new { @class = "form-control input-md", @id = "Group" })
+                                               new { @class = "form-control input-md", @id = "Group" })
                             </div>
 
                         </div>
@@ -67,11 +72,9 @@
             </div>
         </div>
 
-        @{
-            var dispaly = string.Empty;
+        @{ var dispaly = string.Empty;
 
-            dispaly = Model.Any() ? "block" : "none";
-        }
+                        dispaly = Model.Any() ? "block" : "none"; }
         <div id="tbrate" class="table-responsive" style="display:@dispaly;">
             @Html.Partial("_tbrates", Model)
         </div>

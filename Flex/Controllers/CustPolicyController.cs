@@ -769,7 +769,7 @@ namespace Flex.Controllers
         {
            
             ViewBag.Location = GetStates2();
-            getPolicyType();
+            getPolicyTypeForDirectPolicyInput();
             ViewBag.Agent = GetAgents();
             getGroup();
             GetReligion();
@@ -816,11 +816,22 @@ namespace Flex.Controllers
                     throw new Exception("Please Provide atleast one Beneficiary");
                 }
                 var pInfo = signUpmodel.PersonalInfo;
-
+                HttpPostedFileBase file = Request.Files["PictureFile"];
                 var xpoltype = new fl_poltype();
-
-                //xpoltype = new CoreSystem<fl_poltype>(context).Get((int)pInfo.PolicyType);
-                xpoltype = new CoreSystem<fl_poltype>(context).Get(pInfo.PolicyType);
+                //var id = new CoreSystem<fl_poltype>(context).FindAll(x => x.poltype == pInfo.PolicyType.ToString()).Select(x => x.Id).FirstOrDefault();
+                xpoltype = new CoreSystem<fl_poltype>(context).Get((int)pInfo.PolicyType);
+                if (xpoltype==null)
+                {
+                    string pol = "";
+                    if (pInfo.PolicyType==2 || pInfo.PolicyType==3)
+                    {
+                         pol = "0"+pInfo.PolicyType.ToString();
+                        var id = new CoreSystem<fl_poltype>(context).FindAll(x => x.poltype == pol).Select(x => x.Id).FirstOrDefault();
+                        xpoltype = new CoreSystem<fl_poltype>(context).Get(id);
+                    }
+                    
+                }
+                //xpoltype = new CoreSystem<fl_poltype>(context).Get(id);
 
                 var polInput = new fl_policyinput()
                 {
@@ -836,25 +847,31 @@ namespace Flex.Controllers
                     accdate = DateTime.Now,
                     location = pInfo.Location,
                     agentcode = pInfo.AgentCode,
-                    status = Status.Active,
+                    status = (int)Status.Active,
+                    //PictureFile=pInfo.PictureFile,
                     PictureFile=pInfo.PictureFile,
                     grpcode=pInfo.GroupCode,
                     sex=pInfo.Gender,
                     religion=pInfo.Religion
                 };
-
+               
                 var nok = signUpmodel.PersonalInfo.NextofKin;
+               
                 var nextofkinBen = new NextofKin_BeneficiaryStaging();
                 nextofkinBen.Address = nok.Address;
                 nextofkinBen.ApprovalStatus = ApprovalStatus.Approved;
                 nextofkinBen.Category = Category.NextofKin;
-                nextofkinBen.Dob = nok.Dob;
+                nextofkinBen.Dob = Convert.ToDateTime(nok.Dob);
                 nextofkinBen.Email = nok.Email;
                 nextofkinBen.Name = nok.Name;
                 nextofkinBen.Phone = nok.Phone;
                 nextofkinBen.IsSynched = true;
                 nextofkinBen.Type = Data.Enum.Type.New;
-
+                if (nextofkinBen.Dob.ToString().Contains("01/01/0001"))
+                {
+                   // throw new Exception();
+                    nextofkinBen.Dob = null;
+                }
                 var bens = signUpmodel.PersonalInfo.Beneficiary;
 
                 var benefs = bens.Select(x => new NextofKin_BeneficiaryStaging()
@@ -862,7 +879,7 @@ namespace Flex.Controllers
                     Address = x.Address,
                     ApprovalStatus = ApprovalStatus.Approved,
                     Category = Category.Beneficiary,
-                    Dob = x.Dob,
+                    Dob = Convert.ToDateTime(x.Dob),
                     Email = x.Email,
                     Name = x.Name,
                     Phone = x.Phone,
@@ -910,6 +927,10 @@ namespace Flex.Controllers
 
                             foreach (var b in benefs)
                             {
+                                if (b.Dob.ToString().Contains("01/01/0001"))
+                                {
+                                    b.Dob = null;
+                                }
                                 b.PolicyId = polInput.srn;
                                 b.RegNo = polInput.policyno;
                                 new CoreSystem<NextofKin_BeneficiaryStaging>(context).Save(b);
@@ -949,19 +970,19 @@ namespace Flex.Controllers
                             if (IsNewCustomer)
                             {
                                 new NotificationSystem(_context).SendPolicyCreationNotiification(polInput, polInput.policyno, userpwd, xpolType);
-                                if (!string.IsNullOrEmpty(polInput.email))
-                                {
-                                    SendEmailNotification(polInput, userpwd, polInput.email);
-                                }
+                                //if (!string.IsNullOrEmpty(polInput.email))
+                                //{
+                                //    SendEmailNotification(polInput, userpwd, polInput.email);
+                                //}
                             }
                             else
                             {
                                 var userDetails = new CustomerAuthSystem(context).Get(userId);
-                                //new NotificationSystem(_context).SendPolicyCreationNotiification(polInput, userDetails.username, string.Empty, xpolType);
-                                if (!string.IsNullOrEmpty(polInput.email))
-                                {
-                                    SendEmailNotification(polInput,string.Empty, polInput.email);
-                                }
+                                new NotificationSystem(_context).SendPolicyCreationNotiification(polInput, userDetails.username, string.Empty, xpolType);
+                                //if (!string.IsNullOrEmpty(polInput.email))
+                                //{
+                                //    SendEmailNotification(polInput,string.Empty, polInput.email);
+                                //}
                             }
 
                             transaction.Commit();
@@ -978,6 +999,165 @@ namespace Flex.Controllers
                 return new JsonResult()
                 {
                     Data = string.Format("Policy with policy Number {0} created successfully", polInput.policyno)
+                };
+
+            }
+            catch (Exception ex)
+            {
+                Logger.ErrorFormat("Error Occurred. Details  [{0}]", ex.ToString());
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+        public ActionResult DirectPolicyUpdate(SignUpBindingModel signUpmodel)
+        {
+            Logger.Info("Inside direct policy");
+            try
+            {
+                if (signUpmodel == null)
+                {
+                    throw new Exception("Error Occurred.");
+                }
+                var pInfo = signUpmodel.PersonalInfo;
+                fl_policyinput existingPolicy = null;
+                
+                var xpoltype = new fl_poltype();
+                xpoltype = new CoreSystem<fl_poltype>(context).Get((int)pInfo.PolicyType);
+                if (pInfo != null)
+                     existingPolicy = new CoreSystem<fl_policyinput>(context).Get((int)pInfo.CustomerId);
+                
+                //if (xpoltype == null)
+                //    throw new Exception("Invalid Policy type");
+
+
+                if (existingPolicy != null)
+                {
+                    existingPolicy.dob = ((DateTime)pInfo.Dob).ToString("yyyyMMdd");
+                    existingPolicy.email = pInfo.Email;
+                    existingPolicy.othername = pInfo.Othernames;
+                    existingPolicy.peradd = pInfo.ResAddress;
+                    existingPolicy.premium = pInfo.Amount;
+                    existingPolicy.location = pInfo.Location;
+                    existingPolicy.agentcode = pInfo.AgentCode;
+                    //existingPolicy.grpcode = pInfo.GroupCode;
+                    existingPolicy.sex = pInfo.Gender;
+                    existingPolicy.poltype = xpoltype.poltype;
+                    existingPolicy.surname = pInfo.Surname;
+                    existingPolicy.telephone = pInfo.Phone;
+                    existingPolicy.religion = pInfo.Religion;
+                }
+                    
+                
+               
+
+                var nok = signUpmodel.PersonalInfo.NextofKin;
+                NextofKin_BeneficiaryStaging existingNok = null;
+                if (nok != null)
+                     existingNok = new CoreSystem<NextofKin_BeneficiaryStaging>(context).Get(nok.Id);
+                
+
+
+                if (existingNok != null)
+                {
+                    existingNok.Address = nok.Address;
+                    existingNok.Dob = Convert.ToDateTime(nok.Dob);
+                    existingNok.Email = nok.Email;
+                    existingNok.Name = nok.Name;
+                    existingNok.Phone = nok.Phone;
+                    existingNok.Proportion = nok.Proportion;
+                }
+                    
+
+
+                var beneficiary = signUpmodel.PersonalInfo.Benefitiary;
+                NextofKin_BeneficiaryStaging existingBeneficiary = null;
+
+                if (beneficiary != null)
+                    existingBeneficiary = new CoreSystem<NextofKin_BeneficiaryStaging>(context).Get(beneficiary.Id);
+
+                if (existingBeneficiary != null)
+                {
+                    existingBeneficiary.Address = beneficiary.Address;
+                    existingBeneficiary.Dob = Convert.ToDateTime(beneficiary.Dob);
+                    existingBeneficiary.Email = beneficiary.Email;
+                    existingBeneficiary.Name = beneficiary.Name;
+                    existingBeneficiary.Phone = beneficiary.Phone;
+                    existingBeneficiary.Proportion = beneficiary.Proportion;
+                    existingBeneficiary.RelationShip = beneficiary.Relationship;
+                }
+
+                var bens = signUpmodel.PersonalInfo.Beneficiary;
+                var benefs = new List<NextofKin_BeneficiaryStaging>();
+                fl_policyinput policy = new fl_policyinput();
+               
+                if (bens.Count > 0)
+                {
+                    policy = new CoreSystem<fl_policyinput>(context).Get(bens.FirstOrDefault().PolicyId);
+                    benefs = bens.Select(x => new NextofKin_BeneficiaryStaging()
+                    {
+                        Address = x.Address,
+                        ApprovalStatus = ApprovalStatus.Approved,
+                        Category = Category.Beneficiary,
+                        Dob = Convert.ToDateTime(x.Dob),
+                        Email = x.Email,
+                        Name = x.Name,
+                        Phone = x.Phone,
+                        Proportion = x.Proportion,
+                        RelationShip = x.Relationship,
+                        IsSynched = true,
+                        Type = Data.Enum.Type.New,
+                        RegNo = x.RegNo,
+                        PolicyId = x.PolicyId
+                    }).ToList(); 
+                }
+
+
+                using (var _context = context)
+                {
+                    using (var transaction = _context.Database.BeginTransaction(System.Data.IsolationLevel.ReadCommitted))
+                    {
+                        try
+                        {
+                            var userId = signUpmodel.PersonalInfo.CustomerId;
+
+                            
+                            if (existingPolicy != null)
+                                new PolicySystem(currentContext).UpdatePolicy(existingPolicy, pInfo.CustomerId);
+                            
+                            if (existingNok != null)
+                                new CoreSystem<NextofKin_BeneficiaryStaging>(_context).Update(existingNok, nok.Id);
+
+                            if (existingBeneficiary != null)
+                                new CoreSystem<NextofKin_BeneficiaryStaging>(_context).Update(existingBeneficiary, beneficiary.Id);
+
+                            if (benefs.Count > 0)
+                            {
+                                foreach (var b in benefs)
+                                {
+                                    if (b.Dob.ToString().Contains("01/01/0001"))
+                                    {
+                                        b.Dob = null;
+                                    }
+                                    b.PolicyId = policy.srn;
+                                    b.RegNo = policy.policyno;
+                                    new CoreSystem<NextofKin_BeneficiaryStaging>(context).Save(b);
+                                } 
+                            }
+
+                            transaction.Commit();
+
+                        }
+                        catch
+                        {
+                            transaction.Rollback();
+                            throw;
+                        }
+                    }
+
+                }
+                return new JsonResult()
+                {
+                    Data = string.Format("Policy updated successfully")
                 };
 
             }
@@ -1042,7 +1222,7 @@ namespace Flex.Controllers
                             }
                             policy.telephone = workSheet.Cells[rowIterator, 9].Value?.ToString();
                             policy.email = workSheet.Cells[rowIterator, 10].Value?.ToString();
-                            policy.status = Status.Active;
+                            policy.status = (int)Status.Active;
                             policy.datecreated = DateTime.Now;
                             policy.poltype = xpoltype.poltype;
                             try
@@ -1150,10 +1330,25 @@ namespace Flex.Controllers
                 {
                     poldetails = new PolicySystem(context).Get(Id);
                     nokBen = new CoreSystem<NextofKin_BeneficiaryStaging>(context).FindAll(x => x.PolicyId == Id).ToList();
+
+                    var state = new CoreSystem<fl_state>(context).FindAll(x => x.Id == poldetails.location).Select(x=>x.Name).FirstOrDefault();
+                    var group = new CoreSystem<fl_grouptype>(context).FindAll(x => x.grpcode == poldetails.grpcode).Select(x=>x.grpname).FirstOrDefault();
+                    var policyType = new CoreSystem<fl_poltype>(context).FindAll(x => x.poltype == poldetails.poltype).Select(x=>x.poldesc).FirstOrDefault();
+                    var agent = new CoreSystem<fl_agents>(context).FindAll(x => x.agentcode == poldetails.agentcode).Select(x=>x.agentname).FirstOrDefault();
+                    var sex = poldetails.sex;
+                    var religion = poldetails.religion;
                     ViewBag.Id = Id;
                     GetReationShip();
+                    ViewBag.Location = GetStates2(state);
+                    getPolicyTypeForDirectPolicyInput(policyType);
+                    ViewBag.Agent = GetAgents(agent);
+                    getGroup(group);
+                    GetReligion(religion);
+                    GetGender(sex);
+
                     var polModel = new SignUpBindingModel();
                     CultureInfo culInfo = CultureInfo.CreateSpecificCulture("en-GB");
+
                     polModel.PersonalInfo = new PesonalInfoBindingModel()
                     {
                         AgentCode = poldetails.agentcode,
@@ -1172,8 +1367,10 @@ namespace Flex.Controllers
                         Beneficiary = nokBen.Where(x => x.Category == Category.Beneficiary)
                                         .Select(x => new NextofKinBeneficiaryBindingModel()
                                         {
+                                            Id = x.Id,
                                             Address = x.Address,
-                                            Dob = x.Dob.GetValueOrDefault(),
+                                            //Dob = x.Dob.GetValueOrDefault(),
+                                            Dob = x.Dob.GetValueOrDefault().ToShortDateString(),
                                             Email = x.Email,
                                             Name = x.Name,
                                             Phone = x.Phone,
@@ -1183,11 +1380,14 @@ namespace Flex.Controllers
                         NextofKin = nokBen.Where(x => x.Category == Category.NextofKin)
                                 .Select(x => new NextofKinBeneficiaryBindingModel()
                                 {
+                                    Id = x.Id,
                                     Address = x.Address,
-                                    Dob = x.Dob.GetValueOrDefault(),
+                                    //Dob = x.Dob.GetValueOrDefault(),
+                                    Dob = x.Dob.GetValueOrDefault().ToShortDateString(),
                                     Email = x.Email,
                                     Name = x.Name,
                                     Phone = x.Phone,
+                                    
                                 }).FirstOrDefault(),
                     };
                     return PartialView("_managepolicy", polModel);
@@ -1215,6 +1415,41 @@ namespace Flex.Controllers
             return Json(products, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult GetBeneficiary(long customerId, long benId)
+        //public ActionResult GetBeneficiary(long Id)
+        {
+            var beneficiary = new CoreSystem<NextofKin_BeneficiaryStaging>(context).FindAll(x=>x.PolicyId==customerId).ToList();
+            var rel = beneficiary.Where(x => x.Id == benId).Select(x => x.RelationShip).FirstOrDefault();
+            GetReationShip(rel);
+            var polModel = new SignUpBindingModel();
+            polModel.PersonalInfo = new PesonalInfoBindingModel()
+            {
+                Beneficiary = beneficiary.Where(x => x.Id == benId).Select(x => new NextofKinBeneficiaryBindingModel
+                {
+                    Id = x.Id,
+                    Address = x.Address,
+                    //Dob = x.Dob.GetValueOrDefault(),
+                    Dob = x.Dob.GetValueOrDefault().ToShortDateString(),
+                    Email = x.Email,
+                    Name = x.Name,
+                    Phone = x.Phone,
+                    Proportion = (decimal)x.Proportion,
+                    Relationship = x.RelationShip
+                }).ToList()
+            };
+
+            //JsonSerializerSettings jss = new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore };
+            //var result = JsonConvert.SerializeObject(polModel, Formatting.Indented, jss);
+            return Json(polModel, JsonRequestBehavior.AllowGet);
+            //return PartialView("_updateBeneficiary", beneficiary);
+            //return new JsonResult()
+            //{
+            //    Data = beneficiary
+            //};
+
+            
+        }
+
         [AllowAnonymous]
         public JsonResult UploadPicture(string term)
         {
@@ -1223,25 +1458,30 @@ namespace Flex.Controllers
                 var pictureUrl = "";
                 var fileName = "";
                 var fileContent = Request.Files[0];
-                if (fileContent != null && fileContent.ContentLength > 0)
-                {
-                    // get a stream
-                    var stream = fileContent.InputStream;
-                    // and optionally write the file to disk
-                    fileName = Path.GetFileName(fileContent.FileName);
-                    var path = Path.Combine(ConfigurationManager.AppSettings["PicturePath"], fileName);
-                    using (var fileStream = System.IO.File.Create(path))
-                    {
-                        stream.CopyTo(fileStream);
-                    }
-                }
+                //if (fileContent != null && fileContent.ContentLength > 0)
+                //{
+                //    // get a stream
+                //    var stream = fileContent.InputStream;
+                //    // and optionally write the file to disk
+                //    fileName = Path.GetFileName(fileContent.FileName);
+                //    var path = Path.Combine(ConfigurationManager.AppSettings["PicturePath"], fileName);
+                //    using (var fileStream = System.IO.File.Create(path))
+                //    {
+                //        stream.CopyTo(fileStream);
+                //    }
+                //}
+
+                var binarypic = convertTobyte(fileContent);
+                var binarystringpic = Convert.ToBase64String(binarypic);
 
                 pictureUrl = ConfigurationManager.AppSettings["BasePicUrl"] + fileName;
 
                 var data = new
                 {
-                    Url = pictureUrl,
-                    FileName = fileName
+                    //Url = pictureUrl,
+                    Url = Convert.ToBase64String(binarypic),
+                    //FileName = fileName
+                    FileName = binarystringpic
                 };
                 return Json(data, JsonRequestBehavior.AllowGet);
 
@@ -1251,6 +1491,14 @@ namespace Flex.Controllers
 
                 throw;
             }
+        }
+
+        public byte[] convertTobyte(HttpPostedFileBase c)
+        {
+            byte[] imageBytes = null;
+            BinaryReader reader = new BinaryReader(c.InputStream);
+            imageBytes = reader.ReadBytes((int)c.ContentLength);
+            return imageBytes;
         }
 
     }

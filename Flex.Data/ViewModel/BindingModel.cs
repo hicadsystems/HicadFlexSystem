@@ -44,16 +44,19 @@ namespace Flex.Data.ViewModel
         public int Location { get; set; }
 
         public string AgentCode { get; set; }
-        public string PictureFile { get; set; }
+        public byte[] PictureFile { get; set; }
+        //public string PictureFile { get; set; }
         public string GroupCode { get; set; }
         public string Religion { get; set; }
         public string Gender { get; set; }
         public NextofKinBeneficiaryBindingModel NextofKin{ get; set; }
         public List<NextofKinBeneficiaryBindingModel>  Beneficiary { get; set; }
+        public NextofKinBeneficiaryBindingModel  Benefitiary { get; set; }
     }
 
     public class NextofKinBeneficiaryBindingModel
     {
+        public long Id { get; set; }
         public string RegNo { get; set; }
         public string Name { get; set; }
 
@@ -63,15 +66,19 @@ namespace Flex.Data.ViewModel
 
         public string Phone { get; set; }
 
-        public DateTime Dob { get; set; }
+        //public DateTime? Dob { get; set; }
+        public string Dob { get; set; }
 
         public string Relationship { get; set; }
 
-        public Decimal Proportion { get; set; }
+        public Nullable<Decimal> Proportion { get; set; }
 
         public Category Category { get; set; }
 
         public Flex.Data.Enum.Type Type { get; set; }
+
+        public long? PolicyId { get; set; }
+        //public string RegNo { get; set; }
 
     }
 

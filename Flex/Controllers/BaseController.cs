@@ -1,4 +1,5 @@
 ﻿using Flex.Business;
+using Flex.Controllers.Util;
 using Flex.Data.Enum;
 using Flex.Data.Model;
 using Flex.Data.Utility;
@@ -144,24 +145,65 @@ namespace Flex.Controllers
             ViewBag.CostCentre = new SelectList(CostCentre, "Id", "Desc",selectedvalue);
         }
 
-        public void getPolicyType()
+
+        public void getPolicyType(string poltype="")
         {
+            string policy = WebSecurity.Module.Trim().ToUpper();
+
             var polType = new List<fl_poltype>();
+
+            var polTypeSelected = new List<fl_poltype>();
+            var selectedValue = new fl_poltype();
+
+            var module = new List<Module>();
+            string polcode = string.Empty;
+
+            module = new CoreSystem<Module>(context).GetAll().ToList();
             //using (var _context = context)
             //{
                 polType = new CoreSystem<fl_poltype>(context).FindAll(x => x.IsDeleted == false).ToList();
+
             //}
-            ViewBag.polType = new SelectList(polType, "poltype", "poldesc");
+               polcode =  module.Where(x => x.Code.Trim() == policy).FirstOrDefault().PolicyType;
+               selectedValue = polType.Where(x => x.poltype == polcode).FirstOrDefault();
+               polTypeSelected.Add(selectedValue);
+            //ViewBag.polType = new SelectList(polType, "poltype", "poldesc");
+             ViewBag.polType = new SelectList(polTypeSelected, "poltype", "poldesc", poltype);
+        }
+        public void getPolicyTypeForDirectPolicyInput(string policyType="")
+        {
+            string policy = WebSecurity.Module.Trim().ToUpper();
+
+            var polType = new List<fl_poltype>();
+
+            var polTypeSelected = new List<fl_poltype>();
+            var selectedValue = new fl_poltype();
+
+            var module = new List<Module>();
+            string polcode = string.Empty;
+
+            module = new CoreSystem<Module>(context).GetAll().ToList();
+            //using (var _context = context)
+            //{
+            polType = new CoreSystem<fl_poltype>(context).FindAll(x => x.IsDeleted == false).ToList();
+            //}
+
+            polcode = module.Where(x => x.Code.Trim() == policy).FirstOrDefault().PolicyType;
+            selectedValue = polType.Where(x => x.poltype == polcode).FirstOrDefault();
+            polTypeSelected.Add(selectedValue);
+
+            //ViewBag.polType = new SelectList(polType, "poltype", "poldesc");
+            ViewBag.polType = new SelectList(polTypeSelected, "Id", "poldesc", policyType);
         }
 
-        public void getGroup()
+        public void getGroup(string group="")
         {
             var grp = new List<fl_grouptype>();
             //using (var _context = context)
             //{
                 grp = new CoreSystem<fl_grouptype>(context).FindAll(x => x.IsDeleted == false).ToList();
             //}
-            ViewBag.grp = new SelectList(grp, "grpcode", "grpname");
+            ViewBag.grp = new SelectList(grp, "grpcode", "grpname", group);
         }
         
         public void getReceipt()
@@ -191,12 +233,12 @@ namespace Flex.Controllers
             
         }
 
-        public SelectList GetAgents()
+        public SelectList GetAgents(string agent="")
         {
             var agents = new List<fl_agents>();
             agents = new CoreSystem<fl_agents>(context).FindAll(x => x.IsDeleted == false).ToList();
 
-            return new SelectList(agents, "agentcode", "agentname");
+            return new SelectList(agents, "agentcode", "agentname", agent);
         }
 
         
@@ -217,7 +259,7 @@ namespace Flex.Controllers
             return new SelectList(states, "Id", "Name", state);
         }
 
-        public void GetReationShip()
+        public void GetReationShip(string relation="")
         {
             var relationships = UtilEnumHelper.GetEnumList(typeof(RelationShip));
             ViewBag.relationships = new SelectList(relationships, "ID", "Name");

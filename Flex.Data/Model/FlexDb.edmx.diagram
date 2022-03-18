@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="814714522b71446fbebd527fee7a4c74" Name="Diagram1" ZoomLevel="86">
+      <Diagram DiagramId="814714522b71446fbebd527fee7a4c74" Name="Diagram1" ZoomLevel="50">
         <AssociationConnector Association="Flex.Model.PersonalDetailsStagingNextofKin_BeneficiaryStaging" />
         <AssociationConnector Association="Flex.Model.CustomerUserUserSession" />
         <EntityTypeShape EntityType="Flex.Model.CustomerUser" Width="1.5" PointX="0.75" PointY="2.25" />
@@ -15,7 +15,7 @@
         <AssociationConnector Association="Flex.Model.FK_CustomerPolicies_CustomerUser" />
         <AssociationConnector Association="Flex.Model.FK_UserSession_CustomerUser" />
         <AssociationConnector Association="Flex.Model.FK_UserSession_fl_password" />
-        <EntityTypeShape EntityType="Flex.Model.PendingEmail" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="Flex.Model.PendingEmail" Width="1.5" PointX="10.375" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Flex.Model.Role" Width="1.5" PointX="0.75" PointY="13.375" />
         <EntityTypeShape EntityType="Flex.Model.Tab" Width="1.5" PointX="12.625" PointY="6" />
         <EntityTypeShape EntityType="Flex.Model.UserRole" Width="1.5" PointX="3" PointY="11.375" />
@@ -25,10 +25,7 @@
         <AssociationConnector Association="Flex.Model.FK_Tabs_Portlet" />
         <EntityTypeShape EntityType="Flex.Model.fl_system" Width="1.5" PointX="10.375" PointY="9.75" />
         <EntityTypeShape EntityType="Flex.Model.fl_poltype" Width="1.5" PointX="12.375" PointY="15.125" />
-        <EntityTypeShape EntityType="Flex.Model.fl_pendingSMS" Width="1.5" PointX="5.375" PointY="13.75" />
         <EntityTypeShape EntityType="Flex.Model.fl_location" Width="1.5" PointX="13.875" PointY="1.375" />
-        <EntityTypeShape EntityType="Flex.Model.fl_policyinput" Width="1.5" PointX="5.75" PointY="22.375" />
-        <AssociationConnector Association="Flex.Model.FK_fl_policyinput_fl_location" />
         <EntityTypeShape EntityType="Flex.Model.fl_receiptcontrol" Width="1.5" PointX="14.625" PointY="15.5" />
         <AssociationConnector Association="Flex.Model.FK_fl_receiptcontrol_fl_poltype" />
         <EntityTypeShape EntityType="Flex.Model.PersonalDetailsStaging" Width="1.5" PointX="5.75" PointY="1" />
@@ -40,7 +37,6 @@
         <AssociationConnector Association="Flex.Model.FK_PersonalDetailsStaging_fl_poltype" />
         <EntityTypeShape EntityType="Flex.Model.LinkRole" Width="1.5" PointX="3" PointY="14.25" />
         <AssociationConnector Association="Flex.Model.FK_LinkRole_Role" />
-        <AssociationConnector Association="Flex.Model.FK_NextofKin_BeneficiaryStaging_fl_policyinput" />
         <EntityTypeShape EntityType="Flex.Model.vwPolicy" Width="1.5" PointX="19.375" PointY="0.75" />
         <EntityTypeShape EntityType="Flex.Model.OnlineReciept" Width="1.5" PointX="19.375" PointY="6.75" />
         <EntityTypeShape EntityType="Flex.Model.fl_premrateRules" Width="1.5" PointX="16.875" PointY="20" />
@@ -58,8 +54,14 @@
         <EntityTypeShape EntityType="Flex.Model.fl_PublicHoliday" Width="1.5" PointX="21.375" PointY="17.75" />
         <EntityTypeShape EntityType="Flex.Model.vProduction" Width="1.5" PointX="21.375" PointY="21.75" />
         <EntityTypeShape EntityType="Flex.Model.vwPolicyHistory" Width="1.5" PointX="0.75" PointY="22.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Flex.Model.fl_premrate" Width="1.5" PointX="14.625" PointY="20.75" />
+        <EntityTypeShape EntityType="Flex.Model.fl_pendingSMS" Width="1.5" PointX="5.375" PointY="15.75" />
+        <EntityTypeShape EntityType="Flex.Model.fl_policyinput" Width="1.5" PointX="16.125" PointY="26.375" />
+        <AssociationConnector Association="Flex.Model.FK_fl_policyinput_fl_location" />
+        <EntityTypeShape EntityType="Flex.Model.fl_premrate" Width="1.5" PointX="23.625" PointY="12.625" />
+        <AssociationConnector Association="Flex.Model.FK_fl_premrate_fl_grouptype" />
         <AssociationConnector Association="Flex.Model.FK_fl_premrate_fl_poltype" />
+        <AssociationConnector Association="Flex.Model.FK_fl_premrateRules_fl_premrate" />
+        <EntityTypeShape EntityType="Flex.Model.fl_temphistory" Width="1.5" PointX="13.375" PointY="20.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -46,9 +46,9 @@ public partial class CustomerUser
 
     public Nullable<long> modifyby { get; set; }
 
-    public Nullable<System.DateTime> lastLoginDate { get; set; }
+    public System.DateTime lastLoginDate { get; set; }
 
-    public Nullable<System.DateTime> firstLoginDate { get; set; }
+    public System.DateTime firstLoginDate { get; set; }
 
     public Nullable<Flex.Data.Enum.UserStatus> status { get; set; }
 

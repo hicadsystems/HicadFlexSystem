@@ -18,6 +18,14 @@ using System;
 public partial class fl_grouptype
 {
 
+    public fl_grouptype()
+    {
+
+        this.fl_premrate = new HashSet<fl_premrate>();
+
+    }
+
+
     public int Id { get; set; }
 
     public string grpcode { get; set; }
@@ -37,6 +45,10 @@ public partial class fl_grouptype
     public string Createdby { get; set; }
 
     public string annmonth { get; set; }
+
+
+
+    public virtual ICollection<fl_premrate> fl_premrate { get; set; }
 
 }
 

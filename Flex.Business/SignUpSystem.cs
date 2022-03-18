@@ -54,7 +54,7 @@ namespace Flex.Business
                     Address = x.Address,
                     ApprovalStatus = ApprovalStatus.Pending,
                     Category = x.Category,
-                    Dob = x.Dob,
+                    Dob = Convert.ToDateTime(x.Dob),
                     Email = x.Email,
                     IsSynched = false,
                     Name = x.Name,
@@ -66,8 +66,15 @@ namespace Flex.Business
                     RelationShip = x.Relationship,
                     Type = x.Type,
                 });
-
+                foreach (var nkb in nkinBen)
+                {
+                    if (nkb.Dob.ToString().Contains("01/01/0001"))
+                    {
+                        nkb.Dob = null;
+                    }
+                }
                 pinfo.NextofKin_BeneficiaryStaging = nkinBen.ToList();
+
 
                 Save(pinfo);
             }

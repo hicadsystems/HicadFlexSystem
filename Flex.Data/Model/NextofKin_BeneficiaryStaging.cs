@@ -52,8 +52,6 @@ public partial class NextofKin_BeneficiaryStaging
 
     public virtual PersonalDetailsStaging PersonalDetailsStaging { get; set; }
 
-    public virtual fl_policyinput fl_policyinput { get; set; }
-
 }
 
 }

@@ -954,14 +954,14 @@ namespace Flex.Controllers
             try
             {
                 var rates = new List<fl_premrate>();
-
-                using (var _context = context)
-                {
+                var _context = context;
+                //using (var _context = context)
+                //{
                     getGroup();
                     getPolicyType();
                
                     rates = new CoreSystem<fl_premrate>(_context).GetAll().OrderByDescending(x => x.period).Take(15).ToList();
-                }
+                //}
 
                 return PartialView("_lifeRate", rates);
             }
@@ -993,7 +993,7 @@ namespace Flex.Controllers
                         liferate2 = new CoreSystem<fl_premrate>(_context).FindAll(x => x.IsDeleted == false).Select(x => new rptLifeRate()
                         {
                            PolicyType = x.fl_poltype.poldesc,
-                           Group = x.grpcode.Value,
+                           Group = x.grpcodeId.Value,
                            Period = x.period
                         }).ToList();
 
@@ -1060,7 +1060,7 @@ namespace Flex.Controllers
                     {
                         var groupId = 0;
                         int.TryParse(searchmodel.Group, out groupId);
-                        query = query.Where(x => x.grpcode == groupId);
+                        query = query.Where(x => x.grpcodeId == groupId);
                     }
 
                     rates = query.ToList();
@@ -1076,19 +1076,29 @@ namespace Flex.Controllers
 
         public ActionResult AddRate()
         {
+            string policy = WebSecurity.Module.Trim().ToUpper();
             try
             {
                 Logger.Info("Add liferates");
                 getPolicyType();
                 getGroup();
                 var rate = new fl_premrate();
-                return PartialView("_addRate", rate);
+                if (policy == "PPP2")
+                {
+                    return PartialView("_addRate2", rate);
+                }
+                else
+                {
+                    return PartialView("_addRate", rate);
+                }
+                
             }
             catch (Exception ex)
             {
                 Logger.InfoFormat("Error occurred. Details {0}", ex.ToString());
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.Message);
             }
+            return View();
         }
 
         public ActionResult Saveliferate(string model)
@@ -1109,7 +1119,8 @@ namespace Flex.Controllers
                 if (formdata != null)
                 {
                     grpId = formdata.Group;
-                    rate.grpcode = grpId;
+                    rate.grpcodeId = grpId;
+                    rate.grpcode = new CoreSystem<fl_grouptype>(context).FindAll(x => x.Id == grpId).Select(x => x.grpcode).FirstOrDefault();
                     rate.period = formdata.Period.ToString();
                     int.TryParse(formdata.PolType.ToString(), out poltype);
                     rate.poltypeId = poltype;

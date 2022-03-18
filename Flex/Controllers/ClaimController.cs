@@ -53,12 +53,12 @@ namespace Flex.Controllers
                 {
                     if (processingType.Equals("disapprove", StringComparison.InvariantCultureIgnoreCase))
                     {
-                        clm.Status = ClaimStatus.Disapproved;
+                        clm.Status = (Status)ClaimStatus.Disapproved;
                         new CoreSystem<ClaimRequest>(context).Update(clm, Id);
                     }
                     else 
                     {
-                        if (processingType.Equals("approve", StringComparison.InvariantCultureIgnoreCase) && clm.Status != ClaimStatus.Processing)
+                        if (processingType.Equals("approve", StringComparison.InvariantCultureIgnoreCase) && clm.Status != (Status)ClaimStatus.Processing)
                         {
                             throw new Exception("Claim must be processed before approval");
                         }
@@ -133,7 +133,7 @@ namespace Flex.Controllers
                     clmReq = new CoreSystem<ClaimRequest>(context).Get(Id);
                     clmReq.Interest = intrest;
                     clmReq.FundAmount = clm.Sum(x => x.Total);
-                    clmReq.Status = ClaimStatus.Processing;
+                    clmReq.Status = (Status)ClaimStatus.Processing;
 
                     new CoreSystem<ClaimRequest>(context).Update(clmReq, Id);
                 }
@@ -146,7 +146,7 @@ namespace Flex.Controllers
                     clmReq.PolicyNo = policyno;
                     clmReq.Interest = intrest;
                     clmReq.FundAmount = clm.Sum(x => x.Total);
-                    clmReq.Status = ClaimStatus.Processing;
+                    clmReq.Status = (Status)ClaimStatus.Processing;
 
                     new CoreSystem<ClaimRequest>(context).Save(clmReq);
                 }
@@ -226,7 +226,7 @@ namespace Flex.Controllers
                 });
 
 
-                clmReq.Status = ClaimStatus.Approved;
+                clmReq.Status = (Status)ClaimStatus.Approved;
                 clmReq.ApprovedAmount = approvedAmt;
                 clmReq.ClaimNo = ClaimNo;
 
@@ -268,7 +268,7 @@ namespace Flex.Controllers
         }
         public ActionResult Payment()
         {
-            var approvedClaims = new CoreSystem<ClaimRequest>(context).FindAll(x => x.Status == ClaimStatus.Approved).ToList();
+            var approvedClaims = new CoreSystem<ClaimRequest>(context).FindAll(x => x.Status == (Status)ClaimStatus.Approved).ToList();
             return PartialView("_claimPayment",approvedClaims);
         }
 
@@ -403,12 +403,12 @@ namespace Flex.Controllers
                             }
 
                             pol.exitdate = DateTime.Today.ToString("yyyyMMdd");
-                            pol.status = Status.Exited;
+                            pol.status = (int)Status.Exited;
 
                             new CoreSystem<fl_policyinput>(context).Update(pol, pol.srn);
                         }
 
-                        clmReq.Status = ClaimStatus.Paid;
+                        clmReq.Status = (Status)ClaimStatus.Paid;
                         new CoreSystem<ClaimRequest>(context).Update(clmReq, clmReq.Id);
                         transaction.Commit();
                     }
@@ -433,7 +433,7 @@ namespace Flex.Controllers
 
         public ActionResult Report()
         {
-            var exitedpolicies = new CoreSystem<fl_policyinput>(context).FindAll(x => x.status == Status.Exited)
+            var exitedpolicies = new CoreSystem<fl_policyinput>(context).FindAll(x => x.status == (int)Status.Exited)
                 .Select(x=> new PolBindingModel() {
                     OtherName=x.othername,
                     PolicyNo=x.policyno,
@@ -628,7 +628,7 @@ namespace Flex.Controllers
                 IList<rptClaim> clmrpt = new List<rptClaim>();
 
                 var clm = new CoreSystem<ClaimRequest>(context).FindAll(x => x.EffectiveDate >= datefrom && x.EffectiveDate <= dateto
-                             && x.ClaimType == xwithdrawal && x.Status==xclaimStatus).ToList();
+                             && x.ClaimType == xwithdrawal && x.Status==(Status)xclaimStatus).ToList();
                 if (clm !=null && clm.Any())
                 {
                     foreach (var item in clm)
@@ -685,7 +685,7 @@ namespace Flex.Controllers
 
         public ActionResult PolicyReactivation() 
         {
-            var exitpols = new PolicySystem(context).FindAll(x => x.status == Status.Exited).ToList();
+            var exitpols = new PolicySystem(context).FindAll(x => x.status == (int)Status.Exited).ToList();
             List<PolBindingModel> exPols = new List<PolBindingModel>();
             if (exitpols != null && exitpols.Any())
             {
@@ -713,7 +713,7 @@ namespace Flex.Controllers
                 }
                 using (var transaction = context.Database.BeginTransaction(System.Data.IsolationLevel.ReadCommitted))
                 {
-                    pol.status = Status.Active;
+                    pol.status = (int)Status.Active;
                     pol.exitdate = string.Empty;
 
                     new PolicySystem(context).Update(pol, pol.srn);
@@ -722,7 +722,7 @@ namespace Flex.Controllers
 
                     if (clmreq != null)
                     {
-                        clmreq.Status = ClaimStatus.Canceled;
+                        clmreq.Status = (Status)ClaimStatus.Canceled;
 
                         new CoreSystem<ClaimRequest>(context).Update(clmreq, clmreq.Id);
                     }

@@ -39,7 +39,7 @@
                 <div class="row">
                     <div class="form-group col-md-6 ss-item-required">
                         <label for="ResidentialAddress" class="color-transparent-darker lite small">RESIDENTIAL ADDRESS</label>
-                        <textarea name="ResidentialAddress" class="form-control input-md" rows="2" value="@Model.PersonalInfo.ResAddress"></textarea>
+                        <textarea name="ResAddress" class="form-control input-md" rows="2" value="@Model.PersonalInfo.ResAddress"></textarea>
                         <span class="text-danger pull-right small">* required</span>
                     </div>
                     <div class="form-group col-md-6">
@@ -63,6 +63,7 @@
             </div>
             <div class="form-group col-md-4">
                 <div class="row">
+                    @*<img src="~/Pictures/default.png" class="img-thumbnail profile-pic" id="picture" />*@
                     <img src="~/Pictures/default.png" class="img-thumbnail profile-pic" id="picture" />
                     <input type="hidden" name="PictureFile" value="" id="PictureFile" />
                 </div>
@@ -77,16 +78,16 @@
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-md-4 ss-item-required">
+            <div class="form-group col-md-4">
                 <label for="Email" class="color-transparent-darker lite small">EMAIL</label>
                 <input type="email" name="Email" class="form-control input-md" value="@Model.PersonalInfo.Email" />
-                <span class="text-danger pull-right small">* valid email is required</span>
+                @*<span class="text-danger pull-right small">* valid email is required</span>*@
             </div>
             <div class="form-group col-md-4 ss-item-required">
                 <label for="Dob" class="color-transparent-darker lite small ">DATE of BIRTH</label>
                 @*<input type="text" name="dob" class="form-control input-md datepicker" />*@
                 <div class="input-group input-group-sm">
-                    <input type="text" class="form-control datepicker" name="Dob" id="Dob" value="@Model.PersonalInfo.Dob" readonly />
+                    <input type="text" class="form-control datepicker" name="Dob" id="Dob" value="@Model.PersonalInfo.Dob"/>
                     <span class="input-group-btn" style="padding-top:1px;">
                         <button type="button" class="btn btn-default" onclick="openDatePicker(this)"><i class="fa fa-calendar"></i></button>
                     </span>
@@ -105,6 +106,7 @@
                     <label for="PolicyType" class="color-transparent-darker lite small">Policy Type</label>
                     @Html.DropDownList("PolicyType", (IEnumerable<SelectListItem>)ViewBag.polType, String.Empty,
                              new { @class = "form-control input-md", @required = "true", @id = "polType" })
+                             @*new { @class = "form-control input-md", @required = "true", @id = "polType" })*@
                 </div>
             }
             @if (Model.PersonalInfo.Location <= 0)

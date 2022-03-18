@@ -2,6 +2,8 @@
 var state = '';
 var benficiaries = benficiaries || new Array();
 var nok = nok || {};
+var PersonalInfo = PersonalInfo || {};
+/*var ben = ben || {};*/
 var signUpModel = signUpModel || {};
 var totalPropotion = totalPropotion || 0;
 
@@ -413,16 +415,48 @@ function createPolicy(step) {
     }
 }
 
+function editPolicy(step) {
+    switch (step) {
+        case 1:
+            editprocessStep1();
+            break;
+        case 2:
+            editprocessStep2();
+            break;
+        case 3:
+            updatePolicy();
+            break;
+    }
+}
+
 function processStep1() {
     console.log('Submitting step 1');
     ShowLoading();
     var isvalid = ValidateInput('#step1Frm');
     if (isvalid) {
-        var PersonalInfo = $("#step1Frm").serializeObject();
+        PersonalInfo = $("#step1Frm").serializeObject();
         if (PersonalInfo != null || PersonalInfo != {} || PersonalInfo !== undefined) {
             signUpModel.PersonalInfo = PersonalInfo;
             console.log(signUpModel);
             MoveNext(2);
+        }
+        else {
+            toastr.error("An Error Occurred.Please refresh and try again", "Error");
+        }
+    }
+    HideLoading();
+}
+
+function editprocessStep1() {
+    console.log('Submitting step 1');
+    ShowLoading();
+    var isvalid = ValidateInput('#stepAFrm');
+    if (isvalid) {
+        PersonalInfo = $("#stepAFrm").serializeObject();
+        if (PersonalInfo != null || PersonalInfo != {} || PersonalInfo !== undefined) {
+            signUpModel.PersonalInfo = PersonalInfo;
+            console.log(signUpModel);
+            MoveNextEdit(2);
         }
         else {
             toastr.error("An Error Occurred.Please refresh and try again", "Error");
@@ -451,6 +485,58 @@ function processStep2() {
     HideLoading();
 }
 
+function editprocessStep2() {
+
+    console.log('About to Save Sign Up');
+    ShowLoading();
+
+    var isvalid = ValidateInput('#nok')
+    if (isvalid) {
+        var form = $("#nok");
+        var nok = form.serializeObject();
+        if (nok != null || nok != {} || nok !== undefined) {
+            signUpModel.PersonalInfo = PersonalInfo;
+            //nok.Category = 1;
+            signUpModel.PersonalInfo.NextofKin = nok;
+            console.log(signUpModel);
+            //MoveNextEdit(3);
+        }
+        else {
+            toastr.error("An Error Occurred.Please refresh and try again", "Error");
+        }
+    }
+    else {
+        return;
+    }
+    if (signUpModel != null || signUpModel != {} || signUpModel !== undefined) {
+       
+        var url = $("#nok").attr("action");
+        var data = { signUpmodel: signUpModel }
+
+        var Promise = Post(url, data, 'Post');
+
+        Promise.done(function (resp) {
+            console.log(resp);
+            MoveNextEdit(3);
+            toastr.success(data, "Updated Successfully")
+            //window.location.href = applicationBaseUrl + '/DashBoard';
+            HideLoading();
+            //var pagediv = document.getElementById('tbcust');
+            //pagediv.innerHTML = resp;
+            //spinner.style.display = 'none';
+        });
+
+        Promise.fail(function (resp) {
+            if (resp.status === 401) {
+                window.location.href = loginurl;
+            }
+            toastr.error(resp.statusText, "Error");
+            HideLoading();
+        });
+    }
+    HideLoading();
+}
+
 function addRow(ben) {
     ShowLoading();
     //var myName = document.getElementById("name");
@@ -474,12 +560,48 @@ function addRow(ben) {
     HideLoading();
 }
 
+function addRowEdit(ben) {
+    ShowLoading();
+    //var myName = document.getElementById("name");
+    //var age = document.getElementById("age");
+    var table = document.getElementById("tbBenEdit");
+    var tbDiv = document.getElementById('divBenEdit');
+    tbDiv.style.display = "block";
+
+    var tbody = document.getElementById('divBenEdit').getElementsByTagName('tbody')[0];
+    var rowCount = tbody.rows.length;
+    var row = tbody.insertRow(rowCount);
+
+    row.insertCell(0).innerHTML = '<input type="button" value = "Remove" onClick="Javacsript:deleteRow(this)">';
+    row.insertCell(1).innerHTML = ben.Name;
+    row.insertCell(2).innerHTML = ben.Address;
+    row.insertCell(3).innerHTML = ben.Phone;
+    row.insertCell(4).innerHTML = ben.Email;
+    row.insertCell(5).innerHTML = ben.dob;
+    row.insertCell(6).innerHTML = ben.Relationship;
+    row.insertCell(7).innerHTML = ben.Proportion;
+    HideLoading();
+}
+
 function deleteRow(obj) {
+    alert('About to delete')
     ShowLoading();
     var index = obj.parentNode.parentNode.rowIndex;
     var table = document.getElementById("tbBen");
     table.deleteRow(index);
     var i=index - 1;
+    var ben = benficiaries[i]
+    totalPropotion = totalPropotion - ben.Proportion;
+    benficiaries.splice(i, 1);
+    HideLoading();
+}
+
+function deleteRowEdit(obj) {
+    ShowLoading();
+    var index = obj.parentNode.parentNode.rowIndex;
+    var table = document.getElementById("tbBenEdit");
+    table.deleteRow(index);
+    var i = index - 1;
     var ben = benficiaries[i]
     totalPropotion = totalPropotion - ben.Proportion;
     benficiaries.splice(i, 1);
@@ -505,6 +627,62 @@ function saveBeneficiary() {
     }
     HideLoading();
 }
+
+function editBeneficiary(custId, benId) {
+
+    console.log(id);
+    var url = applicationBaseUrl + "/CustPolicy/GetBeneficiary";
+    var data = { customerId: custId, benId: benId};
+    var Promise = Post(url, data, 'Post');
+
+    Promise.done(function (resp) {
+        $("#editbenId").val(resp.PersonalInfo.Beneficiary[0].Id);
+        $("#editbenName").val(resp.PersonalInfo.Beneficiary[0].Name);
+        $("#editbenAdd").val(resp.PersonalInfo.Beneficiary[0].Address);
+        $("#editbenEmail").val(resp.PersonalInfo.Beneficiary[0].Email);
+        $("#editbenPhone").val(resp.PersonalInfo.Beneficiary[0].Phone);
+        $("#editbenDob").val(resp.PersonalInfo.Beneficiary[0].Dob);
+        $("#editbenRelat").val(resp.PersonalInfo.Beneficiary[0].Relationship);
+        $("#editbenProp").val(resp.PersonalInfo.Beneficiary[0].Proportion);
+        console.log(resp.PersonalInfo.Beneficiary[0]);
+        //showModal(resp, 'Policy Details', '');
+        //HideLoading();
+        //showModal(resp, 'Policy Details', '');
+    });
+
+    Promise.fail(function (resp) {
+        if (resp.status === 401) {
+            //window.location.href = '/Login';
+            window.location.href = loginurl;
+        }
+        toastr.error(resp.statusText, "Error");
+        HideLoading();
+    });
+}
+
+
+function updateBeneficiary() {
+    //console.log("Ok");
+    alert("About to Add Beneficiary")
+    ShowLoading();
+    var isvallid = ValidateInput('#beneficiary')
+    if (isvallid) {
+        var form = $("#beneficiary");
+        var ben = form.serializeObject();
+        var tPropotion = (totalPropotion * 1) + (ben.Proportion * 1);
+        if (ben.Proportion > 100 || tPropotion > 100) {
+            toastr.error("Total Proportion should not exceed 100%", "Validation Error");
+            HideLoading()
+            return;
+        }
+        totalPropotion = tPropotion;
+        benficiaries.push(ben);
+        addRowEdit(ben);
+        clear();
+    }
+    HideLoading();
+}
+
 function savePolicy () {
     console.log('About to Save Sign Up');
     ShowLoading();
@@ -547,6 +725,106 @@ function savePolicy () {
     }
 }
 
+function updatePolicy() {
+    console.log('About to Update beneficiary.');
+
+    var isvalid = ValidateInput('#beneficiary');
+    console.log(isvalid);
+    if (isvalid) {
+        
+        signUpModel.PersonalInfo = {};
+
+        var form = $("#beneficiary");
+        var ben = form.serializeObject();
+
+        if (benficiaries.length > 0) {
+            signUpModel.PersonalInfo.Beneficiary = benficiaries;
+            console.log(signUpModel);
+        }
+        else if (ben != null || ben != {} || ben !== undefined) {
+            //ben.Category = 1;
+            signUpModel.PersonalInfo.Benefitiary = ben;
+            console.log(signUpModel);
+            //MoveNextEdit(3);
+        }
+        else{
+            toastr.error("An Error Occurred.Please refresh and try again", "Error");
+        }
+    }
+    else {
+        return;
+    }
+    if (signUpModel != null || signUpModel != {} || signUpModel !== undefined) {
+
+        var url = $("#beneficiary").attr("action");
+        var data = { signUpmodel: signUpModel }
+
+        var Promise = Post(url, data, 'Post');
+
+        Promise.done(function (resp) {
+            console.log(resp);
+           // MoveNextEdit(3);
+            toastr.success(data, "Updated Successfully")
+            window.location.href = applicationBaseUrl + '/DashBoard';
+            HideLoading();
+            //var pagediv = document.getElementById('tbcust');
+            //pagediv.innerHTML = resp;
+            //spinner.style.display = 'none';
+        });
+
+        Promise.fail(function (resp) {
+            if (resp.status === 401) {
+                window.location.href = loginurl;
+            }
+            toastr.error(resp.statusText, "Error");
+            HideLoading();
+        });
+    }
+    HideLoading();
+
+    console.log('About to Save Sign Up');
+    ShowLoading();
+
+    /*if (benficiaries.length > 0) {
+        if (signUpModel != null || signUpModel != {} || signUpModel !== undefined) {
+            //var benJson = JSON.stringify(benficiaries).toString();
+            //benficiaries.toString();
+            signUpModel.PersonalInfo.Beneficiary = benficiaries;
+            var data = { signUpmodel: signUpModel }
+            var url = $("#beneficiary").attr("action");
+
+            var Promise = Post(url, data, 'Post');
+
+            Promise.done(function (resp) {
+                console.log("error");
+                console.log(resp);
+                toastr.success(data, "Policy Creation")
+                window.location.href = applicationBaseUrl + '/DashBoard';
+                HideLoading();
+                //var pagediv = document.getElementById('tbcust');
+                //pagediv.innerHTML = resp;
+                //spinner.style.display = 'none';
+            });
+
+            Promise.fail(function (resp) {
+                if (resp.status === 401) {
+                    window.location.href = loginurl;
+                }
+                toastr.error(resp.statusText, "Error");
+                HideLoading();
+            });
+        }
+        else {
+            toastr.error("Incomplete Form", "Error");
+            HideLoading();
+        }*/
+    //}
+    //else {
+    //    toastr.error("One or more beneficiary required", "Error");
+    //    HideLoading();
+    //}
+}
+
 function clear() {
     document.getElementById('benName').value = '';
     document.getElementById('benAdd').value = '';
@@ -578,6 +856,27 @@ function MoveNext(step) {
     hide.style.display = "none";
 }
 
+function MoveNextEdit(step) {
+    var show;
+    var hide;
+
+    switch (step) {
+        case 2:
+            show = document.getElementById('divnok');
+            hide = document.getElementById('divpDetails');
+            break;
+        case 3:
+            show = document.getElementById('divben');
+            hide = document.getElementById('divnok');
+            break;
+        default:
+            break;
+    }
+
+    show.style.display = "block";
+    hide.style.display = "none";
+}
+
 function moveBack(step) {
     var show;
     var hide;
@@ -589,6 +888,25 @@ function moveBack(step) {
         case 2:
             show = document.getElementById('divstep2');
             hide = document.getElementById('divstep3');
+            break;
+        default:
+            break;
+    }
+    show.style.display = "block";
+    hide.style.display = "none";
+}
+
+function moveBackEdit(step) {
+    var show;
+    var hide;
+    switch (step) {
+        case 1:
+            show = document.getElementById('divpDetails');
+            hide = document.getElementById('divnok');
+            break;
+        case 2:
+            show = document.getElementById('divnok');
+            hide = document.getElementById('divben');
             break;
         default:
             break;
@@ -661,7 +979,8 @@ function uploadPic(el) {
             data: data,
             success: function (result) {
                 console.log(result);
-                $("#picture").attr("src", result.Url);
+                //$("#picture").attr("src", result.Url);
+                $("#picture").attr('src', 'data:image/jpg;base64,'+result.Url);
                 $("#PictureFile").val(result.FileName);
                 $("#picture").load();
                 HideLoading();

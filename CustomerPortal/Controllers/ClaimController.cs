@@ -55,7 +55,7 @@ namespace CustomerPortal.Controllers
                 clmreq.PolicyNo = policyno;
                 clmreq.DateCreated = DateTime.Now;
                 clmreq.ClaimType = (ClaimType)Enum.Parse(typeof(ClaimType), claimType);
-                clmreq.Status = ClaimStatus.Pending;
+                clmreq.Status = (Status)ClaimStatus.Pending;
                 clmreq.EffectiveDate = Convert.ToDateTime(effDate);
                 decimal xamount = 0.0M;
                 if (clmreq.ClaimType ==ClaimType.PartialWithdrawal && !decimal.TryParse(amount, out xamount))
@@ -92,7 +92,7 @@ namespace CustomerPortal.Controllers
                 var claim = new CoreSystem<ClaimRequest>(context).FindAll(x => x.Id == id).FirstOrDefault();
                 if (claim != null)
                 {
-                    claim.Status = ClaimStatus.Canceled;
+                    claim.Status = (Status)ClaimStatus.Canceled;
 
                     new CoreSystem<ClaimRequest>(context).Update(claim, id);
                 }

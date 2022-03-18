@@ -95,12 +95,13 @@ namespace Flex.Business
         {
             return _context.Set<T>().Find(id);
         }
+
         public T Get(string id)
         {
             return _context.Set<T>().Find(id);
         }
 
-        public T Get(long id)
+        public T Get(long? id)
         {
             return _context.Set<T>().Find(id);
         }

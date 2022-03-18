@@ -16,11 +16,11 @@
                         {
                             <li><button class="quick-link" data-url="@Url.Action(@tab.Action,@tab.Controller)" onclick="LoadPage(this);"><i class="fa fa-money fa-lg"></i>@tab.Name</button></li>
                         }
-                        if (WebSecurity.Module.Trim().ToUpper()=="GTY" && Model.FirstOrDefault().Controller=="Payment")
+                        <!--if (Model.FirstOrDefault().Controller=="Payment")
                         {
-                            <li><button class="quick-link" data-url="@Url.Action("GReverseReceipt","Payment")" onclick="LoadPage(this);"><i class="fa fa-money fa-lg"></i>Receipt Reversal </button></li>
-                            <li><button class="quick-link" data-url="@Url.Action("GUpdateTransaction","Payment")" onclick="LoadPage(this);"><i class="fa fa-money fa-lg"></i>Update Receipt</button></li>
-                        }
+                            <li><button class="quick-link" data-url="@Url.Action("InterestCalculation","Payment")" onclick="LoadPage(this);"><i class="fa fa-money fa-lg"></i>Calculate Interest </button></li>-->
+                            @*<li><button class="quick-link" data-url="@Url.Action("GUpdateTransaction","Payment")" onclick="LoadPage(this);"><i class="fa fa-money fa-lg"></i>Update Receipt</button></li>*@
+                        <!--}-->
                     }
                 }
 

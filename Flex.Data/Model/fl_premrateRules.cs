@@ -32,6 +32,10 @@ public partial class fl_premrateRules
 
     public Nullable<int> PremRateId { get; set; }
 
+
+
+    public virtual fl_premrate fl_premrate { get; set; }
+
 }
 
 }

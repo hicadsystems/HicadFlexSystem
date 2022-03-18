@@ -1,0 +1,38 @@
+﻿@using Flex.Util
+
+<div class="form-top">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#backup" aria-controls="policylist" role="tab" data-toggle="tab">Backup Data</a>
+        </li>
+        <li role="presentation">
+            <a href="#calculation" aria-controls="newpolicy" role="tab" data-toggle="tab">Calculate Interest</a>
+        </li>
+        <li role="presentation">
+            <a href="#restorebk" aria-controls="policyUpload" role="tab" data-toggle="tab">Restore Backup</a>
+        </li>
+    </ul>
+</div>
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="backup">
+        @Html.Partial("_backupforintrcalc")
+    </div>
+    <div role="tabpanel" class="tab-pane" id="calculation">
+        @if (WebSecurity.Module.Trim().ToUpper() != "PPP2")
+        {
+            @Html.Partial("_calculateinterest")
+        }
+        
+        @if (WebSecurity.Module.Trim().ToUpper() == "PPP2")
+        {
+            @Html.Partial("_calculateinterestPPP2")
+        }
+        
+    </div>
+    <div role="tabpanel" class="tab-pane" id="restorebk">
+        @Html.Partial("_restorebk")
+        @*@Html.Action("PolicyUpload", "CustPolicy")*@
+    </div>
+
+</div>
+

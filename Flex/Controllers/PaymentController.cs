@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Globalization;
@@ -1364,5 +1365,132 @@ namespace Flex.Controllers
             return View();
             //return PartialView("_paymentListLayout");
         }
+
+        public ActionResult InterestCalculation()
+        {
+            getGroup();
+            getPolicyType();
+            return PartialView("_calcinterestlayout");
+        }
+
+        public ActionResult BackupBeforeInterestCal()
+        {
+
+            using (IDbConnection conn = new SqlConnection(context.Database.Connection.ConnectionString))
+            {
+
+                conn.Query("fl_backupb4_interest", commandType: CommandType.StoredProcedure, commandTimeout: 2000);
+            };
+
+            getGroup();
+            getPolicyType();
+            return PartialView("_calcinterestlayout");
+        }
+
+        public ActionResult CalculateInterest(string queryj)
+        {
+            CultureInfo culInfo = CultureInfo.CreateSpecificCulture("en-GB");
+
+            var query = JsonConvert.DeserializeObject<dynamic>(queryj);
+            string date = query.Date;
+            string interest = query.Interest;
+            string poltype = query.PolicyType;
+            string grpcode = query.GroupCode;
+            string remark = query.Option;
+            string user = User.Identity.Name;
+            if (string.IsNullOrEmpty(remark))
+            {
+                remark = string.Empty;
+            }
+
+            var xDate = SqlDateTime.MinValue.Value;
+            DateTime.TryParse(date, out xDate);
+            xDate = Convert.ToDateTime(xDate, culInfo).Date;
+            string year = xDate.Year.ToString();
+            string month = xDate.Month.ToString().Length == 2 ? xDate.Month.ToString() : "0" + xDate.Month.ToString();
+            string day = xDate.Day.ToString().Length == 2 ? xDate.Day.ToString() : "0" + xDate.Day.ToString();
+            string sDate = year + month + day;
+
+            var queryParameters = new DynamicParameters();
+            queryParameters.Add("@wdate", sDate);
+            queryParameters.Add("@poltype", poltype);
+            queryParameters.Add("@grpcode", grpcode);
+            queryParameters.Add("@wrate", interest);
+            queryParameters.Add("@guser", user);
+            queryParameters.Add("@optintr", remark);
+
+            using (IDbConnection conn = new SqlConnection(context.Database.Connection.ConnectionString))
+            {
+                conn.Query("fl_annual_interest_calc", queryParameters, commandType: CommandType.StoredProcedure, commandTimeout: 0);
+            };
+
+            getGroup();
+            getPolicyType();
+            return PartialView("_calcinterestlayout");
+        }
+
+        public ActionResult CalculateInterestTSP(string queryj)
+        {
+            CultureInfo culInfo = CultureInfo.CreateSpecificCulture("en-GB");
+
+            var query = JsonConvert.DeserializeObject<dynamic>(queryj);
+            string date = query.Date;
+            string interest1 = query.Interest1;
+            string interest2 = query.Interest2;
+            string interest3 = query.Interest3;
+            string interest4 = query.Interest4;
+            string interest5 = query.Interest5;
+            string poltype = query.PolicyType;
+            string grpcode = query.GroupCode;
+            string remark = query.Option;
+            string user = User.Identity.Name;
+            if (string.IsNullOrEmpty(remark))
+            {
+                remark = string.Empty;
+            }
+
+            var xDate = SqlDateTime.MinValue.Value;
+            DateTime.TryParse(date, out xDate);
+            xDate = Convert.ToDateTime(xDate, culInfo).Date;
+            string year = xDate.Year.ToString();
+            string month = xDate.Month.ToString().Length == 2 ? xDate.Month.ToString() : "0" + xDate.Month.ToString();
+            string day = xDate.Day.ToString().Length == 2 ? xDate.Day.ToString() : "0" + xDate.Day.ToString();
+            string sDate = year + month + day;
+
+            var queryParameters = new DynamicParameters();
+            queryParameters.Add("@wdate", sDate);
+            queryParameters.Add("@poltype", poltype);
+            queryParameters.Add("@grpcode", grpcode);
+            queryParameters.Add("@wrate1", interest1);
+            queryParameters.Add("@wrate2", interest2);
+            queryParameters.Add("@wrate3", interest3);
+            queryParameters.Add("@wrate4", interest4);
+            queryParameters.Add("@wrate5", interest5);
+            queryParameters.Add("@guser", user);
+            queryParameters.Add("@optintr", remark);
+
+            using (IDbConnection conn = new SqlConnection(context.Database.Connection.ConnectionString))
+            {
+                conn.Query("fl_annual_interest_calcTSP", queryParameters, commandType: CommandType.StoredProcedure, commandTimeout: 0);
+            };
+
+            getGroup();
+            getPolicyType();
+            return PartialView("_calcinterestlayout");
+        }
+        public ActionResult RestoreBackupAfterInterestCalc()
+        {
+
+            using (IDbConnection conn = new SqlConnection(context.Database.Connection.ConnectionString))
+            {
+                conn.Query("fl_restoreb4_interest", commandType: CommandType.StoredProcedure, commandTimeout: 2000);
+            };
+
+            getGroup();
+            getPolicyType();
+            return PartialView("_calcinterestlayout");
+        }
     }
+
+    
 }

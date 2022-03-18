@@ -36,6 +36,20 @@ namespace Flex.Business
             }
         }
 
+        public void UpdatePolicy(fl_policyinput policy, long id)
+        {
+            try
+            {
+                Update(policy, id);
+            }
+            catch (Exception ex)
+            {
+
+                Logger.InfoFormat("An Error Occurred. [Details: {0}]", ex.ToString());
+                throw;
+            }
+        }
+
         public PagedResult<vwPolicy> searchPolicies(List<string> poltypes,string policyno=null, string name=null, string phone=null, string agent=null, string location=null, string pagesize=null, string page=null)
         {
             Logger.Info("Inside Search Policy No");
@@ -134,12 +148,12 @@ namespace Flex.Business
 
                 if (status.Equals("active",StringComparison.InvariantCultureIgnoreCase))
                 {
-                    membs = membs.Where(x => x.status == Status.Active);
+                    membs = membs.Where(x => x.status ==(int?)Status.Active);
 
                 }
                 if (status.Equals("withdrawn", StringComparison.InvariantCultureIgnoreCase))
                 {
-                    membs = membs.Where(x => x.status == Status.Exited);
+                    membs = membs.Where(x => x.status == (int?)Status.Exited);
                 }
                 if (!string.IsNullOrEmpty(agent))
                 {

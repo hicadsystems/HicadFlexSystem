@@ -17,6 +17,9 @@ using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 
+using System.Data.Entity.Core.Objects;
+using System.Linq;
+
 
 public partial class FlexEntities : DbContext
 {
@@ -56,11 +59,7 @@ public partial class FlexEntities : DbContext
 
     public virtual DbSet<fl_poltype> fl_poltype { get; set; }
 
-    public virtual DbSet<fl_pendingSMS> fl_pendingSMS { get; set; }
-
     public virtual DbSet<fl_location> fl_location { get; set; }
-
-    public virtual DbSet<fl_policyinput> fl_policyinput { get; set; }
 
     public virtual DbSet<fl_receiptcontrol> fl_receiptcontrol { get; set; }
 
@@ -108,7 +107,153 @@ public partial class FlexEntities : DbContext
 
     public virtual DbSet<vwPolicyHistory> vwPolicyHistories { get; set; }
 
+    public virtual DbSet<fl_pendingSMS> fl_pendingSMS { get; set; }
+
+    public virtual DbSet<fl_policyinput> fl_policyinput { get; set; }
+
     public virtual DbSet<fl_premrate> fl_premrate { get; set; }
+
+    public virtual DbSet<fl_temphistory> fl_temphistory { get; set; }
+
+
+    public virtual int fl_annual_interest_calc(string wdate, string poltype, string grpcode, string wrate, string guser, string optintr)
+    {
+
+        var wdateParameter = wdate != null ?
+            new ObjectParameter("wdate", wdate) :
+            new ObjectParameter("wdate", typeof(string));
+
+
+        var poltypeParameter = poltype != null ?
+            new ObjectParameter("poltype", poltype) :
+            new ObjectParameter("poltype", typeof(string));
+
+
+        var grpcodeParameter = grpcode != null ?
+            new ObjectParameter("grpcode", grpcode) :
+            new ObjectParameter("grpcode", typeof(string));
+
+
+        var wrateParameter = wrate != null ?
+            new ObjectParameter("wrate", wrate) :
+            new ObjectParameter("wrate", typeof(string));
+
+
+        var guserParameter = guser != null ?
+            new ObjectParameter("guser", guser) :
+            new ObjectParameter("guser", typeof(string));
+
+
+        var optintrParameter = optintr != null ?
+            new ObjectParameter("optintr", optintr) :
+            new ObjectParameter("optintr", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fl_annual_interest_calc", wdateParameter, poltypeParameter, grpcodeParameter, wrateParameter, guserParameter, optintrParameter);
+    }
+
+
+    public virtual int fl_annual_interest_calcTSP(string wdate, string poltype, string grpcode, string wrate1, string wrate2, string wrate3, string wrate4, string wrate5, string guser, string optintr)
+    {
+
+        var wdateParameter = wdate != null ?
+            new ObjectParameter("wdate", wdate) :
+            new ObjectParameter("wdate", typeof(string));
+
+
+        var poltypeParameter = poltype != null ?
+            new ObjectParameter("poltype", poltype) :
+            new ObjectParameter("poltype", typeof(string));
+
+
+        var grpcodeParameter = grpcode != null ?
+            new ObjectParameter("grpcode", grpcode) :
+            new ObjectParameter("grpcode", typeof(string));
+
+
+        var wrate1Parameter = wrate1 != null ?
+            new ObjectParameter("wrate1", wrate1) :
+            new ObjectParameter("wrate1", typeof(string));
+
+
+        var wrate2Parameter = wrate2 != null ?
+            new ObjectParameter("wrate2", wrate2) :
+            new ObjectParameter("wrate2", typeof(string));
+
+
+        var wrate3Parameter = wrate3 != null ?
+            new ObjectParameter("wrate3", wrate3) :
+            new ObjectParameter("wrate3", typeof(string));
+
+
+        var wrate4Parameter = wrate4 != null ?
+            new ObjectParameter("wrate4", wrate4) :
+            new ObjectParameter("wrate4", typeof(string));
+
+
+        var wrate5Parameter = wrate5 != null ?
+            new ObjectParameter("wrate5", wrate5) :
+            new ObjectParameter("wrate5", typeof(string));
+
+
+        var guserParameter = guser != null ?
+            new ObjectParameter("guser", guser) :
+            new ObjectParameter("guser", typeof(string));
+
+
+        var optintrParameter = optintr != null ?
+            new ObjectParameter("optintr", optintr) :
+            new ObjectParameter("optintr", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fl_annual_interest_calcTSP", wdateParameter, poltypeParameter, grpcodeParameter, wrate1Parameter, wrate2Parameter, wrate3Parameter, wrate4Parameter, wrate5Parameter, guserParameter, optintrParameter);
+    }
+
+
+    public virtual int fl_backupb4_interest()
+    {
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fl_backupb4_interest");
+    }
+
+
+    public virtual int fl_create_statement(string ipolno, string idate, string ipoltype, string globalstation, string intrate)
+    {
+
+        var ipolnoParameter = ipolno != null ?
+            new ObjectParameter("ipolno", ipolno) :
+            new ObjectParameter("ipolno", typeof(string));
+
+
+        var idateParameter = idate != null ?
+            new ObjectParameter("idate", idate) :
+            new ObjectParameter("idate", typeof(string));
+
+
+        var ipoltypeParameter = ipoltype != null ?
+            new ObjectParameter("ipoltype", ipoltype) :
+            new ObjectParameter("ipoltype", typeof(string));
+
+
+        var globalstationParameter = globalstation != null ?
+            new ObjectParameter("globalstation", globalstation) :
+            new ObjectParameter("globalstation", typeof(string));
+
+
+        var intrateParameter = intrate != null ?
+            new ObjectParameter("intrate", intrate) :
+            new ObjectParameter("intrate", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fl_create_statement", ipolnoParameter, idateParameter, ipoltypeParameter, globalstationParameter, intrateParameter);
+    }
+
+
+    public virtual int fl_restoreb4_interest()
+    {
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fl_restoreb4_interest");
+    }
 
 }
 

@@ -1,7 +1,9 @@
-﻿using Flex.Business;
+﻿using Dapper;
+using Flex.Business;
 using Flex.Controllers.Util;
 using Flex.Data.Enum;
 using Flex.Data.Model;
+using Flex.Data.ViewModel;
 using Flex.Models.ReportModel;
 using Flex.Util;
 using Flex.Utility.Utils;
@@ -10,6 +12,8 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Globalization;
 using System.IO;
@@ -98,6 +102,7 @@ namespace Flex.Controllers
 
         public ActionResult Statment()
         {
+            getPolicyType();
             return PartialView("_stmtAcct");
         }
 
@@ -112,56 +117,104 @@ namespace Flex.Controllers
                 string date = query.Date;
                 string policy = query.Policy;
                 var _interest = query.Interest.ToString();
+                string polytpe = query.PolicyType;
+                var workstation = System.Net.Dns.GetHostName();
+
+
 
                 decimal interest = 0.00M;
                 decimal.TryParse(_interest, out interest);
 
-                var stmt = new PaymentSystem(context).Statement(date, policy);
+                //var stmt = new PaymentSystem(context).Statement(date, policy);
 
                 rptStatement rptstmtOpenBal = null;
+
                 var xDate = SqlDateTime.MinValue.Value;
                 DateTime.TryParse(date, out xDate);
                 xDate = Convert.ToDateTime(xDate, culInfo).Date;
+                string year = xDate.Year.ToString();
+                string month = xDate.Month.ToString().Length==2 ? xDate.Month.ToString() : "0"+ xDate.Month.ToString();
+                string day = xDate.Day.ToString().Length==2 ? xDate.Day.ToString() : "0"+ xDate.Day.ToString();
+                string sDate = year + month + day;
+
+                var stmt = new List<StatementViewModel>();
+                var queryParameters = new DynamicParameters();
+                queryParameters.Add("@ipolno", policy);
+                queryParameters.Add("@idate", sDate);
+                queryParameters.Add("@ipoltype", polytpe);
+                queryParameters.Add("@globalstation", workstation);
+                queryParameters.Add("@intrate", interest.ToString());
+
+                using (IDbConnection conn = new SqlConnection(context.Database.Connection.ConnectionString))
+                {
+
+                    stmt = conn.Query<StatementViewModel>("fl_create_statement", queryParameters, commandType: CommandType.StoredProcedure, commandTimeout: 2000).ToList();
+                };
+
+                //var result = context.fl_create_statement(policy, sDate, polytpe, workstation, interest.ToString());
+
+               //var stmt = new CoreSystem<fl_temphistory>(context).FindAll(x => x.workstation == workstation).ToList();
+                var customer = new CoreSystem<fl_policyinput>(context).FindAll(x => x.policyno == policy).FirstOrDefault();
+                var location = customer.fl_location.locdesc;
 
                 var lastyr = string.Concat((xDate.Year - 1).ToString(), "1231");
                 var thisyr= string.Concat(xDate.Year.ToString(), "0101");
 
                 var closeDate = DateTime.ParseExact(lastyr, "yyyyMMdd", CultureInfo.InvariantCulture);
                 var opendate = DateTime.ParseExact(thisyr, "yyyyMMdd", CultureInfo.InvariantCulture);
-                var openBaltrans = stmt.Where(x => x.trandate <= closeDate);
+                var openBaltrans = stmt.Where(x => x.trandate <= closeDate && x.policyno==policy);
 
                 List<rptStatement> stmts = new List<rptStatement>();
-                if (openBaltrans.Any())
-                {
-                    rptstmtOpenBal = new rptStatement()
-                    {
-                        Amount = (Decimal)openBaltrans.Sum(x => x.amount).GetValueOrDefault(),
-                        Date = opendate.ToString("dd/MM/yyyy"),
-                        Interest = (Decimal)openBaltrans.Sum(x => x.cumul_intr).GetValueOrDefault(),
-                        Location = openBaltrans.FirstOrDefault().locdesc,
-                        Name = openBaltrans.FirstOrDefault().Name,
-                        PolicyNo = openBaltrans.FirstOrDefault().policyno,
-                        ReceiptNo = "OpenBal",
-                        RefNo = !string.IsNullOrEmpty(openBaltrans.FirstOrDefault().doctype.ToString()) ? ((Instrument)Enum.Parse(typeof(Instrument), openBaltrans.FirstOrDefault().doctype.ToString())).ToString()  : "",
-                    };
-                }
+                //if (openBaltrans.Any())
+                //{
+                //    rptstmtOpenBal = new rptStatement()
+                //    {
+                //        Amount = (Decimal)openBaltrans.Sum(x => x.amount).GetValueOrDefault(),
+                //        Date = opendate.ToString("dd/MM/yyyy"),
+                //        Interest = (Decimal)openBaltrans.Sum(x => x.cumul_intr).GetValueOrDefault(),
+                //        Location = openBaltrans.FirstOrDefault().locdesc,
+                //        Name = openBaltrans.FirstOrDefault().Name,
+                //        PolicyNo = openBaltrans.FirstOrDefault().policyno,
+                //        ReceiptNo = "OpenBal",
+                //        RefNo = !string.IsNullOrEmpty(openBaltrans.FirstOrDefault().doctype.ToString()) ? ((Instrument)Enum.Parse(typeof(Instrument), openBaltrans.FirstOrDefault().doctype.ToString())).ToString()  : "",
+                //    };
+                //}
 
-                if (rptstmtOpenBal != null)
-                {
-                    stmts.Add(rptstmtOpenBal);
-                }
+                //if (rptstmtOpenBal != null)
+                //{
+                //    stmts.Add(rptstmtOpenBal);
+                //}
+                //else
+                //{
+                //    var currentTrans = stmt.Where(x => x.trandate >= opendate /*&& x.trandate > opendate*/ && x.policyno==policy).Select(x => new rptStatement()
+                //    {
+                //        Amount = (Decimal)x.amount.GetValueOrDefault(),
+                //        Date = ((DateTime)x.trandate).ToString("dd/MM/yyyy"),
+                //        Interest = x.gir != 0 ? x.cumul_intr.GetValueOrDefault() : CalculateInterest(x.amount.GetValueOrDefault(), x.orig_date.GetValueOrDefault(), interest, xDate),
+                //        Location = x.locdesc,
+                //        Name = x.Name,
+                //        PolicyNo = x.policyno,
+                //        ReceiptNo = x.receiptno,
+                //        RefNo = !string.IsNullOrEmpty(x.doctype) ? ((Instrument)Enum.Parse(typeof(Instrument), x.doctype)).ToString() : "",
+                //    }).ToList();
+                //    stmts.AddRange(currentTrans);
+                //}
 
-                var currentTrans = stmt.Where(x => x.trandate >= opendate).Select(x=> new rptStatement() {
+                var currentTrans = stmt.Where(x => x.policyno == policy /*&& x.trandate >= opendate*/ ).Select(x => new rptStatement()
+                {
                     Amount = (Decimal)x.amount.GetValueOrDefault(),
-                    Date = ((DateTime)x.trandate).ToString("dd/MM/yyyy"),
-                    Interest = x.gir != 0 ? x.cumul_intr.GetValueOrDefault() : CalculateInterest(x.amount.GetValueOrDefault(),x.orig_date.GetValueOrDefault(),interest, xDate),
-                    Location = x.locdesc,
-                    Name = x.Name,
+                    Date = x.trandate != null ? ((DateTime)x.trandate).ToString("dd/MM/yyyy"):"",
+                    //Interest = x.gir != 0 ? x.cumul_intr.GetValueOrDefault() : CalculateInterest(x.amount.GetValueOrDefault(), x.orig_date.GetValueOrDefault(), interest, xDate),
+                    Interest = x.receiptno == " Open Bal" ? x.cumul_intr.GetValueOrDefault() + x.cur_intr.GetValueOrDefault() : x.cur_intr.GetValueOrDefault(),
+                    //Location = x.locdesc,
+                    Location = location,
+                    Name = customer.surname + " " + customer.othername,
                     PolicyNo = x.policyno,
                     ReceiptNo = x.receiptno,
                     RefNo = !string.IsNullOrEmpty(x.doctype) ? ((Instrument)Enum.Parse(typeof(Instrument), x.doctype)).ToString() : "",
                 }).ToList();
                 stmts.AddRange(currentTrans);
+
                 var rpt = new CrystalReportEngine();
                 rpt.reportFormat = ReportFormat.pdf;
                 var rptdir = ReportUtil.GetConfig(ReportUtil.Constants.Statement);

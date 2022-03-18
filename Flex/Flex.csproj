@@ -208,6 +208,7 @@
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\UserRoleController.cs" />
+    <Compile Include="Controllers\Util\PolicyTypes.cs" />
     <Compile Include="Controllers\Util\ReportActionFileResult.cs" />
     <Compile Include="Filters\AuthFilter.cs" />
     <Compile Include="Global.asax.cs">
@@ -1157,6 +1158,7 @@
     <Content Include="images\loading2.png" />
     <Content Include="images\Nlpc.png" />
     <Content Include="images\nlpcLoading.gif" />
+    <Content Include="Pictures\images.jpeg" />
     <Content Include="Reports\claim.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>claim1.cs</LastGenOutput>
@@ -1630,6 +1632,13 @@
     <Content Include="Views\Report\_gratuityAccountStatement.cshtml" />
     <Content Include="Views\Payment\_gpaymentupdate.cshtml" />
     <Content Include="Views\Payment\_greceiptreversal.cshtml" />
+    <Content Include="Views\CustPolicy\_beneficiariesEdit.cshtml" />
+    <Content Include="Views\Payment\_calculateinterest.cshtml" />
+    <Content Include="Views\Payment\_calcinterestlayout.cshtml" />
+    <Content Include="Views\Payment\_restorebk.cshtml" />
+    <Content Include="Views\Payment\_backupforintrcalc.cshtml" />
+    <Content Include="Views\Payment\_calculateinterestPPP2.cshtml" />
+    <Content Include="Views\SetUp\_addRate2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

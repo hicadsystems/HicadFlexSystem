@@ -28,8 +28,7 @@ public partial class ClaimRequest
 
     public Nullable<Flex.Data.Enum.ClaimType> ClaimType { get; set; }
 
-    //public Nullable<Flex.Data.Enum.Status> Status { get; set; }
-    public Nullable<Flex.Data.Enum.ClaimStatus> Status { get; set; }
+    public Nullable<Flex.Data.Enum.Status> Status { get; set; }
 
     public Nullable<System.DateTime> DateCreated { get; set; }
 

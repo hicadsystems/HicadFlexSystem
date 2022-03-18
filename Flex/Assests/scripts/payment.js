@@ -527,3 +527,121 @@ function HideLoading() {
     $('#ajax').modal('hide');
 }
 
+function backupData() {
+    ShowLoading();
+    var url = applicationBaseUrl + "/Payment/BackupBeforeInterestCal"
+    //var data = { queryj: queryj };
+    var Promise = Post(url, 'Post');
+    //document.getElementById('bkforintrcalc').disabled = false;
+
+    Promise.done(function (resp) {
+        HideLoading();
+        document.getElementById('bkforintrcalc').disabled = true;
+        document.getElementById('calcintr').disabled = false;
+
+    });
+
+    Promise.fail(function (resp) {
+        if (resp.status === 401) {
+            //window.location.href = '/Login';
+            window.location.href = loginurl;
+        }
+        toastr.error(resp.statusText, "Error");
+        HideLoading();
+    });
+
+}
+
+function calculateintr() {
+    ShowLoading();
+    var isvalid = ValidateInput('#calculateInterest');
+
+    if (isvalid) {
+        var form = $("#calculateInterest");
+        var query = form.serializeObject();
+        var queryj = JSON.stringify(query);
+        var url = applicationBaseUrl + "/Payment/CalculateInterest"
+         var data = { queryj: queryj };
+        var Promise = Post(url, data, 'Post');
+
+        Promise.done(function (resp) {
+            HideLoading();
+            document.getElementById('bkforintrcalc').disabled = true;
+            document.getElementById('calcintr').disabled = true;
+            document.getElementById('restorebk').disabled = false;
+
+            toastr.success("Interest Calculated Successfully", 'Interest Calculation');
+            //window.open(resp, "resizeable,scrollbar")
+
+        });
+
+        Promise.fail(function (resp) {
+            if (resp.status === 401) {
+                //window.location.href = '/Login';
+                window.location.href = loginurl;
+            }
+            toastr.error(resp.statusText, "Error");
+            HideLoading();
+        });
+    }
+}
+
+
+function calculateintrTSP() {
+    ShowLoading();
+    var isvalid = ValidateInput('#calculateInterestTSP');
+
+    if (isvalid) {
+        var form = $("#calculateInterestTSP");
+        var query = form.serializeObject();
+        var queryj = JSON.stringify(query);
+        var url = applicationBaseUrl + "/Payment/CalculateInterestTSP"
+        var data = { queryj: queryj };
+        var Promise = Post(url, data, 'Post');
+
+        Promise.done(function (resp) {
+            HideLoading();
+            document.getElementById('bkforintrcalc').disabled = true;
+            document.getElementById('calcintr').disabled = true;
+            document.getElementById('restorebk').disabled = false;
+
+            toastr.success("Interest Calculated Successfully", 'Interest Calculation');
+            //window.open(resp, "resizeable,scrollbar")
+
+        });
+
+        Promise.fail(function (resp) {
+            if (resp.status === 401) {
+                //window.location.href = '/Login';
+                window.location.href = loginurl;
+            }
+            toastr.error(resp.statusText, "Error");
+            HideLoading();
+        });
+    }
+}
+function restorebackup() {
+    ShowLoading();
+    var url = applicationBaseUrl + "/Payment/RestoreBackupAfterInterestCalc"
+    //var data = { queryj: queryj };
+    var Promise = Post(url, 'Post');
+    //document.getElementById('bkforintrcalc').disabled = false;
+
+    Promise.done(function (resp) {
+        HideLoading();
+        document.getElementById('bkforintrcalc').disabled = true;
+        document.getElementById('calcintr').disabled = false;
+
+    });
+
+    Promise.fail(function (resp) {
+        if (resp.status === 401) {
+            //window.location.href = '/Login';
+            window.location.href = loginurl;
+        }
+        toastr.error(resp.statusText, "Error");
+        HideLoading();
+    });
+
+}
+

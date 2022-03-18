@@ -14,7 +14,7 @@
           <Property Name="Desc" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'Flex.dbo.ac_rctdetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'FlexDB.dbo.ac_rctdetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ac_rctdetails">
           <Key>
             <PropertyRef Name="rct_number" />
@@ -46,7 +46,7 @@ warning 6002: The table/view 'Flex.dbo.ac_rctdetails' does not have a primary ke
           <Property Name="rct_partfull" Type="nvarchar" MaxLength="12" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'Flex.dbo.ac_rctheader' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'FlexDB.dbo.ac_rctheader' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ac_rctheader">
           <Key>
             <PropertyRef Name="coy_code" />
@@ -86,12 +86,9 @@ warning 6002: The table/view 'Flex.dbo.ac_rctheader' does not have a primary key
           <Property Name="naira" Type="nvarchar" MaxLength="10" />
           <Property Name="kobo" Type="nvarchar" MaxLength="10" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Flex.dbo.accchart' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="accchart">
           <Key>
             <PropertyRef Name="acctnumber" />
-            
           </Key>
           <Property Name="acctcode1" Type="nvarchar" MaxLength="1" />
           <Property Name="acctcode2" Type="nvarchar" MaxLength="2" />
@@ -185,8 +182,8 @@ warning 6002: The table/view 'Flex.dbo.accchart' does not have a primary key def
           <Property Name="passworddate" Type="datetime2" Precision="7" />
           <Property Name="modifydate" Type="datetime2" Precision="7" />
           <Property Name="modifyby" Type="bigint" />
-          <Property Name="lastLoginDate" Type="datetime" />
-          <Property Name="firstLoginDate" Type="datetime" />
+          <Property Name="lastLoginDate" Type="datetime" Nullable="false" />
+          <Property Name="firstLoginDate" Type="datetime" Nullable="false" />
           <Property Name="status" Type="int" />
           <Property Name="email" Type="nvarchar" MaxLength="100" />
           <Property Name="phone" Type="nvarchar" MaxLength="15" />
@@ -337,11 +334,18 @@ warning 6002: The table/view 'Flex.dbo.accchart' does not have a primary key def
           <Property Name="amount" Type="money" />
           <Property Name="poltype" Type="nvarchar" MaxLength="3" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FlexDB.dbo.fl_payinput2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="fl_payinput2">
           <Key>
+            
+            
+            
+            
+            
+            
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="policyno" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="receiptno" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="poltype" Type="nvarchar" MaxLength="3" />
@@ -356,13 +360,14 @@ warning 6002: The table/view 'Flex.dbo.accchart' does not have a primary key def
           <Property Name="payindicator" Type="nvarchar" MaxLength="1" />
           <Property Name="status" Type="int" />
           <Property Name="createdby" Type="nvarchar" MaxLength="20" />
-          <Property Name="datecreated" Type="datetime2" Precision="7" />
+          <Property Name="datecreated" Type="smalldatetime" />
           <Property Name="ps" Type="money" />
           <Property Name="er" Type="money" />
           <Property Name="ee" Type="money" />
           <Property Name="av" Type="money" />
           <Property Name="psc" Type="money" />
           <Property Name="cc" Type="money" />
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="fl_pendingSMS">
           <Key>
@@ -373,7 +378,6 @@ warning 6002: The table/view 'Flex.dbo.accchart' does not have a primary key def
           <Property Name="message" Type="nvarchar(max)" />
           <Property Name="isSent" Type="bit" />
           <Property Name="retrycount" Type="int" />
-          <Property Name="Application" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="fl_policyinput">
           <Key>
@@ -407,7 +411,7 @@ warning 6002: The table/view 'Flex.dbo.accchart' does not have a primary key def
           <Property Name="religion" Type="nvarchar" MaxLength="15" />
           <Property Name="status" Type="int" />
           <Property Name="pwd" Type="nvarchar" MaxLength="50" />
-          <Property Name="PictureFile" Type="nvarchar(max)" />
+          <Property Name="PictureFile" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="fl_poltype">
           <Key>
@@ -437,7 +441,7 @@ warning 6002: The table/view 'Flex.dbo.accchart' does not have a primary key def
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="poltypeId" Type="int" Nullable="false" />
-          <Property Name="grpcode" Type="int" />
+          <Property Name="grpcodeId" Type="int" />
           <Property Name="period" Type="nvarchar" MaxLength="50" />
           <Property Name="interest" Type="decimal" Precision="18" Scale="2" />
           <Property Name="commrate" Type="decimal" Precision="18" Scale="2" />
@@ -448,6 +452,8 @@ warning 6002: The table/view 'Flex.dbo.accchart' does not have a primary key def
           <Property Name="DateModified" Type="datetime2" Precision="7" />
           <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="IsDeleted" Type="bit" />
+          <Property Name="poltype" Type="nvarchar" MaxLength="3" />
+          <Property Name="grpcode" Type="nvarchar" MaxLength="3" />
         </EntityType>
         <EntityType Name="fl_premrateRules">
           <Key>
@@ -492,7 +498,7 @@ warning 6002: The table/view 'Flex.dbo.accchart' does not have a primary key def
           <Property Name="IsDeleted" Type="bit" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'Flex.dbo.fl_state' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'FlexDB.dbo.fl_state' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="fl_state">
           <Key>
             <PropertyRef Name="Id" />
@@ -523,6 +529,34 @@ warning 6002: The table/view 'Flex.dbo.fl_state' does not have a primary key def
           <Property Name="serialnumber" Type="nvarchar" MaxLength="15" />
           <Property Name="reassurance" Type="nvarchar" MaxLength="50" />
           <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="fl_temphistory">
+          <Key>
+            <PropertyRef Name="workstation" />
+            <PropertyRef Name="policyno" />
+            <PropertyRef Name="receiptno" />
+            <PropertyRef Name="period" />
+          </Key>
+          <Property Name="workstation" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="policyno" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="receiptno" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="period" Type="nvarchar" MaxLength="6" Nullable="false" />
+          <Property Name="grpcode" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="pcn" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="poltype" Type="nvarchar" MaxLength="3" />
+          <Property Name="orig_date" Type="smalldatetime" />
+          <Property Name="trandate" Type="smalldatetime" />
+          <Property Name="amount" Type="money" />
+          <Property Name="gir" Type="real" />
+          <Property Name="cur_intr" Type="money" />
+          <Property Name="cumul_intr" Type="money" />
+          <Property Name="loanamt" Type="money" />
+          <Property Name="doctype" Type="nvarchar" MaxLength="20" />
+          <Property Name="openbalance" Type="money" />
+          <Property Name="opendeposit" Type="money" />
+          <Property Name="deposit" Type="money" />
+          <Property Name="curdep_intr" Type="money" />
+          <Property Name="cumuldep_intr" Type="money" />
         </EntityType>
         <EntityType Name="fl_translog">
           <Key>
@@ -570,7 +604,7 @@ warning 6002: The table/view 'Flex.dbo.fl_state' does not have a primary key def
           <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RegNo" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Phone" Type="nvarchar" MaxLength="15" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="Type" Type="int" Nullable="false" />
@@ -583,8 +617,6 @@ warning 6002: The table/view 'Flex.dbo.fl_state' does not have a primary key def
           <Property Name="IsSynched" Type="bit" />
           <Property Name="PolicyId" Type="bigint" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Flex.dbo.OnlineReciept' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="OnlineReciept">
           <Key>
             <PropertyRef Name="Id" />
@@ -712,7 +744,7 @@ warning 6002: The table/view 'Flex.dbo.OnlineReciept' does not have a primary ke
           <Property Name="UserId" Type="bigint" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'Flex.dbo.vProduction' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'FlexDB.dbo.vProduction' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vProduction">
           <Key>
             <PropertyRef Name="policyno" />
@@ -734,7 +766,7 @@ warning 6002: The table/view 'Flex.dbo.vProduction' does not have a primary key 
           <Property Name="agentLocation" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'Flex.dbo.vwPolicy' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'FlexDB.dbo.vwPolicy' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vwPolicy">
           <Key>
             <PropertyRef Name="policyno" />
@@ -761,7 +793,7 @@ warning 6002: The table/view 'Flex.dbo.vwPolicy' does not have a primary key def
           <Property Name="agentLocation" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'Flex.dbo.vwPolicyHistory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vwPolicyHistory">
           <Key>
             <PropertyRef Name="policyno" />
@@ -783,6 +815,42 @@ warning 6002: The table/view 'Flex.dbo.vwPolicyHistory' does not have a primary 
           <Property Name="orig_date" Type="smalldatetime" />
           <Property Name="telephone" Type="nvarchar" MaxLength="15" />
         </EntityType>
+        <Association Name="FK_CustomerPolicies_CustomerUser">
+          <End Role="CustomerUser" Type="Self.CustomerUser" Multiplicity="0..1" />
+          <End Role="CustomerPolicies" Type="Self.CustomerPolicies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomerPolicies">
+              <PropertyRef Name="CustomerUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_fl_policyinput_fl_location">
+          <End Role="fl_location" Type="Self.fl_location" Multiplicity="0..1" />
+          <End Role="fl_policyinput" Type="Self.fl_policyinput" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fl_location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="fl_policyinput">
+              <PropertyRef Name="location" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_fl_premrate_fl_grouptype">
+          <End Role="fl_grouptype" Type="Self.fl_grouptype" Multiplicity="0..1" />
+          <End Role="fl_premrate" Type="Self.fl_premrate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fl_grouptype">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="fl_premrate">
+              <PropertyRef Name="grpcodeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_fl_premrate_fl_poltype">
           <End Role="fl_poltype" Type="Self.fl_poltype" Multiplicity="1" />
           <End Role="fl_premrate" Type="Self.fl_premrate" Multiplicity="*" />
@@ -795,8 +863,134 @@ warning 6002: The table/view 'Flex.dbo.vwPolicyHistory' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_fl_premrateRules_fl_premrate">
+          <End Role="fl_premrate" Type="Self.fl_premrate" Multiplicity="0..1" />
+          <End Role="fl_premrateRules" Type="Self.fl_premrateRules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fl_premrate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="fl_premrateRules">
+              <PropertyRef Name="PremRateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_fl_receiptcontrol_fl_poltype">
+          <End Role="fl_poltype" Type="Self.fl_poltype" Multiplicity="0..1" />
+          <End Role="fl_receiptcontrol" Type="Self.fl_receiptcontrol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fl_poltype">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="fl_receiptcontrol">
+              <PropertyRef Name="PolTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LinkRole_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="LinkRole" Type="Self.LinkRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LinkRole">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NextofKin_BeneficiaryStaging_PersonalDetailsStaging">
+          <End Role="PersonalDetailsStaging" Type="Self.PersonalDetailsStaging" Multiplicity="0..1" />
+          <End Role="NextofKin_BeneficiaryStaging" Type="Self.NextofKin_BeneficiaryStaging" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonalDetailsStaging">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NextofKin_BeneficiaryStaging">
+              <PropertyRef Name="PersonalDetailsStagingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonalDetailsStaging_fl_poltype">
+          <End Role="fl_poltype" Type="Self.fl_poltype" Multiplicity="0..1" />
+          <End Role="PersonalDetailsStaging" Type="Self.PersonalDetailsStaging" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fl_poltype">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonalDetailsStaging">
+              <PropertyRef Name="PolicyType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tabs_Portlet">
+          <End Role="Portlet" Type="Self.Portlet" Multiplicity="0..1" />
+          <End Role="Tabs" Type="Self.Tabs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Portlet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tabs">
+              <PropertyRef Name="PortletId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserSession_CustomerUser">
+          <End Role="CustomerUser" Type="Self.CustomerUser" Multiplicity="0..1" />
+          <End Role="UserSession" Type="Self.UserSession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserSession">
+              <PropertyRef Name="CustomerUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fl_annual_interest_calc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="wdate" Type="varchar" Mode="In" />
+          <Parameter Name="poltype" Type="varchar" Mode="In" />
+          <Parameter Name="grpcode" Type="varchar" Mode="In" />
+          <Parameter Name="wrate" Type="varchar" Mode="In" />
+          <Parameter Name="guser" Type="varchar" Mode="In" />
+          <Parameter Name="optintr" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="fl_annual_interest_calcTSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="wdate" Type="varchar" Mode="In" />
+          <Parameter Name="poltype" Type="varchar" Mode="In" />
+          <Parameter Name="grpcode" Type="varchar" Mode="In" />
+          <Parameter Name="wrate1" Type="varchar" Mode="In" />
+          <Parameter Name="wrate2" Type="varchar" Mode="In" />
+          <Parameter Name="wrate3" Type="varchar" Mode="In" />
+          <Parameter Name="wrate4" Type="varchar" Mode="In" />
+          <Parameter Name="wrate5" Type="varchar" Mode="In" />
+          <Parameter Name="guser" Type="varchar" Mode="In" />
+          <Parameter Name="optintr" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="fl_backupb4_interest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="fl_create_statement" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ipolno" Type="varchar" Mode="In" />
+          <Parameter Name="idate" Type="varchar" Mode="In" />
+          <Parameter Name="ipoltype" Type="varchar" Mode="In" />
+          <Parameter Name="globalstation" Type="varchar" Mode="In" />
+          <Parameter Name="intrate" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="fl_restoreb4_interest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="FlexModelStoreContainer">
           <EntitySet Name="ac_costCenter" EntityType="Self.ac_costCenter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="accchart" EntityType="Self.accchart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ClaimRequest" EntityType="Self.ClaimRequest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerPolicies" EntityType="Self.CustomerPolicies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerUser" EntityType="Self.CustomerUser" Schema="dbo" store:Type="Tables" />
@@ -807,7 +1001,6 @@ warning 6002: The table/view 'Flex.dbo.vwPolicyHistory' does not have a primary 
           <EntitySet Name="fl_payclaim" EntityType="Self.fl_payclaim" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fl_payhistory" EntityType="Self.fl_payhistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fl_payinput" EntityType="Self.fl_payinput" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="fl_payinput2" EntityType="Self.fl_payinput2" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fl_pendingSMS" EntityType="Self.fl_pendingSMS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fl_policyinput" EntityType="Self.fl_policyinput" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fl_poltype" EntityType="Self.fl_poltype" Schema="dbo" store:Type="Tables" />
@@ -816,10 +1009,12 @@ warning 6002: The table/view 'Flex.dbo.vwPolicyHistory' does not have a primary 
           <EntitySet Name="fl_PublicHoliday" EntityType="Self.fl_PublicHoliday" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fl_receiptcontrol" EntityType="Self.fl_receiptcontrol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fl_system" EntityType="Self.fl_system" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="fl_temphistory" EntityType="Self.fl_temphistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fl_translog" EntityType="Self.fl_translog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LinkRole" EntityType="Self.LinkRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Modules" EntityType="Self.Modules" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NextofKin_BeneficiaryStaging" EntityType="Self.NextofKin_BeneficiaryStaging" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OnlineReciept" EntityType="Self.OnlineReciept" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PendingEmail" EntityType="Self.PendingEmail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonalDetailsStaging" EntityType="Self.PersonalDetailsStaging" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Portlet" EntityType="Self.Portlet" Schema="dbo" store:Type="Tables" />
@@ -883,63 +1078,31 @@ warning 6002: The table/view 'Flex.dbo.vwPolicyHistory' does not have a primary 
     [ac_rctheader].[kobo] AS [kobo]
     FROM [dbo].[ac_rctheader] AS [ac_rctheader]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="accchart" EntityType="Self.accchart" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="fl_payinput2" EntityType="Self.fl_payinput2" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [accchart].[acctcode1] AS [acctcode1], 
-    [accchart].[acctcode2] AS [acctcode2], 
-    [accchart].[acctcode3] AS [acctcode3], 
-    [accchart].[acctcode4] AS [acctcode4], 
-    [accchart].[acctcode5] AS [acctcode5], 
-    [accchart].[acctcode6] AS [acctcode6], 
-    [accchart].[acctnumber] AS [acctnumber], 
-    [accchart].[description] AS [description], 
-    [accchart].[acctcode7] AS [acctcode7], 
-    [accchart].[oldnumber] AS [oldnumber], 
-    [accchart].[acctype] AS [acctype], 
-    [accchart].[acctsubtype] AS [acctsubtype], 
-    [accchart].[address] AS [address], 
-    [accchart].[effdate] AS [effdate], 
-    [accchart].[ledgerpasswd] AS [ledgerpasswd], 
-    [accchart].[ledgerpasswd2] AS [ledgerpasswd2], 
-    [accchart].[subcode] AS [subcode], 
-    [accchart].[blgroup1] AS [blgroup1], 
-    [accchart].[blgroup2] AS [blgroup2], 
-    [accchart].[blgroup3] AS [blgroup3], 
-    [accchart].[blgroup4] AS [blgroup4], 
-    [accchart].[blgroupdes1] AS [blgroupdes1], 
-    [accchart].[blgroupdes2] AS [blgroupdes2], 
-    [accchart].[blgroupdes3] AS [blgroupdes3], 
-    [accchart].[blgroupdes4] AS [blgroupdes4], 
-    [accchart].[blsum1] AS [blsum1], 
-    [accchart].[blsum2] AS [blsum2], 
-    [accchart].[blsum3] AS [blsum3], 
-    [accchart].[blsum4] AS [blsum4], 
-    [accchart].[blsumdesc1] AS [blsumdesc1], 
-    [accchart].[blsumdesc2] AS [blsumdesc2], 
-    [accchart].[blsumdesc3] AS [blsumdesc3], 
-    [accchart].[blsumdesc4] AS [blsumdesc4], 
-    [accchart].[cfgroup1] AS [cfgroup1], 
-    [accchart].[cfgroup2] AS [cfgroup2], 
-    [accchart].[cfgroup3] AS [cfgroup3], 
-    [accchart].[cfgroup4] AS [cfgroup4], 
-    [accchart].[cfgroupdes1] AS [cfgroupdes1], 
-    [accchart].[cfgroupdes2] AS [cfgroupdes2], 
-    [accchart].[cfgroupdes3] AS [cfgroupdes3], 
-    [accchart].[cfgroupdes4] AS [cfgroupdes4], 
-    [accchart].[cfsumdesc1] AS [cfsumdesc1], 
-    [accchart].[cfsumdesc2] AS [cfsumdesc2], 
-    [accchart].[cfsumdesc3] AS [cfsumdesc3], 
-    [accchart].[cfsumdesc4] AS [cfsumdesc4], 
-    [accchart].[createdby] AS [createdby], 
-    [accchart].[datecreated] AS [datecreated], 
-    [accchart].[address1] AS [address1], 
-    [accchart].[address2] AS [address2], 
-    [accchart].[address3] AS [address3], 
-    [accchart].[telephone] AS [telephone], 
-    [accchart].[email] AS [email], 
-    [accchart].[trade] AS [trade], 
-    [accchart].[dateblocked] AS [dateblocked]
-    FROM [dbo].[accchart] AS [accchart]</DefiningQuery>
+    [fl_payinput2].[policyno] AS [policyno], 
+    [fl_payinput2].[receiptno] AS [receiptno], 
+    [fl_payinput2].[poltype] AS [poltype], 
+    [fl_payinput2].[type] AS [type], 
+    [fl_payinput2].[grpcode] AS [grpcode], 
+    [fl_payinput2].[pcn] AS [pcn], 
+    [fl_payinput2].[reverseind] AS [reverseind], 
+    [fl_payinput2].[trandate] AS [trandate], 
+    [fl_payinput2].[effdate] AS [effdate], 
+    [fl_payinput2].[totamt] AS [totamt], 
+    [fl_payinput2].[chequeno] AS [chequeno], 
+    [fl_payinput2].[payindicator] AS [payindicator], 
+    [fl_payinput2].[status] AS [status], 
+    [fl_payinput2].[createdby] AS [createdby], 
+    [fl_payinput2].[datecreated] AS [datecreated], 
+    [fl_payinput2].[ps] AS [ps], 
+    [fl_payinput2].[er] AS [er], 
+    [fl_payinput2].[ee] AS [ee], 
+    [fl_payinput2].[av] AS [av], 
+    [fl_payinput2].[psc] AS [psc], 
+    [fl_payinput2].[cc] AS [cc], 
+    [fl_payinput2].[Id] AS [Id]
+    FROM [dbo].[fl_payinput2] AS [fl_payinput2]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="fl_state" EntityType="Self.fl_state" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -947,26 +1110,6 @@ warning 6002: The table/view 'Flex.dbo.vwPolicyHistory' does not have a primary 
     [fl_state].[Code] AS [Code], 
     [fl_state].[Name] AS [Name]
     FROM [dbo].[fl_state] AS [fl_state]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="OnlineReciept" EntityType="Self.OnlineReciept" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [OnlineReciept].[Id] AS [Id], 
-    [OnlineReciept].[PaymentDate] AS [PaymentDate], 
-    [OnlineReciept].[ReceiptNo] AS [ReceiptNo], 
-    [OnlineReciept].[PaymentChannel] AS [PaymentChannel], 
-    [OnlineReciept].[InitialAmount] AS [InitialAmount], 
-    [OnlineReciept].[FinalAmount] AS [FinalAmount], 
-    [OnlineReciept].[Product] AS [Product], 
-    [OnlineReciept].[Policyno] AS [Policyno], 
-    [OnlineReciept].[IsSynched] AS [IsSynched], 
-    [OnlineReciept].[TransactionStatus] AS [TransactionStatus], 
-    [OnlineReciept].[InitialResponseCode] AS [InitialResponseCode], 
-    [OnlineReciept].[InitialPaymentDate] AS [InitialPaymentDate], 
-    [OnlineReciept].[IntialResponseDecription] AS [IntialResponseDecription], 
-    [OnlineReciept].[FinalResponseCode] AS [FinalResponseCode], 
-    [OnlineReciept].[FinalPaymentDate] AS [FinalPaymentDate], 
-    [OnlineReciept].[FinalResponseDecription] AS [FinalResponseDecription]
-    FROM [dbo].[OnlineReciept] AS [OnlineReciept]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vProduction" EntityType="Self.vProduction" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1027,9 +1170,53 @@ warning 6002: The table/view 'Flex.dbo.vwPolicyHistory' does not have a primary 
     [vwPolicyHistory].[telephone] AS [telephone]
     FROM [dbo].[vwPolicyHistory] AS [vwPolicyHistory]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_CustomerPolicies_CustomerUser" Association="Self.FK_CustomerPolicies_CustomerUser">
+            <End Role="CustomerUser" EntitySet="CustomerUser" />
+            <End Role="CustomerPolicies" EntitySet="CustomerPolicies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_fl_policyinput_fl_location" Association="Self.FK_fl_policyinput_fl_location">
+            <End Role="fl_location" EntitySet="fl_location" />
+            <End Role="fl_policyinput" EntitySet="fl_policyinput" />
+          </AssociationSet>
+          <AssociationSet Name="FK_fl_premrate_fl_grouptype" Association="Self.FK_fl_premrate_fl_grouptype">
+            <End Role="fl_grouptype" EntitySet="fl_grouptype" />
+            <End Role="fl_premrate" EntitySet="fl_premrate" />
+          </AssociationSet>
           <AssociationSet Name="FK_fl_premrate_fl_poltype" Association="Self.FK_fl_premrate_fl_poltype">
             <End Role="fl_poltype" EntitySet="fl_poltype" />
             <End Role="fl_premrate" EntitySet="fl_premrate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_fl_premrateRules_fl_premrate" Association="Self.FK_fl_premrateRules_fl_premrate">
+            <End Role="fl_premrate" EntitySet="fl_premrate" />
+            <End Role="fl_premrateRules" EntitySet="fl_premrateRules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_fl_receiptcontrol_fl_poltype" Association="Self.FK_fl_receiptcontrol_fl_poltype">
+            <End Role="fl_poltype" EntitySet="fl_poltype" />
+            <End Role="fl_receiptcontrol" EntitySet="fl_receiptcontrol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LinkRole_Role" Association="Self.FK_LinkRole_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="LinkRole" EntitySet="LinkRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NextofKin_BeneficiaryStaging_PersonalDetailsStaging" Association="Self.FK_NextofKin_BeneficiaryStaging_PersonalDetailsStaging">
+            <End Role="PersonalDetailsStaging" EntitySet="PersonalDetailsStaging" />
+            <End Role="NextofKin_BeneficiaryStaging" EntitySet="NextofKin_BeneficiaryStaging" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonalDetailsStaging_fl_poltype" Association="Self.FK_PersonalDetailsStaging_fl_poltype">
+            <End Role="fl_poltype" EntitySet="fl_poltype" />
+            <End Role="PersonalDetailsStaging" EntitySet="PersonalDetailsStaging" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tabs_Portlet" Association="Self.FK_Tabs_Portlet">
+            <End Role="Portlet" EntitySet="Portlet" />
+            <End Role="Tabs" EntitySet="Tabs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole_Role" Association="Self.FK_UserRole_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="UserRole" EntitySet="UserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserSession_CustomerUser" Association="Self.FK_UserSession_CustomerUser">
+            <End Role="CustomerUser" EntitySet="CustomerUser" />
+            <End Role="UserSession" EntitySet="UserSession" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -1081,13 +1268,7 @@ warning 6002: The table/view 'Flex.dbo.vwPolicyHistory' does not have a primary 
           </AssociationSet>
           <EntitySet Name="fl_system" EntityType="Flex.Model.fl_system" />
           <EntitySet Name="fl_poltype" EntityType="Flex.Model.fl_poltype" />
-          <EntitySet Name="fl_pendingSMS" EntityType="Flex.Model.fl_pendingSMS" />
           <EntitySet Name="fl_location" EntityType="Flex.Model.fl_location" />
-          <EntitySet Name="fl_policyinput" EntityType="Flex.Model.fl_policyinput" />
-          <AssociationSet Name="FK_fl_policyinput_fl_location" Association="Flex.Model.FK_fl_policyinput_fl_location">
-            <End Role="fl_location" EntitySet="fl_location" />
-            <End Role="fl_policyinput" EntitySet="fl_policyinput" />
-          </AssociationSet>
           <EntitySet Name="fl_receiptcontrol" EntityType="Flex.Model.fl_receiptcontrol" />
           <AssociationSet Name="FK_fl_receiptcontrol_fl_poltype" Association="Flex.Model.FK_fl_receiptcontrol_fl_poltype">
             <End Role="fl_poltype" EntitySet="fl_poltype" />
@@ -1114,10 +1295,6 @@ warning 6002: The table/view 'Flex.dbo.vwPolicyHistory' does not have a primary 
             <End Role="Role" EntitySet="Roles" />
             <End Role="LinkRole" EntitySet="LinkRoles" />
           </AssociationSet>
-          <AssociationSet Name="FK_NextofKin_BeneficiaryStaging_fl_policyinput" Association="Flex.Model.FK_NextofKin_BeneficiaryStaging_fl_policyinput">
-            <End Role="fl_policyinput" EntitySet="fl_policyinput" />
-            <End Role="NextofKin_BeneficiaryStaging" EntitySet="NextofKin_BeneficiaryStaging" />
-          </AssociationSet>
           <EntitySet Name="vwPolicies" EntityType="Flex.Model.vwPolicy" />
           <EntitySet Name="OnlineReciepts" EntityType="Flex.Model.OnlineReciept" />
           <EntitySet Name="fl_premrateRules" EntityType="Flex.Model.fl_premrateRules" />
@@ -1135,11 +1312,55 @@ warning 6002: The table/view 'Flex.dbo.vwPolicyHistory' does not have a primary 
           <EntitySet Name="fl_PublicHoliday" EntityType="Flex.Model.fl_PublicHoliday" />
           <EntitySet Name="vProductions" EntityType="Flex.Model.vProduction" />
           <EntitySet Name="vwPolicyHistories" EntityType="Flex.Model.vwPolicyHistory" />
+          <EntitySet Name="fl_pendingSMS" EntityType="Flex.Model.fl_pendingSMS" />
+          <EntitySet Name="fl_policyinput" EntityType="Flex.Model.fl_policyinput" />
+          <AssociationSet Name="FK_fl_policyinput_fl_location" Association="Flex.Model.FK_fl_policyinput_fl_location">
+            <End Role="fl_location" EntitySet="fl_location" />
+            <End Role="fl_policyinput" EntitySet="fl_policyinput" />
+          </AssociationSet>
+          <FunctionImport Name="fl_annual_interest_calc">
+            <Parameter Name="wdate" Mode="In" Type="String" />
+            <Parameter Name="poltype" Mode="In" Type="String" />
+            <Parameter Name="grpcode" Mode="In" Type="String" />
+            <Parameter Name="wrate" Mode="In" Type="String" />
+            <Parameter Name="guser" Mode="In" Type="String" />
+            <Parameter Name="optintr" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fl_annual_interest_calcTSP">
+            <Parameter Name="wdate" Mode="In" Type="String" />
+            <Parameter Name="poltype" Mode="In" Type="String" />
+            <Parameter Name="grpcode" Mode="In" Type="String" />
+            <Parameter Name="wrate1" Mode="In" Type="String" />
+            <Parameter Name="wrate2" Mode="In" Type="String" />
+            <Parameter Name="wrate3" Mode="In" Type="String" />
+            <Parameter Name="wrate4" Mode="In" Type="String" />
+            <Parameter Name="wrate5" Mode="In" Type="String" />
+            <Parameter Name="guser" Mode="In" Type="String" />
+            <Parameter Name="optintr" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fl_backupb4_interest" />
+          <FunctionImport Name="fl_create_statement">
+            <Parameter Name="ipolno" Mode="In" Type="String" />
+            <Parameter Name="idate" Mode="In" Type="String" />
+            <Parameter Name="ipoltype" Mode="In" Type="String" />
+            <Parameter Name="globalstation" Mode="In" Type="String" />
+            <Parameter Name="intrate" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fl_restoreb4_interest" />
           <EntitySet Name="fl_premrate" EntityType="Flex.Model.fl_premrate" />
+          <AssociationSet Name="FK_fl_premrate_fl_grouptype" Association="Flex.Model.FK_fl_premrate_fl_grouptype">
+            <End Role="fl_grouptype" EntitySet="fl_grouptype" />
+            <End Role="fl_premrate" EntitySet="fl_premrate" />
+          </AssociationSet>
           <AssociationSet Name="FK_fl_premrate_fl_poltype" Association="Flex.Model.FK_fl_premrate_fl_poltype">
             <End Role="fl_poltype" EntitySet="fl_poltype" />
             <End Role="fl_premrate" EntitySet="fl_premrate" />
           </AssociationSet>
+          <AssociationSet Name="FK_fl_premrateRules_fl_premrate" Association="Flex.Model.FK_fl_premrateRules_fl_premrate">
+            <End Role="fl_premrate" EntitySet="fl_premrate" />
+            <End Role="fl_premrateRules" EntitySet="fl_premrateRules" />
+          </AssociationSet>
+          <EntitySet Name="fl_temphistory" EntityType="Flex.Model.fl_temphistory" />
         </EntityContainer>
         <EnumType Name="UserStatus" a:ExternalTypeName="Flex.Data.Enum.UserStatus" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         <EnumType Name="UserSessionStatus" a:ExternalTypeName="Flex.Data.Enum.UserSessionStatus" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
@@ -1156,8 +1377,8 @@ warning 6002: The table/view 'Flex.dbo.vwPolicyHistory' does not have a primary 
           <Property Name="passworddate" Type="DateTime" Precision="7" />
           <Property Name="modifydate" Type="DateTime" Precision="7" />
           <Property Name="modifyby" Type="Int64" />
-          <Property Name="lastLoginDate" Type="DateTime" Precision="3" />
-          <Property Name="firstLoginDate" Type="DateTime" Precision="3" />
+          <Property Name="lastLoginDate" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="firstLoginDate" Type="DateTime" Precision="3" Nullable="false" />
           <Property Name="status" Type="Flex.Model.UserStatus" />
           <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
@@ -1198,7 +1419,7 @@ warning 6002: The table/view 'Flex.dbo.vwPolicyHistory' does not have a primary 
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RegNo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Type" Type="Flex.Model.Type" Nullable="false" />
@@ -1211,7 +1432,6 @@ warning 6002: The table/view 'Flex.dbo.vwPolicyHistory' does not have a primary 
           <Property Name="IsSynched" Type="Boolean" />
           <NavigationProperty Name="PersonalDetailsStaging" Relationship="Flex.Model.FK_NextofKin_BeneficiaryStaging_PersonalDetailsStaging" FromRole="NextofKin_BeneficiaryStaging" ToRole="PersonalDetailsStaging" />
           <Property Name="PolicyId" Type="Int64" />
-          <NavigationProperty Name="fl_policyinput" Relationship="Flex.Model.FK_NextofKin_BeneficiaryStaging_fl_policyinput" FromRole="NextofKin_BeneficiaryStaging" ToRole="fl_policyinput" />
         </EntityType>
         <EntityType Name="UserSession">
           <Key>
@@ -1429,17 +1649,6 @@ warning 6002: The table/view 'Flex.dbo.vwPolicyHistory' does not have a primary 
           <Property Name="code" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="fl_premrate" Relationship="Flex.Model.FK_fl_premrate_fl_poltype" FromRole="fl_poltype" ToRole="fl_premrate" />
         </EntityType>
-        <EntityType Name="fl_pendingSMS">
-          <Key>
-            <PropertyRef Name="srn" />
-          </Key>
-          <Property Name="srn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="telephone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="isSent" Type="Boolean" />
-          <Property Name="retrycount" Type="Int32" />
-          <Property Name="Application" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EnumType Name="Instrument" a:ExternalTypeName="Flex.Data.Enum.Instrument" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         <EnumType Name="PaymentMethod" a:ExternalTypeName="Flex.Data.Enum.PaymentMethod" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         <EntityType Name="fl_location">
@@ -1457,54 +1666,6 @@ warning 6002: The table/view 'Flex.dbo.vwPolicyHistory' does not have a primary 
           <Property Name="Isdeleted" Type="Boolean" />
           <NavigationProperty Name="fl_policyinput" Relationship="Flex.Model.FK_fl_policyinput_fl_location" FromRole="fl_location" ToRole="fl_policyinput" />
         </EntityType>
-        <EntityType Name="fl_policyinput">
-          <Key>
-            <PropertyRef Name="srn" />
-          </Key>
-          <Property Name="srn" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="pcn" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
-          <Property Name="grpcode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="sex" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
-          <Property Name="title" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="surname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="othername" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="peradd" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="dob" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
-          <Property Name="nok" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="datecreated" Type="DateTime" Precision="0" />
-          <Property Name="createdby" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="datemodified" Type="DateTime" Precision="0" />
-          <Property Name="modifiedby" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="accdate" Type="DateTime" Precision="3" />
-          <Property Name="quoteno" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="policyno" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="poltype" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
-          <Property Name="exitdate" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
-          <Property Name="location" Type="Int32" />
-          <Property Name="agentcode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="premium" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="telephone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="pinword" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="religion" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="fl_location" Relationship="Flex.Model.FK_fl_policyinput_fl_location" FromRole="fl_policyinput" ToRole="fl_location" />
-          <Property Name="status" Type="Flex.Model.Status" />
-          <NavigationProperty Name="NextofKin_BeneficiaryStaging" Relationship="Flex.Model.FK_NextofKin_BeneficiaryStaging_fl_policyinput" FromRole="fl_policyinput" ToRole="NextofKin_BeneficiaryStaging" />
-          <Property Name="pwd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PictureFile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <Association Name="FK_fl_policyinput_fl_location">
-          <End Type="Flex.Model.fl_location" Role="fl_location" Multiplicity="0..1" />
-          <End Type="Flex.Model.fl_policyinput" Role="fl_policyinput" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="fl_location">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="fl_policyinput">
-              <PropertyRef Name="location" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="fl_receiptcontrol">
           <Key>
             <PropertyRef Name="Id" />
@@ -1716,18 +1877,6 @@ warning 6002: The table/view 'Flex.dbo.vwPolicyHistory' does not have a primary 
           </ReferentialConstraint>
         </Association>
         <EnumType Name="Status" a:ExternalTypeName="Flex.Data.Enum.Status" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
-        <Association Name="FK_NextofKin_BeneficiaryStaging_fl_policyinput">
-          <End Type="Flex.Model.fl_policyinput" Role="fl_policyinput" Multiplicity="0..1" />
-          <End Type="Flex.Model.NextofKin_BeneficiaryStaging" Role="NextofKin_BeneficiaryStaging" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="fl_policyinput">
-              <PropertyRef Name="srn" />
-            </Principal>
-            <Dependent Role="NextofKin_BeneficiaryStaging">
-              <PropertyRef Name="PolicyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EnumType Name="Category" a:ExternalTypeName="Flex.Data.Enum.Category" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         <EnumType Name="Type" a:ExternalTypeName="Flex.Data.Enum.Type" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         <EntityType Name="vwPolicy">
@@ -1788,6 +1937,7 @@ warning 6002: The table/view 'Flex.dbo.vwPolicyHistory' does not have a primary 
           <Property Name="IntrBound" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="CommBound" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="PremRateId" Type="Int32" />
+          <NavigationProperty Name="fl_premrate" Relationship="Flex.Model.FK_fl_premrateRules_fl_premrate" FromRole="fl_premrateRules" ToRole="fl_premrate" />
         </EntityType>
         <EnumType Name="ClaimStatus" a:ExternalTypeName="Flex.Data.Enum.Status" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         <EntityType Name="fl_payclaim">
@@ -1838,7 +1988,8 @@ warning 6002: The table/view 'Flex.dbo.vwPolicyHistory' does not have a primary 
           <Property Name="DateCreated" Type="DateTime" Precision="7" />
           <Property Name="Createdby" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="annmonth" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
-        </EntityType>
+          <NavigationProperty Name="fl_premrate" Relationship="Flex.Model.FK_fl_premrate_fl_grouptype" FromRole="fl_grouptype" ToRole="fl_premrate" />
+          </EntityType>
         <EntityType Name="fl_payinput">
           <Key>
             <PropertyRef Name="Id" />
@@ -1968,7 +2119,7 @@ warning 6002: The table/view 'Flex.dbo.vwPolicyHistory' does not have a primary 
           <Property Name="payindicator" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="status" Type="Flex.Model.Status" />
           <Property Name="createdby" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="datecreated" Type="DateTime" Precision="7" />
+          <Property Name="datecreated" Type="DateTime" Precision="0" />
           <Property Name="ps" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="er" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="ee" Type="Decimal" Precision="19" Scale="4" />
@@ -2079,13 +2230,70 @@ warning 6002: The table/view 'Flex.dbo.vwPolicyHistory' does not have a primary 
           <Property Name="orig_date" Type="DateTime" Precision="0" />
           <Property Name="telephone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="fl_pendingSMS">
+          <Key>
+            <PropertyRef Name="srn" />
+          </Key>
+          <Property Name="srn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="telephone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isSent" Type="Boolean" />
+          <Property Name="retrycount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="fl_policyinput">
+          <Key>
+            <PropertyRef Name="srn" />
+          </Key>
+          <Property Name="srn" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="policyno" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="pcn" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
+          <Property Name="grpcode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="sex" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+          <Property Name="title" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="surname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="othername" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="peradd" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="dob" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="nok" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="datecreated" Type="DateTime" Precision="0" />
+          <Property Name="createdby" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="datemodified" Type="DateTime" Precision="0" />
+          <Property Name="modifiedby" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="accdate" Type="DateTime" Precision="3" />
+          <Property Name="quoteno" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="poltype" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="exitdate" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="location" Type="Int32" />
+          <Property Name="agentcode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="premium" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="telephone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="pinword" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="religion" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="pwd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PictureFile" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="fl_location" Relationship="Flex.Model.FK_fl_policyinput_fl_location" FromRole="fl_policyinput" ToRole="fl_location" />
+        </EntityType>
+        <Association Name="FK_fl_policyinput_fl_location">
+          <End Type="Flex.Model.fl_location" Role="fl_location" Multiplicity="0..1" />
+          <End Type="Flex.Model.fl_policyinput" Role="fl_policyinput" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fl_location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="fl_policyinput">
+              <PropertyRef Name="location" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="fl_premrate">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="poltypeId" Type="Int32" Nullable="false" />
-          <Property Name="grpcode" Type="Int32" />
+          <Property Name="grpcodeId" Type="Int32" />
           <Property Name="period" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="interest" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="commrate" Type="Decimal" Precision="18" Scale="2" />
@@ -2096,8 +2304,24 @@ warning 6002: The table/view 'Flex.dbo.vwPolicyHistory' does not have a primary 
           <Property Name="DateModified" Type="DateTime" Precision="7" />
           <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="poltype" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="grpcode" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="fl_grouptype" Relationship="Flex.Model.FK_fl_premrate_fl_grouptype" FromRole="fl_premrate" ToRole="fl_grouptype" />
           <NavigationProperty Name="fl_poltype" Relationship="Flex.Model.FK_fl_premrate_fl_poltype" FromRole="fl_premrate" ToRole="fl_poltype" />
+          <NavigationProperty Name="fl_premrateRules" Relationship="Flex.Model.FK_fl_premrateRules_fl_premrate" FromRole="fl_premrate" ToRole="fl_premrateRules" />
         </EntityType>
+        <Association Name="FK_fl_premrate_fl_grouptype">
+          <End Type="Flex.Model.fl_grouptype" Role="fl_grouptype" Multiplicity="0..1" />
+          <End Type="Flex.Model.fl_premrate" Role="fl_premrate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fl_grouptype">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="fl_premrate">
+              <PropertyRef Name="grpcodeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_fl_premrate_fl_poltype">
           <End Type="Flex.Model.fl_poltype" Role="fl_poltype" Multiplicity="1" />
           <End Type="Flex.Model.fl_premrate" Role="fl_premrate" Multiplicity="*" />
@@ -2110,6 +2334,46 @@ warning 6002: The table/view 'Flex.dbo.vwPolicyHistory' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_fl_premrateRules_fl_premrate">
+          <End Type="Flex.Model.fl_premrate" Role="fl_premrate" Multiplicity="0..1" />
+          <End Type="Flex.Model.fl_premrateRules" Role="fl_premrateRules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fl_premrate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="fl_premrateRules">
+              <PropertyRef Name="PremRateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="fl_temphistory">
+          <Key>
+            <PropertyRef Name="workstation" />
+            <PropertyRef Name="policyno" />
+            <PropertyRef Name="receiptno" />
+            <PropertyRef Name="period" />
+          </Key>
+          <Property Name="workstation" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="policyno" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="receiptno" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="period" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="grpcode" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="pcn" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="poltype" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="orig_date" Type="DateTime" Precision="0" />
+          <Property Name="trandate" Type="DateTime" Precision="0" />
+          <Property Name="amount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="gir" Type="Single" />
+          <Property Name="cur_intr" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="cumul_intr" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="loanamt" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="doctype" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="openbalance" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="opendeposit" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="deposit" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="curdep_intr" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="cumuldep_intr" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
         <!--<Association Name="PersonalDetailsStagingNextofKin_BeneficiaryStaging">
           <End Type="Flex.Model.PersonalDetailsStaging" Role="PersonalDetailsStaging" Multiplicity="1" />
           <End Type="Flex.Model.NextofKin_BeneficiaryStaging" Role="NextofKin_BeneficiaryStaging" Multiplicity="*" />
@@ -2331,18 +2595,6 @@ warning 6002: The table/view 'Flex.dbo.vwPolicyHistory' does not have a primary 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="fl_pendingSMS">
-            <EntityTypeMapping TypeName="Flex.Model.fl_pendingSMS">
-              <MappingFragment StoreEntitySet="fl_pendingSMS">
-                <ScalarProperty Name="Application" ColumnName="Application" />
-                <ScalarProperty Name="retrycount" ColumnName="retrycount" />
-                <ScalarProperty Name="isSent" ColumnName="isSent" />
-                <ScalarProperty Name="message" ColumnName="message" />
-                <ScalarProperty Name="telephone" ColumnName="telephone" />
-                <ScalarProperty Name="srn" ColumnName="srn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="fl_location">
             <EntityTypeMapping TypeName="Flex.Model.fl_location">
               <MappingFragment StoreEntitySet="fl_location">
@@ -2355,41 +2607,6 @@ warning 6002: The table/view 'Flex.dbo.vwPolicyHistory' does not have a primary 
                 <ScalarProperty Name="locstate" ColumnName="locstate" />
                 <ScalarProperty Name="locdesc" ColumnName="locdesc" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="fl_policyinput">
-            <EntityTypeMapping TypeName="Flex.Model.fl_policyinput">
-              <MappingFragment StoreEntitySet="fl_policyinput">
-                <ScalarProperty Name="PictureFile" ColumnName="PictureFile" />
-                <ScalarProperty Name="pwd" ColumnName="pwd" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="religion" ColumnName="religion" />
-                <ScalarProperty Name="pinword" ColumnName="pinword" />
-                <ScalarProperty Name="telephone" ColumnName="telephone" />
-                <ScalarProperty Name="premium" ColumnName="premium" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="agentcode" ColumnName="agentcode" />
-                <ScalarProperty Name="location" ColumnName="location" />
-                <ScalarProperty Name="exitdate" ColumnName="exitdate" />
-                <ScalarProperty Name="poltype" ColumnName="poltype" />
-                <ScalarProperty Name="policyno" ColumnName="policyno" />
-                <ScalarProperty Name="quoteno" ColumnName="quoteno" />
-                <ScalarProperty Name="accdate" ColumnName="accdate" />
-                <ScalarProperty Name="modifiedby" ColumnName="modifiedby" />
-                <ScalarProperty Name="datemodified" ColumnName="datemodified" />
-                <ScalarProperty Name="createdby" ColumnName="createdby" />
-                <ScalarProperty Name="datecreated" ColumnName="datecreated" />
-                <ScalarProperty Name="nok" ColumnName="nok" />
-                <ScalarProperty Name="dob" ColumnName="dob" />
-                <ScalarProperty Name="peradd" ColumnName="peradd" />
-                <ScalarProperty Name="othername" ColumnName="othername" />
-                <ScalarProperty Name="surname" ColumnName="surname" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="sex" ColumnName="sex" />
-                <ScalarProperty Name="grpcode" ColumnName="grpcode" />
-                <ScalarProperty Name="pcn" ColumnName="pcn" />
-                <ScalarProperty Name="srn" ColumnName="srn" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2890,9 +3107,62 @@ warning 6002: The table/view 'Flex.dbo.vwPolicyHistory' does not have a primary 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="fl_pendingSMS">
+            <EntityTypeMapping TypeName="Flex.Model.fl_pendingSMS">
+              <MappingFragment StoreEntitySet="fl_pendingSMS">
+                <ScalarProperty Name="retrycount" ColumnName="retrycount" />
+                <ScalarProperty Name="isSent" ColumnName="isSent" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="telephone" ColumnName="telephone" />
+                <ScalarProperty Name="srn" ColumnName="srn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fl_policyinput">
+            <EntityTypeMapping TypeName="Flex.Model.fl_policyinput">
+              <MappingFragment StoreEntitySet="fl_policyinput">
+                <ScalarProperty Name="PictureFile" ColumnName="PictureFile" />
+                <ScalarProperty Name="pwd" ColumnName="pwd" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="religion" ColumnName="religion" />
+                <ScalarProperty Name="pinword" ColumnName="pinword" />
+                <ScalarProperty Name="telephone" ColumnName="telephone" />
+                <ScalarProperty Name="premium" ColumnName="premium" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="agentcode" ColumnName="agentcode" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="exitdate" ColumnName="exitdate" />
+                <ScalarProperty Name="poltype" ColumnName="poltype" />
+                <ScalarProperty Name="quoteno" ColumnName="quoteno" />
+                <ScalarProperty Name="accdate" ColumnName="accdate" />
+                <ScalarProperty Name="modifiedby" ColumnName="modifiedby" />
+                <ScalarProperty Name="datemodified" ColumnName="datemodified" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="datecreated" ColumnName="datecreated" />
+                <ScalarProperty Name="nok" ColumnName="nok" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="peradd" ColumnName="peradd" />
+                <ScalarProperty Name="othername" ColumnName="othername" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="sex" ColumnName="sex" />
+                <ScalarProperty Name="grpcode" ColumnName="grpcode" />
+                <ScalarProperty Name="pcn" ColumnName="pcn" />
+                <ScalarProperty Name="policyno" ColumnName="policyno" />
+                <ScalarProperty Name="srn" ColumnName="srn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="fl_annual_interest_calc" FunctionName="Flex.Model.Store.fl_annual_interest_calc" />
+          <FunctionImportMapping FunctionImportName="fl_annual_interest_calcTSP" FunctionName="Flex.Model.Store.fl_annual_interest_calcTSP" />
+          <FunctionImportMapping FunctionImportName="fl_backupb4_interest" FunctionName="Flex.Model.Store.fl_backupb4_interest" />
+          <FunctionImportMapping FunctionImportName="fl_create_statement" FunctionName="Flex.Model.Store.fl_create_statement" />
+          <FunctionImportMapping FunctionImportName="fl_restoreb4_interest" FunctionName="Flex.Model.Store.fl_restoreb4_interest" />
           <EntitySetMapping Name="fl_premrate">
             <EntityTypeMapping TypeName="Flex.Model.fl_premrate">
               <MappingFragment StoreEntitySet="fl_premrate">
+                <ScalarProperty Name="grpcode" ColumnName="grpcode" />
+                <ScalarProperty Name="poltype" ColumnName="poltype" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="DateModified" ColumnName="DateModified" />
@@ -2903,9 +3173,35 @@ warning 6002: The table/view 'Flex.dbo.vwPolicyHistory' does not have a primary 
                 <ScalarProperty Name="commrate" ColumnName="commrate" />
                 <ScalarProperty Name="interest" ColumnName="interest" />
                 <ScalarProperty Name="period" ColumnName="period" />
-                <ScalarProperty Name="grpcode" ColumnName="grpcode" />
+                <ScalarProperty Name="grpcodeId" ColumnName="grpcodeId" />
                 <ScalarProperty Name="poltypeId" ColumnName="poltypeId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fl_temphistory">
+            <EntityTypeMapping TypeName="Flex.Model.fl_temphistory">
+              <MappingFragment StoreEntitySet="fl_temphistory">
+                <ScalarProperty Name="cumuldep_intr" ColumnName="cumuldep_intr" />
+                <ScalarProperty Name="curdep_intr" ColumnName="curdep_intr" />
+                <ScalarProperty Name="deposit" ColumnName="deposit" />
+                <ScalarProperty Name="opendeposit" ColumnName="opendeposit" />
+                <ScalarProperty Name="openbalance" ColumnName="openbalance" />
+                <ScalarProperty Name="doctype" ColumnName="doctype" />
+                <ScalarProperty Name="loanamt" ColumnName="loanamt" />
+                <ScalarProperty Name="cumul_intr" ColumnName="cumul_intr" />
+                <ScalarProperty Name="cur_intr" ColumnName="cur_intr" />
+                <ScalarProperty Name="gir" ColumnName="gir" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="trandate" ColumnName="trandate" />
+                <ScalarProperty Name="orig_date" ColumnName="orig_date" />
+                <ScalarProperty Name="poltype" ColumnName="poltype" />
+                <ScalarProperty Name="pcn" ColumnName="pcn" />
+                <ScalarProperty Name="grpcode" ColumnName="grpcode" />
+                <ScalarProperty Name="period" ColumnName="period" />
+                <ScalarProperty Name="receiptno" ColumnName="receiptno" />
+                <ScalarProperty Name="policyno" ColumnName="policyno" />
+                <ScalarProperty Name="workstation" ColumnName="workstation" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

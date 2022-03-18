@@ -126,6 +126,9 @@
     <Compile Include="Model\fl_system.cs">
       <DependentUpon>FlexDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\fl_temphistory.cs">
+      <DependentUpon>FlexDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\fl_translog.cs">
       <DependentUpon>FlexDb.tt</DependentUpon>
     </Compile>
@@ -203,6 +206,7 @@
     <Compile Include="ViewModel\QueryModel.cs" />
     <Compile Include="ViewModel\PendingPolicy.cs" />
     <Compile Include="ViewModel\RecordNo.cs" />
+    <Compile Include="ViewModel\StatementViewModel.cs" />
     <Compile Include="ViewModel\UserAuthViewModel.cs" />
   </ItemGroup>
   <ItemGroup />

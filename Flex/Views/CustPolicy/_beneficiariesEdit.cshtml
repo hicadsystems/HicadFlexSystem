@@ -2,7 +2,7 @@
 @model SignUpBindingModel
 
 @*<div class="table-responsive">*@
-        <table id="tbBen" class="table table-condensed">
+        <table id="tbBenEdit" class="table table-condensed">
             <thead>
                 <tr class="headings">
 
@@ -32,7 +32,7 @@
                         <td>@ben.Dob</td>
                         <td>@ben.Relationship</td>
                         <td>@ben.Proportion</td>
-                        <td><a class="btn btn-danger fa fa-remove" ></a></td>
+                        <td><a class="btn btn-primary fa fa-pencil" onclick="editBeneficiary(@ViewBag.Id, @ben.Id)"></a></td>
                     </tr>
                 }
 

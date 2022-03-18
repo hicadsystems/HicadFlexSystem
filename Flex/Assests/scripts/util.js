@@ -10,7 +10,12 @@ function showModal(data, title,fn) {
     //$('modalbody').html(data);
     var modalbody = document.getElementById('modalbody');
     modalbody.innerHTML = data;
+    console.log(data)
     modalbody.focus();
+
+    //var ppp = document.getElementById('PolType').value;
+    //console.log(ppp);
+
     var modaltitle = document.getElementById('title');
     modaltitle.innerText = title;
     var submitbtn = document.getElementById('modalSubmit');
@@ -19,7 +24,24 @@ function showModal(data, title,fn) {
     if (fn == '') {
         document.getElementById('modal-footer').style.display = 'none';
     }
-   
+
+    if (title==='Rate') {
+        //document.getElementById("rateRules").style.display = "none";
+        var ppp = document.getElementById('PolType').value;
+        console.log(ppp);
+       
+
+        document.getElementById('PolType').addEventListener('change', function (event) {
+            var poltype = event.target.value;
+            console.log(poltype);
+            if (poltype === 'PPP2') {
+                document.getElementById('rateRulesPPP').style.display = 'block'
+                document.getElementById('rateRules').style.display='none'
+            }
+        })
+    }
+
+  
     //submitbtn.onclick=fn;
     $('#Modal').modal({ backdrop: 'static', keyboard: false });
 

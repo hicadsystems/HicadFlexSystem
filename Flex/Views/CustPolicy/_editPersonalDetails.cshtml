@@ -5,7 +5,8 @@
 @{
     Layout = null;
 }
-<form name="step1" id="pDetails">
+@*<form name="step1" id="pDetails">*@
+<form name="step1" id="stepAFrm">
     <div class="bg-white col-md-12">
         <div class="row">
             <div class="form-group col-md-4 ss-item-required">
@@ -18,13 +19,13 @@
             </div>
             <div class="form-group col-md-4 ss-item-required">
                 <label for="ResidentialAddress" class="color-transparent-darker lite small">RESIDENTIAL ADDRESS</label>
-                <textarea name="ResidentialAddress" class="form-control input-md" rows="2" value="@Model.PersonalInfo.ResAddress"></textarea>
+                <textarea name="ResAddress" class="form-control input-md" rows="2" value="">@Model.PersonalInfo.ResAddress</textarea>
             </div>
         </div>
         <div class="row">
             <div class="form-group col-md-4">
                 <label for="OfficeAddress" class="color-transparent-darker lite small">OFFICE ADDRESS</label>
-                <textarea name="OfficeAddress" class="form-control input-md" rows="2" value="@Model.PersonalInfo.OfficeAddress"></textarea>
+                <textarea name="OfficeAddress" class="form-control input-md" rows="2">@Model.PersonalInfo.OfficeAddress</textarea>
             </div>
             <div class="form-group col-md-4">
                 <label for="PostalAddress" class="color-transparent-darker lite small">POSTAL ADDRESS</label>
@@ -36,7 +37,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-md-4 ss-item-required">
+            <div class="form-group col-md-4">
                 <label for="Email" class="color-transparent-darker lite small">EMAIL</label>
                 <input type="email" name="Email" class="form-control input-md" value="@Model.PersonalInfo.Email" />
             </div>
@@ -54,7 +55,46 @@
                 <input type="text" name="Occupation" class="form-control input-md" value="@Model.PersonalInfo.Occupation" />
             </div>
         </div>
-        <input type="button" class="btn btn-block btn-success" value="Submit" onclick="createPolicy(1)" />
+        <div class="row">
+
+            <div class="form-group col-md-4 ss-item-required">
+                <label for="PolicyType" class="color-transparent-darker lite small">Policy Type</label>
+                @Html.DropDownList("PolicyType", (IEnumerable<SelectListItem>)ViewBag.polType,
+                                        new { @class = "form-control input-md", @required = "true", @id = "polType" })
+                @*new { @class = "form-control input-md", @required = "true", @id = "polType" })*@
+            </div>
+
+            <div class="form-group col-md-4 ss-item-required">
+                <label for="Location" class="color-transparent-darker lite small">Location</label>
+                @Html.DropDownList("Location", (IEnumerable<SelectListItem>)ViewBag.Location,
+                                        new { @class = "form-control input-md", @required = "true", @id = "location" })
+            </div>
+            <div class="form-group col-md-4">
+                <label class="color-transparent-darker lite small" for="Agent">Agent</label>
+                @Html.DropDownList("AgentCode", (IEnumerable<SelectListItem>)ViewBag.Agent, String.Empty,
+                                  new { @class = "form-control input-md", @required = "true" })
+            </div>
+           
+
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4 ss-item-required">
+                <label class="color-transparent-darker lite small" for="Amount">Contribution Amount</label>
+                <input type="number" name="Amount" class="form-control input-md" required value="@Model.PersonalInfo.Amount" min="0" />
+            </div>
+            <div class="form-group col-md-4 ss-item-required">
+                <label class="color-transparent-darker lite small" for="Duration">Sex</label>
+                @Html.DropDownList("Gender", (IEnumerable<SelectListItem>)ViewBag.Gender, new { @class = "form-control input-md", @required = "true" })
+            </div>
+            <div class="form-group col-md-4 ss-item-required">
+                <label class="color-transparent-darker lite small" for="Agent">Religion</label>
+                @Html.DropDownList("Religion", (IEnumerable<SelectListItem>)ViewBag.Religion, new { @class = "form-control input-md", @required = "true" })
+            </div>
+            <div class="form-group col-md-4">
+                <input hidden type="hidden" name="CustomerId" class="form-control input-md" required value="@ViewBag.Id" min="0" />
+            </div>
+        </div>
+        <input type="button" class="btn btn-block btn-success" value="Submit" onclick="editPolicy(1)" />
     </div>
 </form>
 

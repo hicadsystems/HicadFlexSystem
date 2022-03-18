@@ -3,7 +3,7 @@
 @{
     var nextofkin = @Model.PersonalInfo.NextofKin ?? new NextofKinBeneficiaryBindingModel();
 }
-<form name="step2" action="@Url.Action("Next")" id="nok">
+<form name="step2" action="@Url.Action("DirectPolicyUpdate","CustPolicy")"  id="nok">
     <div class="col-md-12 bg-white">
         <div class="row">
             <div class="form-group col-md-4 ss-item-required">
@@ -12,7 +12,7 @@
             </div>
             <div class="form-group col-md-4 ss-item-required">
                 <label class="color-transparent-darker lite small" for="Address">Address</label>
-                <textarea name="Address" class="form-control input-md" required rows="2" value="@nextofkin.Address"></textarea>
+                <textarea name="Address" class="form-control input-md" required rows="2" value="">@nextofkin.Address</textarea>
             </div>
             <div class="form-group col-md-4 ss-item-required">
                 <label class="color-transparent-darker lite small" for="Phone">Phone</label>
@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-md-4 ss-item-required">
+            <div class="form-group col-md-4">
                 <label class="color-transparent-darker lite small" for="Email">Email</label>
                 <input type="email" name="Email" class="form-control input-md" required value="@nextofkin.Email" />
             </div>
@@ -28,14 +28,22 @@
             <div class="form-group col-md-4 ss-item-required">
                 <label for="dob" class="color-transparent-darker lite small">DATE of BIRTH</label>
                 <div class="input-group input-group-sm">
-                    <input type="text" class="form-control datepicker" name="Dob" id="Dob" value="@nextofkin.Dob.ToShortDateString()" />
+                    <input type="text" class="form-control datepicker" name="Dob" id="Dob" value="@nextofkin.Dob" />
                     <span class="input-group-btn" style="padding-top:1px;">
                         <button type="button" class="btn btn-default" onclick="openDatePicker(this)"><i class="fa fa-calendar"></i></button>
                     </span>
                 </div>
             </div>
+            <div class="form-group col-md-4">
+                <input type="hidden" name="Id"  value="@nextofkin.Id"/>
+            </div>
         </div>
-        <input type="button" class="btn btn-block btn-success" value="Submit" onclick="createPolicy(1)" />
+         <div class="col-md-offset-1">
+            <input type="button" class="btn btn-gray btn-lg margin-right-md" value="back" onclick="moveBackEdit(1)" />
+            <input type="button" class="btn btn-success btn-lg padding-lg-h" value="Submit" onclick="editPolicy(2)" />
+        </div>
+        @*<input type="button" class="btn btn-gray btn-lg margin-right-md" value="back" onclick="moveBackEdit(1)" />
+        <input type="button" class="btn btn-block btn-success" value="Submit" onclick="editPolicy(2)" />*@
     </div>
     @*</div>*@
 </form>
