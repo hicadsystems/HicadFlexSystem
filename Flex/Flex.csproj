@@ -208,7 +208,6 @@
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\UserRoleController.cs" />
-    <Compile Include="Controllers\Util\PolicyTypes.cs" />
     <Compile Include="Controllers\Util\ReportActionFileResult.cs" />
     <Compile Include="Filters\AuthFilter.cs" />
     <Compile Include="Global.asax.cs">
@@ -223,26 +222,26 @@
     <Compile Include="Reports\rate.cs">
       <DependentUpon>rate.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\poltype1.cs">
       <DependentUpon>poltype.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\paylist.cs">
       <DependentUpon>paylist.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\approvedpolicy.cs">
       <DependentUpon>approvedpolicy.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\claim1.cs">
       <AutoGen>True</AutoGen>
@@ -426,9 +425,9 @@
     </Compile>
     <Compile Include="Reports\location.cs">
       <DependentUpon>location.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\maturity1.cs">
       <AutoGen>True</AutoGen>
@@ -481,56 +480,56 @@
     <Compile Include="Reports\nstatement_GRPCA.cs">
       <DependentUpon>nstatement_GRPCA.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\nstatement_GRPTCPA.cs">
       <DependentUpon>nstatement_GRPTCPA.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\nstatement_GRPPERTA.cs">
       <DependentUpon>nstatement_GRPPERTA.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\nstatement_GRPPACA.cs">
       <DependentUpon>nstatement_GRPPACA.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\nstatement_GRPTCA.cs">
       <DependentUpon>nstatement_GRPTCA.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\nstatement_GRPTRVA.cs">
       <DependentUpon>nstatement_GRPTRVA.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\nstatement_GRPPCA.cs">
       <DependentUpon>nstatement_GRPPCA.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\nstatement_GRPERTA.cs">
       <DependentUpon>nstatement_GRPERTA.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\nstatement_GRPERA.cs">
       <DependentUpon>nstatement_GRPERA.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\nstatement_GRPEARA.cs">
       <AutoGen>True</AutoGen>
@@ -541,56 +540,56 @@
     <Compile Include="Reports\nstatement_GRPTC.cs">
       <DependentUpon>nstatement_GRPTC.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\nstatement_GRPTCP.cs">
       <DependentUpon>nstatement_GRPTCP.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\nstatement_GRPPERT.cs">
       <DependentUpon>nstatement_GRPPERT.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\nstatement_GRPPAC.cs">
       <DependentUpon>nstatement_GRPPAC.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\nstatement_GRPTRV.cs">
       <DependentUpon>nstatement_GRPTRV.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\nstatement_GRPERT.cs">
       <DependentUpon>nstatement_GRPERT.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\nstatement_GRPER.cs">
       <DependentUpon>nstatement_GRPER.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\nstatement_GRPC.cs">
       <DependentUpon>nstatement_GRPC.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\nstatement_GRPALL.cs">
       <DependentUpon>nstatement_GRPALL.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\nstatement_grpallA1.cs">
       <AutoGen>True</AutoGen>
@@ -637,8 +636,8 @@
     <Compile Include="Reports\agent.cs">
       <DependentUpon>agent.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\prodanalysis1.cs">
       <AutoGen>True</AutoGen>
@@ -690,9 +689,9 @@
     </Compile>
     <Compile Include="Reports\rctenquirylist.cs">
       <DependentUpon>rctenquirylist.rpt</DependentUpon>
-      <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\receiptsummary1.cs">
       <AutoGen>True</AutoGen>
@@ -1150,6 +1149,7 @@
     <Content Include="Assests\Upload\PolicyUpload.xlsx" />
     <Content Include="Assests\Upload\GPolicyUpload.xlsx" />
     <Content Include="Assests\Upload\GPaymentUpload.xlsx" />
+    <Content Include="Index.cshtml" />
     <None Include="Properties\PublishProfiles\flex.pubxml" />
     <Content Include="Pictures\default.png" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -1632,13 +1632,13 @@
     <Content Include="Views\Report\_gratuityAccountStatement.cshtml" />
     <Content Include="Views\Payment\_gpaymentupdate.cshtml" />
     <Content Include="Views\Payment\_greceiptreversal.cshtml" />
-    <Content Include="Views\CustPolicy\_beneficiariesEdit.cshtml" />
-    <Content Include="Views\Payment\_calculateinterest.cshtml" />
-    <Content Include="Views\Payment\_calcinterestlayout.cshtml" />
-    <Content Include="Views\Payment\_restorebk.cshtml" />
+    <Content Include="Views\Payment\backupforintrcalc.cshtml" />
     <Content Include="Views\Payment\_backupforintrcalc.cshtml" />
+    <Content Include="Views\Payment\_calcinterestlayout.cshtml" />
+    <Content Include="Views\Payment\_calculateinterest.cshtml" />
     <Content Include="Views\Payment\_calculateinterestPPP2.cshtml" />
-    <Content Include="Views\SetUp\_addRate2.cshtml" />
+    <Content Include="Views\Payment\_restorebk.cshtml" />
+    <Content Include="Views\CustPolicy\_beneficiariesEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

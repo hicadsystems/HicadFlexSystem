@@ -12,48 +12,108 @@
                 <label for="PolType" class="color-transparent-darker lite small uppercase">Policy Type</label>
                 @*<input type="text" name="PolType" class="form-control input-md" />*@
                 @Html.DropDownList("PolType", (IEnumerable<SelectListItem>)ViewBag.polType,
-                                           new { @class = "form-control input-md", @id = "PolType" })
+                                                               new { @class = "form-control input-md", @id = "PolType" })
             </div>
             <div class="form-group col-md-4 ss-item-required">
                 <label for="Group" class="color-transparent-darker lite small uppercase">Group</label>
                 @*<input type="text" name="Group" class="form-control input-md" />*@
                 @Html.DropDownList("Group", (IEnumerable<SelectListItem>)ViewBag.grp, String.Empty,
-                                           new { @class = "form-control input-md", @id = "Group" })
+                                                               new { @class = "form-control input-md", @id = "Group" })
             </div>
 
         </div>
         <div class="row">
-            <div class="form-group col-md-2 ss-item-required">
+            <div class="col-md-2" style="margin-top:30px; margin-left:0px;">
+                <span>Year 1</span>
+            </div>
+            <div class="form-group col-md-3 ss-item-required" style="margin-right:0px;">
                 <label for="Group" class="color-transparent-darker lite small uppercase">GIR</label>
-                <input type="number" name="intr" id="intr" class="form-control input-md" min="0" value="0" />
+                <input type="number" name="Interest" id="interest" class="form-control input-md" min="0" value="0" />
             </div>
-            <div class="form-group col-md-2 ss-item-required">
+            <div class="form-group col-md-3 ss-item-required">
                 <label for="Group" class="color-transparent-darker lite small uppercase">Staff</label>
-                <input type="number" name="Commission" id="Commission" class="form-control input-md" min="0" value="0" />
+                <input type="number" name="Commrate" id="comrate" class="form-control input-md" min="0" value="0" />
             </div>
-            <div class="form-group col-md-2 ss-item-required">
+            <div class="form-group col-md-3 ss-item-required">
                 <label for="Group" class="color-transparent-darker lite small uppercase">Marketer</label>
-                <input type="number" name="MktCommRate" id="MktCommRate" class="form-control input-md" min="0" value="0" />
+                <input type="number" name="MktCommrate" id="mktcommrate" class="form-control input-md" min="0" value="0" />
             </div>
-            <div class="form-group col-md-3 ss-item-required">
-                <label for="Group" class="color-transparent-darker lite small uppercase">Comm. Upper Limit</label>
-                <input type="number" name="CommUpperLimit" id="CommUpperLimit" class="form-control input-md" min="0" value="0" />
-            </div>
-            <div class="form-group col-md-3 ss-item-required">
-                <label for="Group" class="color-transparent-darker lite small uppercase">Interest Upper Limit</label>
-                <input type="number" name="IntrUpperLimit" id="IntrUpperLimit" class="form-control input-md" min="0" value="0" />
-            </div>
-
         </div>
-       
+
+        <div class="row">
+            <div class="col-md-2" style="margin-top:10px; margin-left:0px;">
+                <span>Year 2</span>
+            </div>
+            @*gir year 2*@
+            <div class="form-group col-md-3 ss-item-required" style="margin-right:0px;">
+                <input type="number" name="Interest2" id="interest2" class="form-control input-md" min="0" value="0" />
+            </div>
+            @*gir staff 2*@
+            <div class="form-group col-md-3 ss-item-required">
+                <input type="number" name="Commrate2" id="comrate2" class="form-control input-md" min="0" value="0" />
+            </div>
+            @*marketer year 2*@
+            <div class="form-group col-md-3 ss-item-required">
+                <input type="number" name="MktCommrate2" id="mktcommrate2" class="form-control input-md" min="0" value="0" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2" style="margin-top:10px; margin-left:0px;">
+                <span>Year 3</span>
+            </div>
+            @*gir year 3*@
+            <div class="form-group col-md-3 ss-item-required" style="margin-right:0px;">
+                <input type="number" name="Interest3" id="interest3" class="form-control input-md" min="0" value="0" />
+            </div>
+            @*gir staff 3*@
+            <div class="form-group col-md-3 ss-item-required">
+                <input type="number" name="Commrate3" id="comrate3" class="form-control input-md" min="0" value="0" />
+            </div>
+            @*marketer year 3*@
+            <div class="form-group col-md-3 ss-item-required">
+                <input type="number" name="MktCommrate3" id="mktcommrate3" class="form-control input-md" min="0" value="0" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2" style="margin-top:10px; margin-left:0px;">
+                <span>Year 4</span>
+            </div>
+            @*gir year 4*@
+            <div class="form-group col-md-3 ss-item-required" style="margin-right:0px;">
+                <input type="number" name="IntrBound" id="intr_bound" class="form-control input-md" min="0" value="0" />
+            </div>
+            @*staff year 4*@
+            <div class="form-group col-md-3 ss-item-required">
+                <input type="number" name="ComBound2" id="com_bound2" class="form-control input-md" min="0" value="0" />
+            </div>
+            @*marketer year 4*@
+            <div class="form-group col-md-3 ss-item-required">
+                <input type="number" name="IntrBound2" id="intr_bound2" class="form-control input-md" min="0" value="0" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2" style="margin-top:10px; margin-left:0px;">
+                <span>Year 5</span>
+            </div>
+            @*gir year 5*@
+            <div class="form-group col-md-3 ss-item-required" style="margin-right:0px;">
+                <input type="number" name="CommBound" id="comm_bound" class="form-control input-md" min="0" value="0" />
+            </div>
+            @*staff year 5*@
+            <div class="form-group col-md-3 ss-item-required">
+                <input type="number" name="CommBound3" id="comm_bound3" class="form-control input-md" min="0" value="0" />
+            </div>
+            @*marketer year 5*@
+            <div class="form-group col-md-3 ss-item-required">
+                <input type="number" name="IntrBound3" id="intr_bound3" class="form-control input-md" min="0" value="0" />
+            </div>
+        </div>
+
     </div>
 </form>
 
 
 
-<form id="rateRulesPPP">
-    <div class="clearfix"></div>
-
-   
-   
-</form>

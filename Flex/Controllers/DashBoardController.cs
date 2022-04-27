@@ -19,7 +19,8 @@ namespace Flex.Controllers
             {
                 var uSession = GetUserSesiion();
                 var roleId = uSession.fl_password.UserRoles.ToList()[0].RoleId;
-                //var Role = new CoreSystem<Role>(context).FindAll(x => x.Id == roleId).FirstOrDefault();
+                //var roleId = 1012;
+                var Role = new CoreSystem<Role>(context).FindAll(x => x.Id == roleId).FirstOrDefault();
                 var portlets = new List<Portlet>();
                 using (var _context = context)
                 {

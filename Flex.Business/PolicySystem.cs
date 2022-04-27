@@ -57,15 +57,15 @@ namespace Flex.Business
 
             try
             {
-                int xPagesize = 0;
-                int xPage = 0;
-                int.TryParse(pagesize, out xPagesize);
-                int.TryParse(page, out xPage);
+                long xPagesize = 0;
+                long xPage = 0;
+                long.TryParse(pagesize, out xPagesize);
+                long.TryParse(page, out xPage);
                 var xDateFrom = SqlDateTime.MinValue.Value;
                 var xDateTo = SqlDateTime.MinValue.Value;
-                xPagesize = xPagesize > 0 ? xPagesize : 10;
+                xPagesize = xPagesize > 0 ? xPagesize : 100;
                 xPage = xPage > 0 ? xPage : 1;
-                var query = new CoreSystem<vwPolicy>(_context).FindAll(x=>x.status==Status.Active);
+                var query = new CoreSystem<vwPolicy>(_context).FindAll(x=>x.status== (int)(Status)Status.Active);
                 if (poltypes != null && poltypes.Any())
                 {
                     query = query.Where(x => poltypes.Contains(x.poltype));
@@ -96,11 +96,11 @@ namespace Flex.Business
                 var skip = (xPage - 1) * xPagesize;
                 var PagedPols = new PagedResult<vwPolicy>();
                 PagedPols.LongRowCount = TotalCount;
-                PagedPols.Items = query.OrderByDescending(x=>x.accdate).Skip(skip).Take(xPagesize).ToList();
-                PagedPols.PageSize = xPagesize;
+                PagedPols.Items = query.OrderByDescending(x=>x.accdate).Skip(Convert.ToInt32(skip)).Take(Convert.ToInt32(xPagesize)).ToList();
+                PagedPols.LPageSize = xPagesize;
                 PagedPols.PageCount = TotalCount > 0 ? (int)Math.Ceiling(Convert.ToDouble(Convert.ToDouble(TotalCount) / Convert.ToDouble(xPagesize))) : 1;
 
-                PagedPols.CurrentPage = xPage;
+                PagedPols.LCurrentPage = xPage;
 
                 return PagedPols;
             }

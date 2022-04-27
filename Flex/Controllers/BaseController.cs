@@ -210,7 +210,7 @@ namespace Flex.Controllers
         {
             var receipt = new List<fl_payinput2>();
             var status = Status.Active;
-            receipt = new CoreSystem<fl_payinput2>(context).FindAll(x => x.status == status).DistinctBy(x=>x.receiptno).ToList();
+            receipt = new CoreSystem<fl_payinput2>(context).FindAll(x => x.status == (int)status).DistinctBy(x=>x.receiptno).ToList();
             //receipt = query.DistinctBy(x=>x.receiptno).ToList();
             //receipt = new CoreSystem<fl_payinput2>(context).GetAll().DistinctBy(x=>x.receiptno).ToList();
 
@@ -269,7 +269,7 @@ namespace Flex.Controllers
         public SelectList GetCustomers()
         {
             var cust = new List<CustomerUser>();
-            cust = new CoreSystem<CustomerUser>(context).FindAll(x => x.status == UserStatus.Active).Distinct().ToList();
+            cust = new CoreSystem<CustomerUser>(context).FindAll(x => x.status == (int)UserStatus.Active).Distinct().ToList();
             return new SelectList(cust, "Id", "Name");
         }
         public ActionResult ExportReport(string reportName)

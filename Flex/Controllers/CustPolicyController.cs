@@ -104,7 +104,7 @@ namespace Flex.Controllers
                         Address = x.ResAddress,
                         DOB = (DateTime)x.dob,
                         Location = new CoreSystem<fl_location>(context).Get((int)x.Location).locdesc,
-                        NOK = x.NextofKin_BeneficiaryStaging.Where(y => y.Category == Category.NextofKin).FirstOrDefault().Name,
+                        NOK = x.NextofKin_BeneficiaryStaging.Where(y => y.Category == (int)Category.NextofKin).FirstOrDefault().Name,
                         Othernames = x.OtherNames,
                         PolicyNo = new PolicySystem(context).FindAll(y => y.quoteno == y.quoteno).FirstOrDefault().policyno,
                         QuoteNo = x.RegNo,
@@ -185,6 +185,7 @@ namespace Flex.Controllers
                             accdate = DateTime.Now,
                             location = signup.Location,
                             
+                            
                         };
                         i++;
 
@@ -198,7 +199,7 @@ namespace Flex.Controllers
                                 //var policynoSno = new SerialNumberService().GetNextNumber(polInput.poltype);
 
                                 var polType = _context.fl_poltype.Where(x => x.poltype == polInput.poltype).FirstOrDefault();
-                                var xpolType = polType != null && !string.IsNullOrEmpty(polType.code) ? polType.code : polInput.poltype;
+                                var xpolType = polType != null && !string.IsNullOrEmpty(polType.code) ? polType.code : polType.code;
                                 
 
                                 var policyno = ConfigUtils.PolicyNoFormat;
@@ -226,7 +227,13 @@ namespace Flex.Controllers
                                               .Replace("{Year}", DateTime.Today.ToString("yy"))
                                               .Replace("{SerialNo}", pcn);
 
+                                if (string.IsNullOrEmpty(polInput.grpcode))
+                                {
+                                    polInput.grpcode = string.Empty;
+                                }
                                 polInput.policyno = policyno;
+                                polInput.pcn = pcn;
+                                
                                 new PolicySystem(context).savePolicy(polInput);
 
                                 new SignUpSystem(context).ApproveSignUp(polInput.quoteno, polInput.srn);
@@ -240,7 +247,7 @@ namespace Flex.Controllers
                                     Name = string.Format("{0} {1}", polInput.surname, polInput.othername),
                                     password = new MD5Password().CreateSecurePassword(userpwd),
                                     phone = polInput.telephone,
-                                    status = UserStatus.New,
+                                    status = (int)UserStatus.New,
                                     passworddate = defaultDate,
                                     modifydate = defaultDate,
                                     firstLoginDate = defaultDate,
@@ -261,28 +268,28 @@ namespace Flex.Controllers
 
                                 //StringBuilder emailBody = new StringBuilder();
                                 //emailBody.AppendFormat("<p>Hello {0} {1}</p><br/><<p>Your Policy has been approved.</p>"
-                                //    ,polInput.surname,polInput.othername);
+                                //    , polInput.surname, polInput.othername);
                                 //emailBody.Append("Please find details of your policy below.</p>");
                                 //emailBody.AppendFormat("<p>Policy No.: {0}</p><p>Username: {1}</p><p>Password: {2}</p><br/>",
-                                //    polInput.policyno,polInput.policyno,userpwd);
+                                //    polInput.policyno, polInput.policyno, userpwd);
                                 //emailBody.Append("<p>Thanks<p/>");
                                 //var pEmail = new PendingEmail()
                                 //{
-                                //    Body=emailBody.ToString(),
-                                //    DueDate=DateTime.Now,
-                                //    From="NLPC",
-                                //    IsBodyHtml=true,
-                                //    Subject=string.Format("Welcome on Board {0} {1}",polInput.surname,polInput.othername),
-                                //    To=polInput.email,
+                                //    Body = emailBody.ToString(),
+                                //    DueDate = DateTime.Now,
+                                //    From = "NLPC",
+                                //    IsBodyHtml = true,
+                                //    Subject = string.Format("Welcome on Board {0} {1}", polInput.surname, polInput.othername),
+                                //    To = polInput.email,
 
                                 //};
-                                //var err=string.Empty;
-                                //new NotificationSystem(context).SendPolicyCreationNotiification(polInput, polInput.policyno, userpwd, xpolType);
+                                //var err = string.Empty;
+                                new NotificationSystem(context).SendPolicyCreationNotiification(polInput, polInput.policyno, userpwd, xpolType);
 
-                                if (!string.IsNullOrEmpty(polInput.email))
-                                {
-                                    SendEmailNotification(polInput, userpwd, polInput.email);
-                                }
+                                //if (!string.IsNullOrEmpty(polInput.email))
+                                //{
+                                //    SendEmailNotification(polInput, userpwd, polInput.email);
+                                //}
 
                                 transaction.Commit();
 
@@ -406,9 +413,9 @@ namespace Flex.Controllers
             }
             catch (Exception ex)
             {
-
+                throw;
                 //string message = ex.Message;
-                Response.Write("Message Failed");
+                //Response.Write("Message Failed");
             }
 
 
@@ -538,7 +545,7 @@ namespace Flex.Controllers
                 var pwd = new MD5Password().CreateSecurePassword(nPwd);
 
                 cust.password = pwd;
-                cust.status = UserStatus.New;
+                cust.status = (int)UserStatus.New;
                 cust.modifydate = DateTime.Now;
                 cust.passworddate = DateTime.Now;
                 using (var transaction = context.Database.BeginTransaction(System.Data.IsolationLevel.ReadCommitted))
@@ -859,26 +866,26 @@ namespace Flex.Controllers
                
                 var nextofkinBen = new NextofKin_BeneficiaryStaging();
                 nextofkinBen.Address = nok.Address;
-                nextofkinBen.ApprovalStatus = ApprovalStatus.Approved;
-                nextofkinBen.Category = Category.NextofKin;
+                nextofkinBen.ApprovalStatus = (int)ApprovalStatus.Approved;
+                nextofkinBen.Category = (int)Category.NextofKin;
                 nextofkinBen.Dob = Convert.ToDateTime(nok.Dob);
                 nextofkinBen.Email = nok.Email;
                 nextofkinBen.Name = nok.Name;
                 nextofkinBen.Phone = nok.Phone;
                 nextofkinBen.IsSynched = true;
-                nextofkinBen.Type = Data.Enum.Type.New;
-                if (nextofkinBen.Dob.ToString().Contains("01/01/0001"))
+                nextofkinBen.Type = (int)Data.Enum.Type.New;
+                /*if (nextofkinBen.Dob.ToString().Contains("01/01/0001"))
                 {
                    // throw new Exception();
                     nextofkinBen.Dob = null;
-                }
+                }*/
                 var bens = signUpmodel.PersonalInfo.Beneficiary;
 
                 var benefs = bens.Select(x => new NextofKin_BeneficiaryStaging()
                 {
                     Address = x.Address,
-                    ApprovalStatus = ApprovalStatus.Approved,
-                    Category = Category.Beneficiary,
+                    ApprovalStatus = (int)ApprovalStatus.Approved,
+                    Category = (int)Category.Beneficiary,
                     Dob = Convert.ToDateTime(x.Dob),
                     Email = x.Email,
                     Name = x.Name,
@@ -886,7 +893,7 @@ namespace Flex.Controllers
                     Proportion = x.Proportion,
                     RelationShip = x.Relationship,
                     IsSynched = true,
-                    Type = Data.Enum.Type.New
+                    Type = (int)Data.Enum.Type.New
                 });
 
                 using (var _context = context)
@@ -927,10 +934,10 @@ namespace Flex.Controllers
 
                             foreach (var b in benefs)
                             {
-                                if (b.Dob.ToString().Contains("01/01/0001"))
+                                /*if (b.Dob.ToString().Contains("01/01/0001"))
                                 {
                                     b.Dob = null;
-                                }
+                                }*/
                                 b.PolicyId = polInput.srn;
                                 b.RegNo = polInput.policyno;
                                 new CoreSystem<NextofKin_BeneficiaryStaging>(context).Save(b);
@@ -949,7 +956,7 @@ namespace Flex.Controllers
                                     Name = string.Format("{0} {1}", polInput.surname, polInput.othername),
                                     password = new MD5Password().CreateSecurePassword(userpwd),
                                     phone = polInput.telephone,
-                                    status = UserStatus.New,
+                                    status = (int)UserStatus.New,
                                     passworddate = defaultDate,
                                     modifydate = defaultDate,
                                     firstLoginDate = defaultDate,
@@ -1096,8 +1103,8 @@ namespace Flex.Controllers
                     benefs = bens.Select(x => new NextofKin_BeneficiaryStaging()
                     {
                         Address = x.Address,
-                        ApprovalStatus = ApprovalStatus.Approved,
-                        Category = Category.Beneficiary,
+                        ApprovalStatus = (int)ApprovalStatus.Approved,
+                        Category = (int)Category.Beneficiary,
                         Dob = Convert.ToDateTime(x.Dob),
                         Email = x.Email,
                         Name = x.Name,
@@ -1105,7 +1112,7 @@ namespace Flex.Controllers
                         Proportion = x.Proportion,
                         RelationShip = x.Relationship,
                         IsSynched = true,
-                        Type = Data.Enum.Type.New,
+                        Type = (int)Data.Enum.Type.New,
                         RegNo = x.RegNo,
                         PolicyId = x.PolicyId
                     }).ToList(); 
@@ -1134,10 +1141,10 @@ namespace Flex.Controllers
                             {
                                 foreach (var b in benefs)
                                 {
-                                    if (b.Dob.ToString().Contains("01/01/0001"))
+                                    /*if (b.Dob.ToString().Contains("01/01/0001"))
                                     {
                                         b.Dob = null;
-                                    }
+                                    }*/
                                     b.PolicyId = policy.srn;
                                     b.RegNo = policy.policyno;
                                     new CoreSystem<NextofKin_BeneficiaryStaging>(context).Save(b);
@@ -1279,7 +1286,7 @@ namespace Flex.Controllers
                             Name = string.Format("{0} {1}", polInput.surname, polInput.othername),
                             password = new MD5Password().CreateSecurePassword(userpwd),
                             phone = polInput.telephone,
-                            status = UserStatus.New,
+                            status = (int)UserStatus.New,
                             passworddate = defaultDate,
                             modifydate = defaultDate,
                             firstLoginDate = defaultDate,
@@ -1364,30 +1371,30 @@ namespace Flex.Controllers
                         ResAddress = poldetails.peradd,
                         Surname = poldetails.surname,
                         RegNo=poldetails.policyno,
-                        Beneficiary = nokBen.Where(x => x.Category == Category.Beneficiary)
+                        Beneficiary = nokBen.Where(x => x.Category == (int)Category.Beneficiary)
                                         .Select(x => new NextofKinBeneficiaryBindingModel()
                                         {
                                             Id = x.Id,
                                             Address = x.Address,
-                                            //Dob = x.Dob.GetValueOrDefault(),
+                                            //Dob = x.Dob.ToShortDateString(),
                                             Dob = x.Dob.GetValueOrDefault().ToShortDateString(),
                                             Email = x.Email,
                                             Name = x.Name,
                                             Phone = x.Phone,
-                                            Proportion = (decimal)x.Proportion,
+                                            //Proportion = (decimal)x.Proportion,
                                             //Relationship = ((RelationShip)Enum.Parse(typeof(RelationShip), x.RelationShip)).ToString()
                                         }).ToList(),
-                        NextofKin = nokBen.Where(x => x.Category == Category.NextofKin)
+                        NextofKin = nokBen.Where(x => x.Category == (int)Category.NextofKin)
                                 .Select(x => new NextofKinBeneficiaryBindingModel()
                                 {
                                     Id = x.Id,
                                     Address = x.Address,
-                                    //Dob = x.Dob.GetValueOrDefault(),
+                                    //Dob = x.Dob.ToShortDateString(),
                                     Dob = x.Dob.GetValueOrDefault().ToShortDateString(),
                                     Email = x.Email,
                                     Name = x.Name,
                                     Phone = x.Phone,
-                                    
+
                                 }).FirstOrDefault(),
                     };
                     return PartialView("_managepolicy", polModel);
@@ -1428,7 +1435,7 @@ namespace Flex.Controllers
                 {
                     Id = x.Id,
                     Address = x.Address,
-                    //Dob = x.Dob.GetValueOrDefault(),
+                    //Dob = x.Dob.ToShortDateString(),
                     Dob = x.Dob.GetValueOrDefault().ToShortDateString(),
                     Email = x.Email,
                     Name = x.Name,

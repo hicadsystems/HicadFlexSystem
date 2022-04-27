@@ -26,11 +26,11 @@ namespace Flex.Business
             UserSession usession= new UserSession();
             if (userType==typeof(CustomerUser))
             {
-                usession = FindAll(x => x.SessionStatus == UserSessionStatus.Active && x.ExpiryDate > DateTime.Now && x.CustomerUserID == userId).FirstOrDefault();
+                usession = FindAll(x => x.SessionStatus == (int)UserSessionStatus.Active && x.ExpiryDate > DateTime.Now && x.CustomerUserID == userId).FirstOrDefault();
             }
             else
             {
-                usession = FindAll(x => x.SessionStatus == UserSessionStatus.Active && x.ExpiryDate > DateTime.Now && x.UserId == userId).FirstOrDefault();
+                usession = FindAll(x => x.SessionStatus == (int)UserSessionStatus.Active && x.ExpiryDate > DateTime.Now && x.UserId == userId).FirstOrDefault();
 
             }
 
@@ -54,7 +54,7 @@ namespace Flex.Business
                     LastAccessed = DateTime.Now,
                     CustomerUser = user,
                     ExpiryDate = DateTime.Now.AddMinutes(ConfigUtils.SessionTimeout),
-                    SessionStatus = UserSessionStatus.Active, 
+                    SessionStatus = (int)UserSessionStatus.Active, 
                     CustomerUserID=user.Id,
                     Token=token,
                     IsDeleted=false,
@@ -64,7 +64,7 @@ namespace Flex.Business
                 if (!getUsable)
                 {
                     uSession.ExpiryDate = DateTime.Now.AddMinutes(5);
-                    uSession.SessionStatus = UserSessionStatus.Temporal;
+                    uSession.SessionStatus = (int)UserSessionStatus.Temporal;
                 }
 
 
@@ -100,7 +100,7 @@ namespace Flex.Business
                     LastAccessed = DateTime.Now,
                     fl_password = user,
                     ExpiryDate = DateTime.Now.AddMinutes(ConfigUtils.SessionTimeout),
-                    SessionStatus = UserSessionStatus.Active,
+                    SessionStatus = (int)UserSessionStatus.Active,
                     UserId = user.Id,
                     Token = token,
                     IsDeleted = false,
@@ -110,7 +110,7 @@ namespace Flex.Business
                 if (!getUsable)
                 {
                     uSession.ExpiryDate = DateTime.Now.AddMinutes(5);
-                    uSession.SessionStatus = UserSessionStatus.Temporal;
+                    uSession.SessionStatus = (int)UserSessionStatus.Temporal;
                 }
 
 
@@ -129,8 +129,8 @@ namespace Flex.Business
             {
                 try
                 {
-                    var query = _context.Set<UserSession>().Include(y=>y.fl_password).Include(j=> j.fl_password.UserRoles).Where(x => x.IsDeleted == false && ( x.SessionStatus == UserSessionStatus.Active
-                      || x.SessionStatus == UserSessionStatus.Temporal) && x.Token == authToken && x.ExpiryDate > DateTime.Now);
+                    var query = _context.Set<UserSession>().Include(y=>y.fl_password).Include(j=> j.fl_password.UserRoles).Where(x => x.IsDeleted == false && ( x.SessionStatus == (int)UserSessionStatus.Active
+                      || x.SessionStatus == (int)UserSessionStatus.Temporal) && x.Token == authToken && x.ExpiryDate > DateTime.Now);
 
                     usession = query.FirstOrDefault();
 

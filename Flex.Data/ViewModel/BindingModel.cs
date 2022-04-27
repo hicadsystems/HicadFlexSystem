@@ -226,7 +226,21 @@ namespace Flex.Data.ViewModel
         public int PolType { get; set; }
 
         public int Group { get; set; }
-
+        public decimal IntrBound { get; set; }
+        public decimal CommBound { get; set; }
+        public decimal Interest { get; set; }
+        public string Interest2 { get; set; }
+        public string Interest3 { get; set; }
+        public string MktCommrate { get; set; }
+        public string MktCommrate2 { get; set; }
+        public string MktCommrate3 { get; set; }
+        public decimal IntrBound2 { get; set; }
+        public decimal IntrBound3 { get; set; }
+        public decimal Commrate { get; set; }
+        public string Commrate2 { get; set; }
+        public string Commrate3 { get; set; }
+        public decimal CommBound2 { get; set; }
+        public decimal CommBound3 { get; set; }
         public IList<RateRules> rateRules { get; set; }
     }
 

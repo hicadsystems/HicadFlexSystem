@@ -54,11 +54,11 @@ namespace CustomerPortal.Controllers
                 var clmreq = new ClaimRequest();
                 clmreq.PolicyNo = policyno;
                 clmreq.DateCreated = DateTime.Now;
-                clmreq.ClaimType = (ClaimType)Enum.Parse(typeof(ClaimType), claimType);
-                clmreq.Status = (Status)ClaimStatus.Pending;
+                clmreq.ClaimType = (int)(ClaimType)Enum.Parse(typeof(ClaimType), claimType);
+                clmreq.Status = (int)(Status)ClaimStatus.Pending;
                 clmreq.EffectiveDate = Convert.ToDateTime(effDate);
                 decimal xamount = 0.0M;
-                if (clmreq.ClaimType ==ClaimType.PartialWithdrawal && !decimal.TryParse(amount, out xamount))
+                if (clmreq.ClaimType == (int)ClaimType.PartialWithdrawal && !decimal.TryParse(amount, out xamount))
                 {
                     throw new Exception("Invalid Amount");
                 }
@@ -92,7 +92,7 @@ namespace CustomerPortal.Controllers
                 var claim = new CoreSystem<ClaimRequest>(context).FindAll(x => x.Id == id).FirstOrDefault();
                 if (claim != null)
                 {
-                    claim.Status = (Status)ClaimStatus.Canceled;
+                    claim.Status = (int)(Status)ClaimStatus.Canceled;
 
                     new CoreSystem<ClaimRequest>(context).Update(claim, id);
                 }

@@ -81,7 +81,7 @@ namespace Flex.Controllers
                         userData.datecreated = DateTime.Today;
                         userData.Name = User.Name;
                         userData.passworddate = DateTime.Today.AddDays(30);
-                        userData.status = UserStatus.New;
+                        userData.status = (int)UserStatus.New;
                         userData.userdept = User.Dept;
                         userData.userid = User.UserName;
                         userData.email = User.Email;
@@ -179,7 +179,7 @@ namespace Flex.Controllers
                         var userData = new fl_password();
 
                         user.Name = model.Name;
-                        user.status = (UserStatus)Enum.Parse(typeof(UserStatus),model.Status);
+                        user.status = (int)(UserStatus)Enum.Parse(typeof(UserStatus),model.Status);
                         user.userdept = model.Dept;
                         user.userid = model.UserName;
                         user.email = model.Email;
@@ -294,7 +294,7 @@ namespace Flex.Controllers
                     var linkRoles = new CoreSystem<LinkRole>(context).FindAll(x => x.RoleID == Role);
                     lRoles.Desc = r.Description;
                     lRoles.Name = r.Name;
-                    foreach (var lr in linkRoles.Where(x=>x.Type==LinkType.Portlet))
+                    foreach (var lr in linkRoles.Where(x=>x.Type==(int)LinkType.Portlet))
                     {
                         var lRole = new Menu();
                         lRole.Portlet = (int)lr.LinkId;
@@ -349,7 +349,7 @@ namespace Flex.Controllers
                             plinkrole.LinkId = int.Parse(menu[0]);
                             plinkrole.Parent = 0;
                             plinkrole.RoleID = rl.Id;
-                            plinkrole.Type = LinkType.Portlet;
+                            plinkrole.Type = (int)LinkType.Portlet;
 
                             new CoreSystem<LinkRole>(context).Save(plinkrole);
 
@@ -363,7 +363,7 @@ namespace Flex.Controllers
                                 tlinkrole.LinkId = int.Parse(item);
                                 tlinkrole.Parent = int.Parse(menu[0]);
                                 tlinkrole.RoleID = rl.Id;
-                                tlinkrole.Type = LinkType.Tab;
+                                tlinkrole.Type = (int)LinkType.Tab;
 
                                 new CoreSystem<LinkRole>(context).Save(tlinkrole);
                             }
@@ -422,7 +422,7 @@ namespace Flex.Controllers
                 var pwd = new MD5Password().CreateSecurePassword(nPwd);
 
                 user.userpassword = pwd;
-                user.status = UserStatus.New;
+                user.status = (int)UserStatus.New;
                 user.modifydate = DateTime.Now;
                 user.passworddate = DateTime.Now;
                 using (var transaction = context.Database.BeginTransaction(System.Data.IsolationLevel.ReadCommitted))

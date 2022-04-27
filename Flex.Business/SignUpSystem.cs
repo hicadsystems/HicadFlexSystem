@@ -52,8 +52,8 @@ namespace Flex.Business
                 var nkinBen = nextkinBen.Select(x => new NextofKin_BeneficiaryStaging()
                 {
                     Address = x.Address,
-                    ApprovalStatus = ApprovalStatus.Pending,
-                    Category = x.Category,
+                    ApprovalStatus = (int)ApprovalStatus.Pending,
+                    Category = (int)x.Category,
                     Dob = Convert.ToDateTime(x.Dob),
                     Email = x.Email,
                     IsSynched = false,
@@ -64,15 +64,15 @@ namespace Flex.Business
                     Proportion = x.Proportion,
                     RegNo = pinfo.RegNo,
                     RelationShip = x.Relationship,
-                    Type = x.Type,
+                    Type = (int)x.Type,
                 });
-                foreach (var nkb in nkinBen)
+                /*foreach (var nkb in nkinBen)
                 {
                     if (nkb.Dob.ToString().Contains("01/01/0001"))
                     {
                         nkb.Dob = null;
                     }
-                }
+                }*/
                 pinfo.NextofKin_BeneficiaryStaging = nkinBen.ToList();
 
 
@@ -107,7 +107,7 @@ namespace Flex.Business
         {
             try
             {
-                var unapproved=FindAll(x => x.DateCreated >= datefrom && x.DateCreated <= dateTo && x.ApprovalStatus == ApprovalStatus.Pending);
+                var unapproved=FindAll(x => x.DateCreated >= datefrom && x.DateCreated <= dateTo && x.ApprovalStatus == (int)ApprovalStatus.Pending);
 
                 return unapproved.ToList();
             }
@@ -122,7 +122,7 @@ namespace Flex.Business
         {
             try
             {
-                var unapproved = FindAll(x => x.DateCreated >= datefrom && x.DateCreated <= dateTo && x.ApprovalStatus == ApprovalStatus.Approved);
+                var unapproved = FindAll(x => x.DateCreated >= datefrom && x.DateCreated <= dateTo &&x.ApprovalStatus == (int)ApprovalStatus.Approved);
 
                 return unapproved.ToList();
             }
@@ -137,7 +137,7 @@ namespace Flex.Business
         {
             try
             {
-                var unapproved = FindAll(x => x.DateCreated >= datefrom && x.DateCreated <= dateTo && x.ApprovalStatus == ApprovalStatus.Disapproved);
+                var unapproved = FindAll(x => x.DateCreated >= datefrom && x.DateCreated <= dateTo && x.ApprovalStatus == (int)ApprovalStatus.Disapproved);
 
                 return unapproved.ToList();
             }
@@ -172,7 +172,7 @@ namespace Flex.Business
                 {
                     throw new Exception(string.Format("No Signup Record Found for {0}", Regno));
                 }
-                signupData.ApprovalStatus = ApprovalStatus.Approved;
+                signupData.ApprovalStatus = (int)ApprovalStatus.Approved;
                 foreach (var nb in signupData.NextofKin_BeneficiaryStaging)
                 {
                     nb.PolicyId = policyId;
@@ -196,7 +196,7 @@ namespace Flex.Business
                 {
                     throw new Exception(string.Format("No Signup Record Found for {0}", Regno));
                 }
-                signupData.ApprovalStatus = ApprovalStatus.Disapproved;
+                signupData.ApprovalStatus = (int)ApprovalStatus.Disapproved;
                 foreach (var nb in signupData.NextofKin_BeneficiaryStaging)
                 {
                     nb.PolicyId = policyId;

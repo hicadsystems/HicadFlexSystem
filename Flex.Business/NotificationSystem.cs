@@ -127,6 +127,7 @@ namespace Flex.Business
 
                 var pSms = new fl_pendingSMS()
                 {
+                    
                     //Application = "Flex",
                     isSent = false,
                     message = emailBody.ToString(),

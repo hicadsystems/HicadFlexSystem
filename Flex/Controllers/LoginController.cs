@@ -18,8 +18,18 @@ namespace Flex.Controllers
         // GET: Login
         public ActionResult Index()
         {
-            var modules = new ModuleSystem(context).GetAll().ToList();
-            ViewBag.Modules = new SelectList(modules, "Code", "Name");
+            try
+            {
+
+                var modules = new ModuleSystem(context).GetAll().ToList();
+                ViewBag.Modules = new SelectList(modules, "Code", "Name");
+            }
+            catch (Exception ex)
+            {
+
+                Logger.ErrorFormat("Error Occurred. Details [error: {0}, StackTrace: {1}]", ex.ToString(), ex.StackTrace);
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.ToString()); 
+            }
             return View();
         }
 

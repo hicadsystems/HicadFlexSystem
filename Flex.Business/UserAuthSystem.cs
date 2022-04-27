@@ -116,9 +116,9 @@ namespace Flex.Business
                 var nhPwd = new MD5Password().CreateSecurePassword(newPassword);
                 user.userpassword = nhPwd;
                 user.passworddate = DateTime.Now.AddDays(30);
-                if (user.status==UserStatus.New)
+                if (user.status==(int)UserStatus.New)
                 {
-                    user.status = UserStatus.Active;
+                    user.status = (int)UserStatus.Active;
                 }
                 
                 Update(user, user.Id);

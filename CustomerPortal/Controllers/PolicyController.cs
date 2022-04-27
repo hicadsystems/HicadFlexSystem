@@ -1,6 +1,5 @@
 ﻿using CustomerPortal.Util;
 using Flex.Business;
-using Flex.Data.Enum;
 using Flex.Data.Model;
 using Flex.Data.ViewModel;
 using Flex.Utility.Utils;
@@ -49,7 +48,7 @@ namespace CustomerPortal.Controllers
                     newpolicy.othername = policy.othername;
                     newpolicy.poltype = new CoreSystem<fl_poltype>(context).Get(model.PolicyType).poltype;
                     newpolicy.premium = model.Amount;
-                    newpolicy.status = (int)Status.Active;
+                    newpolicy.status = (int)Flex.Data.Enum.Status.Active;
                     newpolicy.surname = policy.surname;
                     newpolicy.telephone = policy.telephone;
 

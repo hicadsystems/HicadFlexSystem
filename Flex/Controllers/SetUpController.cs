@@ -359,7 +359,7 @@ namespace Flex.Controllers
                     if (!string.IsNullOrEmpty(searchmodel.Type))
                     {
                         var agtype = (AgentType)Enum.Parse(typeof(AgentType), searchmodel.Type);
-                        query = query.Where(x => x.agenttype == agtype);
+                        query = query.Where(x => x.agenttype == (int)agtype);
                     }
                     if (!string.IsNullOrEmpty(searchmodel.Location))
                     {
@@ -483,7 +483,7 @@ namespace Flex.Controllers
                 {
                     int.TryParse(formdata["Id"].ToString(), out Id);
                     var agType=formdata["Type"].ToString();
-                    agent.agenttype = (AgentType)Enum.Parse(typeof(AgentType),agType);
+                    agent.agenttype = (int)(AgentType)Enum.Parse(typeof(AgentType),agType);
                     agent.agentcode = formdata["Code"].ToString();
                     agent.agentname = formdata["Name"].ToString();
                     agent.datecreated = DateTime.Today;
@@ -494,7 +494,7 @@ namespace Flex.Controllers
                     agent.IsDeleted = false;
                     agent.exitdate = formdata["ExitDate"].ToString();
                     var status = formdata["Status"].ToString();
-                    agent.status = (Status)Enum.Parse(typeof(Status), status);
+                    agent.status = (int)(Status)Enum.Parse(typeof(Status), status);
 
                     using (var _context = context)
                     {
@@ -993,7 +993,7 @@ namespace Flex.Controllers
                         liferate2 = new CoreSystem<fl_premrate>(_context).FindAll(x => x.IsDeleted == false).Select(x => new rptLifeRate()
                         {
                            PolicyType = x.fl_poltype.poldesc,
-                           Group = x.grpcodeId.Value,
+                           //Group = x.grpcodeId.Value,
                            Period = x.period
                         }).ToList();
 
@@ -1060,7 +1060,7 @@ namespace Flex.Controllers
                     {
                         var groupId = 0;
                         int.TryParse(searchmodel.Group, out groupId);
-                        query = query.Where(x => x.grpcodeId == groupId);
+                        //query = query.Where(x => x.grpcodeId == groupId);
                     }
 
                     rates = query.ToList();
@@ -1108,19 +1108,27 @@ namespace Flex.Controllers
             {
                 int poltype = 0;
                 var grpId = 0;
-                //decimal interest = 0.0M;
-                //decimal commrate = 0.0M;
-                ////decimal retention = 0.0M;
-                //decimal intrbound = 0.0M;
-                //decimal commbound = 0.0M;
+                decimal intrBound = 0.0M;
+                decimal intrBound2 = 0.0M;
+                decimal intrBound3 = 0.0M;
+
+                decimal intr = 0.0M;
+                
+                decimal commrate = 0.0M;
+                //decimal retention = 0.0M;
+
+                decimal commbound = 0.0M;
+                decimal commbound2 = 0.0M;
+                decimal commbound3 = 0.0M;
+
                 var rate = new fl_premrate();
                 var formdata = JsonConvert.DeserializeObject<Rate>(model);
                 List<fl_premrateRules> rrules = null;
                 if (formdata != null)
                 {
                     grpId = formdata.Group;
-                    rate.grpcodeId = grpId;
-                    rate.grpcode = new CoreSystem<fl_grouptype>(context).FindAll(x => x.Id == grpId).Select(x => x.grpcode).FirstOrDefault();
+                    //rate.grpcodeId = grpId;
+                   // rate.grpcode = new CoreSystem<fl_grouptype>(context).FindAll(x => x.Id == grpId).Select(x => x.grpcode).FirstOrDefault();
                     rate.period = formdata.Period.ToString();
                     int.TryParse(formdata.PolType.ToString(), out poltype);
                     rate.poltypeId = poltype;
@@ -1143,6 +1151,21 @@ namespace Flex.Controllers
                         //rate.commrate = commrate;
 
                     }
+                    //input from form
+                    decimal.TryParse(formdata.Interest.ToString(), out intr);
+
+                    decimal.TryParse(formdata.IntrBound.ToString(), out intrBound);
+                    decimal.TryParse(formdata.IntrBound2.ToString(), out intrBound2);
+                    decimal.TryParse(formdata.IntrBound3.ToString(), out intrBound3);
+
+                    decimal.TryParse(formdata.Commrate.ToString(), out commrate);
+
+                    decimal.TryParse(formdata.CommBound.ToString(), out commbound);
+                    decimal.TryParse(formdata.CommBound2.ToString(), out commbound2);
+                    decimal.TryParse(formdata.CommBound3.ToString(), out commbound3);
+
+
+                    rate.interest = intr;
                     rate.IsDeleted = false;
 
                     rate.Datecreated = DateTime.Now;

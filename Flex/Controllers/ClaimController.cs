@@ -53,12 +53,12 @@ namespace Flex.Controllers
                 {
                     if (processingType.Equals("disapprove", StringComparison.InvariantCultureIgnoreCase))
                     {
-                        clm.Status = (Status)ClaimStatus.Disapproved;
+                        clm.Status = (int)(Status)ClaimStatus.Disapproved;
                         new CoreSystem<ClaimRequest>(context).Update(clm, Id);
                     }
                     else 
                     {
-                        if (processingType.Equals("approve", StringComparison.InvariantCultureIgnoreCase) && clm.Status != (Status)ClaimStatus.Processing)
+                        if (processingType.Equals("approve", StringComparison.InvariantCultureIgnoreCase) && clm.Status != (int)(Status)ClaimStatus.Processing)
                         {
                             throw new Exception("Claim must be processed before approval");
                         }
@@ -133,20 +133,20 @@ namespace Flex.Controllers
                     clmReq = new CoreSystem<ClaimRequest>(context).Get(Id);
                     clmReq.Interest = intrest;
                     clmReq.FundAmount = clm.Sum(x => x.Total);
-                    clmReq.Status = (Status)ClaimStatus.Processing;
+                    clmReq.Status = (int)(Status)ClaimStatus.Processing;
 
                     new CoreSystem<ClaimRequest>(context).Update(clmReq, Id);
                 }
                 else
                 {
                     clmReq.Amount = amt;
-                    clmReq.ClaimType = clmType;
+                    clmReq.ClaimType = (int)clmType;
                     clmReq.DateCreated = DateTime.Now;
                     clmReq.EffectiveDate = effDate;
                     clmReq.PolicyNo = policyno;
                     clmReq.Interest = intrest;
                     clmReq.FundAmount = clm.Sum(x => x.Total);
-                    clmReq.Status = (Status)ClaimStatus.Processing;
+                    clmReq.Status = (int)(Status)ClaimStatus.Processing;
 
                     new CoreSystem<ClaimRequest>(context).Save(clmReq);
                 }
@@ -226,7 +226,7 @@ namespace Flex.Controllers
                 });
 
 
-                clmReq.Status = (Status)ClaimStatus.Approved;
+                clmReq.Status = (int)(Status)ClaimStatus.Approved;
                 clmReq.ApprovedAmount = approvedAmt;
                 clmReq.ClaimNo = ClaimNo;
 
@@ -268,7 +268,7 @@ namespace Flex.Controllers
         }
         public ActionResult Payment()
         {
-            var approvedClaims = new CoreSystem<ClaimRequest>(context).FindAll(x => x.Status == (Status)ClaimStatus.Approved).ToList();
+            var approvedClaims = new CoreSystem<ClaimRequest>(context).FindAll(x => x.Status == (int)(Status)ClaimStatus.Approved).ToList();
             return PartialView("_claimPayment",approvedClaims);
         }
 
@@ -316,7 +316,7 @@ namespace Flex.Controllers
                     throw new Exception("Invalid policy number");
                 }
                 var pyctrl = new CoreSystem<fl_receiptcontrol>(context).FindAll(x => x.fl_poltype.poltype == pol.poltype
-                        && x.PaymentMethod == paymentMethod).FirstOrDefault();
+                        && x.PaymentMethod == (int)paymentMethod).FirstOrDefault();
                 if (pyctrl == null)
                 {
                     throw new Exception(string.Format("Account has not been set up for policytype {0} with payment method {1} "
@@ -332,15 +332,15 @@ namespace Flex.Controllers
 
                         var translog = new fl_translog();
 
-                        var rem = clmReq.ClaimType == ClaimType.FullWithdrawal ? "Full Withdral" : "Partial Withdrwal";
+                        var rem = clmReq.ClaimType == (int)ClaimType.FullWithdrawal ? "Full Withdral" : "Partial Withdrwal";
 
                         var remark = string.Format("{0} on Policy {1}", rem, policyno);
                         translog.amount = -1 * amt;
                         translog.bank_ledger = pyctrl.Bank_ledger;
                         translog.chequeno = refno;
                         translog.income_ledger = pyctrl.Income_ledger;
-                        translog.Instrument = Instrument.PaymentVoucher;
-                        translog.paymentmethod = paymentMethod;
+                        translog.Instrument = (int)Instrument.PaymentVoucher;
+                        translog.paymentmethod = (int)paymentMethod;
                         translog.policyno = policyno;
                         translog.receiptno = recieptno;
                         translog.remark = remark;
@@ -375,7 +375,7 @@ namespace Flex.Controllers
 
                         new CoreSystem<fl_payhistory>(context).Save(payhis);
 
-                        if (clmReq.ClaimType == ClaimType.FullWithdrawal)
+                        if (clmReq.ClaimType == (int)ClaimType.FullWithdrawal)
                         {
                             var pClaim = new CoreSystem<fl_payhistory>(context).FindAll(x => x.policyno == policyno).ToList();
                             foreach (var pc in pClaim)
@@ -408,7 +408,7 @@ namespace Flex.Controllers
                             new CoreSystem<fl_policyinput>(context).Update(pol, pol.srn);
                         }
 
-                        clmReq.Status = (Status)ClaimStatus.Paid;
+                        clmReq.Status = (int)(Status)ClaimStatus.Paid;
                         new CoreSystem<ClaimRequest>(context).Update(clmReq, clmReq.Id);
                         transaction.Commit();
                     }
@@ -524,7 +524,7 @@ namespace Flex.Controllers
                     else
                     {
                         var clm = new CoreSystem<ClaimRequest>(context).FindAll(x => exitedpolicynos.Contains(x.PolicyNo) &&
-                                  x.EffectiveDate >= datefrom && x.EffectiveDate <= dateto && x.ClaimType==ClaimType.FullWithdrawal).ToList();
+                                  x.EffectiveDate >= datefrom && x.EffectiveDate <= dateto && x.ClaimType== (int)ClaimType.FullWithdrawal).ToList();
                         clmStmt=clm.Select(x => new rptClaim()
                                 {
                                     PolicyNo = x.PolicyNo,
@@ -606,7 +606,7 @@ namespace Flex.Controllers
                 DateTime dateto = SqlDateTime.MinValue.Value;
                 CultureInfo culInfo = CultureInfo.CreateSpecificCulture("en-GB");
 
-                ClaimType xwithdrawal = ClaimType.PartialWithdrawal;
+                ClaimType xwithdrawal = (int)ClaimType.PartialWithdrawal;
                 ClaimStatus xclaimStatus = ClaimStatus.Paid;
                 if (!string.IsNullOrEmpty(sDate))
                 {
@@ -628,7 +628,7 @@ namespace Flex.Controllers
                 IList<rptClaim> clmrpt = new List<rptClaim>();
 
                 var clm = new CoreSystem<ClaimRequest>(context).FindAll(x => x.EffectiveDate >= datefrom && x.EffectiveDate <= dateto
-                             && x.ClaimType == xwithdrawal && x.Status==(Status)xclaimStatus).ToList();
+                             && x.ClaimType == (int)xwithdrawal && x.Status== (int)(Status)xclaimStatus).ToList();
                 if (clm !=null && clm.Any())
                 {
                     foreach (var item in clm)
@@ -718,11 +718,11 @@ namespace Flex.Controllers
 
                     new PolicySystem(context).Update(pol, pol.srn);
 
-                    var clmreq = new CoreSystem<ClaimRequest>(context).FindAll(x => x.PolicyNo == policyno && x.ClaimType == ClaimType.FullWithdrawal).FirstOrDefault();
+                    var clmreq = new CoreSystem<ClaimRequest>(context).FindAll(x => x.PolicyNo == policyno && x.ClaimType == (int)ClaimType.FullWithdrawal).FirstOrDefault();
 
                     if (clmreq != null)
                     {
-                        clmreq.Status = (Status)ClaimStatus.Canceled;
+                        clmreq.Status = (int)(Status)ClaimStatus.Canceled;
 
                         new CoreSystem<ClaimRequest>(context).Update(clmreq, clmreq.Id);
                     }

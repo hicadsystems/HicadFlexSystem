@@ -1,4 +1,0 @@
-[Flex Customer Logger Started] 
-2022-03-01 17:09:19,959 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132906245478958515] Starting... @ BaseDir is [C:\Projects\temiowode-flex-system-ca7dddf7c581\CustomerPortal\]
-2022-03-01 17:09:46,242 [5] INFO  CustomerPortal - Error occurred. Details System.NullReferenceException: Object reference not set to an instance of an object.
-   at CustomerPortal.Controllers.StatementController.Index(String Policyno) in C:\Projects\temiowode-flex-system-ca7dddf7c581\CustomerPortal\Controllers\StatementController.cs:line 22

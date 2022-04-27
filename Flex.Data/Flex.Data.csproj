@@ -55,142 +55,208 @@
   <ItemGroup>
     <Compile Include="Enum\Enum.cs" />
     <Compile Include="Model\accchart.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ac_costCenter.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ac_jvdetails.cs">
+      <DependentUpon>FlexDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ac_jvheader.cs">
+      <DependentUpon>FlexDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ac_pcvdetails.cs">
+      <DependentUpon>FlexDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ac_pcvheader.cs">
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ac_rctdetails.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ac_rctheader.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ApiAuthToken.cs">
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ClaimRequest.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\CustomerPolicy.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\CustomerUser.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\FlexDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FlexDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\FlexDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FlexDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\FlexDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FlexDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\fl_agents.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\fl_formfile.cs">
+      <DependentUpon>FlexDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\fl_generate_serialno_Result.cs">
+      <DependentUpon>FlexDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\fl_gpayclaim.cs">
+      <DependentUpon>FlexDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\fl_gpayhistory.cs">
+      <DependentUpon>FlexDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\fl_grat_statement_Result.cs">
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\fl_grouptype.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\fl_location.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\fl_password.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\fl_payclaim.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\fl_payhistory.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\fl_payhistorybak.cs">
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\fl_payinput.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\fl_payinput2.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\fl_pendingSMS.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\fl_policyhistory.cs">
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\fl_policyinput.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\fl_poltype.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\fl_premrate.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\fl_premrateRules.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\fl_premrate_temp.cs">
+      <DependentUpon>FlexDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\fl_prgaccess.cs">
+      <DependentUpon>FlexDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\fl_prgaccessXX.cs">
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\fl_PublicHoliday.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\fl_quotation.cs">
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\fl_receiptcontrol.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\fl_state.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\fl_system.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\fl_temphistory.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\fl_temppolinput.cs">
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\fl_translog.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\LinkRole.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Module.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\NextofKin_BeneficiaryStaging.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Notification.cs">
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\OnlineReciept.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PendingEmail.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\PersonalDetailsStaging.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\pl_UserSession.cs" />
-    <Compile Include="Model\FlexDb.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FlexDb.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\FlexDb.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FlexDb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\FlexDb.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FlexDb.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Model\FlexEntities.cs" />
     <Compile Include="Model\pfl_grouptype.cs" />
     <Compile Include="Model\Portlet.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\qrystatement_Result.cs">
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Role.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SPLIT_STRING_Result.cs">
+      <DependentUpon>FlexDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\sp_CommissionReport_Result.cs">
+      <DependentUpon>FlexDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\sp_MaturityReport_Result.cs">
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Tab.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\UserRole.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\UserSession.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\vProduction.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\vwPolicy.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\vwPolicyHistory.cs">
-      <DependentUpon>FlexDb.tt</DependentUpon>
+      <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\UtilEnumHelper.cs" />
@@ -209,29 +275,28 @@
     <Compile Include="ViewModel\StatementViewModel.cs" />
     <Compile Include="ViewModel\UserAuthViewModel.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EntityDeploy Include="Model\FlexDb.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FlexDb.Designer.cs</LastGenOutput>
-    </EntityDeploy>
+    <Content Include="Model\FlexDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FlexDB.edmx</DependentUpon>
+      <LastGenOutput>FlexDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\FlexDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FlexDB.edmx</DependentUpon>
+      <LastGenOutput>FlexDB.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Model\FlexDb.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FlexDb.edmx</DependentUpon>
-      <LastGenOutput>FlexDb.Context.cs</LastGenOutput>
-    </None>
-    <None Include="Model\FlexDb.edmx.diagram">
-      <DependentUpon>FlexDb.edmx</DependentUpon>
-    </None>
-    <None Include="Model\FlexDb.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FlexDb.edmx</DependentUpon>
-      <LastGenOutput>FlexDb.cs</LastGenOutput>
+    <EntityDeploy Include="Model\FlexDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FlexDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\FlexDB.edmx.diagram">
+      <DependentUpon>FlexDB.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

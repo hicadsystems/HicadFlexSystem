@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Projects\temiowode-flex-system-ca7dddf7c581\Flex.Data\Model\FlexDb.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Projects\flex\Flex.Data\Model\FlexDB.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

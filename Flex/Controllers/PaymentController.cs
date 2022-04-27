@@ -260,7 +260,7 @@ namespace Flex.Controllers
                     if (!string.IsNullOrEmpty(querymodel.PaymentMethod))
                     {
                         paymethod = (PaymentMethod)Enum.Parse(typeof(PaymentMethod), querymodel.PaymentMethod);
-                        query = query.Where(x => x.PaymentMethod == paymethod);
+                        query = query.Where(x => x.PaymentMethod == (int)paymethod);
                     }
                     if (!string.IsNullOrEmpty(querymodel.PolicyType))
                     {
@@ -334,7 +334,7 @@ namespace Flex.Controllers
                     int.TryParse(formdata["Id"].ToString(), out Id);
                     var paymethod = formdata["PayMethod"].ToString();
                     var paymentMethod = (PaymentMethod)Enum.Parse(typeof(PaymentMethod), paymethod);
-                    payAcct.PaymentMethod = paymentMethod;
+                    payAcct.PaymentMethod = (int)paymentMethod;
                     var pType = formdata["PolType"].ToString();
                     int.TryParse(pType, out polType);
                     payAcct.PolTypeId = polType;
@@ -433,7 +433,7 @@ namespace Flex.Controllers
 
             using(var _context= context)
             {
-                polTypes = new CoreSystem<fl_poltype>(_context).FindAll(x => x.IsDeleted == false && !x.fl_receiptcontrol.Any(y => y.PaymentMethod == xpaymenthod)).ToList();
+                polTypes = new CoreSystem<fl_poltype>(_context).FindAll(x => x.IsDeleted == false && !x.fl_receiptcontrol.Any(y => y.PaymentMethod == (int)xpaymenthod)).ToList();
             }
 
             return polTypes;
@@ -632,7 +632,7 @@ namespace Flex.Controllers
                             throw new Exception("Invalid policy number");
                         }
                         var pyctrl = new CoreSystem<fl_receiptcontrol>(_context).FindAll(x => x.fl_poltype.poltype == pol.poltype
-                            && x.PaymentMethod == xPaymethod).FirstOrDefault();
+                            && x.PaymentMethod == (int)xPaymethod).FirstOrDefault();
                         if (pyctrl == null)
                         {
                             throw new Exception(string.Format("Account has not been set up for policytype {0} with payment method {1} "
@@ -659,8 +659,8 @@ namespace Flex.Controllers
                                 translog.amount = amt;
                                 translog.bank_ledger = pyctrl.Bank_ledger;
                                 translog.income_ledger = pyctrl.Income_ledger;
-                                translog.Instrument = xInstr;
-                                translog.paymentmethod = xPaymethod;
+                                translog.Instrument = (int)xInstr;
+                                translog.paymentmethod = (int)xPaymethod;
                                 translog.policyno = policyno;
                                 translog.remark = narr;
                                 translog.trandate = DateTime.Now;
@@ -1080,7 +1080,7 @@ namespace Flex.Controllers
                                     var _ps = 0.00M;
                                     decimal.TryParse(workSheet.Cells[rowIterator, 3].Value?.ToString(), out _ps);
                                     payinput2.ps = _ps;
-                                    payinput2.status = Status.Active;
+                                    payinput2.status = (int)Status.Active;
                                     payinput2.poltype = _pol.poltype;
                                     payinput2.createdby = User.Identity.Name;
                                     payinput2.datecreated = DateTime.Now;
@@ -1120,7 +1120,7 @@ namespace Flex.Controllers
                         var transLog = new fl_translog()
                         {
                             amount = totalAmt,
-                            Instrument = Instrument.RECEIPT,
+                            Instrument = (int)Instrument.RECEIPT,
                             Isreversed = false,
                             receiptno = ReceiptNo,
                             bank_ledger = _rct.rcth_bank,
