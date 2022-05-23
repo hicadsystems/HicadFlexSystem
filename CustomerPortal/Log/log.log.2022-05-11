@@ -1,0 +1,25 @@
+[Flex Customer Logger Started] 
+2022-05-11 00:01:09,983 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132966972596707681] Starting... @ BaseDir is [C:\Users\HP\Desktop\HicadFlexSystem\CustomerPortal\]
+2022-05-11 00:09:01,281 [15] INFO  CustomerPortal - Inside post signUp
+[Flex Customer Logger Started] 
+2022-05-11 10:03:41,114 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132967334078054045] Starting... @ BaseDir is [C:\Users\HP\Desktop\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Started] 
+2022-05-11 10:45:31,983 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132967359290659360] Starting... @ BaseDir is [C:\Users\HP\Desktop\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Stopped] 
+[Flex Customer Logger Started] 
+2022-05-11 15:56:04,554 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-2-132967545623784365] Starting... @ BaseDir is [C:\Users\HP\Desktop\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Stopped] 
+[Flex Customer Logger Started] 
+2022-05-11 16:30:44,812 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-3-132967566436491743] Starting... @ BaseDir is [C:\Users\HP\Desktop\HicadFlexSystem\CustomerPortal\]
+2022-05-11 16:44:53,450 [37] INFO  CustomerPortal - Error occurred. Details System.NullReferenceException: Object reference not set to an instance of an object.
+   at CustomerPortal.Controllers.StatementController.Index(String Policyno) in C:\Users\HP\Desktop\HicadFlexSystem\CustomerPortal\Controllers\StatementController.cs:line 22
+[Flex Customer Logger Started] 
+2022-05-11 16:48:02,803 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132967576796407589] Starting... @ BaseDir is [C:\Users\HP\Desktop\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Started] 
+2022-05-11 17:40:01,848 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132967607927786449] Starting... @ BaseDir is [C:\Users\HP\Desktop\HicadFlexSystem\CustomerPortal\]
+2022-05-11 18:02:55,552 [28] INFO  CustomerPortal - Error occurred. Details System.ArgumentNullException: Value cannot be null.
+Parameter name: value
+   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
+   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
+   at System.Enum.Parse(Type enumType, String value)
+   at CustomerPortal.Controllers.ClaimController.Save(String queryj) in C:\Users\HP\Desktop\HicadFlexSystem\CustomerPortal\Controllers\ClaimController.cs:line 58

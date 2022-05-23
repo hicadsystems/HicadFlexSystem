@@ -1,44 +1,49 @@
 ﻿<form name="step3" action="@Url.Action("SignUp")" id="step3frm">
-    <div class="col-md-6 bg-white">
+    <div class="col-md-12 bg-white">
         <div class="row">
-            <div class="form-group col-md-12 ss-item-required">
+            <div class="form-group col-md-6 ss-item-required">
                 <label class="color-transparent-darker lite small" for="Name">Name</label>
                 <input type="text" name="Name" class="form-control input-md" required autofocus id="benName">
                 <span class="text-danger pull-right small">* required</span>
             </div>
-            <div class="form-group col-md-12 ss-item-required">
+            <div class="form-group col-md-6 ss-item-required">
                 <label class="color-transparent-darker lite small" for="Address">Address</label>
                 <textarea name="Address" class="form-control input-md" required rows="2" id="benAdd"></textarea>
                 <span class="text-danger pull-right small">* required</span>
             </div>
-            <div class="form-group col-md-12 ss-item-required">
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 ss-item-required">
                 <label class="color-transparent-darker lite small" for="Phone">Phone</label>
-                <input type="number" name="Phone" class="form-control input-md" required id="benPhone"></input>
+                <input type="number" name="Phone" class="form-control input-md" required id="benPhone" />
                 <span class="text-danger pull-right small">* required</span>
             </div>
-            <div class="form-group col-md-12 ss-item-required">
+            <div class="form-group col-md-6">
                 <label class="color-transparent-darker lite small" for="Email">Email</label>
-                <input type="email" name="Email" class="form-control input-md" required id="benEmail"></input>
-                <span class="text-danger pull-right small">* required</span>
+                <input type="email" name="Email" class="form-control input-md" id="benEmail" />
             </div>
-            <div class="form-group col-md-12 ss-item-required">
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 ">
                 <label for="dob" class="color-transparent-darker lite small">DATE of BIRTH</label>
                 <div class="input-group input-group-sm">
-                    <input type="text" class="form-control datepicker" name="dob" id="benDob" readonly />
+                    <input type="text" class="form-control datepicker" name="dob" id="benDob" />
                     <span class="input-group-btn" style="padding-top:1px;">
                         <button type="button" class="btn btn-default" onclick="openDatePicker(this)"><i class="fa fa-calendar"></i></button>
                     </span>
                 </div>
                 @*<input type="text" name="dob" class="form-control input-md datepicker" id="benDob" />*@
-                <span class="text-danger pull-right small">* required</span>
+                @*<span class="text-danger pull-right small">* required</span>*@
             </div>
-            <div class="form-group col-md-12">
+            <div class="form-group col-md-6">
                 <label class="color-transparent-darker lite small" for="Relationship">Relationship</label>
                 @Html.DropDownList("Relationship", (IEnumerable<SelectListItem>)ViewBag.relationships, String.Empty,
-                             new { @class = "form-control input-md", @required = "true", @id="benRelat" })
+                                            new { @class = "form-control input-md", @required = "true", @id = "benRelat" })
             </div>
+        </div>
+        <div class="row">
 
-            <div class="form-group col-md-12 ss-item-required">
+            <div class="form-group col-md-6 ss-item-required">
                 <label class="color-transparent-darker lite small" for="Proportion">Proportion</label>
                 <div class="input-group">
                     <input type="text" name="Proportion" class="form-control input-md" aria-describedby="basic-addon2" required id="benProp">
@@ -49,11 +54,14 @@
             <div class="form-group col-md-12">
                 <a type="button" class="pull-left btn btn-danger btn-sm glyphicon glyphicon-plus" id="btnaddBen" data-url="">Add Beneficiary</a>
             </div>
-            <div  id="divBen">
+            <div id="divBen">
                 @Html.Partial("_beneficiaries")
             </div>
-               
+
             <div class="col-md-offset-1">
+                @Html.CheckBox("TermsAndConditions", false, new { @id = "chkcondition" })
+                <a href="#" data-target="#exampleModalCenter" data-toggle="modal">Term and condition</a>
+
                 <input type="button" class="btn btn-gray btn-lg margin-right-md" value="back" id="btnstep3Back" />
                 <input type="button" class="btn btn-success btn-lg padding-lg-h" value="Submit" id="btnsubmit" />
             </div>
@@ -61,3 +69,38 @@
     </div>
 </form>
 
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Read Terms and condition<</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2> GENERAL CONDITIONS</h2>
+
+                <p>
+                    1.	THE CONTRACT: NLPC will only be bound by the conditions stated in the policy and any subsequent amendments, if any, which is duly signed by an authorized officer at the Head office. The completed application form shall constitute the basis of the contract.
+                    2.	EFFECTIVE DATE OF PAYMENT: For payments made by cheque/draft the effective date of payment shall be the date the cheque/draft is credited into our account.
+                    3.	INVESTMENT YIELD: Interest payable on your contributions shall be calculated on
+                    Pro rata basis at the end of each year. The interest which shall be guaranteed and calculated on compounded basis shall be five percent (5%) per annum, reviewable annually subject to changes in economic indices.
+                    4.	WITHDRAWAL: Contributors are expected to target their retirement date for withdrawal purpose. Withdrawal before minimum duration of five (5) years shall attract penalty on accrued interest.
+                    5.	DEATH : A lump sum of two (2) times annual contributions, subject to regular payment and insurable age of Sixty(60) years or contributions with accrued interest whichever is higher, shall be paid to the beneficiaries.
+                    6.	TO WHOM BENEFIT IS PAYABLE :                                                                                                     (i)  Contributor                                     (ii) Named Beneficiaries
+                    7.	COOLING OFF PERIOD: A contributor has the privilege to exercise his/her right to decide Whether or not to continue with the plan within 30 days of receipt of the policy.
+                    IN WITNESS where of this policy has been issued for and on behalf of Nigerian Life and Provident Company Limited
+                </p>
+                <h4>Click on the check button to accept the above condition.</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div>
+    </div>
+</div>

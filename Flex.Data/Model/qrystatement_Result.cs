@@ -23,6 +23,6 @@ namespace Flex.Data.Model
         public string surname { get; set; }
         public string title { get; set; }
         public string othername { get; set; }
-        public Nullable<int> location { get; set; }
+        public string location { get; set; }
     }
 }

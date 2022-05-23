@@ -22,6 +22,7 @@ namespace Flex.Business
         {
             try
             {
+
                 var pinfo = new PersonalDetailsStaging();
                 var poltype = new CoreSystem<fl_poltype>(_context).Get(personalInfo.PolicyType);
                 pinfo.RegNo = GenerateregNo(poltype.poltype);
@@ -42,7 +43,13 @@ namespace Flex.Business
                 pinfo.ResAddress = personalInfo.ResAddress;
                 pinfo.Surname = personalInfo.Surname;
                 pinfo.Type = (int)Flex.Data.Enum.Type.New;
-                pinfo.Location = personalInfo.Location;
+                pinfo.Location = personalInfo.Locationid;
+                pinfo.IdentityNumber = personalInfo.IdentityNumber;
+                pinfo.IdentityType = personalInfo.IdentityType;
+                pinfo.PictureFile = personalInfo.PictureFile;
+                pinfo.signature = personalInfo.signature;
+                pinfo.agentcode = personalInfo.AgentCode;
+                pinfo.TermsAndConditions = personalInfo.TermsAndConditions;
 
                 var nextkinBen = new List<NextofKinBeneficiaryBindingModel>();
 
@@ -74,8 +81,8 @@ namespace Flex.Business
                     }
                 }*/
                 pinfo.NextofKin_BeneficiaryStaging = nkinBen.ToList();
-
-
+               
+                
                 Save(pinfo);
             }
             catch (Exception ex)

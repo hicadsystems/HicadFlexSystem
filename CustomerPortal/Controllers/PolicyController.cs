@@ -44,7 +44,7 @@ namespace CustomerPortal.Controllers
                     newpolicy.datecreated = DateTime.Now;
                     newpolicy.dob = policy.dob;
                     newpolicy.email = policy.email;
-                    newpolicy.location = model.Location;
+                    newpolicy.locationid = model.Locationid;
                     newpolicy.othername = policy.othername;
                     newpolicy.poltype = new CoreSystem<fl_poltype>(context).Get(model.PolicyType).poltype;
                     newpolicy.premium = model.Amount;
@@ -60,7 +60,7 @@ namespace CustomerPortal.Controllers
 
                     Logger.InfoFormat("Serial Number {0} gotten", policynoSno);
                     var policyno = ConfigUtils.PolicyNoFormat;
-                    var xlocation = new CoreSystem<fl_location>(_context).Get((int)model.Location);
+                    var xlocation = new CoreSystem<fl_location>(_context).Get((int)model.Locationid);
                     if (xlocation == null)
                     {
                         throw new Exception("Invalid Location");

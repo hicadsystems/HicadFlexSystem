@@ -38,6 +38,7 @@ namespace Flex.Data.Model
         public virtual DbSet<CustomerPolicy> CustomerPolicies { get; set; }
         public virtual DbSet<CustomerUser> CustomerUsers { get; set; }
         public virtual DbSet<fl_agents> fl_agents { get; set; }
+        public virtual DbSet<fl_bank> fl_bank { get; set; }
         public virtual DbSet<fl_formfile> fl_formfile { get; set; }
         public virtual DbSet<fl_gpayclaim> fl_gpayclaim { get; set; }
         public virtual DbSet<fl_grouptype> fl_grouptype { get; set; }
@@ -96,6 +97,15 @@ namespace Flex.Data.Model
                 new ObjectParameter("Delimiter", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<SPLIT_STRING_Result>("[Entities].[SPLIT_STRING](@String, @Delimiter)", stringParameter, delimiterParameter);
+        }
+    
+        public virtual int deleteclaim(Nullable<int> claimid)
+        {
+            var claimidParameter = claimid.HasValue ?
+                new ObjectParameter("claimid", claimid) :
+                new ObjectParameter("claimid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("deleteclaim", claimidParameter);
         }
     
         public virtual int fl_annual_interest_calc(string wdate, string poltype, string grpcode, string wrate, string guser, string optintr)

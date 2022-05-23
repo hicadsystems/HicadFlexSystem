@@ -17,7 +17,7 @@ namespace Flex.Data.Model
         public string policyno { get; set; }
         public Nullable<decimal> premium { get; set; }
         public string poltype { get; set; }
-        public Nullable<int> location { get; set; }
+        public string poltypedec { get; set; }
         public string telephone { get; set; }
         public string email { get; set; }
         public string surname { get; set; }
@@ -27,6 +27,7 @@ namespace Flex.Data.Model
         public string agentcode { get; set; }
         public string address { get; set; }
         public long srn { get; set; }
+        public string location { get; set; }
         public string locdesc { get; set; }
         public string agentname { get; set; }
         public Nullable<System.DateTime> accdate { get; set; }

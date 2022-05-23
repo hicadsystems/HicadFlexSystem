@@ -9,24 +9,34 @@ $('#btnstep1Next').click(function () {
     if (isvalid) {
         var PersonalInfo = $("#step1Frm").serializeObject();
         if (PersonalInfo != null || PersonalInfo != {} || PersonalInfo !== undefined) {
+            
             var valUrl =applicationBaseUrl +  '/SignUp/Validate'
             ShowLoading();
             $.ajax({
                 url: valUrl,
                 type: "POST",
-                data: { email: PersonalInfo.Email, phone: PersonalInfo.Phone },
+                data: { phone: PersonalInfo.Phone },
                 success: function (resp) {
                     console.log(resp);
                     if (!resp) {
-                        toastr.error("Email/Phone already exists for a policy. Contact Admin for details", "User Details Already Exist");
+                        toastr.error("Phone already exists for a policy. Contact Admin for details", "User Details Already Exist");
                         HideLoading();
                         return;
                     }
                     else {
-                        signUpModel.PersonalInfo = PersonalInfo;
-                        console.log(signUpModel);
-                        postSignUp(1);
-                        HideLoading();
+                        var pt5 = PersonalInfo.PolicyType;
+                        var duu = PersonalInfo.Duration;
+                        if (duu < 5 && pt5==8) {
+                            alert(pt5);
+                            toastr.error("Contribution Duration can not be less tha 5 (five)");
+                            HideLoading();
+                            return;
+                        } else {
+                            signUpModel.PersonalInfo = PersonalInfo;
+                            console.log(signUpModel);
+                            postSignUp(1);
+                            HideLoading();
+                        }
                     }
                 },
                 error: function (resp) {
@@ -76,7 +86,12 @@ $('#btnstep3Back').click(function () {
     back(3);
     HideLoading();
 });
-
+$('#btnstep4Back').click(function () {
+    console.log('Back to step 3');
+    ShowLoading();
+    back(4);
+    HideLoading();
+});
 function postSignUp(step) {
     console.log("step :" + step);
     ShowLoading();
@@ -216,6 +231,8 @@ function clear() {
 }
 $('#btnsubmit').click(function () {
     console.log('About to Save Sign Up');
+    if ($("#chkcondition").is(':checked')) {
+       
     ShowLoading();
     if (benficiaries.length > 0) {
         if (signUpModel != null || signUpModel != {} || signUpModel !== undefined) {
@@ -228,6 +245,7 @@ $('#btnsubmit').click(function () {
                 type: "POST",
                 data: { signUpmodel: signUpModel },
                 success: function (resp) {
+
                     window.location.href = resp;
                     HideLoading();
                 },
@@ -247,6 +265,12 @@ $('#btnsubmit').click(function () {
         toastr.error( "One or more beneiciary required","Error");
         HideLoading();
     }
+       
+    }
+    else {
+        alert("Please accept term and condition");
+        return false;
+    }
 });
 
 function ShowLoading() {
@@ -255,4 +279,14 @@ function ShowLoading() {
 
 function HideLoading() {
     $('#ajax').modal('hide');
+}
+function AcceptTermAndcondition() {
+
+    if ($("#chkcondition").is(':checked')) {
+        return true;
+    }
+    else {
+        alert("Please accept term and condition");
+        return false;
+    }
 }

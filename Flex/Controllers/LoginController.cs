@@ -92,6 +92,65 @@ namespace Flex.Controllers
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.ToString());
             }
         }
+        [HttpPost]
+        [AllowAnonymous]
+        //[ValidateAntiForgeryToken]
+        public ActionResult AgentLogin(string username, string password)
+        {
+            AuthResult res = null;
+            try
+            {
+                JsonResult resp = null;
+                UserAuthResponseViewModel model = null;
+
+                using (var _context = context)
+                {
+                    res = new UserAuthSystem(_context).AuthenticateUser(username, password);
+                }
+
+                if (new AuthStatus[] { AuthStatus.Normal, AuthStatus.FirstTime, AuthStatus.PasswordExpired, AuthStatus.AlreadyLoggedOn }.Any(x => x == res.Status))
+                {
+                    model = new UserAuthResponseViewModel
+                    {
+                        User = new UserAuthViewModel
+                        {
+                            Name = res.Session.fl_password.Name,
+                            Username = res.Session.fl_password.userid,
+                            //Branch = (int)res.Session.fl_password.branch,
+                            Dept = res.Session.fl_password.userdept
+                        },
+                        IsFirst = res.Status == AuthStatus.FirstTime,
+                        IsExpired = res.Status == AuthStatus.PasswordExpired,
+                        SessionTimeout = ConfigUtils.SessionTimeout,
+                        Status = res.Status
+                    };
+                    model.Token = res.Session.Token;
+                    model.Expires = res.Session.ExpiryDate.Value;
+
+                    resp = new JsonResult()
+                    {
+                        Data = model,
+
+                    };
+
+                }
+                else
+                {
+                    resp = new JsonResult()
+                    {
+                        Data = res,
+
+                    };
+                }
+                return resp;
+
+            }
+            catch (Exception ex)
+            {
+                Logger.ErrorFormat("Error Occurred. Details [error: {0}, StackTrace: {1}]", ex.ToString(), ex.StackTrace);
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.ToString());
+            }
+        }
 
         public ActionResult ChangePassword(ChangePasswordBindingModel xpass)
         {

@@ -42,6 +42,12 @@ namespace Flex.Data.Model
         public Nullable<System.DateTime> DateCreated { get; set; }
         public Nullable<long> ApprovedBy { get; set; }
         public Nullable<int> Location { get; set; }
+        public byte[] PictureFile { get; set; }
+        public string IdentityNumber { get; set; }
+        public string IdentityType { get; set; }
+        public byte[] signature { get; set; }
+        public string agentcode { get; set; }
+        public Nullable<bool> TermsAndConditions { get; set; }
     
         public virtual fl_poltype fl_poltype { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

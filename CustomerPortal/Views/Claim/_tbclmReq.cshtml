@@ -32,15 +32,15 @@
                         <td>@clmReq.ClaimType</td>
                         @{
                             var cssClass = "label-default";
-                            if (clmReq.Status == ClaimStatus.Disapproved)
+                            if (clmReq.Status == (int)ClaimStatus.Disapproved)
                             {
                                 cssClass = "label-danger";
                             }
-                            else if (clmReq.Status == ClaimStatus.Processing)
+                            else if (clmReq.Status == (int)ClaimStatus.Processing)
                             {
                                 cssClass = "label-warning";
                             }
-                            else if (clmReq.Status == ClaimStatus.Approved)
+                            else if (clmReq.Status == (int)ClaimStatus.Approved)
                             {
                                 cssClass = "label-success";
                             }
@@ -48,7 +48,7 @@
                         <td><span class="label @cssClass">@clmReq.Status</span> </td>
                         <td>@clmReq.EffectiveDate</td>
                         <td>
-                            @if (clmReq.Status == ClaimStatus.Pending)
+                            @if (clmReq.Status == (int)ClaimStatus.Pending)
                             {
                                 <button class="btn btn-danger btn-sm fa fa-remove" onclick="cancelClaim(@clmReq.Id)">Cancel</button>
                             }

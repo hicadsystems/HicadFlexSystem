@@ -14,6 +14,9 @@ namespace CustomerPortal.Controllers
         // GET: PolicySummary
         public ActionResult Index()
         {
+            try
+            {
+
             var user = WebSecurity.GetCurrentUser(Request);
 
             var pols = user.CustomerUser.CustomerPolicies.Select(x=> x.Policyno);
@@ -21,6 +24,13 @@ namespace CustomerPortal.Controllers
             var details = new CoreSystem<vwPolicy>(context).FindAll(x => pols.Contains(x.policyno)).ToList();
 
             return PartialView("_policySummary",details);
+
+            }
+            catch (Exception ex)
+            {
+
+                return RedirectToAction("Index", "Login");
+            }
         }
     }
 }

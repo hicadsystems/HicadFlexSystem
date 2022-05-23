@@ -1,0 +1,126 @@
+[Flex Customer Logger Started] 
+2022-04-29 11:39:24,000 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132957023470405675] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-04-29 12:09:46,215 [36] INFO  CustomerPortal - Inside post signUp
+[Flex Customer Logger Started] 
+2022-04-29 12:41:31,676 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132957060782840771] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-04-29 12:44:19,812 [7] INFO  CustomerPortal - Inside post signUp
+2022-04-29 12:44:39,817 [7] ERROR CustomerPortal - Error Occurred. Details  [System.NullReferenceException: Object reference not set to an instance of an object.
+   at CustomerPortal.Controllers.SignUpController.convertTobyte(HttpPostedFileBase c) in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\SignUpController.cs:line 206
+   at CustomerPortal.Controllers.SignUpController.SignUp(SignUpBindingModel signUpmodel) in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\SignUpController.cs:line 129--   at CustomerPortal.Controllers.SignUpController.convertTobyte(HttpPostedFileBase c) in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\SignUpController.cs:line 206
+   at CustomerPortal.Controllers.SignUpController.SignUp(SignUpBindingModel signUpmodel) in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\SignUpController.cs:line 129]
+2022-04-29 12:45:24,412 [5] INFO  CustomerPortal - Inside post signUp
+[Flex Customer Logger Started] 
+2022-04-29 12:48:19,848 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132957064878188338] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-04-29 12:56:21,468 [12] INFO  CustomerPortal - Inside post signUp
+[Flex Customer Logger Started] 
+2022-04-29 13:01:54,670 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132957073001040805] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-04-29 13:04:43,875 [8] INFO  CustomerPortal - Inside post signUp
+[Flex Customer Logger Started] 
+2022-04-29 13:11:55,558 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132957078962951151] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-04-29 13:14:12,379 [5] INFO  CustomerPortal - Inside post signUp
+2022-04-29 13:15:27,018 [5] ERROR CustomerPortal - Error Occurred. Details  [System.NullReferenceException: Object reference not set to an instance of an object.
+   at Flex.Business.SignUpSystem.SaveSignUp(PesonalInfoBindingModel personalInfo) in C:\Users\Home\source\Repo\HicadFlexSystem\Flex.Business\SignUpSystem.cs:line 89
+   at CustomerPortal.Controllers.SignUpController.SignUp(SignUpBindingModel signUpmodel) in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\SignUpController.cs:line 157--   at Flex.Business.SignUpSystem.SaveSignUp(PesonalInfoBindingModel personalInfo) in C:\Users\Home\source\Repo\HicadFlexSystem\Flex.Business\SignUpSystem.cs:line 89
+   at CustomerPortal.Controllers.SignUpController.SignUp(SignUpBindingModel signUpmodel) in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\SignUpController.cs:line 157]
+2022-04-29 13:15:36,866 [7] INFO  CustomerPortal - Inside post signUp
+[Flex Customer Logger Started] 
+2022-04-29 13:18:14,063 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132957082821184052] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-04-29 13:20:15,554 [8] INFO  CustomerPortal - Inside post signUp
+[Flex Customer Logger Started] 
+2022-04-29 13:32:18,916 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132957091286289432] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-04-29 13:34:59,491 [6] INFO  CustomerPortal - Inside post signUp
+2022-04-29 13:35:04,506 [6] ERROR CustomerPortal - Error Occurred. Details  [System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.Collections.ArrayList.get_Item(Int32 index)
+   at System.Web.HttpFileCollection.Get(Int32 index)
+   at System.Web.HttpFileCollectionWrapper.get_Item(Int32 index)
+   at CustomerPortal.Controllers.SignUpController.SignUp(SignUpBindingModel signUpmodel, HttpPostedFileBase PicturrFile) in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\SignUpController.cs:line 129--   at System.Collections.ArrayList.get_Item(Int32 index)
+   at System.Web.HttpFileCollection.Get(Int32 index)
+   at System.Web.HttpFileCollectionWrapper.get_Item(Int32 index)
+   at CustomerPortal.Controllers.SignUpController.SignUp(SignUpBindingModel signUpmodel, HttpPostedFileBase PicturrFile) in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\SignUpController.cs:line 129]
+2022-04-29 13:35:46,357 [6] INFO  CustomerPortal - Inside post signUp
+2022-04-29 13:35:49,438 [6] ERROR CustomerPortal - Error Occurred. Details  [System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.Collections.ArrayList.get_Item(Int32 index)
+   at System.Web.HttpFileCollection.Get(Int32 index)
+   at System.Web.HttpFileCollectionWrapper.get_Item(Int32 index)
+   at CustomerPortal.Controllers.SignUpController.SignUp(SignUpBindingModel signUpmodel, HttpPostedFileBase PicturrFile) in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\SignUpController.cs:line 129--   at System.Collections.ArrayList.get_Item(Int32 index)
+   at System.Web.HttpFileCollection.Get(Int32 index)
+   at System.Web.HttpFileCollectionWrapper.get_Item(Int32 index)
+   at CustomerPortal.Controllers.SignUpController.SignUp(SignUpBindingModel signUpmodel, HttpPostedFileBase PicturrFile) in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\SignUpController.cs:line 129]
+[Flex Customer Logger Started] 
+2022-04-29 13:45:37,079 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132957099223281933] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-04-29 13:48:04,052 [5] INFO  CustomerPortal - Inside post signUp
+[Flex Customer Logger Started] 
+2022-04-29 13:53:23,617 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132957103841434191] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-04-29 13:55:37,505 [8] INFO  CustomerPortal - Inside post signUp
+[Flex Customer Logger Started] 
+2022-04-29 13:57:06,649 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132957106162823965] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-04-29 14:00:09,997 [7] INFO  CustomerPortal - Inside post signUp
+2022-04-29 14:01:02,082 [7] ERROR CustomerPortal - Error Occurred. Details  [System.NullReferenceException: Object reference not set to an instance of an object.
+   at Flex.Business.SignUpSystem.SaveSignUp(PesonalInfoBindingModel personalInfo) in C:\Users\Home\source\Repo\HicadFlexSystem\Flex.Business\SignUpSystem.cs:line 90
+   at CustomerPortal.Controllers.SignUpController.SignUp(SignUpBindingModel signUpmodel) in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\SignUpController.cs:line 158--   at Flex.Business.SignUpSystem.SaveSignUp(PesonalInfoBindingModel personalInfo) in C:\Users\Home\source\Repo\HicadFlexSystem\Flex.Business\SignUpSystem.cs:line 90
+   at CustomerPortal.Controllers.SignUpController.SignUp(SignUpBindingModel signUpmodel) in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\SignUpController.cs:line 158]
+2022-04-29 14:01:29,949 [7] INFO  CustomerPortal - Inside post signUp
+2022-04-29 14:04:05,126 [7] ERROR CustomerPortal - Error Occurred. Details  [System.NullReferenceException: Object reference not set to an instance of an object.
+   at Flex.Business.SignUpSystem.SaveSignUp(PesonalInfoBindingModel personalInfo) in C:\Users\Home\source\Repo\HicadFlexSystem\Flex.Business\SignUpSystem.cs:line 90
+   at CustomerPortal.Controllers.SignUpController.SignUp(SignUpBindingModel signUpmodel) in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\SignUpController.cs:line 158--   at Flex.Business.SignUpSystem.SaveSignUp(PesonalInfoBindingModel personalInfo) in C:\Users\Home\source\Repo\HicadFlexSystem\Flex.Business\SignUpSystem.cs:line 90
+   at CustomerPortal.Controllers.SignUpController.SignUp(SignUpBindingModel signUpmodel) in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\SignUpController.cs:line 158]
+2022-04-29 14:06:41,051 [8] INFO  CustomerPortal - Inside post signUp
+2022-04-29 14:09:32,184 [8] ERROR CustomerPortal - Error Occurred. Details  [System.NullReferenceException: Object reference not set to an instance of an object.
+   at Flex.Business.SignUpSystem.SaveSignUp(PesonalInfoBindingModel personalInfo) in C:\Users\Home\source\Repo\HicadFlexSystem\Flex.Business\SignUpSystem.cs:line 90
+   at CustomerPortal.Controllers.SignUpController.SignUp(SignUpBindingModel signUpmodel) in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\SignUpController.cs:line 158--   at Flex.Business.SignUpSystem.SaveSignUp(PesonalInfoBindingModel personalInfo) in C:\Users\Home\source\Repo\HicadFlexSystem\Flex.Business\SignUpSystem.cs:line 90
+   at CustomerPortal.Controllers.SignUpController.SignUp(SignUpBindingModel signUpmodel) in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\SignUpController.cs:line 158]
+2022-04-29 14:19:34,014 [21] INFO  CustomerPortal - Inside post signUp
+2022-04-29 14:19:53,353 [21] ERROR CustomerPortal - Error Occurred. Details  [System.NullReferenceException: Object reference not set to an instance of an object.
+   at Flex.Business.SignUpSystem.SaveSignUp(PesonalInfoBindingModel personalInfo) in C:\Users\Home\source\Repo\HicadFlexSystem\Flex.Business\SignUpSystem.cs:line 90
+   at CustomerPortal.Controllers.SignUpController.SignUp(SignUpBindingModel signUpmodel) in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\SignUpController.cs:line 158--   at Flex.Business.SignUpSystem.SaveSignUp(PesonalInfoBindingModel personalInfo) in C:\Users\Home\source\Repo\HicadFlexSystem\Flex.Business\SignUpSystem.cs:line 90
+   at CustomerPortal.Controllers.SignUpController.SignUp(SignUpBindingModel signUpmodel) in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\SignUpController.cs:line 158]
+2022-04-29 14:21:41,162 [27] INFO  CustomerPortal - Inside post signUp
+2022-04-29 14:44:31,426 [32] INFO  CustomerPortal - Inside post signUp
+[Flex Customer Logger Started] 
+2022-04-29 15:04:17,359 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132957146441951088] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Started] 
+2022-04-29 15:09:53,881 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132957149771542748] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Started] 
+2022-04-29 15:20:02,406 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132957155870867888] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Started] 
+2022-04-29 15:22:15,877 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132957157256362358] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Started] 
+2022-04-29 15:25:42,544 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132957159271702523] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Started] 
+2022-04-29 15:29:18,946 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132957161439416236] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Started] 
+2022-04-29 15:31:34,612 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132957162844326099] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Started] 
+2022-04-29 15:32:09,715 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132957163195996151] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Started] 
+2022-04-29 22:00:33,759 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132957396258093555] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-04-29 22:02:58,278 [7] INFO  CustomerPortal - Inside post signUp
+[Flex Customer Logger Started] 
+2022-04-29 22:23:49,921 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132957410231302865] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Started] 
+2022-04-29 22:30:26,411 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132957414053120805] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-04-29 22:32:16,693 [6] INFO  CustomerPortal - Inside post signUp
+2022-04-29 22:32:29,773 [6] ERROR CustomerPortal - Error Occurred. Details  [System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.Collections.ArrayList.get_Item(Int32 index)
+   at System.Web.HttpFileCollection.Get(Int32 index)
+   at System.Web.HttpFileCollectionWrapper.get_Item(Int32 index)
+   at CustomerPortal.Controllers.SignUpController.SignUp(SignUpBindingModel signUpmodel) in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\SignUpController.cs:line 130--   at System.Collections.ArrayList.get_Item(Int32 index)
+   at System.Web.HttpFileCollection.Get(Int32 index)
+   at System.Web.HttpFileCollectionWrapper.get_Item(Int32 index)
+   at CustomerPortal.Controllers.SignUpController.SignUp(SignUpBindingModel signUpmodel) in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\SignUpController.cs:line 130]
+2022-04-29 22:47:45,339 [6] INFO  CustomerPortal - Inside post signUp
+2022-04-29 22:47:48,688 [6] ERROR CustomerPortal - Error Occurred. Details  [System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.Collections.ArrayList.get_Item(Int32 index)
+   at System.Web.HttpFileCollection.Get(Int32 index)
+   at System.Web.HttpFileCollectionWrapper.get_Item(Int32 index)
+   at CustomerPortal.Controllers.SignUpController.SignUp(SignUpBindingModel signUpmodel) in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\SignUpController.cs:line 130--   at System.Collections.ArrayList.get_Item(Int32 index)
+   at System.Web.HttpFileCollection.Get(Int32 index)
+   at System.Web.HttpFileCollectionWrapper.get_Item(Int32 index)
+   at CustomerPortal.Controllers.SignUpController.SignUp(SignUpBindingModel signUpmodel) in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\SignUpController.cs:line 130]
+[Flex Customer Logger Started] 
+2022-04-29 22:49:04,198 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132957425186084365] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-04-29 22:52:22,583 [7] INFO  CustomerPortal - Inside post signUp

@@ -1085,6 +1085,48 @@ namespace Flex.Controllers
         {
             return sdate;
         }
-       
+        [HttpPost]
+        public ActionResult PrintCustForm(long CustomerId)
+        {
+            try
+            {
+                ViewBag.Id = CustomerId;
+
+                var custPolicies = new List<vwPolicy>();
+                using (var _context = context)
+                {
+                    var _custPols = _context.CustomerPolicies.Where(x => x.CustomerUserId == CustomerId).Select(y => y.Policyno);
+                    custPolicies = new CoreSystem<vwPolicy>(context).FindAll(x => _custPols.Contains(x.policyno)).ToList();
+                }
+                var rpt = new CrystalReportEngine();
+                rpt.reportFormat = ReportFormat.pdf;
+                var rptdir = string.Empty;
+
+                rptdir = ReportUtil.GetConfig(ReportUtil.Constants.CustomerProfile);
+
+                var rparams = new List<KeyValuePair<string, string>>();
+                rparams.Add(RptHeaderCompanyName);
+                rparams.Add(RptHeaderCompanyAddress);
+                var datefromparams = new KeyValuePair<string, string>("input1", DateTime.Today.ToString("dd/MM/yyyy"));
+                rparams.Add(datefromparams);
+                var datetoparams = new KeyValuePair<string, string>("input2", "Maturity List");
+                rparams.Add(datetoparams);
+                rpt.Parameter = rparams;
+
+                rpt.ReportPath = Path.Combine(Server.MapPath(ReportUtil.GetConfig(ReportUtil.Constants.BaseURL)), rptdir);
+                var savedir = Server.MapPath(ConfigUtils.ReportPath);
+                var reportName = rptdir.Split('.')[0] + "_" + DateTime.Now.ToString("yyyyMMddhhmmssfff") + ".pdf";
+                rpt.ReportName = Path.Combine(savedir, reportName);
+                rpt.GenerateReport(custPolicies);
+                //var contentType = "application/pdf";
+
+                return ExportReport(reportName);
+            }
+            catch (Exception ex)
+            {
+                Logger.InfoFormat("Error occurred. Details {0}", ex.ToString());
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
     }
 } 

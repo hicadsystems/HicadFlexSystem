@@ -25,5 +25,8 @@ namespace Flex.Data.Model
         public Nullable<decimal> Interest { get; set; }
         public Nullable<decimal> ApprovedAmount { get; set; }
         public Nullable<decimal> FundAmount { get; set; }
+        public Nullable<int> bank { get; set; }
+        public string accountname { get; set; }
+        public string accountno { get; set; }
     }
 }

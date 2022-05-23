@@ -49,23 +49,22 @@ namespace Flex.Business
                 throw;
             }
         }
-
-        public PagedResult<vwPolicy> searchPolicies(List<string> poltypes,string policyno=null, string name=null, string phone=null, string agent=null, string location=null, string pagesize=null, string page=null)
+        public PagedResult<vwPolicy> searchPolicies(List<string> poltypes, string policyno = null, string name = null, string phone = null, string agent = null, string location = null, string pagesize = null, string page = null)
         {
             Logger.Info("Inside Search Policy No");
             Logger.InfoFormat("Using Context: {0}", _context.Database.Connection.ConnectionString);
 
             try
             {
-                long xPagesize = 0;
-                long xPage = 0;
-                long.TryParse(pagesize, out xPagesize);
-                long.TryParse(page, out xPage);
+                int xPagesize = 0;
+                int xPage = 0;
+                int.TryParse(pagesize, out xPagesize);
+                int.TryParse(page, out xPage);
                 var xDateFrom = SqlDateTime.MinValue.Value;
                 var xDateTo = SqlDateTime.MinValue.Value;
-                xPagesize = xPagesize > 0 ? xPagesize : 100;
+                xPagesize = xPagesize > 0 ? xPagesize : 10;
                 xPage = xPage > 0 ? xPage : 1;
-                var query = new CoreSystem<vwPolicy>(_context).FindAll(x=>x.status== (int)(Status)Status.Active);
+                var query = new CoreSystem<vwPolicy>(_context).FindAll(x => x.status == (int)Status.Active);
                 if (poltypes != null && poltypes.Any())
                 {
                     query = query.Where(x => poltypes.Contains(x.poltype));
@@ -88,19 +87,19 @@ namespace Flex.Business
                 }
                 if (!string.IsNullOrEmpty(location))
                 {
-                    var loc = int.Parse(location);
-                    query = query.Where(x => x.location == loc);
+                    //var loc = int.Parse(location);
+                    query = query.Where(x => x.location == location);
                 }
 
                 var TotalCount = query.Count();
                 var skip = (xPage - 1) * xPagesize;
                 var PagedPols = new PagedResult<vwPolicy>();
                 PagedPols.LongRowCount = TotalCount;
-                PagedPols.Items = query.OrderByDescending(x=>x.accdate).Skip(Convert.ToInt32(skip)).Take(Convert.ToInt32(xPagesize)).ToList();
-                PagedPols.LPageSize = xPagesize;
+                PagedPols.Items = query.OrderByDescending(x => x.accdate).Skip(skip).Take(xPagesize).ToList();
+                PagedPols.PageSize = xPagesize;
                 PagedPols.PageCount = TotalCount > 0 ? (int)Math.Ceiling(Convert.ToDouble(Convert.ToDouble(TotalCount) / Convert.ToDouble(xPagesize))) : 1;
 
-                PagedPols.LCurrentPage = xPage;
+                PagedPols.CurrentPage = xPage;
 
                 return PagedPols;
             }
@@ -111,16 +110,78 @@ namespace Flex.Business
             }
         }
 
+
+        //public PagedResult<vwPolicy> searchPolicies(List<string> poltypes,string policyno=null, string name=null, string phone=null, string agent=null, string location=null, string pagesize=null, string page=null)
+        //{
+        //    Logger.Info("Inside Search Policy No");
+        //    Logger.InfoFormat("Using Context: {0}", _context.Database.Connection.ConnectionString);
+
+        //    try
+        //    {
+        //        long xPagesize = 0;
+        //        long xPage = 0;
+        //        long.TryParse(pagesize, out xPagesize);
+        //        long.TryParse(page, out xPage);
+        //        var xDateFrom = SqlDateTime.MinValue.Value;
+        //        var xDateTo = SqlDateTime.MinValue.Value;
+        //        xPagesize = xPagesize > 0 ? xPagesize : 10;
+        //        xPage = xPage > 0 ? xPage : 1;
+        //        var query = new CoreSystem<vwPolicy>(_context).FindAll(x=>x.status== (int)(Status)Status.Active);
+        //        if (poltypes != null && poltypes.Any())
+        //        {
+        //            query = query.Where(x => poltypes.Contains(x.poltype));
+        //        }
+        //        if (!string.IsNullOrEmpty(policyno))
+        //        {
+        //            query = query.Where(x => x.policyno.ToLower().Contains(policyno.ToLower()));
+        //        }
+        //        if (!string.IsNullOrEmpty(name))
+        //        {
+        //            query = query.Where(x => x.surname.ToLower().Contains(name.ToLower()) || x.othername.ToLower().Contains(name.ToLower()));
+        //        }
+        //        if (!string.IsNullOrEmpty(phone))
+        //        {
+        //            query = query.Where(x => x.telephone == phone);
+        //        }
+        //        if (!string.IsNullOrEmpty(agent))
+        //        {
+        //            query = query.Where(x => x.agentcode == agent);
+        //        }
+        //        if (!string.IsNullOrEmpty(location))
+        //        {
+        //            var loc = int.Parse(location);
+        //            query = query.Where(x => x.location == loc);
+        //        }
+
+        //        var TotalCount = query.Count();
+        //        var skip = (xPage - 1) * xPagesize;
+        //        var PagedPols = new PagedResult<vwPolicy>();
+        //        PagedPols.LongRowCount = TotalCount;
+        //        PagedPols.Items = query.OrderByDescending(x=>x.accdate).Skip(Convert.ToInt32(skip)).Take(Convert.ToInt32(xPagesize)).ToList();
+        //        PagedPols.LPageSize = xPagesize;
+        //        PagedPols.PageCount = TotalCount > 0 ? (int)Math.Ceiling(Convert.ToDouble(Convert.ToDouble(TotalCount) / Convert.ToDouble(xPagesize))) : 1;
+
+        //        PagedPols.LCurrentPage = xPage;
+
+        //        return PagedPols;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.InfoFormat("Error occurred. Details {0}", ex.ToString());
+        //        throw;
+        //    }
+        //}
+
         private string GeneratePolicyNo(string policytype, string location)
         {
             var sn = Count() + 1;
             return string.Format("{0}/{1}/{2}/{3}", policytype, location, DateTime.Today.ToString("yy"), sn.ToString().PadLeft(5,'0'));
         }
 
-        public bool validate(string email, string phone)
+        public bool validate(string phone)
         {
             bool isValid = true;
-            var query = FindAll(x=> (x.email == email || x.telephone==phone) && string.IsNullOrEmpty(x.exitdate));
+            var query = FindAll(x=>x.telephone==phone && string.IsNullOrEmpty(x.exitdate));
             var pol = query.FirstOrDefault();
             if (pol != null)
             {
@@ -161,7 +222,7 @@ namespace Flex.Business
                 }
                 if (location > 0)
                 {
-                    membs = membs.Where(x => x.location == location);
+                    membs = membs.Where(x => x.locationid == location);
                 }
                 return membs.ToList();
             }

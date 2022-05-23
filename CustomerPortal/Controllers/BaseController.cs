@@ -19,14 +19,26 @@ namespace CustomerPortal.Controllers
 
         public void GetPolicyType()
         {
-            var polType = new CoreSystem<fl_poltype>(context).FindAll(x=>x.IsDeleted==false);
-            ViewBag.polType = new SelectList(polType, "Id", "poldesc");
+            var polType = new CoreSystem<fl_poltype>(context).FindAll(x=>x.code!="PPP");
+            ViewBag.polType = new SelectList(polType.Where(x=>x.code != "GTY"), "Id", "poldesc");
         }
 
         public void GetLocation()
         {
             var loc = new CoreSystem<fl_location>(context).FindAll(x=>x.Isdeleted==false);
             ViewBag.location = new SelectList(loc, "Id", "locdesc");
+
+        }
+        public void Getbank()
+        {
+            var loc = new CoreSystem<fl_bank>(context).FindAll(x => x.Isdeleted == false);
+            ViewBag.bank = new SelectList(loc, "Id", "bankname");
+
+        }
+        public void GetAgent()
+        {
+            var loc = new CoreSystem<fl_agents>(context).FindAll(x => x.IsDeleted == false).OrderBy(x=>x.agentname);
+            ViewBag.Agent = new SelectList(loc, "agentcode", "agentname");
 
         }
         public void GetClaimType()

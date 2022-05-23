@@ -1,15 +1,20 @@
-﻿using Flex.Business;
+﻿using CustomerPortal.Util;
+using Flex.Business;
 using Flex.Data.Enum;
 using Flex.Data.Model;
 using Flex.Data.Utility;
 using Flex.Data.ViewModel;
+using ImageResizer;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace CustomerPortal.Controllers
@@ -23,6 +28,7 @@ namespace CustomerPortal.Controllers
             GetReationShip();
             GetPolicyType();
             GetLocation();
+            GetAgent();
             return View();
         }
 
@@ -116,6 +122,59 @@ namespace CustomerPortal.Controllers
 
         //    Session["SignUp"] = signUpModel;
         //}
+        [HttpPost]
+        public ActionResult SignUp2(SignUpBindingModel signUpmodel)
+        {
+            try { 
+            string filenames = "";
+            string fileName = "";
+            string path = "";
+            string fileName2 = "";
+            string path2 = "";
+                if (Session["IdentyNumber"] != null)
+                {
+                    if (Request != null)
+                    {
+                        HttpPostedFileBase FileUpload = Request.Files["PictureFile"];
+                        if (FileUpload.ContentLength > 0)
+                        {
+                            fileName = "Passport_" + Session["IdentyNumber"] + ".png";
+                            path = Path.Combine(Server.MapPath("~/Pictures/"), fileName);
+                            //fileName= Path.GetFileName(FileUpload.FileName);
+                            string fileExtension = System.IO.Path.GetExtension(Request.Files["PictureFile"].FileName.ToLower());
+                            // path = Path.Combine(Server.MapPath("~/Content/UploadPhotoPath/"));
+                            path = path.Replace("CustomerPortal", "Flex");
+                            if (fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".gif" || fileExtension == ".png" || fileExtension == ".bmp")
+                            {
+                                if (System.IO.File.Exists(path))
+                                {
+                                    System.IO.File.Delete(path);
+                                }
+                                FileUpload.SaveAs(path);
+                                WebImage img = new WebImage(path);
+                                if (img.Width > 150)
+                                    img.Resize(150, 150);
+                                    img.Save(path);
+
+                                ViewData["Feedback"] = "Upload Complete";
+
+                            }
+                        }
+
+                       
+                    }
+                }
+                Session["IdentyNumber"] = "";
+            
+                return RedirectToAction("Success");
+        }
+            catch (Exception ex)
+            {
+                Logger.ErrorFormat("Error Occurred. Details  [{0}--{1}]", ex.ToString(), ex.StackTrace);
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.Message);
+    }
+
+}
 
         [HttpPost]
         public ActionResult SignUp(SignUpBindingModel signUpmodel)
@@ -131,6 +190,14 @@ namespace CustomerPortal.Controllers
                 {
                     throw new Exception("Error occurred. Please try again");
                 }
+                if (signUpmodel.PersonalInfo.IdentityNumber==null)
+                {
+                    throw new Exception("Please Provide Vilid ID and Number");
+                }
+                if (signUpmodel.PersonalInfo.Frequency == null)
+                {
+                    throw new Exception("Please Select Frequency From Tab One");
+                }
                 if (signUpmodel.PersonalInfo.NextofKin==null)
                 {
                     throw new Exception("Please Provide Next of kin Details");
@@ -139,6 +206,8 @@ namespace CustomerPortal.Controllers
                 {
                     throw new Exception("Please Provide atleast one Beneficiary");
                 }
+
+                Session["IdentyNumber"] = signUpmodel.PersonalInfo.IdentityNumber;
                 new SignUpSystem(context).SaveSignUp(signUpmodel.PersonalInfo);
                 //var ben = JsonConvert.DeserializeObject<List<NextofKinBeneficiaryBindingModel>>(beneficiaries);
 
@@ -167,7 +236,7 @@ namespace CustomerPortal.Controllers
 
                 
                 return new JsonResult(){
-                    Data= new UrlHelper(Request.RequestContext).Action("Success")
+                    Data= new UrlHelper(Request.RequestContext).Action("uploaddoc")
                 };
                    
             }
@@ -177,10 +246,65 @@ namespace CustomerPortal.Controllers
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.Message);
             }
         }
+        public ActionResult uploaddoc()
+        {
+            return View();
+        }
 
         public ActionResult Success()
         {
             return View();
+        }
+
+        [AllowAnonymous]
+        public JsonResult UploadPicture(string term)
+        {
+            try
+            {
+                var pictureUrl = "";
+                var fileName = "";
+                var fileContent = Request.Files[0];
+                //if (fileContent != null && fileContent.ContentLength > 0)
+                //{
+                //    // get a stream
+                //    var stream = fileContent.InputStream;
+                //    // and optionally write the file to disk
+                //    fileName = Path.GetFileName(fileContent.FileName);
+                //    var path = Path.Combine(ConfigurationManager.AppSettings["PicturePath"], fileName);
+                //    using (var fileStream = System.IO.File.Create(path))
+                //    {
+                //        stream.CopyTo(fileStream);
+                //    }
+                //}
+
+                var binarypic = convertTobyte(fileContent);
+                var binarystringpic = Convert.ToBase64String(binarypic);
+
+                pictureUrl = ConfigurationManager.AppSettings["BasePicUrl"] + fileName;
+
+                var data = new
+                {
+                    //Url = pictureUrl,
+                    Url = Convert.ToBase64String(binarypic),
+                    //FileName = fileName
+                    FileName = binarystringpic
+                };
+                return Json(data, JsonRequestBehavior.AllowGet);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public byte[] convertTobyte(HttpPostedFileBase c)
+        {
+            byte[] imageBytes = null;
+            BinaryReader reader = new BinaryReader(c.InputStream);
+            imageBytes = reader.ReadBytes((int)c.ContentLength);
+            return imageBytes;
         }
         private void GetReationShip()
         {
@@ -189,11 +313,11 @@ namespace CustomerPortal.Controllers
 
         }
 
-        public ActionResult Validate(string email,string phone)
+        public ActionResult Validate(string phone)
         {
             try
             {
-                var isValid = new PolicySystem(context).validate(email, phone);
+                var isValid = new PolicySystem(context).validate(phone);
 
                 return new JsonResult()
                 {
@@ -204,6 +328,36 @@ namespace CustomerPortal.Controllers
             {
                 Logger.InfoFormat("Error occurred. Detail {0}", ex.ToString());
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+        public ActionResult ResetPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ResetPassword2(ChangePasswordBindingModel xpass)
+        {
+            try
+            {
+                var usrSession = WebSecurity.GetCurrentUser(Request);
+                var custUser = new CoreSystem<CustomerUser>(context).FindAll(x => x.username == xpass.OldPassword).FirstOrDefault();
+                string pass = custUser.password;
+
+                JsonResult resp = null;
+                var result = new CustomerAuthSystem(context).ResetPassword(custUser.Id, xpass.NewPassword, pass);
+                resp = new JsonResult()
+                {
+                    Data = result,
+
+
+                };
+
+                return RedirectToAction("Index","Login");
+            }
+            catch (Exception ex)
+            {
+                Logger.InfoFormat("Error occurred. Details {0}", ex.ToString());
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.ToString());
             }
         }
     }

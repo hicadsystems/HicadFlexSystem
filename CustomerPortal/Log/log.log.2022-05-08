@@ -1,0 +1,14 @@
+[Flex Customer Logger Started] 
+2022-05-08 15:19:25,277 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132964931579620217] Starting... @ BaseDir is [C:\Users\HP\Desktop\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Started] 
+2022-05-08 15:39:06,603 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132964943398212097] Starting... @ BaseDir is [C:\Users\HP\Desktop\HicadFlexSystem\CustomerPortal\]
+2022-05-08 16:45:06,668 [19] INFO  CustomerPortal - Inside post signUp
+[Flex Customer Logger Started] 
+2022-05-08 16:50:38,809 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132964986366332042] Starting... @ BaseDir is [C:\Users\HP\Desktop\HicadFlexSystem\CustomerPortal\]
+2022-05-08 16:52:46,822 [6] INFO  Flex - Inside Payment History
+2022-05-08 16:52:59,161 [6] INFO  Flex - Inside Payment History
+[Flex Customer Logger Started] 
+2022-05-08 18:21:07,419 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132965040644234380] Starting... @ BaseDir is [C:\Users\HP\Desktop\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Started] 
+2022-05-08 23:58:25,076 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132965242973484050] Starting... @ BaseDir is [C:\Users\HP\Desktop\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Stopped] 

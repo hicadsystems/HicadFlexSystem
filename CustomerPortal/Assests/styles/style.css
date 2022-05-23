@@ -292,7 +292,7 @@ h6 {
   }
 }
 .btn-login {
-  background-image: linear-gradient(-180deg, #288A4A 0, #288A4A 100%);
+  background-image: linear-gradient(-180deg, #288a4a 0, #288a4a 100%);
   color: #ffffff;
   font-size: 12px;
   border: none;
@@ -383,8 +383,125 @@ h6 {
   margin-top: -22px;
   margin-left: -22px;
 }
-.datepicker {
-  width: 17em;
-  padding: .2em .2em 0;
-  z-index: 9000;
+.home-banner {
+  background-color: #ffffff;
+  padding-left: 30px;
+  padding-right: 30px;
+  -moz-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  margin-left: -5%;
+  margin-right: -5%;
 }
+.tile-small {
+  height: 65px;
+  display: block;
+}
+.tile-blue {
+  background: #4a9fe1;
+}
+.tile-orange {
+  background: #ef8500;
+}
+.tile-gray {
+  background: #434343;
+}
+.tile-green {
+  background: #9dbb49;
+}
+.tile-dark-blue {
+  background: #1d589f;
+}
+.tile-teal {
+  background: #40d6c0;
+}
+.tile > .title {
+  height: 45px;
+}
+.tile-small > .title {
+  height: 10px;
+  font-size: 8px;
+}
+.tile-small > .footer {
+  text-align: center;
+}
+.tile-small > .footer > span {
+  color: white;
+  font-size: 10px;
+}
+.tile > .picture {
+  text-align: center;
+  min-height: 80px;
+}
+.tile-small > .picture-small {
+  text-align: center;
+}
+.tile-small > .picture-small > img {
+  width: 32px;
+  height: 32px;
+}
+.tile > .footer {
+  padding-top: 10px;
+  color: #ffffff;
+  font-weight: normal;
+  padding-left: 10px;
+  font-size: 16px;
+  padding-bottom: 15px;
+}
+.table-common > thead > tr > th {
+  padding: 5px 5px 5px 0;
+  font-size: 11px;
+  background-color: #eee;
+}
+.table-common > tbody > tr > td {
+  padding: 10px 5px 10px 0;
+  font-size: 12px;
+}
+.table-common > tbody > tr > td:first-child {
+  padding-left: 5px;
+}
+.table-common small {
+  color: #a0a0a0;
+  font-size: 90%;
+}
+.table-common .badge {
+  background-color: #cccccc;
+  text-transform: uppercase;
+  font-weight: normal;
+}
+.table-common-hover > tbody > tr:hover > td {
+  background: #fffce8;
+  -moz-box-shadow: 0 1px 0 0 #f1f1f1;
+  -webkit-box-shadow: 0 1px 0 0 #f1f1f1;
+  box-shadow: 0 1px 0 0 #f1f1f1;
+}
+.table-common-hover > tbody > tr:hover > td:first-child {
+  border-left: solid 3px #4a9fe1;
+}
+.table-common-select > tbody > tr > td:first-child {
+  border-left: solid 3px transparent;
+}
+h4 .badge {
+  font-size: 60%;
+}
+.table-common-tiny {
+  width: 100%;
+}
+.table-common-tiny > tbody > tr > td {
+  padding: 5px 3px!important;
+  background-color: #ffffff;
+}
+.table-common-tiny input {
+  font-size: 12px;
+}
+.pagination-summary {
+  background-color: #f5f5f5;
+  text-align: right;
+  letter-spacing: 1px;
+}
+.lite {
+  font-weight: 400;
+}
+
+
+/*# sourceMappingURL=style.css.map */

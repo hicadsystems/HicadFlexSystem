@@ -1,5 +1,6 @@
 ﻿function showClaim(el) {
     console.log('About to add Claim');
+    alert("i claim money");
     ShowLoading();
     var url = $(el).attr('data-url');
     var data = { };
@@ -20,7 +21,29 @@
     });
     //HideLoading();
 };
+function showPayment(el) {
+    console.log('About to add Claim');
+    ShowLoading();
+    alert("i am here")
+    var url = $(el).attr('data-url');
+    var data = {};
+    var coyProfilePromise = Post(url, data, 'Get');
 
+    coyProfilePromise.done(function (resp) {
+        var func = 'saveClaim()';
+        showModal(resp, 'Claim Request', func);
+        HideLoading();
+    });
+
+    coyProfilePromise.fail(function (resp) {
+        if (resp.status === 401) {
+            window.location.href = loginurl;;
+        }
+        toastr.error(resp.statusText, "Error");
+        HideLoading();
+    });
+    //HideLoading();
+};
 function showAmount(el) {
     console.log(el);
     var amtdiv = document.getElementById('divamt');

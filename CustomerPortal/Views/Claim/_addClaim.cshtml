@@ -5,20 +5,17 @@
             <div class="form-group col-md-6 ss-item-required">
                 <label for="Code" class="color-transparent-darker lite small uppercase">Policy</label>
                 @Html.DropDownList("Policyno", (IEnumerable<SelectListItem>)ViewBag.Policy, String.Empty,
-                                        new { @class = "form-control input-md" })
+                                             new { @class = "form-control input-md" })
             </div>
             <div class="form-group col-md-6 ss-item-required">
                 <label for="Name" class="color-transparent-darker lite small uppercase">Claim Type</label>
                 <div class="row" id="grpclass">
-                    @{
-                        var clmType = ViewBag.clmTypes as SelectList;
-                        foreach (var item in clmType)
-                        {
-                            <label class="radio-inline">
-                                <input type="radio" value="@item.Value" name="clmType" onchange="showAmount(this);"> @item.Text
-                            </label>
-                        }
-                    }
+                    @{ var clmType = ViewBag.clmTypes as SelectList;
+                                    foreach (var item in clmType)
+                                    {
+                        <label class="radio-inline">
+                            <input type="radio" value="@item.Value" name="clmType" onchange="showAmount(this);"> @item.Text
+                        </label> } }
 
                 </div>
             </div>
@@ -33,6 +30,22 @@
                     </span>
                 </div>
             </div>
+            <div class="form-group col-md-6">
+                <label for="Commission" class="color-transparent-darker lite small uppercase">Bank</label>
+                @Html.DropDownList("bank", (IEnumerable<SelectListItem>)ViewBag.bank, String.Empty,
+                                                  new { @class = "form-control input-md" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="Commission" class="color-transparent-darker lite small uppercase">Account Name</label>
+                <input type="text" name="accountname" class="form-control input-md" required />
+            </div>
+            <div class="form-group col-md-6">
+                <label for="Commission" class="color-transparent-darker lite small uppercase">Account Number</label>
+                <input type="text" name="accountno" class="form-control input-md" required />
+            </div>
+           
             <div class="form-group col-md-6" style="display:none" id="divamt">
                 <label for="Commission" class="color-transparent-darker lite small uppercase">Amount</label>
                 <input type="text" name="amount" class="form-control input-md" required />

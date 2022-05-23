@@ -32,6 +32,7 @@ function showModalfromfile(url, title, fn) {
 
 };
 
+
 function hideModal(Isclose) {
     var modalbody = document.getElementById('modalbody');
     if (Isclose) {

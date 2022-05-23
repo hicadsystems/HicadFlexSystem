@@ -41,6 +41,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ImageResizer, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageResizer.4.2.8\lib\net45\ImageResizer.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
@@ -186,12 +189,19 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Util\DataBaseHelper.cs" />
     <Compile Include="Util\WebSecurity.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="appFiles\addUser.html" />
+    <Content Include="appFiles\ussd.html" />
+    <Content Include="appFiles\resetPassword.html" />
     <Content Include="appFiles\changePassword.html" />
     <Content Include="Assests\fonts\fontawesome-webfont.svg" />
     <Content Include="Assests\scripts\Auth.js" />
@@ -236,6 +246,7 @@
     </Content>
     <Content Include="Assests\styles\font-awesome.css" />
     <Content Include="Assests\styles\font-awesome.min.css" />
+    <Content Include="Assests\styles\jquery-ui.min.css" />
     <Content Include="Assests\styles\style.css">
       <DependentUpon>style.less</DependentUpon>
     </Content>
@@ -258,6 +269,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\treecss.css" />
+    <Content Include="Scripts\treejs.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -351,10 +364,12 @@
     <Content Include="Assests\styles\def.css.map">
       <DependentUpon>def.css</DependentUpon>
     </Content>
+    <Content Include="images\gtblogo.png" />
     <Content Include="images\loading.png" />
     <Content Include="images\loading2.png" />
     <Content Include="images\Nlpc.png" />
     <Content Include="images\nlpcLoading.gif" />
+    <Content Include="images\quickteller.png" />
     <Content Include="log4net.config" />
     <Content Include="Assests\styles\margin.less" />
     <Content Include="Assests\styles\padding.less" />
@@ -371,12 +386,19 @@
     <Content Include="Assests\fonts\fontawesome-webfont.woff2" />
     <Content Include="Assests\fonts\FontAwesome.otf" />
     <Content Include="appFiles\_AddUser.cshtml" />
+    <Content Include="Assests\styles\style.css.map" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <None Include="Properties\PublishProfiles\FlexCustomerPortal.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Pictures\default.png" />
+    <Content Include="Pictures\images.jpeg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -445,6 +467,12 @@
     <Content Include="Views\Claim\_tbclmReq.cshtml" />
     <Content Include="Views\Claim\_addClaim.cshtml" />
     <Content Include="Views\PaymentChannel\_paymentchannel.cshtml" />
+    <Content Include="Views\SignUp\uploaddoc.cshtml" />
+    <Content Include="Views\PaymentChannel\_paymentchannel2.cshtml" />
+    <Content Include="Views\PaymentChannel\Paymentchannel2.cshtml" />
+    <Content Include="Views\Login\ResetPassword.cshtml" />
+    <Content Include="Views\SignUp\ResetPassword.cshtml" />
+    <Content Include="Views\Shared\_ussdpayment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

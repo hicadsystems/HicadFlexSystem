@@ -34,7 +34,7 @@ namespace Flex.Data.Model
         public string ModifiedBy { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
         public string poltype { get; set; }
-        public Nullable<int> grpcode { get; set; }
+        public string grpcode { get; set; }
         public string interest2 { get; set; }
         public string interest3 { get; set; }
         public string commrate3 { get; set; }

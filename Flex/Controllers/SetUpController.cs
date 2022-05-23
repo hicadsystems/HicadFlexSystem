@@ -359,7 +359,7 @@ namespace Flex.Controllers
                     if (!string.IsNullOrEmpty(searchmodel.Type))
                     {
                         var agtype = (AgentType)Enum.Parse(typeof(AgentType), searchmodel.Type);
-                        query = query.Where(x => x.agenttype == (int)agtype);
+                        query = query.Where(x => x.agenttype2 == (int)agtype);
                     }
                     if (!string.IsNullOrEmpty(searchmodel.Location))
                     {
@@ -453,7 +453,7 @@ namespace Flex.Controllers
                         agent = new CoreSystem<fl_agents>(_context).Get(AgentId);
                     }
 
-                    var agTypeSelected = agent.Id > 0 ? (int)agent.agenttype : -1;
+                    var agTypeSelected = agent.Id > 0 ? (int)agent.agenttype2 : -1;
                     var locSelected = agent.Id > 0 ? (int)agent.locationId : 0;
                     var status = agent.Id > 0 ? (int)agent.status.GetValueOrDefault() : -1;
                     getAgentType(agTypeSelected);
@@ -483,7 +483,7 @@ namespace Flex.Controllers
                 {
                     int.TryParse(formdata["Id"].ToString(), out Id);
                     var agType=formdata["Type"].ToString();
-                    agent.agenttype = (int)(AgentType)Enum.Parse(typeof(AgentType),agType);
+                    agent.agenttype2 = (int)(AgentType)Enum.Parse(typeof(AgentType),agType);
                     agent.agentcode = formdata["Code"].ToString();
                     agent.agentname = formdata["Name"].ToString();
                     agent.datecreated = DateTime.Today;
@@ -720,7 +720,7 @@ namespace Flex.Controllers
 
                 if (Id > 0)
                 {
-                    query = query.Where(x => x.Id != Id);
+                    query = query.Where(x => x.Id!= Id);
                 }
 
                 loc = query.ToList();

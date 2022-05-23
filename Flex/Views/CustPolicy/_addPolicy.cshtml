@@ -1,16 +1,55 @@
 ﻿@{
     var id = ViewBag.Id;
 }
-<div class="padding-md">
-    <input type="hidden" value="@id" name="Id" id="Id" />
-    <div class="row">
-        <div class="form-group col-md-9">
-            <div class="col-md-5 text-left padding-top-xs">
-                <label for="Policyno" class="color-transparent-darker lite small uppercase">Policy Number</label>
-            </div>
-            <div class="col-md-7">
-                <input type="text" name="Policyno" class="form-control input-md" required id="Policyno" />
-            </div>
-        </div>
-    </div>
-</div>
+<form name="step1" action="@Url.Action("Next")" id="frmCreatePolicy">
+        <input type="hidden" value="@id" name="Id" id="Id" />
+        <input type="hidden" value="@ViewBag.policyno" name="Policyno" id="Id" />
+                <div class="padding-sm">
+                    <div class="row">
+                        <div class="form-group col-md-4 ss-item-required">
+                            <label for="PolicyType" class="color-transparent-darker lite small">Policy Type</label>
+                            @Html.DropDownList("PolicyType", (IEnumerable<SelectListItem>)ViewBag.polType, String.Empty,
+                                                      new { @class = "form-control input-md", @required = "true" })
+                        </div>
+                        <div class="form-group col-md-4 ss-item-required">
+                            <label for="Location" class="color-transparent-darker lite small">Location</label>
+                            @Html.DropDownList("Location", (IEnumerable<SelectListItem>)ViewBag.location, String.Empty,
+                                                      new { @class = "form-control input-md", @required = "true" })
+                        </div>
+                        <div class="form-group col-md-4 ss-item-required">
+                            <label class="color-transparent-darker lite small" for="Amount">Contribution Amount</label>
+                            <input type="number" name="Amount" class="form-control input-md" required />
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group col-md-4 ss-item-required">
+                            <label for="Frequency" class="color-transparent-darker lite small">FREQUENCY</label>
+                            <div>
+                                <label class="radio-inline">
+                                    <input type="radio" name="Frequency" id="inlineRadio1" value="1" required> Monthly
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="Frequency" id="inlineRadio2" value="2"> Quaterly
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="Frequency" id="inlineRadio3" value="3"> Bi-Annually
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="Frequency" id="inlineRadio3" value="4"> Annually
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4 ss-item-required">
+                            <label class="color-transparent-darker lite small" for="Duration">Contribution Duration</label>
+                            <div class="input-group">
+                                <input type="number" name="Duration" required
+                                       class="form-control input-md" aria-describedby="basic-addon2">
+                                <span class="input-group-addon" id="basic-addon2">yrs</span>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="button" class="btn btn-block btn-success" value="Submit2" onclick="createPolicy(this)" />
+                </div>
+
+</form>

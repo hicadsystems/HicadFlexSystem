@@ -88,6 +88,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgentUserAuth.cs" />
     <Compile Include="ClaimSystem.cs" />
     <Compile Include="CrystalReportSystem.cs" />
     <Compile Include="CustomerAuthSystem.cs" />

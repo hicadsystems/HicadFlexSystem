@@ -108,6 +108,9 @@
     <Compile Include="Model\fl_agents.cs">
       <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\fl_bank.cs">
+      <DependentUpon>FlexDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\fl_formfile.cs">
       <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
@@ -276,18 +279,6 @@
     <Compile Include="ViewModel\UserAuthViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\FlexDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FlexDB.edmx</DependentUpon>
-      <LastGenOutput>FlexDB.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model\FlexDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FlexDB.edmx</DependentUpon>
-      <LastGenOutput>FlexDB.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.Config">
       <SubType>Designer</SubType>
     </None>
@@ -302,6 +293,18 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model\FlexDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FlexDB.edmx</DependentUpon>
+      <LastGenOutput>FlexDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\FlexDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FlexDB.edmx</DependentUpon>
+      <LastGenOutput>FlexDB.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,8 +1,11 @@
-﻿using Flex.Data.Enum;
+﻿using Dapper;
+using Flex.Data.Enum;
 using Flex.Data.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Globalization;
 using System.Linq;
@@ -17,6 +20,27 @@ namespace Flex.Business
             : base(context)
         {
             _context = context;
+        }
+        public List<ClaimRequest> RemoveClaimRequest(long id)
+        {
+            CultureInfo culInfo = CultureInfo.CreateSpecificCulture("en-GB");
+            var queryParameters = new DynamicParameters();
+            queryParameters.Add("@claimid", id);
+
+            try { 
+            using (IDbConnection conn = new SqlConnection(_context.Database.Connection.ConnectionString))
+            {
+
+                conn.Query<ClaimRequest>("deleteclaim", queryParameters, commandType: CommandType.StoredProcedure, commandTimeout: 2000).FirstOrDefault();
+                   
+                };
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Logger.InfoFormat("Error occurred. Details {0}", ex.ToString());
+                throw;
+            }
         }
 
         public List<ClaimRequest> RetrieveAllClaimRequest(string sDate, string eDate)

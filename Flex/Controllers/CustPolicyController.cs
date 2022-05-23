@@ -55,7 +55,7 @@ namespace Flex.Controllers
                                 Email=x.Email,
                                 Othernames=x.OtherNames,
                                 Phone=x.Phone,
-                                PolicyType = x.fl_poltype.poltype,
+                                PolicyType = x.fl_poltype.poldesc,
                                 Regno=x.RegNo,
                                 Surname=x.Surname
                             }
@@ -88,7 +88,7 @@ namespace Flex.Controllers
                     Email = x.Email,
                     Othernames = x.OtherNames,
                     Phone = x.Phone,
-                    PolicyType = x.fl_poltype.poltype,//((PolicyType)Enum.Parse(typeof(PolicyType), x.PolicyType.ToString())).ToString(),
+                    PolicyType = x.fl_poltype.poldesc,//((PolicyType)Enum.Parse(typeof(PolicyType), x.PolicyType.ToString())).ToString(),
                     Regno = x.RegNo,
                     Surname = x.Surname,
                     ApprovedDate=(DateTime)x.DateCreated
@@ -183,7 +183,13 @@ namespace Flex.Controllers
                             surname = signup.Surname,
                             telephone = signup.Phone,
                             accdate = DateTime.Now,
-                            location = signup.Location,
+                            locationid = signup.Location,
+                            agentcode=signup.agentcode,
+                            IdentityNumber=signup.IdentityNumber,
+                            IdentityType=signup.IdentityType,
+                            PictureFile=signup.PictureFile,
+                            signature=signup.signature,
+                            TermsAndConditions=signup.TermsAndConditions,
                             
                             
                         };
@@ -206,7 +212,7 @@ namespace Flex.Controllers
                                 var xlocation = new fl_location();
                                 try
                                 {
-                                    xlocation = new CoreSystem<fl_location>(_context).Get((int)polInput.location);
+                                    xlocation = new CoreSystem<fl_location>(_context).Get((int)polInput.locationid);
                                     if (xlocation == null)
                                     {
                                         throw new Exception("Invalid Location");
@@ -447,7 +453,7 @@ namespace Flex.Controllers
                             surname = signup.Surname,
                             telephone = signup.Phone,
                             accdate = DateTime.Now,
-                            location = signup.Location,
+                            locationid = signup.Location,
 
                         };
                         i++;
@@ -595,7 +601,19 @@ namespace Flex.Controllers
         {
             try
             {
+                int custid = Convert.ToInt32(Id);
+
+                ////var pol = _context.CustomerPolicies.Where(x => x.Id == Convert.ToInt64(Id)).FirstOrDefault();
+                //using (var _context = context)
+                //{
+                //    var _custPols = _context.CustomerUsers.Where(x => x.Id == custid).FirstOrDefault();
+                //    ViewBag.policyno = _custPols.username;
+                //}
+                GetPolicyNo(custid);
+                GetPolicyType();
+                GetLocation();
                 ViewBag.Id = Id;
+
                 return PartialView("_addPolicy");
             }
             catch (Exception ex)
@@ -625,6 +643,7 @@ namespace Flex.Controllers
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.Message);
             }
         }
+
 
         [HttpPost]
         public ActionResult UpdatePolicy(string Id, string policyno)
@@ -775,7 +794,7 @@ namespace Flex.Controllers
         public ActionResult Step1()
         {
            
-            ViewBag.Location = GetStates2();
+            ViewBag.Location = GetLocations();
             getPolicyTypeForDirectPolicyInput();
             ViewBag.Agent = GetAgents();
             getGroup();
@@ -823,6 +842,12 @@ namespace Flex.Controllers
                     throw new Exception("Please Provide atleast one Beneficiary");
                 }
                 var pInfo = signUpmodel.PersonalInfo;
+                var isValid = new PolicySystem(context).validate(pInfo.Phone);
+                //var existingPolicy = new CoreSystem<fl_policyinput>(context).Get(pInfo.Phone.ToString());
+                if (isValid ==false)
+                {
+                    throw new Exception("A Policy Holder Already Use This Phone Number");
+                }
                 HttpPostedFileBase file = Request.Files["PictureFile"];
                 var xpoltype = new fl_poltype();
                 //var id = new CoreSystem<fl_poltype>(context).FindAll(x => x.poltype == pInfo.PolicyType.ToString()).Select(x => x.Id).FirstOrDefault();
@@ -852,14 +877,14 @@ namespace Flex.Controllers
                     surname = pInfo.Surname,
                     telephone = pInfo.Phone,
                     accdate = DateTime.Now,
-                    location = pInfo.Location,
+                    locationid = pInfo.Locationid,
                     agentcode = pInfo.AgentCode,
                     status = (int)Status.Active,
                     //PictureFile=pInfo.PictureFile,
                     PictureFile=pInfo.PictureFile,
                     grpcode=pInfo.GroupCode,
-                    sex=pInfo.Gender,
-                    religion=pInfo.Religion
+                    IdentityType=pInfo.IdentityType,
+                    IdentityNumber=pInfo.IdentityNumber
                 };
                
                 var nok = signUpmodel.PersonalInfo.NextofKin;
@@ -907,7 +932,7 @@ namespace Flex.Controllers
                             Logger.Info("About to get Policy Serial Number");
                             //var policynoSno = new SerialNumberSource().GetNextNumber(xpoltype.poltype);
                             var policyno = ConfigUtils.PolicyNoFormat;
-                            var xlocation = new CoreSystem<fl_location>(_context).Get((int)polInput.location);
+                            var xlocation = new CoreSystem<fl_location>(_context).Get((int)polInput.locationid);
                             if (xlocation == null)
                             {
                                 throw new Exception("Invalid Location or Location is missing.");
@@ -924,6 +949,7 @@ namespace Flex.Controllers
                                           .Replace("{SerialNo}", pcn);
 
                             polInput.policyno = policyno;
+                            polInput.pcn = pcn;
                             new PolicySystem(currentContext).savePolicy(polInput);
                             bool IsNewCustomer = false;
                             var userpwd = string.Empty;
@@ -1044,7 +1070,7 @@ namespace Flex.Controllers
                     existingPolicy.othername = pInfo.Othernames;
                     existingPolicy.peradd = pInfo.ResAddress;
                     existingPolicy.premium = pInfo.Amount;
-                    existingPolicy.location = pInfo.Location;
+                    existingPolicy.locationid = pInfo.Locationid;
                     existingPolicy.agentcode = pInfo.AgentCode;
                     //existingPolicy.grpcode = pInfo.GroupCode;
                     existingPolicy.sex = pInfo.Gender;
@@ -1338,7 +1364,7 @@ namespace Flex.Controllers
                     poldetails = new PolicySystem(context).Get(Id);
                     nokBen = new CoreSystem<NextofKin_BeneficiaryStaging>(context).FindAll(x => x.PolicyId == Id).ToList();
 
-                    var state = new CoreSystem<fl_state>(context).FindAll(x => x.Id == poldetails.location).Select(x=>x.Name).FirstOrDefault();
+                    var state = new CoreSystem<fl_state>(context).FindAll(x => x.Id == poldetails.locationid).Select(x=>x.Name).FirstOrDefault();
                     var group = new CoreSystem<fl_grouptype>(context).FindAll(x => x.grpcode == poldetails.grpcode).Select(x=>x.grpname).FirstOrDefault();
                     var policyType = new CoreSystem<fl_poltype>(context).FindAll(x => x.poltype == poldetails.poltype).Select(x=>x.poldesc).FirstOrDefault();
                     var agent = new CoreSystem<fl_agents>(context).FindAll(x => x.agentcode == poldetails.agentcode).Select(x=>x.agentname).FirstOrDefault();
@@ -1352,7 +1378,7 @@ namespace Flex.Controllers
                     getGroup(group);
                     GetReligion(religion);
                     GetGender(sex);
-
+                    ViewBag.picture = "Passport_" + poldetails.IdentityNumber + ".png";
                     var polModel = new SignUpBindingModel();
                     CultureInfo culInfo = CultureInfo.CreateSpecificCulture("en-GB");
 
@@ -1364,13 +1390,15 @@ namespace Flex.Controllers
                         Dob = !string.IsNullOrEmpty(poldetails.dob)? DateTime.ParseExact(poldetails.dob,
                                         "yyyyMMdd",CultureInfo.InvariantCulture) : (DateTime?)null, 
                         Email = poldetails.email,
-                        Location = (int)poldetails.location,
+                        Locationid = (int)poldetails.locationid,
                         Othernames = poldetails.othername,
                         Phone = poldetails.telephone,
                         PolicyType = new CoreSystem<fl_poltype>(context).FindAll(x => x.poltype == poldetails.poltype).FirstOrDefault().Id,
                         ResAddress = poldetails.peradd,
                         Surname = poldetails.surname,
                         RegNo=poldetails.policyno,
+                        IdentityNumber=poldetails.IdentityNumber,
+                        IdentityType=poldetails.IdentityType,
                         Beneficiary = nokBen.Where(x => x.Category == (int)Category.Beneficiary)
                                         .Select(x => new NextofKinBeneficiaryBindingModel()
                                         {
@@ -1381,8 +1409,8 @@ namespace Flex.Controllers
                                             Email = x.Email,
                                             Name = x.Name,
                                             Phone = x.Phone,
-                                            //Proportion = (decimal)x.Proportion,
-                                            //Relationship = ((RelationShip)Enum.Parse(typeof(RelationShip), x.RelationShip)).ToString()
+                                            Proportion = (decimal)x.Proportion,
+                                            Relationship = ((RelationShip)Enum.Parse(typeof(RelationShip), x.RelationShip)).ToString()
                                         }).ToList(),
                         NextofKin = nokBen.Where(x => x.Category == (int)Category.NextofKin)
                                 .Select(x => new NextofKinBeneficiaryBindingModel()
@@ -1390,7 +1418,7 @@ namespace Flex.Controllers
                                     Id = x.Id,
                                     Address = x.Address,
                                     //Dob = x.Dob.ToShortDateString(),
-                                    Dob = x.Dob.GetValueOrDefault().ToShortDateString(),
+                                    //Dob = x.Dob.GetValueOrDefault().ToShortDateString(),
                                     Email = x.Email,
                                     Name = x.Name,
                                     Phone = x.Phone,
@@ -1507,6 +1535,101 @@ namespace Flex.Controllers
             imageBytes = reader.ReadBytes((int)c.ContentLength);
             return imageBytes;
         }
+        [HttpPost]
+        public ActionResult CreateAddPolicy(PolicyBindingModel model)
+        {
+            try
+            {
+                var newpolicy = new fl_policyinput();
 
+                var user = WebSecurity.GetCurrentUser(Request);
+
+                var pol = user.CustomerUser.CustomerPolicies.Select(x => x.Policyno).ToList()[0];
+                using (var _context = context)
+                {
+                    var policy = new CoreSystem<fl_policyinput>(context).FindAll(x => x.policyno == pol).FirstOrDefault();
+
+                    //var polType = _context.fl_poltype.Where(x => x.poltype == policy.poltype).FirstOrDefault();
+                    //var xpolType = polType != null && !string.IsNullOrEmpty(polType.code) ? polType.code : policy.poltype;
+
+                    newpolicy.accdate = DateTime.Now;
+                    newpolicy.datecreated = DateTime.Now;
+                    newpolicy.dob = policy.dob;
+                    newpolicy.email = policy.email;
+                    newpolicy.locationid = model.Locationid;
+                    newpolicy.othername = policy.othername;
+                    newpolicy.poltype = new CoreSystem<fl_poltype>(context).Get(model.PolicyType).poltype;
+                    newpolicy.premium = model.Amount;
+                    newpolicy.status = (int)Flex.Data.Enum.Status.Active;
+                    newpolicy.surname = policy.surname;
+                    newpolicy.telephone = policy.telephone;
+                    newpolicy.IdentityNumber = policy.IdentityNumber;
+                    newpolicy.IdentityType = policy.IdentityType;
+
+                    var polType = _context.fl_poltype.Where(x => x.Id == model.PolicyType).FirstOrDefault();
+                    var xpolType = polType != null && !string.IsNullOrEmpty(polType.code) ? polType.code : polType.poltype;
+
+                    var policynoSno = new SerialNumberSource().GetNextNumber(polType.poltype);
+
+
+                    Logger.InfoFormat("Serial Number {0} gotten", policynoSno);
+                    var policyno = ConfigUtils.PolicyNoFormat;
+                    var xlocation = new CoreSystem<fl_location>(_context).Get((int)model.Locationid);
+                    if (xlocation == null)
+                    {
+                        throw new Exception("Invalid Location");
+                    }
+
+                    var pcn = policynoSno.ToString().PadLeft(ConfigUtils.policynoLenght, '0');
+                    policyno = policyno.Replace("{PolicyType}", xpolType).Replace("{Location}", xlocation.loccode)
+                                  .Replace("{Year}", DateTime.Today.ToString("yy"))
+                                  .Replace("{SerialNo}", pcn);
+
+                    newpolicy.policyno = policyno;
+
+                    using (var transaction = context.Database.BeginTransaction(System.Data.IsolationLevel.ReadCommitted))
+                    {
+                        try
+                        {
+                            new PolicySystem(context).savePolicy(newpolicy);
+                            var userpwd = string.Empty;
+
+
+                            userpwd = WebUtils.UserPwd;
+                            var defaultDate = (DateTime)SqlDateTime.Null;
+                            var custPolicy = new CustomerPolicy()
+                            {
+                                CustomerUserId = user.CustomerUserID,
+                                Policyno = newpolicy.policyno
+                            };
+                            new CoreSystem<CustomerPolicy>(context).Save(custPolicy);
+
+                            new NotificationSystem(context).SendPolicyCreationNotiification(newpolicy, user.CustomerUser.username, string.Empty, xpolType);
+
+                            transaction.Commit();
+
+                        }
+                        catch
+                        {
+                            transaction.Rollback();
+                            throw;
+                        }
+                    }
+                }
+
+                return new JsonResult()
+                {
+                    Data = string.Format("Policy with policy Number {0} created successfully", newpolicy.policyno)
+                };
+            }
+            catch (Exception ex)
+            {
+                Logger.ErrorFormat("Error Occurred. Details  [{0}]", ex.ToString());
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.Message);
+            }
+
+
+        }
+      
     }
 }

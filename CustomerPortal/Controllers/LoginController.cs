@@ -99,6 +99,6 @@ namespace CustomerPortal.Controllers
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.ToString());
             }
         }
-
+       
     }
 }

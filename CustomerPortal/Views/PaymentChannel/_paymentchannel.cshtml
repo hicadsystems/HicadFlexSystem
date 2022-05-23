@@ -1,19 +1,76 @@
 ﻿
-<h3>Payment Channels</h3>
 
-<div>
-    <h4>SSD PAYMENTS</h4>
-    <ul>
-        <li>Bank: GTB</li>
-        <li>Account Name: NLPC</li>
-        <li>Account Number: 001234567</li>
-        <li>SSD CODE: *737*ActNo*Amt#</li>
-    </ul>
-    <br />
-    <ul>
-        <li>Bank: FirstBank</li>
-        <li>Account Name: NLPC</li>
-        <li>Account Number: 3034567890</li>
-        <li>SSD CODE: *894*ActNo*Amt#</li>
-    </ul>
+<div class="row">
+    <div class="col-md-6" style="background-color:#f5d6cb">
+        <h4> <img src="~/images/gtblogo.png" width="50" /></h4>
+        <h5><strong>USSD</strong></h5>
+        <ul>
+
+            <li>
+                PPP Savings Plan: *7373*50*Amount*30#
+            </li>
+            <li>
+                Target Savings Plan: *737*50*Amount*31#
+            </li>
+            <li>
+                Almond Savings Plan:*737*50*Amount*32#
+            </li>
+            <li>
+                Insurance Premium: *737*50*Amount*33#
+            </li>
+        </ul>
+
+        <h5><strong>GTCO MOBILE</strong></h5>
+        <ol>
+            <li>Open the GTBank mobile banking app and sign in.</li>
+            <li>Click on Payments</li>
+            <li>Click on 'Insurance'</li>
+            <li>From select a Category. Choose "NIGN. LIFEANDPROVIDENT COMP.LTD"</li>
+            <li>From Product. Choose a Plan</li>
+            <li>Click Continue</li>
+            <li>Enter Your Policy No  and the Amount.</li>
+            <li>Click Submit.</li>
+            <li>Select the GT Bank account that you wish to make the deposit from, insert your mobile banking pin and confirm.</li>
+            <li>Upon successful payment, your betting wallet will be credited instantly.</li>
+
+        </ol>
+        </li>
+        </ul>
+
+    </div>
+
+    <div style="height: 500px; border-right: 3px solid #000900; position: absolute; right: 50%;">
+
+    </div>
+    <div class="col-md-6">
+        <ol style="background-color:#f5d6cb">
+            <h5><strong>GTCO WEB</strong></h5>
+            <li>Clink on the Link GTCO(<a href="www.gtbank.com">www.gtbank.com</a> )</li>
+            <li>Login</li>
+            <li>Clink on ‘’Insurance & Health plans’’</li>
+            <li>Select ‘’NIG.Life&Provident Company Ltd’’</li>
+            <li>Clink make ‘’New Payment’’</li>
+            <li>Enter ‘’Policy No’’ and ‘’Amount’’</li>
+            <li>Enter ‘’Token’’ OR ’’OTP’’</li>
+            <li>Select the GT Bank account that you wish to make the deposit from, insert your mobile banking pin and confirm.</li>
+            <li>Upon successful payment, your betting wallet will be credited instantly.</li>
+        </ol>
+        <h4>
+            <img src="~/images/quickteller.png" width="50" /> <a href="https://www.quickteller.com/nlpc">Pay Via QuickTeller</a>
+        </h4>
+        <br />
+
+
+    </div>
+
 </div>
+<ul class="nav nav-tabs" role="tablist" style="margin-top:-40px; border:none;">
+    <li class="pull-right">
+        <button type="button" onclick="showPayment(this);" class="btn btn-success btn-sm"
+                data-url="@Url.Action("ussd", "PaymentChannel")">
+            <span class="fa fa-plus"></span> New Claim Request
+        </button>
+    </li>
+</ul>
+
+<div>@Html.Partial("_ussdpayment")</div>

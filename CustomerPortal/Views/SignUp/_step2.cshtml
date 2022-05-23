@@ -1,37 +1,39 @@
 ﻿<form name="step2" action="@Url.Action("Next")" id="step2Frm">
-    <div class="col-md-6 bg-white">
+    <div class="col-md-12 bg-white">
         <div class="row">
-            <div class="form-group col-md-12 ss-item-required">
+            <div class="form-group col-md-6 ss-item-required">
                 <label class="color-transparent-darker lite small" for="Name">Name</label>
                 <input type="text" name="Name" class="form-control input-md" id="form-nextofkin-name" autofocus required>
                 <span class="text-danger pull-right small">* required</span>
             </div>
-            <div class="form-group col-md-12 ss-item-required">
+            <div class="form-group col-md-6 ss-item-required">
                 <label class="color-transparent-darker lite small" for="Address">Address</label>
                 <textarea name="Address" class="form-control input-md" required rows="2"></textarea>
                 <span class="text-danger pull-right small">* required</span>
             </div>
-            <div class="form-group col-md-12 ss-item-required">
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 ss-item-required">
                 <label class="color-transparent-darker lite small" for="Phone">Phone</label>
-                <input type="number" name="Phone" class="form-control input-md" required></input>
+                <input type="number" name="Phone" class="form-control input-md" required/>
                 <span class="text-danger pull-right small">* required</span>
             </div>
-            <div class="form-group col-md-12 ss-item-required">
+            <div class="form-group col-md-6">
                 <label class="color-transparent-darker lite small" for="Email">Email</label>
-                <input type="email" name="Email" class="form-control input-md" required></input>
+                <input type="email" name="Email" class="form-control input-md"/>
             </div>
 
-            <div class="form-group col-md-12 ss-item-required">
-                <label for="dob" class="color-transparent-darker lite small">DATE of BIRTH</label>
-                <div class="input-group input-group-sm">
-                    <input type="text" class="form-control datepicker" name="Dob" id="Dob" readonly />
-                    <span class="input-group-btn" style="padding-top:1px;">
-                        <button type="button" class="btn btn-default" onclick="openDatePicker(this)"><i class="fa fa-calendar"></i></button>
-                    </span>
-                </div>
-                @*<input type="text" name="dob" class="form-control input-md datepicker" />*@
-                <span class="text-danger pull-right small">* required</span>
-            </div>
+            <!--<div class="form-group col-md-12 ss-item-required">
+            <label for="dob" class="color-transparent-darker lite small">DATE of BIRTH</label>
+            <div class="input-group input-group-sm">
+                <input type="text" class="form-control datepicker" name="Dob" id="Dob" />
+                <span class="input-group-btn" style="padding-top:1px;">
+                    <button type="button" class="btn btn-default" onclick="openDatePicker(this)"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>-->
+            @*<input type="text" name="dob" class="form-control input-md datepicker" />*@
+            <!--<span class="text-danger pull-right small">* required</span>
+        </div>-->
             <div class="col-md-offset-1">
                 <input type="button" class="btn btn-gray btn-lg margin-right-md" value="back" id="btnstep2Back" />
                 <input type="button" class="btn btn-success btn-lg padding-lg-h" value="Next" id="btnstep2Next" />

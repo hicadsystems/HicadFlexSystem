@@ -8,7 +8,7 @@
             <div class="panel">
                 <div class="panel-body padding-top-sm">
                     @{
-        var custName = string.Format("{0} [{1}]", customer.Name.ToUpper(), customer.Username);
+                      var custName = string.Format("{0} [{1}]", customer.Name.ToUpper(), customer.Username);
                     }
                     <a><h4 class="margin-top-none margin-bottom-xs ellipsis">@custName</h4></a>
                     <div class="text-gray ellipsis"><span class="fa fa-envelope" style="width:20px;"></span>@customer.Email</div>
