@@ -45,7 +45,7 @@ namespace Flex.Business
                     xDateFrom = Convert.ToDateTime(xDateFrom, culInfo).Date;
                     DateTime.TryParse(dateto,out xDateTo);
                     xDateTo = Convert.ToDateTime(xDateTo, culInfo).Date.AddDays(1).AddSeconds(-1);
-                    trans = trans.Where(x => x.trandate >= xDateFrom && x.trandate <= xDateTo);
+                    trans = trans.Where(x => x.trandate>= xDateFrom && x.trandate <= xDateTo);
                 }
                 if (!string.IsNullOrEmpty(receiptno))
                 {

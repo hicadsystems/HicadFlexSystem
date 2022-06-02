@@ -733,7 +733,41 @@ namespace Flex.Controllers
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.Message);
             }
         }
+        public ActionResult AgentPolicy()
+        {
+            try
+            {
+                return PartialView("_agentPolicyLayout");
+            }
+            catch (Exception ex)
+            {
+                Logger.InfoFormat("Error occurred. Details {0}", ex.ToString());
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+        public ActionResult AgentPolicies()
+        {
+            try
+            {
+                ViewBag.Agent = GetAgents();
+                ViewBag.Location = GetLocations();
+                var uSession = GetUserSesiion();
+                var agent = uSession.fl_password.userid;
 
+                var pols = new PagedResult<vwPolicy>();
+                using (var _context = currentContext)
+                {
+                    pols = new PolicySystem(_context).agentSearchPolicies(agent);
+                }
+
+               return PartialView("_agentPolicy", pols);
+            }
+            catch (Exception ex)
+            {
+                Logger.InfoFormat("Error occurred. Details {0}", ex.ToString());
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
         public ActionResult SearchPolicy(PolicyQueryModel query)
         {
             try

@@ -14,6 +14,12 @@ namespace Flex.Data.Model
     
     public partial class fl_agents
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public fl_agents()
+        {
+            this.UserSessions = new HashSet<UserSession>();
+        }
+    
         public long Id { get; set; }
         public string agentcode { get; set; }
         public string agentname { get; set; }
@@ -32,5 +38,7 @@ namespace Flex.Data.Model
         public string agenttype { get; set; }
     
         public virtual ac_costCenter ac_costCenter { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserSession> UserSessions { get; set; }
     }
 }

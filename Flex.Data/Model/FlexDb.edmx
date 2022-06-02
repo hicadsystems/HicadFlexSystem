@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="FlexDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="FlexDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ac_costCenter">
           <Key>
             <PropertyRef Name="Id" />
@@ -447,6 +447,14 @@ warning 6002: The table/view 'FlexDB.dbo.fl_gpayhistory' does not have a primary
           <Property Name="modifiedby" Type="nvarchar" MaxLength="50" />
           <Property Name="Isdeleted" Type="bit" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'FlexDB.dbo.fl_logfile' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="fl_logfile">
+          <Property Name="logdate" Type="datetime" />
+          <Property Name="userid" Type="nvarchar" MaxLength="10" />
+          <Property Name="formcode" Type="nvarchar" MaxLength="60" />
+          <Property Name="prgaction" Type="nvarchar" MaxLength="20" />
+        </EntityType>-->
         <EntityType Name="fl_password">
           <Key>
             <PropertyRef Name="Id" />
@@ -871,6 +879,12 @@ warning 6002: The table/view 'FlexDB.dbo.fl_premrate_temp' does not have a prima
           <Property Name="IsDeleted" Type="bit" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6013: The table/view 'FlexDB.dbo.fl_recordno' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="fl_recordno">
+          <Property Name="poltype" Type="nvarchar" MaxLength="3" />
+          <Property Name="polno" Type="int" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'FlexDB.dbo.fl_state' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="fl_state">
           <Key>
@@ -968,6 +982,30 @@ warning 6002: The table/view 'FlexDB.dbo.fl_temppolinput' does not have a primar
           <Property Name="religion" Type="nvarchar" MaxLength="15" />
           <Property Name="workstation" Type="nvarchar" MaxLength="20" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'FlexDB.dbo.fl_tempreceiptlist' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="fl_tempreceiptlist">
+          <Property Name="work_station" Type="nvarchar" MaxLength="20" />
+          <Property Name="policyno" Type="nvarchar" MaxLength="20" />
+          <Property Name="receiptno" Type="nvarchar" MaxLength="10" />
+          <Property Name="reverseind" Type="nvarchar" MaxLength="1" />
+          <Property Name="trandate" Type="datetime" />
+          <Property Name="totamt" Type="money" />
+          <Property Name="chequeno" Type="nvarchar" MaxLength="10" />
+          <Property Name="type" Type="nvarchar" MaxLength="15" />
+          <Property Name="premium" Type="money" />
+          <Property Name="prmloan" Type="money" />
+          <Property Name="policyloan" Type="money" />
+          <Property Name="others" Type="money" />
+          <Property Name="commision" Type="money" />
+          <Property Name="premiumno" Type="smallint" />
+          <Property Name="createdby" Type="nvarchar" MaxLength="12" />
+          <Property Name="datecreated" Type="smalldatetime" />
+          <Property Name="processby" Type="nvarchar" MaxLength="12" />
+          <Property Name="procdate" Type="smalldatetime" />
+          <Property Name="polname" Type="nvarchar" MaxLength="50" />
+          <Property Name="agentname" Type="nvarchar" MaxLength="50" />
+        </EntityType>-->
         <EntityType Name="fl_translog">
           <Key>
             <PropertyRef Name="Id" />
@@ -1115,6 +1153,11 @@ warning 6002: The table/view 'FlexDB.dbo.fl_temppolinput' does not have a primar
           <Property Name="agentcode" Type="nvarchar" MaxLength="50" />
           <Property Name="TermsAndConditions" Type="bit" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'FlexDB.dbo.PolicyNoSerial' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="PolicyNoSerial">
+          <Property Name="PolicyNo" Type="bigint" />
+        </EntityType>-->
         <EntityType Name="Portlet">
           <Key>
             <PropertyRef Name="Id" />
@@ -1125,6 +1168,16 @@ warning 6002: The table/view 'FlexDB.dbo.fl_temppolinput' does not have a primar
           <Property Name="Background" Type="nvarchar" MaxLength="50" />
           <Property Name="Order" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'FlexDB.dbo.QuotationNoSerial' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="QuotationNoSerial">
+          <Property Name="QuoteNo" Type="bigint" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'FlexDB.dbo.ReceiptNo' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="ReceiptNo">
+          <Property Name="RctNo" Type="bigint" />
+        </EntityType>-->
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="Id" />
@@ -1170,6 +1223,7 @@ warning 6002: The table/view 'FlexDB.dbo.fl_temppolinput' does not have a primar
           <Property Name="AccessCount" Type="bigint" />
           <Property Name="Token" Type="nvarchar" MaxLength="50" />
           <Property Name="UserId" Type="bigint" />
+          <Property Name="AgentId" Type="bigint" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'FlexDB.dbo.vProduction' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1409,6 +1463,18 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
             </Principal>
             <Dependent Role="UserSession">
               <PropertyRef Name="CustomerUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserSession_fl_agents">
+          <End Role="fl_agents" Type="Self.fl_agents" Multiplicity="0..1" />
+          <End Role="UserSession" Type="Self.UserSession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fl_agents">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserSession">
+              <PropertyRef Name="AgentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1902,12 +1968,17 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
             <End Role="CustomerUser" EntitySet="CustomerUser" />
             <End Role="UserSession" EntitySet="UserSession" />
           </AssociationSet>
+          <AssociationSet Name="FK_UserSession_fl_agents" Association="Self.FK_UserSession_fl_agents">
+            <End Role="fl_agents" EntitySet="fl_agents" />
+            <End Role="UserSession" EntitySet="UserSession" />
+          </AssociationSet>
           <AssociationSet Name="FK_UserSession_fl_password" Association="Self.FK_UserSession_fl_password">
             <End Role="fl_password" EntitySet="fl_password" />
             <End Role="UserSession" EntitySet="UserSession" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FlexDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -2150,6 +2221,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <Property Name="exitdate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="agenttype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ac_costCenter" Relationship="Self.FK_fl_agents_fl_location" FromRole="fl_agents" ToRole="ac_costCenter" />
+          <NavigationProperty Name="UserSessions" Relationship="Self.FK_UserSession_fl_agents" FromRole="fl_agents" ToRole="UserSession" />
         </EntityType>
         <EntityType Name="fl_bank">
           <Key>
@@ -2874,7 +2946,9 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <Property Name="AccessCount" Type="Int64" />
           <Property Name="Token" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UserId" Type="Int64" />
+          <Property Name="AgentId" Type="Int64" />
           <NavigationProperty Name="CustomerUser" Relationship="Self.FK_UserSession_CustomerUser" FromRole="UserSession" ToRole="CustomerUser" />
+          <NavigationProperty Name="fl_agents" Relationship="Self.FK_UserSession_fl_agents" FromRole="UserSession" ToRole="fl_agents" />
           <NavigationProperty Name="fl_password" Relationship="Self.FK_UserSession_fl_password" FromRole="UserSession" ToRole="fl_password" />
         </EntityType>
         <EntityType Name="ac_rctdetails">
@@ -3199,6 +3273,18 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserSession_fl_agents">
+          <End Role="fl_agents" Type="Self.fl_agents" Multiplicity="0..1" />
+          <End Role="UserSession" Type="Self.UserSession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fl_agents">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserSession">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_fl_premrate_fl_grouptype">
           <End Role="fl_grouptype" Type="Self.fl_grouptype" Multiplicity="0..1" />
           <End Role="fl_premrate" Type="Self.fl_premrate" Multiplicity="*" />
@@ -3413,6 +3499,10 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
             <End Role="CustomerUser" EntitySet="CustomerUsers" />
             <End Role="UserSession" EntitySet="UserSessions" />
           </AssociationSet>
+          <AssociationSet Name="FK_UserSession_fl_agents" Association="Self.FK_UserSession_fl_agents">
+            <End Role="fl_agents" EntitySet="fl_agents" />
+            <End Role="UserSession" EntitySet="UserSessions" />
+          </AssociationSet>
           <AssociationSet Name="FK_fl_premrate_fl_grouptype" Association="Self.FK_fl_premrate_fl_grouptype">
             <End Role="fl_grouptype" EntitySet="fl_grouptype" />
             <End Role="fl_premrate" EntitySet="fl_premrate" />
@@ -3466,7 +3556,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
             <Parameter Name="Delimiter" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="deleteclaim">
-          <Parameter Name="claimid" Mode="In" Type="Int32" />
+            <Parameter Name="claimid" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="fl_annual_interest_calc">
             <Parameter Name="wdate" Mode="In" Type="String" />
@@ -3497,7 +3587,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
             <Parameter Name="intrate" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="fl_generate_serialno" ReturnType="Collection(FlexDBModel.fl_generate_serialno_Result)">
-          <Parameter Name="poltype" Mode="In" Type="String" />
+            <Parameter Name="poltype" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="fl_grat_statement" ReturnType="Collection(FlexDBModel.fl_grat_statement_Result)">
             <Parameter Name="globalpol" Mode="In" Type="String" />
@@ -4638,6 +4728,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
                 <ScalarProperty Name="AccessCount" ColumnName="AccessCount" />
                 <ScalarProperty Name="Token" ColumnName="Token" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="AgentId" ColumnName="AgentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

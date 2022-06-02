@@ -22,11 +22,14 @@ namespace Flex.Business
         public AuthResult AgentAuthenticateUser(String userName, string password, Boolean getUsable = true)
         {
             AuthResult res = new AuthResult() { };
-            var user = FindAll(x => x.agentphone == userName && x.agentcode == password && x.IsDeleted == false).FirstOrDefault();
+            //  var user = FindAll(x => x.agentphone == userName).FirstOrDefault();
+            var user2 = new CoreSystem<fl_agents>(_context).FindAll(x=>x.IsDeleted == false);
+  
+            var user = new CoreSystem<fl_agents>(_context).FindAll(x => x.agentphone == userName && x.agentcode == password && x.IsDeleted == false).FirstOrDefault();
             if (user != null)
             {
                 
-               // res.Session = new UserSessionSystem(_context).ProvisionSessionFor(user, getUsable);
+               res.Session = new UserSessionSystem(_context).ProvisionSessionFor(user, getUsable);
 
             }
             else

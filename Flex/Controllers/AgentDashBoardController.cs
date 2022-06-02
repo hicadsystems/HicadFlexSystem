@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Flex.Controllers
 {
-    public class DashBoardController : BaseController
+    public class AgentDashBoardController : BaseController
     {
         // GET: DashBoard
         public ActionResult Index()
@@ -20,7 +20,6 @@ namespace Flex.Controllers
                 var uSession = GetUserSesiion();
                 var roleId = uSession.fl_password.UserRoles.ToList()[0].RoleId;
                 //var roleId = 1012;
-                //string user = uSession.fl_password.userid;
                 var Role = new CoreSystem<Role>(context).FindAll(x => x.Id == roleId).FirstOrDefault();
                 var portlets = new List<Portlet>();
                 using (var _context = context)

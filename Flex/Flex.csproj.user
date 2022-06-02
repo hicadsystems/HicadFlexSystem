@@ -12,7 +12,7 @@
     <NameOfLastUsedPublishProfile>C:\Users\HP\Desktop\HicadFlexSystem\Flex\Properties\PublishProfiles\FolderProfile7.pubxml</NameOfLastUsedPublishProfile>
     <WebStackScaffolding_DbContextTypeFullName>Flex.Data.Model.FlexEntities</WebStackScaffolding_DbContextTypeFullName>
     <UseIISExpress>true</UseIISExpress>
-    <LastActiveSolutionConfig>Release|Any CPU</LastActiveSolutionConfig>
+    <LastActiveSolutionConfig>Debug|Any CPU</LastActiveSolutionConfig>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />

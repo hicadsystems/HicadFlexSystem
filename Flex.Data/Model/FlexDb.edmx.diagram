@@ -4,67 +4,68 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4487535250a549909f1b320c9c81e5a6" Name="Diagram1">
-        <EntityTypeShape EntityType="FlexDBModel.ac_costCenter" Width="1.5" PointX="15.75" PointY="18.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.ac_jvdetails" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.ac_jvheader" Width="1.5" PointX="5.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.ac_pcvdetails" Width="1.5" PointX="7.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.ac_pcvheader" Width="1.5" PointX="7.75" PointY="17.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.accchart" Width="1.5" PointX="9.75" PointY="17.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.ApiAuthToken" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.ClaimRequest" Width="1.5" PointX="17.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.CustomerPolicy" Width="1.5" PointX="10" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.CustomerUser" Width="1.5" PointX="7.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_agents" Width="1.5" PointX="18" PointY="17" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_bank" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_formfile" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_gpayclaim" Width="1.5" PointX="20.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_grouptype" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_location" Width="1.5" PointX="15.75" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_password" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_payclaim" Width="1.5" PointX="19.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_payhistory" Width="1.5" PointX="11.75" PointY="20.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_payhistorybak" Width="1.5" PointX="20.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_payinput" Width="1.5" PointX="21.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_pendingSMS" Width="1.5" PointX="13.75" PointY="21.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_policyhistory" Width="1.5" PointX="20.75" PointY="21.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_policyinput" Width="1.5" PointX="18" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_poltype" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_premrate" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_premrateRules" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_prgaccess" Width="1.5" PointX="22.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_prgaccessXX" Width="1.5" PointX="22.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_PublicHoliday" Width="1.5" PointX="22.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_quotation" Width="1.5" PointX="15.75" PointY="22.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_receiptcontrol" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_system" Width="1.5" PointX="17.75" PointY="22.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_temphistory" Width="1.5" PointX="22.75" PointY="19.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_translog" Width="1.5" PointX="5.75" PointY="23.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.LinkRole" Width="1.5" PointX="13" PointY="17.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.Module" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.NextofKin_BeneficiaryStaging" Width="1.5" PointX="5.25" PointY="18.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.Notification" Width="1.5" PointX="23.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.OnlineReciept" Width="1.5" PointX="23.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.PendingEmail" Width="1.5" PointX="24.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.PersonalDetailsStaging" Width="1.5" PointX="3" PointY="17.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.Portlet" Width="1.5" PointX="12.75" PointY="13.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.Role" Width="1.5" PointX="10.75" PointY="14.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.Tab" Width="1.5" PointX="15" PointY="13" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.UserRole" Width="1.5" PointX="13" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.UserSession" Width="1.5" PointX="13" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.ac_rctdetails" Width="1.5" PointX="24.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.ac_rctheader" Width="1.5" PointX="24.75" PointY="21.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_gpayhistory" Width="1.5" PointX="0.75" PointY="25.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_payinput2" Width="1.5" PointX="2.75" PointY="25.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_premrate_temp" Width="1.5" PointX="25.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_state" Width="1.5" PointX="25.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_temppolinput" Width="1.5" PointX="11.75" PointY="26.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.vProduction" Width="1.5" PointX="26.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.vwPolicy" Width="1.5" PointX="26.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.vwPolicyHistory" Width="1.5" PointX="26.75" PointY="21.75" IsExpanded="true" />
+      <Diagram DiagramId="7e9b51deaf1e4ff08f78c12144f56afb" Name="Diagram1" ZoomLevel="78">
+        <EntityTypeShape EntityType="FlexDBModel.ac_costCenter" Width="1.5" PointX="1.5" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.ac_jvdetails" Width="1.5" PointX="12.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.ac_jvheader" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.ac_pcvdetails" Width="1.5" PointX="14.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.ac_pcvheader" Width="1.5" PointX="14.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.accchart" Width="1.5" PointX="16.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.ApiAuthToken" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.ClaimRequest" Width="1.5" PointX="18.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.CustomerPolicy" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.CustomerUser" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_agents" Width="1.5" PointX="3.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_bank" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_formfile" Width="1.5" PointX="5.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_gpayclaim" Width="1.5" PointX="0.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_grouptype" Width="1.5" PointX="5.75" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_location" Width="1.5" PointX="13.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_password" Width="1.5" PointX="3.75" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_payclaim" Width="1.5" PointX="18.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_payhistory" Width="1.5" PointX="18.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_payhistorybak" Width="1.5" PointX="18.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_payinput" Width="1.5" PointX="20.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_pendingSMS" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_policyhistory" Width="1.5" PointX="2.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_policyinput" Width="1.5" PointX="16" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_poltype" Width="1.5" PointX="5.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_premrate" Width="1.5" PointX="8" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_premrateRules" Width="1.5" PointX="10.25" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_prgaccess" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_prgaccessXX" Width="1.5" PointX="20.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_PublicHoliday" Width="1.5" PointX="20.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_quotation" Width="1.5" PointX="12.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_receiptcontrol" Width="1.5" PointX="8" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_system" Width="1.5" PointX="20.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_temphistory" Width="1.5" PointX="20.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_translog" Width="1.5" PointX="22.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.LinkRole" Width="1.5" PointX="11" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.Module" Width="1.5" PointX="22.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.NextofKin_BeneficiaryStaging" Width="1.5" PointX="10.25" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.Notification" Width="1.5" PointX="22.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.OnlineReciept" Width="1.5" PointX="22.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.PendingEmail" Width="1.5" PointX="14.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.PersonalDetailsStaging" Width="1.5" PointX="8" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.Portlet" Width="1.5" PointX="8.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.Role" Width="1.5" PointX="8.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.Tab" Width="1.5" PointX="11" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.UserRole" Width="1.5" PointX="11" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.UserSession" Width="1.5" PointX="6" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.ac_rctdetails" Width="1.5" PointX="22.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.ac_rctheader" Width="1.5" PointX="16.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_gpayhistory" Width="1.5" PointX="22.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_payinput2" Width="1.5" PointX="24.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_premrate_temp" Width="1.5" PointX="24.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_state" Width="1.5" PointX="24.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_temppolinput" Width="1.5" PointX="24.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.vProduction" Width="1.5" PointX="24.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.vwPolicy" Width="1.5" PointX="4.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.vwPolicyHistory" Width="1.5" PointX="18.75" PointY="25.75" IsExpanded="true" />
         <AssociationConnector Association="FlexDBModel.FK_fl_agents_fl_location" ManuallyRouted="false" />
         <AssociationConnector Association="FlexDBModel.FK_CustomerPolicies_CustomerUser" ManuallyRouted="false" />
         <AssociationConnector Association="FlexDBModel.FK_UserSession_CustomerUser" ManuallyRouted="false" />
+        <AssociationConnector Association="FlexDBModel.FK_UserSession_fl_agents" ManuallyRouted="false" />
         <AssociationConnector Association="FlexDBModel.FK_fl_premrate_fl_grouptype" ManuallyRouted="false" />
         <AssociationConnector Association="FlexDBModel.FK_fl_policyinput_fl_location" ManuallyRouted="false" />
         <AssociationConnector Association="FlexDBModel.FK_UserRole_fl_password" ManuallyRouted="false" />

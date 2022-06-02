@@ -202,8 +202,10 @@
     <Compile Include="Controllers\ClaimController.cs" />
     <Compile Include="Controllers\ContainerController.cs" />
     <Compile Include="Controllers\CustPolicyController.cs" />
+    <Compile Include="Controllers\AgentDashBoardController.cs" />
     <Compile Include="Controllers\DashBoardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\AgentLoginController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
@@ -1647,6 +1649,8 @@
     <Content Include="Views\Payment\_calculateinterestPPP2.cshtml" />
     <Content Include="Views\Payment\_restorebk.cshtml" />
     <Content Include="Views\CustPolicy\_beneficiariesEdit.cshtml" />
+    <Content Include="Views\AgentLogin\Index.cshtml" />
+    <Content Include="Views\AgentDashBoard\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
