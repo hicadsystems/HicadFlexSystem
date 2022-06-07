@@ -150,8 +150,11 @@ namespace Flex.Controllers
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.ToString());
             }
         }
-
-        public ActionResult ChangePassword(ChangePasswordBindingModel xpass)
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+            public ActionResult ChangePassword(ChangePasswordBindingModel xpass)
         {
             try
             {
