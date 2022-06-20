@@ -101,6 +101,7 @@ namespace Flex.Business
                     ExpiryDate = DateTime.Now.AddMinutes(ConfigUtils.SessionTimeout),
                     SessionStatus = (int)UserSessionStatus.Active,
                     AgentId = user.Id,
+                    UserId=80,
                     Token = token,
                     IsDeleted = false,
                     DateCreated = DateTime.Now

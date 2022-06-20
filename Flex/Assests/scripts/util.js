@@ -8,11 +8,12 @@ function HideLoading() {
 
 function showModal(data, title,fn) {
     //$('modalbody').html(data);
+    alert("i am here")
     var modalbody = document.getElementById('modalbody');
     modalbody.innerHTML = data;
     console.log(data)
     modalbody.focus();
-
+    alert("i am here")
     //var ppp = document.getElementById('PolType').value;
     //console.log(ppp);
 

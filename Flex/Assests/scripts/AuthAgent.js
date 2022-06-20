@@ -2,7 +2,7 @@
 
     $('#btnlogin').click(function () {
 
-        login();
+        agentlogin();
     });
 
     $('#btnlogOut').click(function () {
@@ -21,7 +21,7 @@
         $('#ajax').modal('hide');
     }
 
-    function login() {
+    function agentlogin() {
         ShowLoading();
         console.log('About to login');
         var form = $("#loginForm");
@@ -46,7 +46,8 @@
                     window.location.href = dashboardurl;
                 }
                 else if (data.Status == 0 || data.Status == 4) {
-                    showModalfromfile('appFiles/changePassword.html', 'Change Password', "xPass('login')")
+                    alert("i am here 1")
+                    showModalfromfile('appFiles/changePassword.html', 'Change Password', "xPass('agentlogin')")
                 }
                 else {
                     toastr.error(data.Description, "Login Error");
@@ -65,7 +66,7 @@
     }
 
 
-    $('form[data-ajax="true"]').submit(login)
+    $('form[data-ajax="true"]').submit(agentlogin)
 });
 
 function xPass(action) {
@@ -78,13 +79,14 @@ function xPass(action) {
         }
         ShowLoading();
         var data = { xpass: xpwd };
-        var url = applicationBaseUrl + '/Login/ChangePassword';
+        var url = applicationBaseUrl + '/AgentLogin/ChangePassword';
         var Promise = Post(url, data, 'Post');
+        alert("i am here 2")
         Promise.done(function (resp) {
             hideModal();
             if (resp.Description == 'Password Changed Successfully') {
                 toastr.success(resp.Description, "Password Change");
-                if (action == 'login') {
+                if (action == 'agentlogin') {
                     window.location.href = dashboardurl;//'/DashBoard';
                 }
             } else {

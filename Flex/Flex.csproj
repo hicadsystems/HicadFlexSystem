@@ -990,6 +990,7 @@
     <Content Include="Assests\group.js" />
     <Content Include="Assests\scripts\affix.js" />
     <Content Include="Assests\scripts\alert.js" />
+    <Content Include="Assests\scripts\AuthAgent.js" />
     <Content Include="Assests\scripts\Auth.js" />
     <Content Include="Assests\scripts\autocompleteUtils.js" />
     <Content Include="Assests\scripts\bootstrap-datepicker.js" />
@@ -997,6 +998,7 @@
     <Content Include="Assests\scripts\carousel.js" />
     <Content Include="Assests\scripts\claim.js" />
     <Content Include="Assests\scripts\collapse.js" />
+    <Content Include="Assests\scripts\cookies.js" />
     <Content Include="Assests\scripts\custpolicy.js" />
     <Content Include="Assests\scripts\dataService.js" />
     <Content Include="Assests\scripts\datetimepicker.js" />
@@ -1651,6 +1653,17 @@
     <Content Include="Views\CustPolicy\_beneficiariesEdit.cshtml" />
     <Content Include="Views\AgentLogin\Index.cshtml" />
     <Content Include="Views\AgentDashBoard\Index.cshtml" />
+    <Content Include="Views\Shared\_agentmenu.cshtml" />
+    <Content Include="Views\Shared\_AgentLayout.cshtml" />
+    <Content Include="Views\CustPolicy\_agentpolicy.cshtml" />
+    <Content Include="Views\CustPolicy\_tbAgentPolicies.cshtml" />
+    <Content Include="Views\CustPolicy\_agentPayhist.cshtml" />
+    <Content Include="Views\CustPolicy\_tbAgentPayhist.cshtml" />
+    <Content Include="Views\AgentDashBoard\Payhistbyagent.cshtml" />
+    <Content Include="Views\CustPolicy\_agentPayhist2.cshtml" />
+    <Content Include="Views\Shared\_agentprofile.cshtml" />
+    <Content Include="Views\AgentDashBoard\policies.cshtml" />
+    <Content Include="Views\CustPolicy\_agentpolicy2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

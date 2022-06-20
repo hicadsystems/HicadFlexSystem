@@ -84,6 +84,8 @@ namespace Flex.Data.Model
         public virtual DbSet<vProduction> vProductions { get; set; }
         public virtual DbSet<vwPolicy> vwPolicies { get; set; }
         public virtual DbSet<vwPolicyHistory> vwPolicyHistories { get; set; }
+        public virtual DbSet<fl_month> fl_month { get; set; }
+        public virtual DbSet<VPayhistorybyAgent> VPayhistorybyAgents { get; set; }
     
         [DbFunction("Entities", "SPLIT_STRING")]
         public virtual IQueryable<SPLIT_STRING_Result> SPLIT_STRING(string @string, string delimiter)

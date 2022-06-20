@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <_PublishTargetUrl>C:\FlexPublish</_PublishTargetUrl>
-    <History>True|2022-05-16T18:22:32.1409093Z;True|2022-05-16T14:36:58.9362777+01:00;True|2022-05-16T14:29:52.0292318+01:00;True|2022-05-11T18:07:25.3427441+01:00;False|2022-05-11T16:46:20.9923433+01:00;True|2022-05-11T09:27:34.5499001+01:00;True|2022-05-09T13:17:11.3391199+01:00;True|2022-05-09T00:29:12.1248392+01:00;True|2022-05-06T00:52:20.5726771+01:00;</History>
+    <History>True|2022-06-16T15:22:00.0260723Z;True|2022-06-16T14:17:13.2021742+01:00;True|2022-06-16T12:26:30.5447896+01:00;True|2022-06-16T07:42:24.4437320+01:00;True|2022-06-15T15:08:40.7233054+01:00;True|2022-06-15T14:32:57.3879213+01:00;True|2022-06-15T14:32:25.8467430+01:00;True|2022-06-15T10:40:45.9935393+01:00;True|2022-05-16T19:22:32.1409093+01:00;True|2022-05-16T14:36:58.9362777+01:00;True|2022-05-16T14:29:52.0292318+01:00;True|2022-05-11T18:07:25.3427441+01:00;False|2022-05-11T16:46:20.9923433+01:00;True|2022-05-11T09:27:34.5499001+01:00;True|2022-05-09T13:17:11.3391199+01:00;True|2022-05-09T00:29:12.1248392+01:00;True|2022-05-06T00:52:20.5726771+01:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="appFiles/addUser.html">
@@ -48,7 +48,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/04/2021 11:30:32</publishTime>
     </File>
     <File Include="Assests/scripts/Auth.js">
-      <publishTime>09/04/2021 11:30:32</publishTime>
+      <publishTime>06/16/2022 13:03:38</publishTime>
+    </File>
+    <File Include="Assests/scripts/AuthAgent.js">
+      <publishTime>06/15/2022 16:06:03</publishTime>
     </File>
     <File Include="Assests/scripts/autocompleteUtils.js">
       <publishTime>09/04/2021 11:30:32</publishTime>
@@ -68,8 +71,11 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Assests/scripts/collapse.js">
       <publishTime>09/04/2021 11:30:32</publishTime>
     </File>
+    <File Include="Assests/scripts/cookies.js">
+      <publishTime>09/04/2021 11:30:32</publishTime>
+    </File>
     <File Include="Assests/scripts/custpolicy.js">
-      <publishTime>03/04/2022 14:14:04</publishTime>
+      <publishTime>06/15/2022 10:36:00</publishTime>
     </File>
     <File Include="Assests/scripts/dataService.js">
       <publishTime>09/04/2021 11:30:32</publishTime>
@@ -90,7 +96,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/04/2021 11:30:32</publishTime>
     </File>
     <File Include="Assests/scripts/menu.js">
-      <publishTime>09/04/2021 11:30:32</publishTime>
+      <publishTime>06/15/2022 10:37:03</publishTime>
     </File>
     <File Include="Assests/scripts/modal.js">
       <publishTime>09/04/2021 11:30:32</publishTime>
@@ -102,7 +108,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/16/2022 17:41:36</publishTime>
     </File>
     <File Include="Assests/scripts/policy.js">
-      <publishTime>05/10/2022 14:39:05</publishTime>
+      <publishTime>06/15/2022 10:34:10</publishTime>
     </File>
     <File Include="Assests/scripts/popover.js">
       <publishTime>09/04/2021 11:30:32</publishTime>
@@ -138,13 +144,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/04/2021 11:30:32</publishTime>
     </File>
     <File Include="Assests/scripts/UserDetails.js">
-      <publishTime>09/04/2021 11:30:32</publishTime>
+      <publishTime>06/15/2022 14:52:59</publishTime>
     </File>
     <File Include="Assests/scripts/userRole.js">
       <publishTime>10/28/2021 11:34:28</publishTime>
     </File>
     <File Include="Assests/scripts/util.js">
-      <publishTime>03/18/2022 10:52:07</publishTime>
+      <publishTime>06/16/2022 15:04:47</publishTime>
     </File>
     <File Include="Assests/scripts/validation.js">
       <publishTime>09/04/2021 11:30:32</publishTime>
@@ -522,34 +528,34 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/08/2020 13:48:22</publishTime>
     </File>
     <File Include="bin/Flex.Business.dll">
-      <publishTime>05/20/2022 13:23:35</publishTime>
+      <publishTime>06/16/2022 16:21:50</publishTime>
     </File>
     <File Include="bin/Flex.Business.dll.config">
       <publishTime>09/04/2021 11:30:32</publishTime>
     </File>
     <File Include="bin/Flex.Business.pdb">
-      <publishTime>05/20/2022 13:23:35</publishTime>
+      <publishTime>06/16/2022 16:21:50</publishTime>
     </File>
     <File Include="bin/Flex.Data.dll">
-      <publishTime>05/20/2022 11:59:12</publishTime>
+      <publishTime>06/16/2022 16:21:47</publishTime>
     </File>
     <File Include="bin/Flex.Data.dll.config">
       <publishTime>09/04/2021 11:30:32</publishTime>
     </File>
     <File Include="bin/Flex.Data.pdb">
-      <publishTime>05/20/2022 11:59:12</publishTime>
+      <publishTime>06/16/2022 16:21:47</publishTime>
     </File>
     <File Include="bin/Flex.dll">
-      <publishTime>05/20/2022 15:14:13</publishTime>
+      <publishTime>06/16/2022 16:21:54</publishTime>
     </File>
     <File Include="bin/Flex.pdb">
-      <publishTime>05/20/2022 15:14:13</publishTime>
+      <publishTime>06/16/2022 16:21:54</publishTime>
     </File>
     <File Include="bin/Flex.Utility.dll">
-      <publishTime>05/20/2022 11:59:14</publishTime>
+      <publishTime>06/16/2022 16:21:48</publishTime>
     </File>
     <File Include="bin/Flex.Utility.pdb">
-      <publishTime>05/20/2022 11:59:14</publishTime>
+      <publishTime>06/16/2022 16:21:48</publishTime>
     </File>
     <File Include="bin/log4net.dll">
       <publishTime>03/08/2017 19:26:22</publishTime>
@@ -1082,6 +1088,18 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Views/Account/_ExternalLoginsListPartial.cshtml">
       <publishTime>09/04/2021 11:30:32</publishTime>
     </File>
+    <File Include="Views/AgentDashBoard/Index.cshtml">
+      <publishTime>06/15/2022 19:45:53</publishTime>
+    </File>
+    <File Include="Views/AgentDashBoard/Payhistbyagent.cshtml">
+      <publishTime>06/14/2022 16:42:26</publishTime>
+    </File>
+    <File Include="Views/AgentDashBoard/policies.cshtml">
+      <publishTime>06/16/2022 03:44:31</publishTime>
+    </File>
+    <File Include="Views/AgentLogin/Index.cshtml">
+      <publishTime>06/15/2022 14:44:34</publishTime>
+    </File>
     <File Include="Views/Claim/_addClaim.cshtml">
       <publishTime>03/07/2022 12:19:23</publishTime>
     </File>
@@ -1123,6 +1141,18 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="Views/CustPolicy/_addPolicy.cshtml">
       <publishTime>05/10/2022 16:26:48</publishTime>
+    </File>
+    <File Include="Views/CustPolicy/_agentPayhist.cshtml">
+      <publishTime>06/16/2022 16:19:24</publishTime>
+    </File>
+    <File Include="Views/CustPolicy/_agentPayhist2.cshtml">
+      <publishTime>06/14/2022 19:41:20</publishTime>
+    </File>
+    <File Include="Views/CustPolicy/_agentpolicy.cshtml">
+      <publishTime>06/16/2022 07:39:19</publishTime>
+    </File>
+    <File Include="Views/CustPolicy/_agentpolicy2.cshtml">
+      <publishTime>06/16/2022 07:16:46</publishTime>
     </File>
     <File Include="Views/CustPolicy/_beneficiaries.cshtml">
       <publishTime>02/28/2022 16:40:24</publishTime>
@@ -1177,6 +1207,12 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="Views/CustPolicy/_step3.cshtml">
       <publishTime>02/16/2022 12:21:01</publishTime>
+    </File>
+    <File Include="Views/CustPolicy/_tbAgentPayhist.cshtml">
+      <publishTime>06/15/2022 10:38:20</publishTime>
+    </File>
+    <File Include="Views/CustPolicy/_tbAgentPolicies.cshtml">
+      <publishTime>06/15/2022 17:10:10</publishTime>
     </File>
     <File Include="Views/CustPolicy/_tbappolicies.cshtml">
       <publishTime>10/28/2021 12:10:54</publishTime>
@@ -1391,6 +1427,15 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Views/Shared/Lockout.cshtml">
       <publishTime>09/04/2021 11:30:32</publishTime>
     </File>
+    <File Include="Views/Shared/_AgentLayout.cshtml">
+      <publishTime>06/16/2022 15:04:30</publishTime>
+    </File>
+    <File Include="Views/Shared/_agentmenu.cshtml">
+      <publishTime>06/15/2022 17:11:47</publishTime>
+    </File>
+    <File Include="Views/Shared/_agentprofile.cshtml">
+      <publishTime>06/15/2022 10:31:56</publishTime>
+    </File>
     <File Include="Views/Shared/_deleteConfirmation.cshtml">
       <publishTime>12/11/2021 16:11:50</publishTime>
     </File>
@@ -1407,7 +1452,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/04/2021 11:30:32</publishTime>
     </File>
     <File Include="Views/Shared/_profile.cshtml">
-      <publishTime>09/04/2021 11:30:32</publishTime>
+      <publishTime>06/15/2022 10:32:21</publishTime>
     </File>
     <File Include="Views/UserRole/_addRole.cshtml">
       <publishTime>09/04/2021 11:30:32</publishTime>
@@ -1434,7 +1479,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/04/2021 11:30:32</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/20/2022 11:59:21</publishTime>
+      <publishTime>06/16/2022 12:26:28</publishTime>
     </File>
   </ItemGroup>
 </Project>

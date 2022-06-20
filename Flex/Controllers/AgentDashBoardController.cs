@@ -1,5 +1,6 @@
 ﻿using Flex.Business;
 using Flex.Data.Model;
+using Flex.Data.ViewModel;
 using Flex.Util;
 using Flex.Utility.Utils;
 using System;
@@ -18,15 +19,8 @@ namespace Flex.Controllers
             try
             {
                 var uSession = GetUserSesiion();
-                var roleId = uSession.fl_password.UserRoles.ToList()[0].RoleId;
-                //var roleId = 1012;
-                var Role = new CoreSystem<Role>(context).FindAll(x => x.Id == roleId).FirstOrDefault();
-                var portlets = new List<Portlet>();
-                using (var _context = context)
-                {
-                    portlets = new PortletSystem(context).RetrivePortlets(Convert.ToInt64(roleId));
-                }
-                return View(portlets);
+    
+                return View();
             }
             catch (Exception ex)
             {
@@ -36,7 +30,14 @@ namespace Flex.Controllers
             }
 
         }
-
+        public ActionResult Payhistbyagent()
+        {
+            return View();
+        }
+        public ActionResult policies()
+        {
+            return View();
+        }
         public ActionResult PortletDefaultPage(int id)
         {
             Logger.InfoFormat("PortletId : {0}", id);

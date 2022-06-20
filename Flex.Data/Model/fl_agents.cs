@@ -36,6 +36,7 @@ namespace Flex.Data.Model
         public Nullable<int> status { get; set; }
         public string exitdate { get; set; }
         public string agenttype { get; set; }
+        public string password { get; set; }
     
         public virtual ac_costCenter ac_costCenter { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

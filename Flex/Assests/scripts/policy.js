@@ -1,7 +1,7 @@
 ﻿function createPolicy(el) {
     ShowLoading();
     var model = $("#frmCreatePolicy").serializeObject();
-    alert("i am here")
+/*    alert("i am here")*/
     var url = applicationBaseUrl + '/CustPolicy/CreateAddPolicy';
     var data = { model: model };
     var Promise = Post(url, data, 'Post');

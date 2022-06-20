@@ -257,8 +257,15 @@ namespace Flex.Controllers
 
             return new SelectList(agents.OrderBy(x=>x.agentname), "agentcode", "agentname", agent);
         }
+        public SelectList GetMonths()
+        {
+            var mth = new List<fl_month>();
+            mth = new CoreSystem<fl_month>(context).FindAll(x => x.IsDeleted == false).ToList();
 
-        
+            return new SelectList(mth.OrderBy(x => x.id), "code", "name", mth);
+        }
+
+
 
         public SelectList GetStates(string state="")
         {

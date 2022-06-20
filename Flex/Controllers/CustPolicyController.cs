@@ -752,15 +752,38 @@ namespace Flex.Controllers
                 ViewBag.Agent = GetAgents();
                 ViewBag.Location = GetLocations();
                 var uSession = GetUserSesiion();
-                var agent = uSession.fl_password.userid;
-
+                
                 var pols = new PagedResult<vwPolicy>();
                 using (var _context = currentContext)
                 {
+                  var agent= _context.fl_agents.FirstOrDefault(x => x.Id == uSession.AgentId).agentcode;
                     pols = new PolicySystem(_context).agentSearchPolicies(agent);
                 }
 
                return PartialView("_agentPolicy", pols);
+            }
+            catch (Exception ex)
+            {
+                Logger.InfoFormat("Error occurred. Details {0}", ex.ToString());
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+        public ActionResult Payhistbyagent()
+        {
+            try
+            {
+                ViewBag.month = GetMonths();
+                var uSession = GetUserSesiion();
+
+                var pols = new PagedResult<VPayhistorybyAgent>();
+                using (var _context = currentContext)
+                {
+
+                    var agent = _context.fl_agents.FirstOrDefault(x => x.Id == uSession.AgentId).agentcode;
+                    pols = new PolicySystem(_context).agentSearchPayhist(agent);
+                }
+
+                return PartialView("_agentPayhist", pols);
             }
             catch (Exception ex)
             {
@@ -793,6 +816,78 @@ namespace Flex.Controllers
                 }
                 
                 return PartialView("_tbPolicies", pols);
+            }
+            catch (Exception ex)
+            {
+                Logger.InfoFormat("Error occurred. Details {0}", ex.ToString());
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+        public ActionResult SearchAgentPolicy(PolicyQueryModel query)
+        {
+            try
+            {
+                var page = "";
+                var size = "";
+                if (query.Page != null)
+                {
+                    if (!string.IsNullOrEmpty(query.Page.Page))
+                    {
+                        page = query.Page.Page;
+                    }
+                    if (!string.IsNullOrEmpty(query.Page.Size))
+                    {
+                        size = query.Page.Size;
+                    }
+                }
+
+                var pols = new PagedResult<vwPolicy>();
+                using (currentContext)
+                {
+                    var uSession = GetUserSesiion();
+                    var agent = currentContext.fl_agents.FirstOrDefault(x => x.Id == uSession.AgentId).agentcode;
+                    pols = new PolicySystem(currentContext).agentSearchPolicies(agent,query.PolicyNo, query.Name, query.Phone, size, page);
+                }
+                ViewBag.Agent = GetAgents();
+                ViewBag.Location = GetLocations();
+
+                return PartialView("_agentPolicy2", pols);
+            }
+            catch (Exception ex)
+            {
+                Logger.InfoFormat("Error occurred. Details {0}", ex.ToString());
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.Message);
+            }
+
+
+        }
+        public ActionResult SearchPayhist(PolicyQueryModel query)
+        {
+            try
+            {
+                var uSession = GetUserSesiion();
+                var page = "";
+                var size = "";
+                if (query.Page != null)
+                {
+                    if (!string.IsNullOrEmpty(query.Page.Page))
+                    {
+                        page = query.Page.Page;
+                    }
+                    if (!string.IsNullOrEmpty(query.Page.Size))
+                    {
+                        size = query.Page.Size;
+                    }
+                }
+                ViewBag.month = GetMonths();
+                var pols = new PagedResult<VPayhistorybyAgent>();
+                using (currentContext)
+                {
+                    var agent = currentContext.fl_agents.FirstOrDefault(x => x.Id == uSession.AgentId).agentcode;
+                    pols = new PolicySystem(currentContext).agentSearchPayhist(agent,query.PolicyNo, query.Month,query.year, size, page);
+                }
+
+                return PartialView("_agentPayhist2", pols);
             }
             catch (Exception ex)
             {

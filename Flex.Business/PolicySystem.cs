@@ -109,9 +109,9 @@ namespace Flex.Business
                 throw;
             }
         }
+      
 
-
-        public PagedResult<vwPolicy> agentSearchPolicies(string agent, string policyno = null, string name = null, string phone = null,  string location = null, string pagesize = null, string page = null)
+        public PagedResult<vwPolicy> agentSearchPolicies(string agent, string policyno = null, string name = null, string phone = null, string pagesize = null, string page = null)
         {
             Logger.Info("Inside Search Policy No");
             Logger.InfoFormat("Using Context: {0}", _context.Database.Connection.ConnectionString);
@@ -128,28 +128,33 @@ namespace Flex.Business
                 xPage = xPage > 0 ? xPage : 1;
                
                 var query = new CoreSystem<vwPolicy>(_context).FindAll(x => x.status == (int)Status.Active);
-                if (agent != null)
+                //if (agent != null)
+                //{
+                //    query = query.Where(x => x.agentcode==agent);
+                //}
+                if (!string.IsNullOrEmpty(agent) && name == null && policyno == null&&phone==null)
                 {
-                    query = query.Where(x => x.agentcode==agent);
+                    query = query.Where(x => x.agentcode == agent);
                 }
+
                 if (!string.IsNullOrEmpty(policyno))
                 {
-                    query = query.Where(x => x.policyno.ToLower().Contains(policyno.ToLower()));
+                    query = query.Where(x => x.policyno.ToLower().Contains(policyno.ToLower())&& x.agentcode == agent);
                 }
                 if (!string.IsNullOrEmpty(name))
                 {
-                    query = query.Where(x => x.surname.ToLower().Contains(name.ToLower()) || x.othername.ToLower().Contains(name.ToLower()));
+                    query = query.Where(x => x.surname.ToLower().Contains(name.ToLower()) || x.othername.ToLower().Contains(name.ToLower())&& x.agentcode == agent);
                 }
                 if (!string.IsNullOrEmpty(phone))
                 {
-                    query = query.Where(x => x.telephone == phone);
+                    query = query.Where(x => x.telephone == phone && x.agentcode == agent);
                 }
                
-                if (!string.IsNullOrEmpty(location))
-                {
-                    //var loc = int.Parse(location);
-                    query = query.Where(x => x.location == location);
-                }
+                //if (!string.IsNullOrEmpty(location))
+                //{
+                //    //var loc = int.Parse(location);
+                //    query = query.Where(x => x.location == location && x.agentcode == agent);
+                //}
 
                 var TotalCount = query.Count();
                 var skip = (xPage - 1) * xPagesize;
@@ -170,7 +175,98 @@ namespace Flex.Business
             }
         }
 
+        public PagedResult<VPayhistorybyAgent> agentSearchPayhist(string agent, string policyno = null, string month = null, string year = null, string pagesize = null, string page = null)
+        {
+            Logger.Info("Inside Search Policy No");
+            Logger.InfoFormat("Using Context: {0}", _context.Database.Connection.ConnectionString);
 
+            try
+            {
+                var smth = getmonth(month);
+                int xPagesize = 0;
+                int xPage = 0;
+                int.TryParse(pagesize, out xPagesize);
+                int.TryParse(page, out xPage);
+                var xDateFrom = SqlDateTime.MinValue.Value;
+                var xDateTo = SqlDateTime.MinValue.Value;
+                xPagesize = xPagesize > 0 ? xPagesize : 10;
+                xPage = xPage > 0 ? xPage : 1;
+               
+                var query = new CoreSystem<VPayhistorybyAgent>(_context).FindAll(x => x.status == (int)Status.Active);
+                
+                if (!string.IsNullOrEmpty(policyno))
+                {
+                    query = query.Where(x => x.policyno.ToLower().Contains(policyno.ToLower()) && x.agentcode == agent);
+                }
+                if (!string.IsNullOrEmpty(month)&&year!=null)
+                {
+                  //  string ssmth = DateTime.Now.Year.ToString() +smth.ToString();
+                    query = query.Where(x => x.orig_date.Value.Month==smth && x.orig_date.Value.Year.ToString() ==year && x.agentcode == agent);
+                }
+                if (!string.IsNullOrEmpty(month)&& year==null)
+                {
+                    year = DateTime.Now.Year.ToString();
+                    query = query.Where(x => x.orig_date.Value.Month == smth && x.orig_date.Value.Year.ToString() == year && x.agentcode == agent);
+                }
+                if (!string.IsNullOrEmpty(year)&&month==null)
+                {
+                    year = DateTime.Now.Year.ToString();
+                    query = query.Where(x => x.orig_date.Value.Year.ToString() == year && x.agentcode == agent);
+                }
+                if (!string.IsNullOrEmpty(agent)&&month==null&&policyno==null)
+                {
+                    query = query.Where(x => x.agentcode == agent);
+                }
+
+                var TotalCount = query.Count();
+                var skip = (xPage - 1) * xPagesize;
+                var PagedPols = new PagedResult<VPayhistorybyAgent>();
+                PagedPols.LongRowCount = TotalCount;
+                PagedPols.Items = query.OrderByDescending(x => x.accdate).Skip(skip).Take(xPagesize).ToList();
+                PagedPols.PageSize = xPagesize;
+                PagedPols.PageCount = TotalCount > 0 ? (int)Math.Ceiling(Convert.ToDouble(Convert.ToDouble(TotalCount) / Convert.ToDouble(xPagesize))) : 1;
+
+                PagedPols.CurrentPage = xPage;
+
+                return PagedPols;
+            }
+            catch (Exception ex)
+            {
+                Logger.InfoFormat("Error occurred. Details {0}", ex.ToString());
+                throw;
+            }
+        }
+
+        public int getmonth(string month)
+        {
+            int mont = 0;
+            if (month == "JAN")
+                mont = 1;
+            else if (month == "FEB")
+                mont = 2;
+            else if (month == "MAR")
+                mont = 3;
+            else if (month == "APR")
+                mont = 4;
+            else if (month == "MAY")
+                mont = 5;
+            else if (month == "JUN")
+                mont = 6;
+            else if (month == "JUL")
+                mont = 7;
+            else if (month == "AUG")
+                mont = 8;
+            else if (month == "SEP")
+                mont = 9;
+            else if (month == "OCT")
+                mont = 10;
+            else if (month == "NOV")
+                   mont =11;
+            else if (month == "DEC")
+                mont =12;
+
+            return mont;
+        }
         private string GeneratePolicyNo(string policytype, string location)
         {
             var sn = Count() + 1;

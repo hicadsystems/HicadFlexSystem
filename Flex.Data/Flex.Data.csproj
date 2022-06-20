@@ -132,6 +132,9 @@
     <Compile Include="Model\fl_location.cs">
       <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\fl_month.cs">
+      <DependentUpon>FlexDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\fl_password.cs">
       <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
@@ -250,6 +253,9 @@
       <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\UserSession.cs">
+      <DependentUpon>FlexDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\VPayhistorybyAgent.cs">
       <DependentUpon>FlexDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\vProduction.cs">
