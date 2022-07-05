@@ -394,7 +394,7 @@ namespace Flex.Controllers
 
 
                 string host = ConfigurationManager.AppSettings["emailhost"];
-                int port = 587;
+                int port = 2525;
                 var enableSSL = true;
 
                 SmtpClient SmtpServer = new SmtpClient(host);
@@ -1359,7 +1359,7 @@ namespace Flex.Controllers
                         for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
                         {
                             var policy = new fl_policyinput();
-                            policy.policyno = workSheet.Cells[rowIterator, 1].Value?.ToString();
+                           // policy.policyno = workSheet.Cells[rowIterator, 1].Value?.ToString();
                             var policynoSno = string.Empty;
                             if (string.IsNullOrEmpty(policy.policyno))
                             {
@@ -1367,23 +1367,23 @@ namespace Flex.Controllers
                                 policy.policyno = GroupCode + "/" + policynoSno;
                                 //policy.pcn = policynoSno;
                             }
-                            policy.pcn = workSheet.Cells[rowIterator, 2].Value?.ToString();
+                          //  policy.pcn = workSheet.Cells[rowIterator, 2].Value?.ToString();
                             if (string.IsNullOrEmpty(policy.pcn))
                             {
                                 policy.pcn = policynoSno;
                             }
-                            policy.sex = workSheet.Cells[rowIterator, 3].Value?.ToString();
-                            policy.title = workSheet.Cells[rowIterator, 4].Value?.ToString();
-                            policy.surname = workSheet.Cells[rowIterator, 5].Value?.ToString();
-                            policy.othername = workSheet.Cells[rowIterator, 6].Value?.ToString();
-                            policy.dob = workSheet.Cells[rowIterator, 7].Value?.ToString();
-                            policy.grpcode = workSheet.Cells[rowIterator, 8].Value?.ToString();
+                            policy.sex = workSheet.Cells[rowIterator, 1].Value?.ToString();
+                            policy.title = workSheet.Cells[rowIterator, 2].Value?.ToString();
+                            policy.surname = workSheet.Cells[rowIterator, 3].Value?.ToString();
+                            policy.othername = workSheet.Cells[rowIterator, 4].Value?.ToString();
+                            policy.dob = workSheet.Cells[rowIterator, 5].Value?.ToString();
+                            policy.grpcode = workSheet.Cells[rowIterator, 6].Value?.ToString();
                             if (string.IsNullOrEmpty(policy.grpcode))
                             {
                                 policy.grpcode = GroupCode;
                             }
-                            policy.telephone = workSheet.Cells[rowIterator, 9].Value?.ToString();
-                            policy.email = workSheet.Cells[rowIterator, 10].Value?.ToString();
+                            policy.telephone = workSheet.Cells[rowIterator, 7].Value?.ToString();
+                            policy.email = workSheet.Cells[rowIterator, 8].Value?.ToString();
                             policy.status = (int)Status.Active;
                             policy.datecreated = DateTime.Now;
                             policy.poltype = xpoltype.poltype;
@@ -1464,7 +1464,7 @@ namespace Flex.Controllers
                             new NotificationSystem(_context).SendPolicyCreationNotiification(polInput, polInput.policyno, userpwd, xpolType);
                             if (!string.IsNullOrEmpty(polInput.email))
                             {
-                                SendEmailNotification(polInput, userpwd, polInput.email);
+                                //SendEmailNotification(polInput, userpwd, polInput.email);
                             }
                         } 
                     }

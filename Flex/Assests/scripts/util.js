@@ -35,7 +35,7 @@ function showModal(data, title,fn) {
         document.getElementById('PolType').addEventListener('change', function (event) {
             var poltype = event.target.value;
             console.log(poltype);
-            if (poltype === 'PPP2') {
+            if (poltype === 'PP2') {
                 document.getElementById('rateRulesPPP').style.display = 'block'
                 document.getElementById('rateRules').style.display='none'
             }

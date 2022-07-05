@@ -491,6 +491,7 @@ namespace Flex.Controllers
                     agent.locationId = Convert.ToInt16(formdata["Location"].ToString());
                     agent.agentaddr = formdata["Address"].ToString();
                     agent.agentphone = formdata["Phone"].ToString();
+                    agent.password = "0000";
                     agent.IsDeleted = false;
                     agent.exitdate = formdata["ExitDate"].ToString();
                     var status = formdata["Status"].ToString();
@@ -1083,7 +1084,7 @@ namespace Flex.Controllers
                 getPolicyType();
                 getGroup();
                 var rate = new fl_premrate();
-                if (policy == "PPP2")
+                if (policy == "PP2")
                 {
                     return PartialView("_addRate2", rate);
                 }

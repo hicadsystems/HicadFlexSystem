@@ -18,14 +18,14 @@
         @Html.Partial("_backupforintrcalc")
     </div>
     <div role="tabpanel" class="tab-pane" id="calculation">
-        @if (WebSecurity.Module.Trim().ToUpper() != "PPP2")
+        @if (WebSecurity.Module.Trim().ToUpper() != "PP2")
         {
             @Html.Partial("_calculateinterest")
         }
         
-        @if (WebSecurity.Module.Trim().ToUpper() == "PPP2")
+        @if (WebSecurity.Module.Trim().ToUpper() == "PP2")
         {
-            @Html.Partial("_calculateinterestPPP2")
+            @Html.Partial("_calculateinterestPP2")
         }
         
     </div>
