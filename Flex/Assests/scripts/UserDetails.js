@@ -7,6 +7,7 @@ var token = token || '';
 var username = username || '';
 
 function getAuth() {
+  /*  alert('i am still here');*/
      auth = Cookies.getJSON("auth");
     return auth;
 }

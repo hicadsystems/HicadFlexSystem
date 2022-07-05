@@ -256,6 +256,9 @@ warning 6002: The table/view 'FlexDB.dbo.ac_rctheader' does not have a primary k
           <Property Name="Interest" Type="decimal" Precision="18" Scale="2" />
           <Property Name="ApprovedAmount" Type="decimal" Precision="18" Scale="2" />
           <Property Name="FundAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="bank" Type="int" />
+          <Property Name="accountname" Type="nvarchar" MaxLength="200" />
+          <Property Name="accountno" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="CustomerPolicies">
           <Key>
@@ -293,7 +296,7 @@ warning 6002: The table/view 'FlexDB.dbo.ac_rctheader' does not have a primary k
           <Property Name="agentcode" Type="nvarchar" MaxLength="50" />
           <Property Name="agentname" Type="nvarchar" MaxLength="50" />
           <Property Name="locationId" Type="int" />
-          <Property Name="agenttype" Type="int" />
+          <Property Name="agenttype2" Type="int" />
           <Property Name="CommissionRate" Type="decimal" Precision="18" Scale="2" />
           <Property Name="createdBy" Type="nvarchar" MaxLength="50" />
           <Property Name="datecreated" Type="datetime2" Precision="7" />
@@ -304,6 +307,17 @@ warning 6002: The table/view 'FlexDB.dbo.ac_rctheader' does not have a primary k
           <Property Name="agentphone" Type="nvarchar" MaxLength="15" />
           <Property Name="status" Type="int" />
           <Property Name="exitdate" Type="nvarchar" MaxLength="10" />
+          <Property Name="agenttype" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="fl_bank">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Bankcode" Type="nvarchar" MaxLength="50" />
+          <Property Name="BankName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Isdeleted" Type="bit" />
         </EntityType>
         <EntityType Name="fl_formfile">
           <Key>
@@ -442,6 +456,15 @@ warning 6013: The table/view 'FlexDB.dbo.fl_logfile' does not have a primary key
           <Property Name="formcode" Type="nvarchar" MaxLength="60" />
           <Property Name="prgaction" Type="nvarchar" MaxLength="20" />
         </EntityType>-->
+        <EntityType Name="fl_month">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="code" Type="nvarchar" MaxLength="5" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
         <EntityType Name="fl_password">
           <Key>
             <PropertyRef Name="Id" />
@@ -572,20 +595,12 @@ warning 6013: The table/view 'FlexDB.dbo.fl_logfile' does not have a primary key
           <Property Name="amount" Type="money" />
           <Property Name="poltype" Type="nvarchar" MaxLength="3" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'FlexDB.dbo.fl_payinput2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="fl_payinput2">
           <Key>
-            <PropertyRef Name="policyno" />
-            <PropertyRef Name="receiptno" />
-            <PropertyRef Name="type" />
-            <PropertyRef Name="grpcode" />
-            <PropertyRef Name="pcn" />
-            <PropertyRef Name="effdate" />
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="policyno" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="receiptno" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="policyno" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="receiptno" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="poltype" Type="nvarchar" MaxLength="3" />
           <Property Name="type" Type="nvarchar" MaxLength="15" Nullable="false" />
           <Property Name="grpcode" Type="nvarchar" MaxLength="8" Nullable="false" />
@@ -672,7 +687,8 @@ warning 6002: The table/view 'FlexDB.dbo.fl_payinput2' does not have a primary k
           <Property Name="quoteno" Type="nvarchar" MaxLength="20" />
           <Property Name="poltype" Type="nvarchar" MaxLength="3" Nullable="false" />
           <Property Name="exitdate" Type="nvarchar" MaxLength="8" />
-          <Property Name="location" Type="int" />
+          <Property Name="location" Type="nvarchar" MaxLength="50" />
+          <Property Name="locationid" Type="int" />
           <Property Name="agentcode" Type="nvarchar" MaxLength="15" />
           <Property Name="email" Type="nvarchar" MaxLength="50" />
           <Property Name="premium" Type="numeric" Precision="18" Scale="0" />
@@ -685,6 +701,7 @@ warning 6002: The table/view 'FlexDB.dbo.fl_payinput2' does not have a primary k
           <Property Name="IdentityNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="IdentityType" Type="nvarchar" MaxLength="50" />
           <Property Name="signature" Type="varbinary(max)" />
+          <Property Name="TermsAndConditions" Type="bit" />
         </EntityType>
         <EntityType Name="fl_poltype">
           <Key>
@@ -697,7 +714,7 @@ warning 6002: The table/view 'FlexDB.dbo.fl_payinput2' does not have a primary k
           <Property Name="actype" Type="nvarchar" MaxLength="50" />
           <Property Name="term" Type="int" />
           <Property Name="matage" Type="int" />
-          <Property Name="maxloan" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="maxloan" Type="decimal" Precision="18" Scale="0" />
           <Property Name="income_account" Type="nvarchar" MaxLength="50" />
           <Property Name="liability_account" Type="nvarchar" MaxLength="50" />
           <Property Name="expense_account" Type="nvarchar" MaxLength="50" />
@@ -1037,7 +1054,7 @@ warning 6013: The table/view 'FlexDB.dbo.fl_tempreceiptlist' does not have a pri
           <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RegNo" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Phone" Type="nvarchar" MaxLength="15" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="Type" Type="int" Nullable="false" />
@@ -1136,6 +1153,7 @@ warning 6013: The table/view 'FlexDB.dbo.fl_tempreceiptlist' does not have a pri
           <Property Name="IdentityType" Type="nvarchar" MaxLength="50" />
           <Property Name="signature" Type="varbinary(max)" />
           <Property Name="agentcode" Type="nvarchar" MaxLength="50" />
+          <Property Name="TermsAndConditions" Type="bit" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6013: The table/view 'FlexDB.dbo.PolicyNoSerial' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
@@ -1207,6 +1225,41 @@ warning 6013: The table/view 'FlexDB.dbo.ReceiptNo' does not have a primary key 
           <Property Name="AccessCount" Type="bigint" />
           <Property Name="Token" Type="nvarchar" MaxLength="50" />
           <Property Name="UserId" Type="bigint" />
+          <Property Name="AgentId" Type="bigint" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FlexDB.dbo.VPayhistorybyAgent' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VPayhistorybyAgent">
+          <Key>
+            <PropertyRef Name="receiptno" />
+            <PropertyRef Name="period" />
+            <PropertyRef Name="policyno" />
+          </Key>
+          <Property Name="receiptno" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="period" Type="nvarchar" MaxLength="6" Nullable="false" />
+          <Property Name="trandate" Type="smalldatetime" />
+          <Property Name="orig_date" Type="smalldatetime" />
+          <Property Name="amount" Type="money" />
+          <Property Name="gir" Type="real" />
+          <Property Name="cur_intr" Type="money" />
+          <Property Name="cumul_intr" Type="money" />
+          <Property Name="loanamt" Type="money" />
+          <Property Name="doctype" Type="nvarchar" MaxLength="20" />
+          <Property Name="openbalance" Type="money" />
+          <Property Name="opendeposit" Type="money" />
+          <Property Name="deposit" Type="money" />
+          <Property Name="curdep_intr" Type="money" />
+          <Property Name="cumuldep_intr" Type="money" />
+          <Property Name="policyno" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="pcn" Type="nvarchar" MaxLength="9" />
+          <Property Name="grpcode" Type="nvarchar" MaxLength="15" />
+          <Property Name="sex" Type="nvarchar" MaxLength="7" />
+          <Property Name="surname" Type="nvarchar" MaxLength="30" />
+          <Property Name="othername" Type="nvarchar" MaxLength="30" />
+          <Property Name="agentcode" Type="nvarchar" MaxLength="15" />
+          <Property Name="telephone" Type="nvarchar" MaxLength="15" />
+          <Property Name="status" Type="int" />
+          <Property Name="accdate" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'FlexDB.dbo.vProduction' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1239,8 +1292,8 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicy' does not have a primary key d
           </Key>
           <Property Name="policyno" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="premium" Type="numeric" Precision="18" Scale="0" />
-          <Property Name="poltype" Type="nvarchar" MaxLength="3" />
-          <Property Name="location" Type="int" />
+          <Property Name="poltype" Type="nvarchar" MaxLength="50" />
+          <Property Name="poltypedec" Type="nvarchar" MaxLength="50" />
           <Property Name="telephone" Type="nvarchar" MaxLength="15" />
           <Property Name="email" Type="nvarchar" MaxLength="50" />
           <Property Name="surname" Type="nvarchar" MaxLength="30" />
@@ -1250,6 +1303,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicy' does not have a primary key d
           <Property Name="agentcode" Type="nvarchar" MaxLength="15" />
           <Property Name="address" Type="nvarchar(max)" />
           <Property Name="srn" Type="bigint" Nullable="false" />
+          <Property Name="location" Type="nvarchar" MaxLength="50" />
           <Property Name="locdesc" Type="nvarchar" MaxLength="50" />
           <Property Name="agentname" Type="nvarchar" MaxLength="50" />
           <Property Name="accdate" Type="datetime" />
@@ -1312,7 +1366,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="fl_policyinput">
-              <PropertyRef Name="location" />
+              <PropertyRef Name="locationid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1448,6 +1502,18 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserSession_fl_agents">
+          <End Role="fl_agents" Type="Self.fl_agents" Multiplicity="0..1" />
+          <End Role="UserSession" Type="Self.UserSession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fl_agents">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserSession">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UserSession_fl_password">
           <End Role="fl_password" Type="Self.fl_password" Multiplicity="0..1" />
           <End Role="UserSession" Type="Self.UserSession" Multiplicity="*" />
@@ -1460,6 +1526,9 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="deleteclaim" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="claimid" Type="int" Mode="In" />
+        </Function>
         <Function Name="fl_annual_interest_calc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="wdate" Type="varchar" Mode="In" />
           <Parameter Name="poltype" Type="varchar" Mode="In" />
@@ -1598,15 +1667,18 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <EntitySet Name="CustomerPolicies" EntityType="Self.CustomerPolicies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerUser" EntityType="Self.CustomerUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fl_agents" EntityType="Self.fl_agents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="fl_bank" EntityType="Self.fl_bank" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fl_formfile" EntityType="Self.fl_formfile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fl_gpayclaim" EntityType="Self.fl_gpayclaim" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fl_grouptype" EntityType="Self.fl_grouptype" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fl_location" EntityType="Self.fl_location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="fl_month" EntityType="Self.fl_month" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fl_password" EntityType="Self.fl_password" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fl_payclaim" EntityType="Self.fl_payclaim" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fl_payhistory" EntityType="Self.fl_payhistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fl_payhistorybak" EntityType="Self.fl_payhistorybak" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fl_payinput" EntityType="Self.fl_payinput" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="fl_payinput2" EntityType="Self.fl_payinput2" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fl_pendingSMS" EntityType="Self.fl_pendingSMS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fl_policyhistory" EntityType="Self.fl_policyhistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fl_policyinput" EntityType="Self.fl_policyinput" Schema="dbo" store:Type="Tables" />
@@ -1730,32 +1802,6 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
     [fl_gpayhistory].[dateupdated] AS [dateupdated]
     FROM [dbo].[fl_gpayhistory] AS [fl_gpayhistory]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="fl_payinput2" EntityType="Self.fl_payinput2" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [fl_payinput2].[policyno] AS [policyno], 
-    [fl_payinput2].[receiptno] AS [receiptno], 
-    [fl_payinput2].[poltype] AS [poltype], 
-    [fl_payinput2].[type] AS [type], 
-    [fl_payinput2].[grpcode] AS [grpcode], 
-    [fl_payinput2].[pcn] AS [pcn], 
-    [fl_payinput2].[reverseind] AS [reverseind], 
-    [fl_payinput2].[trandate] AS [trandate], 
-    [fl_payinput2].[effdate] AS [effdate], 
-    [fl_payinput2].[totamt] AS [totamt], 
-    [fl_payinput2].[chequeno] AS [chequeno], 
-    [fl_payinput2].[payindicator] AS [payindicator], 
-    [fl_payinput2].[status] AS [status], 
-    [fl_payinput2].[createdby] AS [createdby], 
-    [fl_payinput2].[datecreated] AS [datecreated], 
-    [fl_payinput2].[ps] AS [ps], 
-    [fl_payinput2].[er] AS [er], 
-    [fl_payinput2].[ee] AS [ee], 
-    [fl_payinput2].[av] AS [av], 
-    [fl_payinput2].[psc] AS [psc], 
-    [fl_payinput2].[cc] AS [cc], 
-    [fl_payinput2].[Id] AS [Id]
-    FROM [dbo].[fl_payinput2] AS [fl_payinput2]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="fl_premrate_temp" EntityType="Self.fl_premrate_temp" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [fl_premrate_temp].[poltype] AS [poltype], 
@@ -1818,6 +1864,35 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
     [fl_temppolinput].[workstation] AS [workstation]
     FROM [dbo].[fl_temppolinput] AS [fl_temppolinput]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="VPayhistorybyAgent" EntityType="Self.VPayhistorybyAgent" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VPayhistorybyAgent].[receiptno] AS [receiptno], 
+    [VPayhistorybyAgent].[period] AS [period], 
+    [VPayhistorybyAgent].[trandate] AS [trandate], 
+    [VPayhistorybyAgent].[orig_date] AS [orig_date], 
+    [VPayhistorybyAgent].[amount] AS [amount], 
+    [VPayhistorybyAgent].[gir] AS [gir], 
+    [VPayhistorybyAgent].[cur_intr] AS [cur_intr], 
+    [VPayhistorybyAgent].[cumul_intr] AS [cumul_intr], 
+    [VPayhistorybyAgent].[loanamt] AS [loanamt], 
+    [VPayhistorybyAgent].[doctype] AS [doctype], 
+    [VPayhistorybyAgent].[openbalance] AS [openbalance], 
+    [VPayhistorybyAgent].[opendeposit] AS [opendeposit], 
+    [VPayhistorybyAgent].[deposit] AS [deposit], 
+    [VPayhistorybyAgent].[curdep_intr] AS [curdep_intr], 
+    [VPayhistorybyAgent].[cumuldep_intr] AS [cumuldep_intr], 
+    [VPayhistorybyAgent].[policyno] AS [policyno], 
+    [VPayhistorybyAgent].[pcn] AS [pcn], 
+    [VPayhistorybyAgent].[grpcode] AS [grpcode], 
+    [VPayhistorybyAgent].[sex] AS [sex], 
+    [VPayhistorybyAgent].[surname] AS [surname], 
+    [VPayhistorybyAgent].[othername] AS [othername], 
+    [VPayhistorybyAgent].[agentcode] AS [agentcode], 
+    [VPayhistorybyAgent].[telephone] AS [telephone], 
+    [VPayhistorybyAgent].[status] AS [status], 
+    [VPayhistorybyAgent].[accdate] AS [accdate]
+    FROM [dbo].[VPayhistorybyAgent] AS [VPayhistorybyAgent]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="vProduction" EntityType="Self.vProduction" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [vProduction].[policyno] AS [policyno], 
@@ -1841,7 +1916,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
     [vwPolicy].[policyno] AS [policyno], 
     [vwPolicy].[premium] AS [premium], 
     [vwPolicy].[poltype] AS [poltype], 
-    [vwPolicy].[location] AS [location], 
+    [vwPolicy].[poltypedec] AS [poltypedec], 
     [vwPolicy].[telephone] AS [telephone], 
     [vwPolicy].[email] AS [email], 
     [vwPolicy].[surname] AS [surname], 
@@ -1851,6 +1926,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
     [vwPolicy].[agentcode] AS [agentcode], 
     [vwPolicy].[address] AS [address], 
     [vwPolicy].[srn] AS [srn], 
+    [vwPolicy].[location] AS [location], 
     [vwPolicy].[locdesc] AS [locdesc], 
     [vwPolicy].[agentname] AS [agentname], 
     [vwPolicy].[accdate] AS [accdate], 
@@ -1931,6 +2007,10 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           </AssociationSet>
           <AssociationSet Name="FK_UserSession_CustomerUser" Association="Self.FK_UserSession_CustomerUser">
             <End Role="CustomerUser" EntitySet="CustomerUser" />
+            <End Role="UserSession" EntitySet="UserSession" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserSession_fl_agents" Association="Self.FK_UserSession_fl_agents">
+            <End Role="fl_agents" EntitySet="fl_agents" />
             <End Role="UserSession" EntitySet="UserSession" />
           </AssociationSet>
           <AssociationSet Name="FK_UserSession_fl_password" Association="Self.FK_UserSession_fl_password">
@@ -2126,6 +2206,9 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <Property Name="Interest" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="ApprovedAmount" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="FundAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="bank" Type="Int32" />
+          <Property Name="accountname" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="accountno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="CustomerPolicy">
           <Key>
@@ -2166,7 +2249,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <Property Name="agentcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="agentname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="locationId" Type="Int32" />
-          <Property Name="agenttype" Type="Int32" />
+          <Property Name="agenttype2" Type="Int32" />
           <Property Name="CommissionRate" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="createdBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="datecreated" Type="DateTime" Precision="7" />
@@ -2177,7 +2260,19 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <Property Name="agentphone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="status" Type="Int32" />
           <Property Name="exitdate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="agenttype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ac_costCenter" Relationship="Self.FK_fl_agents_fl_location" FromRole="fl_agents" ToRole="ac_costCenter" />
+          <NavigationProperty Name="UserSessions" Relationship="Self.FK_UserSession_fl_agents" FromRole="fl_agents" ToRole="UserSession" />
+        </EntityType>
+        <EntityType Name="fl_bank">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Bankcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Isdeleted" Type="Boolean" />
         </EntityType>
         <EntityType Name="fl_formfile">
           <Key>
@@ -2260,6 +2355,15 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <Property Name="modifiedby" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Isdeleted" Type="Boolean" />
           <NavigationProperty Name="fl_policyinput" Relationship="Self.FK_fl_policyinput_fl_location" FromRole="fl_location" ToRole="fl_policyinput" />
+        </EntityType>
+        <EntityType Name="fl_month">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="code" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
         </EntityType>
         <EntityType Name="fl_password">
           <Key>
@@ -2393,6 +2497,33 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <Property Name="amount" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="poltype" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="fl_payinput2">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="policyno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="receiptno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="poltype" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="type" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="grpcode" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pcn" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="reverseind" Type="Boolean" />
+          <Property Name="trandate" Type="DateTime" Precision="7" />
+          <Property Name="effdate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="totamt" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="chequeno" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="payindicator" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="createdby" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="datecreated" Type="DateTime" Precision="0" />
+          <Property Name="ps" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="er" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ee" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="av" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="psc" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="cc" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
         <EntityType Name="fl_pendingSMS">
           <Key>
             <PropertyRef Name="srn" />
@@ -2458,7 +2589,8 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <Property Name="quoteno" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="poltype" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="exitdate" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
-          <Property Name="location" Type="Int32" />
+          <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="locationid" Type="Int32" />
           <Property Name="agentcode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="premium" Type="Decimal" Precision="18" Scale="0" />
@@ -2471,6 +2603,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <Property Name="IdentityNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IdentityType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="signature" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="TermsAndConditions" Type="Boolean" />
           <NavigationProperty Name="fl_location" Relationship="Self.FK_fl_policyinput_fl_location" FromRole="fl_policyinput" ToRole="fl_location" />
         </EntityType>
         <EntityType Name="fl_poltype">
@@ -2484,7 +2617,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <Property Name="actype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="term" Type="Int32" />
           <Property Name="matage" Type="Int32" />
-          <Property Name="maxloan" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="maxloan" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="income_account" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="liability_account" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="expense_account" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -2726,7 +2859,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RegNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Type" Type="Int32" Nullable="false" />
@@ -2826,6 +2959,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <Property Name="IdentityType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="signature" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="agentcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TermsAndConditions" Type="Boolean" />
           <NavigationProperty Name="fl_poltype" Relationship="Self.FK_PersonalDetailsStaging_fl_poltype" FromRole="PersonalDetailsStaging" ToRole="fl_poltype" />
           <NavigationProperty Name="NextofKin_BeneficiaryStaging" Relationship="Self.FK_NextofKin_BeneficiaryStaging_PersonalDetailsStaging" FromRole="PersonalDetailsStaging" ToRole="NextofKin_BeneficiaryStaging" />
         </EntityType>
@@ -2890,7 +3024,9 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <Property Name="AccessCount" Type="Int64" />
           <Property Name="Token" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UserId" Type="Int64" />
+          <Property Name="AgentId" Type="Int64" />
           <NavigationProperty Name="CustomerUser" Relationship="Self.FK_UserSession_CustomerUser" FromRole="UserSession" ToRole="CustomerUser" />
+          <NavigationProperty Name="fl_agents" Relationship="Self.FK_UserSession_fl_agents" FromRole="UserSession" ToRole="fl_agents" />
           <NavigationProperty Name="fl_password" Relationship="Self.FK_UserSession_fl_password" FromRole="UserSession" ToRole="fl_password" />
         </EntityType>
         <EntityType Name="ac_rctdetails">
@@ -3008,39 +3144,6 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <Property Name="updatedby" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="dateupdated" Type="DateTime" Precision="0" />
         </EntityType>
-        <EntityType Name="fl_payinput2">
-          <Key>
-            <PropertyRef Name="policyno" />
-            <PropertyRef Name="receiptno" />
-            <PropertyRef Name="type" />
-            <PropertyRef Name="grpcode" />
-            <PropertyRef Name="pcn" />
-            <PropertyRef Name="effdate" />
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="policyno" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="receiptno" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="poltype" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
-          <Property Name="type" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="grpcode" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="pcn" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="reverseind" Type="Boolean" />
-          <Property Name="trandate" Type="DateTime" Precision="7" />
-          <Property Name="effdate" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="totamt" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="chequeno" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="payindicator" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="status" Type="Int32" />
-          <Property Name="createdby" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="datecreated" Type="DateTime" Precision="0" />
-          <Property Name="ps" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="er" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="ee" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="av" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="psc" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="cc" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-        </EntityType>
         <EntityType Name="fl_premrate_temp">
           <Key>
             <PropertyRef Name="poltype" />
@@ -3112,6 +3215,38 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <Property Name="religion" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="workstation" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="VPayhistorybyAgent">
+          <Key>
+            <PropertyRef Name="receiptno" />
+            <PropertyRef Name="period" />
+            <PropertyRef Name="policyno" />
+          </Key>
+          <Property Name="receiptno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="period" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="trandate" Type="DateTime" Precision="0" />
+          <Property Name="orig_date" Type="DateTime" Precision="0" />
+          <Property Name="amount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="gir" Type="Single" />
+          <Property Name="cur_intr" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="cumul_intr" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="loanamt" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="doctype" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="openbalance" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="opendeposit" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="deposit" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="curdep_intr" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="cumuldep_intr" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="policyno" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pcn" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
+          <Property Name="grpcode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="sex" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+          <Property Name="surname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="othername" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="agentcode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="telephone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="accdate" Type="DateTime" Precision="3" />
+        </EntityType>
         <EntityType Name="vProduction">
           <Key>
             <PropertyRef Name="policyno" />
@@ -3139,8 +3274,8 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           </Key>
           <Property Name="policyno" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="premium" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="poltype" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
-          <Property Name="location" Type="Int32" />
+          <Property Name="poltype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="poltypedec" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="telephone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="surname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
@@ -3150,6 +3285,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <Property Name="agentcode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="srn" Type="Int64" Nullable="false" />
+          <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="locdesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="agentname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="accdate" Type="DateTime" Precision="3" />
@@ -3214,6 +3350,18 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserSession_fl_agents">
+          <End Role="fl_agents" Type="Self.fl_agents" Multiplicity="0..1" />
+          <End Role="UserSession" Type="Self.UserSession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fl_agents">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserSession">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_fl_premrate_fl_grouptype">
           <End Role="fl_grouptype" Type="Self.fl_grouptype" Multiplicity="0..1" />
           <End Role="fl_premrate" Type="Self.fl_premrate" Multiplicity="*" />
@@ -3234,7 +3382,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="fl_policyinput">
-              <PropertyRef Name="location" />
+              <PropertyRef Name="locationid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3370,15 +3518,18 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <EntitySet Name="CustomerPolicies" EntityType="Self.CustomerPolicy" />
           <EntitySet Name="CustomerUsers" EntityType="Self.CustomerUser" />
           <EntitySet Name="fl_agents" EntityType="Self.fl_agents" />
+          <EntitySet Name="fl_bank" EntityType="Self.fl_bank" />
           <EntitySet Name="fl_formfile" EntityType="Self.fl_formfile" />
           <EntitySet Name="fl_gpayclaim" EntityType="Self.fl_gpayclaim" />
           <EntitySet Name="fl_grouptype" EntityType="Self.fl_grouptype" />
           <EntitySet Name="fl_location" EntityType="Self.fl_location" />
+          <EntitySet Name="fl_month" EntityType="Self.fl_month" />
           <EntitySet Name="fl_password" EntityType="Self.fl_password" />
           <EntitySet Name="fl_payclaim" EntityType="Self.fl_payclaim" />
           <EntitySet Name="fl_payhistory" EntityType="Self.fl_payhistory" />
           <EntitySet Name="fl_payhistorybak" EntityType="Self.fl_payhistorybak" />
           <EntitySet Name="fl_payinput" EntityType="Self.fl_payinput" />
+          <EntitySet Name="fl_payinput2" EntityType="Self.fl_payinput2" />
           <EntitySet Name="fl_pendingSMS" EntityType="Self.fl_pendingSMS" />
           <EntitySet Name="fl_policyhistory" EntityType="Self.fl_policyhistory" />
           <EntitySet Name="fl_policyinput" EntityType="Self.fl_policyinput" />
@@ -3408,10 +3559,10 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <EntitySet Name="ac_rctdetails" EntityType="Self.ac_rctdetails" />
           <EntitySet Name="ac_rctheader" EntityType="Self.ac_rctheader" />
           <EntitySet Name="fl_gpayhistory" EntityType="Self.fl_gpayhistory" />
-          <EntitySet Name="fl_payinput2" EntityType="Self.fl_payinput2" />
           <EntitySet Name="fl_premrate_temp" EntityType="Self.fl_premrate_temp" />
           <EntitySet Name="fl_state" EntityType="Self.fl_state" />
           <EntitySet Name="fl_temppolinput" EntityType="Self.fl_temppolinput" />
+          <EntitySet Name="VPayhistorybyAgents" EntityType="Self.VPayhistorybyAgent" />
           <EntitySet Name="vProductions" EntityType="Self.vProduction" />
           <EntitySet Name="vwPolicies" EntityType="Self.vwPolicy" />
           <EntitySet Name="vwPolicyHistories" EntityType="Self.vwPolicyHistory" />
@@ -3425,6 +3576,10 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           </AssociationSet>
           <AssociationSet Name="FK_UserSession_CustomerUser" Association="Self.FK_UserSession_CustomerUser">
             <End Role="CustomerUser" EntitySet="CustomerUsers" />
+            <End Role="UserSession" EntitySet="UserSessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserSession_fl_agents" Association="Self.FK_UserSession_fl_agents">
+            <End Role="fl_agents" EntitySet="fl_agents" />
             <End Role="UserSession" EntitySet="UserSessions" />
           </AssociationSet>
           <AssociationSet Name="FK_fl_premrate_fl_grouptype" Association="Self.FK_fl_premrate_fl_grouptype">
@@ -3478,6 +3633,9 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <FunctionImport Name="SPLIT_STRING" IsComposable="true" ReturnType="Collection(FlexDBModel.SPLIT_STRING_Result)">
             <Parameter Name="String" Mode="In" Type="String" />
             <Parameter Name="Delimiter" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="deleteclaim">
+            <Parameter Name="claimid" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="fl_annual_interest_calc">
             <Parameter Name="wdate" Mode="In" Type="String" />
@@ -3665,7 +3823,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <Property Type="String" Name="surname" Nullable="true" MaxLength="30" />
           <Property Type="String" Name="title" Nullable="true" MaxLength="10" />
           <Property Type="String" Name="othername" Nullable="true" MaxLength="30" />
-          <Property Type="Int32" Name="location" Nullable="true" />
+          <Property Type="String" Name="location" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="sp_CommissionReport_Result">
           <Property Type="String" Name="policyno" Nullable="true" MaxLength="50" />
@@ -3688,7 +3846,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <Property Type="String" Name="DueDate" Nullable="true" MaxLength="30" />
           <Property Type="Decimal" Name="Amount" Nullable="true" Precision="19" />
           <Property Type="String" Name="agentname" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="poltype" Nullable="true" MaxLength="3" />
+          <Property Type="String" Name="poltype" Nullable="true" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3875,6 +4033,9 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
                 <ScalarProperty Name="Interest" ColumnName="Interest" />
                 <ScalarProperty Name="ApprovedAmount" ColumnName="ApprovedAmount" />
                 <ScalarProperty Name="FundAmount" ColumnName="FundAmount" />
+                <ScalarProperty Name="bank" ColumnName="bank" />
+                <ScalarProperty Name="accountname" ColumnName="accountname" />
+                <ScalarProperty Name="accountno" ColumnName="accountno" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3915,7 +4076,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
                 <ScalarProperty Name="agentcode" ColumnName="agentcode" />
                 <ScalarProperty Name="agentname" ColumnName="agentname" />
                 <ScalarProperty Name="locationId" ColumnName="locationId" />
-                <ScalarProperty Name="agenttype" ColumnName="agenttype" />
+                <ScalarProperty Name="agenttype2" ColumnName="agenttype2" />
                 <ScalarProperty Name="CommissionRate" ColumnName="CommissionRate" />
                 <ScalarProperty Name="createdBy" ColumnName="createdBy" />
                 <ScalarProperty Name="datecreated" ColumnName="datecreated" />
@@ -3926,6 +4087,18 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
                 <ScalarProperty Name="agentphone" ColumnName="agentphone" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="exitdate" ColumnName="exitdate" />
+                <ScalarProperty Name="agenttype" ColumnName="agenttype" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fl_bank">
+            <EntityTypeMapping TypeName="FlexDBModel.fl_bank">
+              <MappingFragment StoreEntitySet="fl_bank">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Bankcode" ColumnName="Bankcode" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="Isdeleted" ColumnName="Isdeleted" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4008,6 +4181,16 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
                 <ScalarProperty Name="datemodified" ColumnName="datemodified" />
                 <ScalarProperty Name="modifiedby" ColumnName="modifiedby" />
                 <ScalarProperty Name="Isdeleted" ColumnName="Isdeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fl_month">
+            <EntityTypeMapping TypeName="FlexDBModel.fl_month">
+              <MappingFragment StoreEntitySet="fl_month">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4137,6 +4320,34 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="fl_payinput2">
+            <EntityTypeMapping TypeName="FlexDBModel.fl_payinput2">
+              <MappingFragment StoreEntitySet="fl_payinput2">
+                <ScalarProperty Name="policyno" ColumnName="policyno" />
+                <ScalarProperty Name="receiptno" ColumnName="receiptno" />
+                <ScalarProperty Name="poltype" ColumnName="poltype" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="grpcode" ColumnName="grpcode" />
+                <ScalarProperty Name="pcn" ColumnName="pcn" />
+                <ScalarProperty Name="reverseind" ColumnName="reverseind" />
+                <ScalarProperty Name="trandate" ColumnName="trandate" />
+                <ScalarProperty Name="effdate" ColumnName="effdate" />
+                <ScalarProperty Name="totamt" ColumnName="totamt" />
+                <ScalarProperty Name="chequeno" ColumnName="chequeno" />
+                <ScalarProperty Name="payindicator" ColumnName="payindicator" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="datecreated" ColumnName="datecreated" />
+                <ScalarProperty Name="ps" ColumnName="ps" />
+                <ScalarProperty Name="er" ColumnName="er" />
+                <ScalarProperty Name="ee" ColumnName="ee" />
+                <ScalarProperty Name="av" ColumnName="av" />
+                <ScalarProperty Name="psc" ColumnName="psc" />
+                <ScalarProperty Name="cc" ColumnName="cc" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="fl_pendingSMS">
             <EntityTypeMapping TypeName="FlexDBModel.fl_pendingSMS">
               <MappingFragment StoreEntitySet="fl_pendingSMS">
@@ -4203,6 +4414,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
                 <ScalarProperty Name="poltype" ColumnName="poltype" />
                 <ScalarProperty Name="exitdate" ColumnName="exitdate" />
                 <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="locationid" ColumnName="locationid" />
                 <ScalarProperty Name="agentcode" ColumnName="agentcode" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="premium" ColumnName="premium" />
@@ -4215,6 +4427,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
                 <ScalarProperty Name="IdentityNumber" ColumnName="IdentityNumber" />
                 <ScalarProperty Name="IdentityType" ColumnName="IdentityType" />
                 <ScalarProperty Name="signature" ColumnName="signature" />
+                <ScalarProperty Name="TermsAndConditions" ColumnName="TermsAndConditions" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4571,6 +4784,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
                 <ScalarProperty Name="IdentityType" ColumnName="IdentityType" />
                 <ScalarProperty Name="signature" ColumnName="signature" />
                 <ScalarProperty Name="agentcode" ColumnName="agentcode" />
+                <ScalarProperty Name="TermsAndConditions" ColumnName="TermsAndConditions" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4632,6 +4846,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
                 <ScalarProperty Name="AccessCount" ColumnName="AccessCount" />
                 <ScalarProperty Name="Token" ColumnName="Token" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="AgentId" ColumnName="AgentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4738,34 +4953,6 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="fl_payinput2">
-            <EntityTypeMapping TypeName="FlexDBModel.fl_payinput2">
-              <MappingFragment StoreEntitySet="fl_payinput2">
-                <ScalarProperty Name="policyno" ColumnName="policyno" />
-                <ScalarProperty Name="receiptno" ColumnName="receiptno" />
-                <ScalarProperty Name="poltype" ColumnName="poltype" />
-                <ScalarProperty Name="type" ColumnName="type" />
-                <ScalarProperty Name="grpcode" ColumnName="grpcode" />
-                <ScalarProperty Name="pcn" ColumnName="pcn" />
-                <ScalarProperty Name="reverseind" ColumnName="reverseind" />
-                <ScalarProperty Name="trandate" ColumnName="trandate" />
-                <ScalarProperty Name="effdate" ColumnName="effdate" />
-                <ScalarProperty Name="totamt" ColumnName="totamt" />
-                <ScalarProperty Name="chequeno" ColumnName="chequeno" />
-                <ScalarProperty Name="payindicator" ColumnName="payindicator" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="createdby" ColumnName="createdby" />
-                <ScalarProperty Name="datecreated" ColumnName="datecreated" />
-                <ScalarProperty Name="ps" ColumnName="ps" />
-                <ScalarProperty Name="er" ColumnName="er" />
-                <ScalarProperty Name="ee" ColumnName="ee" />
-                <ScalarProperty Name="av" ColumnName="av" />
-                <ScalarProperty Name="psc" ColumnName="psc" />
-                <ScalarProperty Name="cc" ColumnName="cc" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="fl_premrate_temp">
             <EntityTypeMapping TypeName="FlexDBModel.fl_premrate_temp">
               <MappingFragment StoreEntitySet="fl_premrate_temp">
@@ -4834,6 +5021,37 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="VPayhistorybyAgents">
+            <EntityTypeMapping TypeName="FlexDBModel.VPayhistorybyAgent">
+              <MappingFragment StoreEntitySet="VPayhistorybyAgent">
+                <ScalarProperty Name="receiptno" ColumnName="receiptno" />
+                <ScalarProperty Name="period" ColumnName="period" />
+                <ScalarProperty Name="trandate" ColumnName="trandate" />
+                <ScalarProperty Name="orig_date" ColumnName="orig_date" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="gir" ColumnName="gir" />
+                <ScalarProperty Name="cur_intr" ColumnName="cur_intr" />
+                <ScalarProperty Name="cumul_intr" ColumnName="cumul_intr" />
+                <ScalarProperty Name="loanamt" ColumnName="loanamt" />
+                <ScalarProperty Name="doctype" ColumnName="doctype" />
+                <ScalarProperty Name="openbalance" ColumnName="openbalance" />
+                <ScalarProperty Name="opendeposit" ColumnName="opendeposit" />
+                <ScalarProperty Name="deposit" ColumnName="deposit" />
+                <ScalarProperty Name="curdep_intr" ColumnName="curdep_intr" />
+                <ScalarProperty Name="cumuldep_intr" ColumnName="cumuldep_intr" />
+                <ScalarProperty Name="policyno" ColumnName="policyno" />
+                <ScalarProperty Name="pcn" ColumnName="pcn" />
+                <ScalarProperty Name="grpcode" ColumnName="grpcode" />
+                <ScalarProperty Name="sex" ColumnName="sex" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="othername" ColumnName="othername" />
+                <ScalarProperty Name="agentcode" ColumnName="agentcode" />
+                <ScalarProperty Name="telephone" ColumnName="telephone" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="accdate" ColumnName="accdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="vProductions">
             <EntityTypeMapping TypeName="FlexDBModel.vProduction">
               <MappingFragment StoreEntitySet="vProduction">
@@ -4860,7 +5078,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
                 <ScalarProperty Name="policyno" ColumnName="policyno" />
                 <ScalarProperty Name="premium" ColumnName="premium" />
                 <ScalarProperty Name="poltype" ColumnName="poltype" />
-                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="poltypedec" ColumnName="poltypedec" />
                 <ScalarProperty Name="telephone" ColumnName="telephone" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="surname" ColumnName="surname" />
@@ -4870,6 +5088,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
                 <ScalarProperty Name="agentcode" ColumnName="agentcode" />
                 <ScalarProperty Name="address" ColumnName="address" />
                 <ScalarProperty Name="srn" ColumnName="srn" />
+                <ScalarProperty Name="location" ColumnName="location" />
                 <ScalarProperty Name="locdesc" ColumnName="locdesc" />
                 <ScalarProperty Name="agentname" ColumnName="agentname" />
                 <ScalarProperty Name="accdate" ColumnName="accdate" />
@@ -4906,6 +5125,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="deleteclaim" FunctionName="FlexDBModel.Store.deleteclaim" />
           <FunctionImportMapping FunctionImportName="fl_annual_interest_calc" FunctionName="FlexDBModel.Store.fl_annual_interest_calc" />
           <FunctionImportMapping FunctionImportName="fl_annual_interest_calcTSP" FunctionName="FlexDBModel.Store.fl_annual_interest_calcTSP" />
           <FunctionImportMapping FunctionImportName="fl_backupb4_interest" FunctionName="FlexDBModel.Store.fl_backupb4_interest" />

@@ -8,12 +8,51 @@
     <link href="~/Assests/styles/style.min.css" rel="stylesheet">
     <link href="~/Assests/styles/toastr.min.css" rel="stylesheet">
     <link href="~/Assests/styles/font-awesome.min.css" rel="stylesheet">
-    <link href="~/Assests/styles/datepicker.css" rel="stylesheet" /> 
+    <link href="~/Assests/styles/datepicker.css" rel="stylesheet" />
+
 
     <style>
-         body {
-        background-color: #f3f3f0;
-    }
+        body {
+            background-color: #f3f3f0;
+        }
+
+        ul, #myUL {
+            list-style-type: none;
+        }
+
+        #myUL {
+            margin: 0;
+            padding: 0;
+        }
+
+        /*.caret {
+            cursor: pointer;
+            -webkit-user-select: none;*/ /* Safari 3.1+ */
+        /*-moz-user-select: none;*/ /* Firefox 2+ */
+        /*-ms-user-select: none;*/ /* IE 10+ */
+        /*user-select: none;
+        }
+
+            .caret::before {
+                content: "\25B6";
+                color: black;
+                display: inline-block;
+                margin-right: 6px;
+            }
+
+        .caret-down::before {
+            -ms-transform: rotate(90deg);*/ /* IE 9 */
+        /*-webkit-transform: rotate(90deg);*/ /* Safari */
+        /*transform: rotate(90deg);
+        }*/
+
+        .nested {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
     </style>
 </head>
 <body class="margin-none padding-none" style="position: relative;">
@@ -38,8 +77,7 @@
             </div>
         </div>
     </header>
-    @{
-        string greeting;
+    @{ string greeting;
         if (DateTime.Now.Hour < 12)
         {
             greeting = "Good Morning";
@@ -54,8 +92,7 @@
         {
             greeting = "Good Evening";
             //lblDate.Text = Convert.ToString(DateTime.Now);
-        }
-    }
+        } }
     <div style="padding:60px 0 40px 0;">
         <div class="bg-success padding-bottom-lg" style="margin-bottom:-40px;">
             <div class="container padding-horizontal-lg">
@@ -67,7 +104,7 @@
                 <div class="col-md-3">
                     <div>@Html.Partial("_menu")</div>
                 </div>
-                <div class="col-md-9" >
+                <div class="col-md-9">
                     @RenderBody()
                 </div>
             </div>
@@ -98,12 +135,44 @@
         </div>
     </div>
 
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="./connectdb.js"></script>
+    <script src="~/Scripts/treejs.js"></script>
     <script type="text/javascript">
     var loginurl='@Url.Action("Index", "Login")';
     </script>
     <script type="text/javascript">
     var changePasswordUrl='@Url.Action("ChangePassword", "Login")';
     </script>
+
+    <script>
+        var toggler = document.getElementsByClassName("caret");
+        var i;
+
+        for (i = 0; i < toggler.length; i++) {
+            toggler[i].addEventListener("click", function () {
+                this.parentElement.querySelector(".nested").classList.toggle("active");
+                this.classList.toggle("caret-down");
+            });
+        }
+    </script>
+
     <script>
         var applicationBaseUrl = @Html.Raw(HttpUtility.JavaScriptStringEncode(
         new Uri(
@@ -111,7 +180,7 @@
                    Url.Content("~/")
                ).ToString(), true));
     </script>
-    
+
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Assests/scripts/toastr.js"></script>
     <script src="~/Assests/scripts/modal.js"></script>

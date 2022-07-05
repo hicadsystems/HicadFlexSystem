@@ -369,10 +369,72 @@ function searchCustomer(term, page, size) {
         spinner.style.display = 'none';
     });
 }
-
-
-function searchPolicies(el,page) {
+function searchAgentPolicies(el, page) {
     ShowLoading();
+ /*   alert("i am hereeee");*/
+    var query = $("#frmSearch").serializeObject();
+    var url = $(el).attr('data-url');
+    if (page !== undefined || page !== '' || page !== 0) {
+        var pageobj = {};
+        pageobj.Page = page;
+
+        query.Page = pageobj;
+    }
+    var data = { query: query };
+    var transPromise = Post(url, data, 'Post');
+
+    transPromise.done(function (resp) {
+        ShowLoading();
+        var tbDiv = document.getElementById('tbpolicy');
+        tbDiv.innerHTML = resp;
+        tbDiv.style.display = "block";
+        HideLoading();
+    });
+
+    transPromise.fail(function (resp) {
+        if (resp.status === 401) {
+            window.location.href = loginurl;
+        }
+        toastr.error(resp.statusText, "Error");
+        HideLoading();
+    });
+}
+
+function searchPayhist(el, page) {
+    ShowLoading();
+ /*   alert("i am hereeee");*/
+    var query = $("#frmSearch").serializeObject();
+    var url = $(el).attr('data-url');
+    if (page !== undefined || page !== '' || page !== 0) {
+        var pageobj = {};
+        pageobj.Page = page;
+
+        query.Page = pageobj;
+    }
+    var data = { query: query };
+    var transPromise = Post(url, data, 'Post');
+
+    transPromise.done(function (resp) {
+        ShowLoading();
+        var tbDiv = document.getElementById('tbpolicy');
+        tbDiv.innerHTML = resp;
+        tbDiv.style.display = "block";
+        HideLoading();
+    });
+
+    transPromise.fail(function (resp) {
+        if (resp.status === 401) {
+            window.location.href = loginurl;
+        }
+        toastr.error(resp.statusText, "Error");
+        HideLoading();
+    });
+}
+
+function searchPolicies(el, page) {
+  /*  alert("i am hereeee");*/
+    ShowLoading();
+
     var query = $("#frmSearch").serializeObject();
     var url = $(el).attr('data-url');
     if (page !== undefined || page !== '' || page !== 0) {

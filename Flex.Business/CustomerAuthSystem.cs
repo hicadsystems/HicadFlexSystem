@@ -174,6 +174,43 @@ namespace Flex.Business
                 throw;
             }
         }
+        public ProcessResult ResetPassword(long userId, string newPassword, string oldPassword)
+        {
+            try
+            {
+                var desc = string.Empty;
+                //var hPwd = new MD5Password().CreateSecurePassword(oldPassword);
+                var user = FindAll(x => x.Id == userId && x.password == oldPassword).FirstOrDefault();
+                if (user == null)
+                {
+                    return new ProcessResult()
+                    {
+                        Description = "Invalid Password"
+                    };
+                }
+                var nhPwd = new MD5Password().CreateSecurePassword(newPassword);
+                user.password = nhPwd;
+                user.passworddate = DateTime.Now.AddDays(30);
+                if (user.status == (int)UserStatus.New)
+                {
+                    user.status = (int)UserStatus.Active;
+                }
+                Update(user, user.Id);
 
+                var policy = new CoreSystem<fl_policyinput>(_context).FindAll(x => x.policyno == user.username).FirstOrDefault();
+                new NotificationSystem(_context).SendPasswordNotiification(policy, user.username, newPassword);
+
+                return new ProcessResult()
+                {
+                    AffectedItems = 1,
+                    Description = "Password Changed Successfully"
+                };
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

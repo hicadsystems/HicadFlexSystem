@@ -84,6 +84,52 @@ namespace Flex.Business
             }
             return uSession;
         }
+        public UserSession ProvisionSessionFor(fl_agents user, bool getUsable)
+        {
+            bool allowMultiSessionsPerUser = AllowMultiSessionsPerUser;
+            bool reuseActiveSessions = AllowActiveSessionReuse;
+
+            UserSession uSession = null;
+            uSession = GetActiveUserSession(user.Id, typeof(fl_agents));
+            if (uSession == null || !reuseActiveSessions)
+            {
+                string token = new MD5Password().CreateSecurePassword(String.Concat(user.Id.ToString(), user.agentname, DateTime.Now.ToString("o")));
+                uSession = new UserSession
+                {
+                    LastAccessed = DateTime.Now,
+                    fl_agents = user,
+                    ExpiryDate = DateTime.Now.AddMinutes(ConfigUtils.SessionTimeout),
+                    SessionStatus = (int)UserSessionStatus.Active,
+                    AgentId = user.Id,
+                    UserId=80,
+                    Token = token,
+                    IsDeleted = false,
+                    DateCreated = DateTime.Now
+                };
+
+                if (!getUsable)
+                {
+                    uSession.ExpiryDate = DateTime.Now.AddMinutes(5);
+                    uSession.SessionStatus = (int)UserSessionStatus.Temporal;
+                }
+
+
+                if (true || getUsable)
+                {
+                    if (getUsable)
+                    {
+                        //capture first login here if need be
+                        if (user.datecreated <= SqlDateTime.MinValue.Value)
+                        {
+                            user.datecreated = DateTime.Now;
+                            new CoreSystem<fl_agents>(_context).Update(user, user.Id);
+                        }
+                    }
+                    Save(uSession);
+                }
+            }
+            return uSession;
+        }
 
         public UserSession ProvisionSessionFor(fl_password user, bool getUsable)
         {

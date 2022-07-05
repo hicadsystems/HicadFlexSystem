@@ -38,15 +38,18 @@ namespace Flex.Data.Model
         public virtual DbSet<CustomerPolicy> CustomerPolicies { get; set; }
         public virtual DbSet<CustomerUser> CustomerUsers { get; set; }
         public virtual DbSet<fl_agents> fl_agents { get; set; }
+        public virtual DbSet<fl_bank> fl_bank { get; set; }
         public virtual DbSet<fl_formfile> fl_formfile { get; set; }
         public virtual DbSet<fl_gpayclaim> fl_gpayclaim { get; set; }
         public virtual DbSet<fl_grouptype> fl_grouptype { get; set; }
         public virtual DbSet<fl_location> fl_location { get; set; }
+        public virtual DbSet<fl_month> fl_month { get; set; }
         public virtual DbSet<fl_password> fl_password { get; set; }
         public virtual DbSet<fl_payclaim> fl_payclaim { get; set; }
         public virtual DbSet<fl_payhistory> fl_payhistory { get; set; }
         public virtual DbSet<fl_payhistorybak> fl_payhistorybak { get; set; }
         public virtual DbSet<fl_payinput> fl_payinput { get; set; }
+        public virtual DbSet<fl_payinput2> fl_payinput2 { get; set; }
         public virtual DbSet<fl_pendingSMS> fl_pendingSMS { get; set; }
         public virtual DbSet<fl_policyhistory> fl_policyhistory { get; set; }
         public virtual DbSet<fl_policyinput> fl_policyinput { get; set; }
@@ -76,10 +79,10 @@ namespace Flex.Data.Model
         public virtual DbSet<ac_rctdetails> ac_rctdetails { get; set; }
         public virtual DbSet<ac_rctheader> ac_rctheader { get; set; }
         public virtual DbSet<fl_gpayhistory> fl_gpayhistory { get; set; }
-        public virtual DbSet<fl_payinput2> fl_payinput2 { get; set; }
         public virtual DbSet<fl_premrate_temp> fl_premrate_temp { get; set; }
         public virtual DbSet<fl_state> fl_state { get; set; }
         public virtual DbSet<fl_temppolinput> fl_temppolinput { get; set; }
+        public virtual DbSet<VPayhistorybyAgent> VPayhistorybyAgents { get; set; }
         public virtual DbSet<vProduction> vProductions { get; set; }
         public virtual DbSet<vwPolicy> vwPolicies { get; set; }
         public virtual DbSet<vwPolicyHistory> vwPolicyHistories { get; set; }
@@ -96,6 +99,15 @@ namespace Flex.Data.Model
                 new ObjectParameter("Delimiter", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<SPLIT_STRING_Result>("[Entities].[SPLIT_STRING](@String, @Delimiter)", stringParameter, delimiterParameter);
+        }
+    
+        public virtual int deleteclaim(Nullable<int> claimid)
+        {
+            var claimidParameter = claimid.HasValue ?
+                new ObjectParameter("claimid", claimid) :
+                new ObjectParameter("claimid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("deleteclaim", claimidParameter);
         }
     
         public virtual int fl_annual_interest_calc(string wdate, string poltype, string grpcode, string wrate, string guser, string optintr)

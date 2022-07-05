@@ -8,11 +8,12 @@ function HideLoading() {
 
 function showModal(data, title,fn) {
     //$('modalbody').html(data);
+    alert("i am here")
     var modalbody = document.getElementById('modalbody');
     modalbody.innerHTML = data;
     console.log(data)
     modalbody.focus();
-
+    alert("i am here")
     //var ppp = document.getElementById('PolType').value;
     //console.log(ppp);
 
@@ -34,7 +35,7 @@ function showModal(data, title,fn) {
         document.getElementById('PolType').addEventListener('change', function (event) {
             var poltype = event.target.value;
             console.log(poltype);
-            if (poltype === 'PPP2') {
+            if (poltype === 'PP2') {
                 document.getElementById('rateRulesPPP').style.display = 'block'
                 document.getElementById('rateRules').style.display='none'
             }

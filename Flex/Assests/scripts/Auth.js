@@ -33,6 +33,7 @@
             type: "POST",
             data: { username: username, password: password },
             success: function (data) {
+               /* alert("i am here 3")*/
                 authObj = data;
                 Cookies.set("auth", JSON.stringify(authObj));
                 Cookies.set("Module", document.getElementById('Module').value);
@@ -79,7 +80,6 @@ function xPass(action) {
         var data = { xpass: xpwd };
         var url = applicationBaseUrl + '/Login/ChangePassword';
         var Promise = Post(url, data, 'Post');
-
         Promise.done(function (resp) {
             hideModal();
             if (resp.Description == 'Password Changed Successfully') {

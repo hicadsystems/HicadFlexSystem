@@ -76,6 +76,10 @@ function xPass(action) {
 function showChangePassword() {
     showModalfromfile('appFiles/changePassword.html', 'Change Password', 'xPass()')
 }
+function showChangePayment() {
+
+    showModalfromfile('appFiles/ussd.html', 'Change Password', 'xPass()')
+}
 
 $('#btnlogOut').click(function () {
     ShowLoading();

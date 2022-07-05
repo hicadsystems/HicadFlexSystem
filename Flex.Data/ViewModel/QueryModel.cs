@@ -71,6 +71,8 @@ namespace Flex.Data.ViewModel
         public string Phone { get; set; }
 
         public string Agent { get; set; }
+        public string Month { get; set; }
+        public string year { get; set; }
 
         public string Location { get; set; }
 

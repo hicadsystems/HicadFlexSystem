@@ -33,6 +33,7 @@ namespace CustomerPortal.Controllers
         }
         public ActionResult AddClaim()
         {
+            Getbank();
             GetClaimType();
             var user = WebSecurity.GetCurrentUser(Request);
             var pols = user.CustomerUser.CustomerPolicies.ToList();
@@ -57,6 +58,9 @@ namespace CustomerPortal.Controllers
                 clmreq.ClaimType = (int)(ClaimType)Enum.Parse(typeof(ClaimType), claimType);
                 clmreq.Status = (int)(Status)ClaimStatus.Pending;
                 clmreq.EffectiveDate = Convert.ToDateTime(effDate);
+                clmreq.bank = query.bank;
+                clmreq.accountname = query.accountname;
+                clmreq.accountno = query.accountno;
                 decimal xamount = 0.0M;
                 if (clmreq.ClaimType == (int)ClaimType.PartialWithdrawal && !decimal.TryParse(amount, out xamount))
                 {
@@ -93,8 +97,9 @@ namespace CustomerPortal.Controllers
                 if (claim != null)
                 {
                     claim.Status = (int)(Status)ClaimStatus.Canceled;
-
-                    new CoreSystem<ClaimRequest>(context).Update(claim, id);
+                    var clms = new ClaimSystem(context).RemoveClaimRequest(id);
+                    //new CoreSystem<ClaimRequest>(context).Update(claim, id);
+                    
                 }
                 return RedirectToAction("Index");
             }

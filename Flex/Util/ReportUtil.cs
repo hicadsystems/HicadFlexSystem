@@ -47,6 +47,7 @@ namespace Flex.Util
             public const string CommisssionSummary = "CommisssionSummary";
 
             public const string Maturity = "Maturity";
+            public const string CustomerProfile = "CustomerProfile";
 
             public const string Receipt = "Receipt";
 

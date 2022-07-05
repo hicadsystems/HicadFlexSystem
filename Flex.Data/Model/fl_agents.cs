@@ -14,11 +14,17 @@ namespace Flex.Data.Model
     
     public partial class fl_agents
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public fl_agents()
+        {
+            this.UserSessions = new HashSet<UserSession>();
+        }
+    
         public long Id { get; set; }
         public string agentcode { get; set; }
         public string agentname { get; set; }
         public Nullable<int> locationId { get; set; }
-        public Nullable<int> agenttype { get; set; }
+        public Nullable<int> agenttype2 { get; set; }
         public Nullable<decimal> CommissionRate { get; set; }
         public string createdBy { get; set; }
         public Nullable<System.DateTime> datecreated { get; set; }
@@ -29,7 +35,11 @@ namespace Flex.Data.Model
         public string agentphone { get; set; }
         public Nullable<int> status { get; set; }
         public string exitdate { get; set; }
+        public string agenttype { get; set; }
+        public string password { get; set; }
     
         public virtual ac_costCenter ac_costCenter { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserSession> UserSessions { get; set; }
     }
 }

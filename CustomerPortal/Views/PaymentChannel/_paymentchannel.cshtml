@@ -1,19 +1,391 @@
 ﻿
-<h3>Payment Channels</h3>
+<style>
+    .accordion {
+        margin-top: 150px;
+        margin-right: 10px;
+        position: relative;
+        max-width: 900px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 
-<div>
-    <h4>SSD PAYMENTS</h4>
-    <ul>
-        <li>Bank: GTB</li>
-        <li>Account Name: NLPC</li>
-        <li>Account Number: 001234567</li>
-        <li>SSD CODE: *737*ActNo*Amt#</li>
-    </ul>
-    <br />
-    <ul>
-        <li>Bank: FirstBank</li>
-        <li>Account Name: NLPC</li>
-        <li>Account Number: 3034567890</li>
-        <li>SSD CODE: *894*ActNo*Amt#</li>
-    </ul>
+        .accordion .container {
+            position: relative;
+            margin: 10px 10px;
+            border-radius: 50px;
+        }
+
+        /* Positions the labels relative to the .container. Adds padding to the top and bottom and increases font size. Also makes its cursor a pointer */
+
+        .accordion .label {
+            position: relative;
+            padding: 5px 0;
+            font-size: 10px;
+            color: black;
+            cursor: pointer;
+        }
+
+            .accordion .label::before {
+                content: '+';
+                color: black;
+                position: absolute;
+                top: 50%;
+                right: 280px;
+                font-size: 15px;
+                transform: translateY(-50%);
+            }
+
+        .accordion .content {
+            position: relative;
+            height: 0;
+            font-size: 20px;
+            text-align: justify;
+            overflow: hidden;
+            transition: 0.5s;
+        }
+
+        .accordion .container.active .content {
+            height: 350px;
+        }
+
+        .accordion .container.active #ussd {
+            height: 110px;
+        }
+
+        .accordion .container.active #gtcoweb {
+            height: 300px;
+        }
+
+        .accordion .container.active #quickteller {
+            height: 55px;
+        }
+
+        /* Changes from plus sign to negative sign once active */
+        .accordion .container.active .label::before {
+            content: '-';
+            font-size: 15px;
+        }
+        /* Adds a horizontal line between the contents */
+        .accordion hr {
+            width: 100px;
+            margin-left: 0;
+            border: 1px solid grey;
+        }
+</style>
+
+
+
+@*<div class="row">
+            <div class="col-md-6" style="background-color:#f5d6cb">
+                <h4> <img src="~/images/gtblogo.png" width="50" /></h4>
+                <h5><strong>USSD</strong></h5>
+                <ul>
+
+                    <li>
+                        PPP Savings Plan: *7373*50*Amount*30#
+                    </li>
+                    <li>
+                        Target Savings Plan: *737*50*Amount*31#
+                    </li>
+                    <li>
+                        Almond Savings Plan:*737*50*Amount*32#
+                    </li>
+                    <li>
+                        Insurance Premium: *737*50*Amount*33#
+                    </li>
+                </ul>
+
+                <h5><strong>GTCO MOBILE</strong></h5>
+                <ol>
+                    <li>Open the GTBank mobile banking app and sign in.</li>
+                    <li>Click on Payments</li>
+                    <li>Click on 'Insurance'</li>
+                    <li>From select a Category. Choose "NIGN. LIFEANDPROVIDENT COMP.LTD"</li>
+                    <li>From Product. Choose a Plan</li>
+                    <li>Click Continue</li>
+                    <li>Enter Your Policy No  and the Amount.</li>
+                    <li>Click Submit.</li>
+                    <li>Select the GT Bank account that you wish to make the deposit from, insert your mobile banking pin and confirm.</li>
+                    <li>Upon successful payment, your betting wallet will be credited instantly.</li>
+
+                </ol>
+                </li>
+                </ul>
+
+            </div>
+
+            <div style="height: 500px; border-right: 3px solid #000900; position: absolute; right: 50%;">
+
+            </div>
+            <div class="col-md-6">
+                <ol style="background-color:#f5d6cb">
+                    <h5><strong>GTCO WEB</strong></h5>
+                    <li>Clink on the Link GTCO(<a href="www.gtbank.com">www.gtbank.com</a> )</li>
+                    <li>Login</li>
+                    <li>Clink on ‘’Insurance & Health plans’’</li>
+
+    <style>
+        .accordion {
+            margin-top: 150px;
+            margin-right: 10px;
+            position: relative;
+            max-width: 900px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+            .accordion .container {
+                position: relative;
+                margin: 10px 10px;
+                border-radius: 50px;
+            }
+
+            /* Positions the labels relative to the .container. Adds padding to the top and bottom and increases font size. Also makes its cursor a pointer */
+
+            .accordion .label {
+                position: relative;
+                padding: 5px 0;
+                font-size: 10px;
+                color: black;
+                cursor: pointer;
+            }
+
+                .accordion .label::before {
+                    content: '';
+                    color: black;
+                    position: absolute;
+                    top: 50%;
+                    right: -80px;
+                    font-size: 15px;
+                    transform: translateY(-50%);
+                }
+
+            .accordion .content {
+                position: relative;
+                height: 0;
+                font-size: 20px;
+                text-align: justify;
+                overflow: hidden;
+                transition: 0.5s;
+            }
+
+            .accordion .container.active .content {
+                height: 350px;
+            }
+
+            .accordion .container.active #ussd {
+                height: 110px;
+            }
+
+            .accordion .container.active #gtcoweb {
+                height: 300px;
+            }
+
+            .accordion .container.active #quickteller {
+                height: 55px;
+            }
+
+            /* Changes from plus sign to negative sign once active */
+            .accordion .container.active .label::before {
+                content: '-';
+                font-size: 15px;
+            }
+            /* Adds a horizontal line between the contents */
+            .accordion hr {
+                width: 100px;
+                margin-left: 0;
+                border: 1px solid grey;
+            }
+    </style>
+
+    <h2>Policy Payment Channel</h2>
+    <div class="accordion">
+        <div class="accordion-body">
+            <div class="container" style="width:40%; padding:2px" onclick="event.preventDefault(); this.classList.toggle('active')">
+
+                <div class="label">
+                    <p style="position: relative; left:-150px;margin-top:-50px"><img src="~/images/gtblogo.png" width="18" /> USSD</p>
+                </div>
+                <div class="content" id="ussd" style="width: 100%; background-color:#f6f3f3; padding: 2px">
+
+                    <h6>1. PPP Savings Plan: *7373*50*Amount*30#</h6>
+
+                    <h6>2. Target Savings Plan: *737*50*Amount*31#</h6>
+
+                    <h6>3. Almond Savings Plan:*737*50*Amount*32#</h6>
+
+                    <h6>4. Insurance Premium: *737*50*Amount*33#</h6>
+                </div>
+            </div>
+            @*<hr style="border:1px solid #e8e5df4f" />*@
+
+<div class="container" style="width:40%;padding:2px" onclick="event.preventDefault(); this.classList.toggle('active')">
+    <div class="label">
+        <p style="position: relative; left: -140px;margin-top:-10px"><img src="~/images/gtblogo.png" width="18" />&nbsp;&nbsp;MOBILE</p>
+    </div>
+    <div class="content" style="background-color: #f6f3f3; padding: 2px; margin-bottom: 2px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-7" style="height:700px">
+
+                    <h6>1. Open the GTBank mobile banking app and sign in</h6>
+                    <h6>2. Click on Payments</h6>
+                    <h6>3. Click on 'Insurance'</h6>
+                    <h6>4. From select a Category</h6>
+                    <h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choose "NIGN. LIFEANDPROVIDENT COMP.LTD"</h6>
+                    <h6>5. From Product. Choose a Plan</h6>
+                    <h6>6. Click Continue</h6>
+                    <h6>7. Enter Your Policy No  and the Amount</h6>
+                    <h6>8. Click Submit</h6>
+                    <h6>9. Select the GT Bank account that you wish to make the</h6>
+                    <h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;deposit from, insert your mobile banking pin and confirm</h6>
+                    <h6>10. Upon successful payment, your betting wallet will be</h6>
+                    <h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;credited instantly.</h6>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+@*<hr style="border:1px solid #e8e5df4f" />*@
+
+<div class="container" style="width:40%;padding:2px" onclick="event.preventDefault(); this.classList.toggle('active')">
+    <div class="label">
+        <p style="position: relative; left: -145px"><img src="~/images/gtblogo.png" width="18" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WEB</p>
+    </div>
+    <div class="content" id="gtcoweb" style="width: 100%; background-color: #f6f3f3; padding: 2px">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+
+                    <h6>1. Clink on the Link GTCO(<a href="www.gtbank.com">www.gtbank.com</a> )</h6>
+                    <h6>2. Login</h6>
+                    <h6>3. Clink on ‘’Insurance & Health plans’’</h6>
+                    <h6>4. Select ‘’NIG.Life&Provident Company Ltd’’</h6>
+                    <h6>5. Clink make ‘’New Payment’’</h6>
+                    <h6>6. Enter ‘’Policy No’’ and ‘’Amount’’</h6>
+                    <h6>7. Enter ‘’Token’’ OR ’’OTP’’</h6>
+                    <h6>8. Select the GT Bank account that you wish to make the </h6>
+                    <h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;deposit from, insert your mobile banking pin and confirm</h6>
+                    <h6>9. Upon successful payment, your betting wallet will be</h6>
+                    <h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;credited instantly.</h6>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+@*<hr style="border:1px solid #e8e5df4f" />*@
+<div class="container" style="width:40%;padding:2px" onclick="event.preventDefault(); this.classList.toggle('active')">
+    <div class="label">
+        <p style="position: relative; left: -130px"><img src="~/images/quickteller.png" width="20" />&nbsp;&nbsp;&nbsp; QuickTeller</p>
+    </div>
+    <div class="content" id="quickteller" style="width: 100%; background-color: #f6f3f3; padding: 2px">
+        <h4>
+            <img src="~/images/quickteller.png" width="50" /> <a href="https://www.quickteller.com/nlpc">Pay Via QuickTeller</a>
+        </h4>
+        <br />
+    </div>
+</div>
+
+    </div>
+</div>
+
+@*<div>@Html.Partial("_ussdpayment")</div>*@
+
+<h2>Policy Payment Channel</h2>
+<div class="accordion">
+    <div class="accordion-body">
+        <div class="container" style="width:40%; padding:2px" onclick="event.preventDefault(); this.classList.toggle('active')">
+
+            <div class="label">
+                <p style="position: relative; left:-150px"> <img src="~/images/gtblogo.png" width="20" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USSD</p>
+            </div>
+            <div class="content" id="ussd" style="width: 100%; background-color:#f6f3f3; padding: 2px">
+
+                <h6>1. PPP Savings Plan: *7373*50*Amount*30#</h6>
+
+                <h6>2. Target Savings Plan: *737*50*Amount*31#</h6>
+
+                <h6>3. Almond Savings Plan:*737*50*Amount*32#</h6>
+
+                <h6>4. Insurance Premium: *737*50*Amount*33#</h6>
+            </div>
+        </div>
+        @*<hr style="border:1px solid #e8e5df4f" />*@
+
+        <div class="container" style="width:40%;padding:2px" onclick="event.preventDefault(); this.classList.toggle('active')">
+            <div class="label">
+                <p style="position: relative; left: -150px"><img src="~/images/gtblogo.png" width="20" />&nbsp;&nbsp;MOBILE</p>
+            </div>
+            <div class="content" style="background-color: #f6f3f3; padding: 2px; margin-bottom: 2px;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-7" style="height:700px">
+
+                            <h6>1. Open the GTBank mobile banking app and sign in</h6>
+                            <h6>2. Click on Payments</h6>
+                            <h6>3. Click on 'Insurance'</h6>
+                            <h6>4. From select a Category</h6>
+                            <h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choose "NIGN. LIFEANDPROVIDENT COMP.LTD"</h6>
+                            <h6>5. From Product. Choose a Plan</h6>
+                            <h6>6. Click Continue</h6>
+                            <h6>7. Enter Your Policy No  and the Amount</h6>
+                            <h6>8. Click Submit</h6>
+                            <h6>9. Select the GT Bank account that you wish to make the</h6>
+                            <h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;deposit from, insert your mobile banking pin and confirm</h6>
+                            <h6>10. Upon successful payment, your betting wallet will be</h6>
+                            <h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;credited instantly.</h6>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*<hr style="border:1px solid #e8e5df4f" />*@
+
+        <div class="container" style="width:40%;padding:2px" onclick="event.preventDefault(); this.classList.toggle('active')">
+            <div class="label">
+                <p style="position: relative; left: -150px"><img src="~/images/gtblogo.png" width="20" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WEB</p>
+            </div>
+            <div class="content" id="gtcoweb" style="width: 100%; background-color: #f6f3f3; padding: 2px">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4">
+
+                            <h6>1. Clink on the Link GTCO(<a href="www.gtbank.com">www.gtbank.com</a> )</h6>
+                            <h6>2. Login</h6>
+                            <h6>3. Clink on ‘’Insurance & Health plans’’</h6>
+                            <h6>4. Select ‘’NIG.Life&Provident Company Ltd’’</h6>
+                            <h6>5. Clink make ‘’New Payment’’</h6>
+                            <h6>6. Enter ‘’Policy No’’ and ‘’Amount’’</h6>
+                            <h6>7. Enter ‘’Token’’ OR ’’OTP’’</h6>
+                            <h6>8. Select the GT Bank account that you wish to make the </h6>
+                            <h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;deposit from, insert your mobile banking pin and confirm</h6>
+                            <h6>9. Upon successful payment, your betting wallet will be</h6>
+                            <h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;credited instantly.</h6>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*<hr style="border:1px solid #e8e5df4f" />*@
+        <div class="container" style="width:40%;padding:2px" onclick="event.preventDefault(); this.classList.toggle('active')">
+            <div class="label">
+                <p style="position: relative; left: -150px"><img src="~/images/quickteller.png" width="20" />&nbsp;&nbsp;&nbsp; QuickTeller</p>
+            </div>
+            <div class="content" id="quickteller" style="width: 100%; background-color: #f6f3f3; padding: 2px">
+                <h4>
+                    <img src="~/images/quickteller.png" width="50" /> <a href="https://www.quickteller.com/nlpc">Pay Via QuickTeller</a>
+                </h4>
+                <br />
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@*<div>@Html.Partial("_ussdpayment")</div>*@

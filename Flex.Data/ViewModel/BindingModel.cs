@@ -42,11 +42,13 @@ namespace Flex.Data.ViewModel
         public int PolicyType { get; set; }
         public string IdentityType { get; set; }
         public string IdentityNumber { get; set; }
-        public int Location { get; set; }
+        //public int Location { get; set; }
+        public int Locationid { get; set; }
 
         public string AgentCode { get; set; }
         public byte[] PictureFile { get; set; }
         public byte[] signature { get; set; }
+        public Nullable<bool> TermsAndConditions { get; set; }
         //public string PictureFile { get; set; }
         public string GroupCode { get; set; }
         public string Religion { get; set; }
@@ -186,10 +188,12 @@ namespace Flex.Data.ViewModel
 
     public class PolicyBindingModel
     {
+        public string Policyno { get; set; }
         public int PolicyType { get; set; }
 
-        public int Location { get; set; }
 
+        public string Location { get; set; }
+        public int Locationid { get; set; }
         public decimal Amount { get; set; }
 
         public int Frequency { get; set; }

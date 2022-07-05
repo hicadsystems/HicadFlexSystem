@@ -40,8 +40,8 @@ namespace Flex.Data.Enum
 
     public enum Category
     {
-        NextofKin,
-        Beneficiary
+        NextofKin=1,
+        Beneficiary=0
     }
 
     public enum Frequency

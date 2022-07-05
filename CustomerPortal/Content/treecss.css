@@ -1,0 +1,110 @@
+
+.treeview-animated {
+
+  font-size: 16px;
+  font-weight: 400;
+
+  background: rgba(224, 127, 178, 0.2);
+}
+
+.treeview-animated hr {
+  border-color: #a2127a;
+}
+
+.treeview-animated.w-20 {
+  width: 20rem;
+}
+
+.treeview-animated h6 {
+  font-size: 1.4em;
+  font-weight: 500;
+  color: #a2127a;
+}
+
+.treeview-animated ul {
+  position: relative;
+  list-style: none;
+  padding-left: 0;
+}
+
+.treeview-animated-list ul {
+  padding-left: 1em;
+  margin-top: 0.1em;
+  background: rgba(224, 127, 178, 0.2);
+}
+
+.treeview-animated-element {
+  padding: 0.2em 0.2em 0.2em 1em;
+  cursor: pointer;
+  transition: all .1s linear;
+  border: 2px solid transparent;
+  border-right: 0px solid transparent;
+}
+
+.treeview-animated-element:hover {
+  background-color: #e07fb2;
+}
+
+.treeview-animated-element.opened {
+  color: #ffac47;
+  border: 2px solid #ffac47;
+  border-right: 0px solid transparent;
+  background-color: #a2127a;
+}
+
+.treeview-animated-element.opened:hover {
+  color: #ffac47;
+  background-color: #a2127a;
+}
+
+.treeview-animated-items-header {
+  display: block;
+  padding: 0.4em;
+  margin-right: 0;
+  border-bottom: 2px solid transparent;
+}
+
+
+.treeview-animated-items-header:hover {
+  background-color: #e07fb2
+}
+
+.treeview-animated-items-header.open {
+  transition: all .1s linear;
+  background-color: #a2127a;
+
+  border-bottom: 2px solid #ffac47;
+}
+
+.treeview-animated-items-header.open span {
+  color: #ffac47;
+}
+
+.treeview-animated-items-header.open:hover {
+
+  color: #ffac47;
+  background-color: #a2127a;
+}
+
+.treeview-animated-items-header.open div:hover {
+  background-color: #a2127a;
+}
+
+.treeview-animated-items-header .fa-angle-right {
+  transition: all .1s linear;
+  font-size: .8rem;
+}
+
+.treeview-animated-items-header .fas {
+  position: relative;
+  transition: all .2s linear;
+  transform: rotate(90deg);
+
+  color: #ffac47;
+}
+
+.treeview-animated-items-header .fa-minus-circle {
+  position: relative;
+  color: #ffac47;
+  transform: rotate(180deg);
+}

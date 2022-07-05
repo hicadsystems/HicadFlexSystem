@@ -26,8 +26,10 @@ namespace Flex.Data.Model
         public Nullable<long> AccessCount { get; set; }
         public string Token { get; set; }
         public Nullable<long> UserId { get; set; }
+        public Nullable<long> AgentId { get; set; }
     
         public virtual CustomerUser CustomerUser { get; set; }
+        public virtual fl_agents fl_agents { get; set; }
         public virtual fl_password fl_password { get; set; }
     }
 }

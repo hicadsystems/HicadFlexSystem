@@ -9,6 +9,11 @@
 <form name="step1" id="stepAFrm">
     <div class="bg-white col-md-12">
         <div class="row">
+            <div class="col-md-4">
+                <img src="@Url.Content("~/Pictures/Passport_"+Model.PersonalInfo.IdentityNumber+".png")" />
+            </div>
+        </div>
+        <div class="row">
             <div class="form-group col-md-4 ss-item-required">
                 <label for="Surname" class="color-transparent-darker lite small">SURNAME</label>
                 <input type="text" name="Surname" class="form-control input-md" autofocus required value="@Model.PersonalInfo.Surname" />

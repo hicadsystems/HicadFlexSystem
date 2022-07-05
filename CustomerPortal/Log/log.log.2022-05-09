@@ -1,0 +1,8 @@
+[Flex Customer Logger Started] 
+2022-05-09 00:26:22,002 [28] INFO  CustomerPortal - Error occurred. Details System.NullReferenceException: Object reference not set to an instance of an object.
+   at CustomerPortal.Controllers.StatementController.Index(String Policyno)
+[Flex Customer Logger Started] 
+2022-05-09 15:08:15,331 [1] INFO  AppStart - Application [/LM/W3SVC/3/ROOT-1-132965788899513425] Starting... @ BaseDir is [C:\Users\HP\Desktop\HicadFlexSystem\CustomerPortal\]
+2022-05-09 15:22:00,457 [18] INFO  CustomerPortal - Inside post signUp
+2022-05-09 15:22:47,118 [18] ERROR CustomerPortal - Error Occurred. Details  [System.Exception: Please Select Frequency
+   at CustomerPortal.Controllers.SignUpController.SignUp(SignUpBindingModel signUpmodel) in C:\Users\HP\Desktop\HicadFlexSystem\CustomerPortal\Controllers\SignUpController.cs:line 224--   at CustomerPortal.Controllers.SignUpController.SignUp(SignUpBindingModel signUpmodel) in C:\Users\HP\Desktop\HicadFlexSystem\CustomerPortal\Controllers\SignUpController.cs:line 224]

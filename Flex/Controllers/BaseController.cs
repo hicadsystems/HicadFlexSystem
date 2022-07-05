@@ -102,6 +102,23 @@ namespace Flex.Controllers
             }
             return new SelectList(userstatus, "ID", "Name");
         }
+        public void GetPolicyType()
+        {
+            var polType = new CoreSystem<fl_poltype>(context).FindAll(x => x.code != "PPP");
+            ViewBag.polType = new SelectList(polType, "Id", "poldesc");
+        }
+        public void GetPolicyNo(int custid)
+        {          
+            var _custPols = new CoreSystem<CustomerUser>(context).FindAll(x => x.Id == custid);
+            ViewBag.policyno = _custPols.FirstOrDefault().username;
+        }
+        
+        public void GetLocation()
+        {
+            var loc = new CoreSystem<fl_location>(context).FindAll(x => x.Isdeleted == false);
+            ViewBag.location = new SelectList(loc, "Id", "locdesc");
+
+        }
         public SelectList Getgropcodes()
         {
             var grp = new List<fl_grouptype>();
@@ -238,10 +255,17 @@ namespace Flex.Controllers
             var agents = new List<fl_agents>();
             agents = new CoreSystem<fl_agents>(context).FindAll(x => x.IsDeleted == false).ToList();
 
-            return new SelectList(agents, "agentcode", "agentname", agent);
+            return new SelectList(agents.OrderBy(x=>x.agentname), "agentcode", "agentname", agent);
+        }
+        public SelectList GetMonths()
+        {
+            var mth = new List<fl_month>();
+            mth = new CoreSystem<fl_month>(context).FindAll(x => x.IsDeleted == false).ToList();
+
+            return new SelectList(mth.OrderBy(x => x.id), "code", "name", mth);
         }
 
-        
+
 
         public SelectList GetStates(string state="")
         {

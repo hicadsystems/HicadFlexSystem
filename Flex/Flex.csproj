@@ -197,12 +197,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AgentCustController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ClaimController.cs" />
     <Compile Include="Controllers\ContainerController.cs" />
     <Compile Include="Controllers\CustPolicyController.cs" />
+    <Compile Include="Controllers\AgentDashBoardController.cs" />
     <Compile Include="Controllers\DashBoardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\AgentLoginController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
@@ -219,6 +222,12 @@
     <Compile Include="Models\ReportModel\rptModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\SetUpController.cs" />
+    <Compile Include="Reports\CustomerProfile.cs">
+      <DependentUpon>CustomerProfile.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\rate.cs">
       <DependentUpon>rate.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -981,6 +990,7 @@
     <Content Include="Assests\group.js" />
     <Content Include="Assests\scripts\affix.js" />
     <Content Include="Assests\scripts\alert.js" />
+    <Content Include="Assests\scripts\AuthAgent.js" />
     <Content Include="Assests\scripts\Auth.js" />
     <Content Include="Assests\scripts\autocompleteUtils.js" />
     <Content Include="Assests\scripts\bootstrap-datepicker.js" />
@@ -988,6 +998,7 @@
     <Content Include="Assests\scripts\carousel.js" />
     <Content Include="Assests\scripts\claim.js" />
     <Content Include="Assests\scripts\collapse.js" />
+    <Content Include="Assests\scripts\cookies.js" />
     <Content Include="Assests\scripts\custpolicy.js" />
     <Content Include="Assests\scripts\dataService.js" />
     <Content Include="Assests\scripts\datetimepicker.js" />
@@ -999,6 +1010,7 @@
     <Content Include="Assests\scripts\modal.js" />
     <Content Include="Assests\scripts\model.js" />
     <Content Include="Assests\scripts\payment.js" />
+    <Content Include="Assests\scripts\policy.js" />
     <Content Include="Assests\scripts\popover.js" />
     <Content Include="Assests\scripts\profile.js" />
     <Content Include="Assests\scripts\report.js" />
@@ -1639,10 +1651,24 @@
     <Content Include="Views\Payment\_calculateinterestPPP2.cshtml" />
     <Content Include="Views\Payment\_restorebk.cshtml" />
     <Content Include="Views\CustPolicy\_beneficiariesEdit.cshtml" />
+    <Content Include="Views\AgentLogin\Index.cshtml" />
+    <Content Include="Views\AgentDashBoard\Index.cshtml" />
+    <Content Include="Views\Shared\_agentmenu.cshtml" />
+    <Content Include="Views\Shared\_AgentLayout.cshtml" />
+    <Content Include="Views\CustPolicy\_agentpolicy.cshtml" />
+    <Content Include="Views\CustPolicy\_tbAgentPolicies.cshtml" />
+    <Content Include="Views\CustPolicy\_agentPayhist.cshtml" />
+    <Content Include="Views\CustPolicy\_tbAgentPayhist.cshtml" />
+    <Content Include="Views\AgentDashBoard\Payhistbyagent.cshtml" />
+    <Content Include="Views\CustPolicy\_agentPayhist2.cshtml" />
+    <Content Include="Views\Shared\_agentprofile.cshtml" />
+    <Content Include="Views\AgentDashBoard\policies.cshtml" />
+    <Content Include="Views\CustPolicy\_agentpolicy2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="PDFReport\" />
+    <Folder Include="Views\AgentCust\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -1685,6 +1711,10 @@
     <Content Include="Reports\rate.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rate.cs</LastGenOutput>
+    </Content>
+    <Content Include="Reports\CustomerProfile.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CustomerProfile.cs</LastGenOutput>
     </Content>
     <EmbeddedResource Include="Reports\CrystalReport1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

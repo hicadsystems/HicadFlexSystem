@@ -47,6 +47,7 @@ namespace Flex.Data.Model
         public string IdentityType { get; set; }
         public byte[] signature { get; set; }
         public string agentcode { get; set; }
+        public Nullable<bool> TermsAndConditions { get; set; }
     
         public virtual fl_poltype fl_poltype { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

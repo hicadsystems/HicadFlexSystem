@@ -33,7 +33,8 @@ namespace Flex.Data.Model
         public string quoteno { get; set; }
         public string poltype { get; set; }
         public string exitdate { get; set; }
-        public Nullable<int> location { get; set; }
+        public string location { get; set; }
+        public Nullable<int> locationid { get; set; }
         public string agentcode { get; set; }
         public string email { get; set; }
         public Nullable<decimal> premium { get; set; }
@@ -46,6 +47,7 @@ namespace Flex.Data.Model
         public string IdentityNumber { get; set; }
         public string IdentityType { get; set; }
         public byte[] signature { get; set; }
+        public Nullable<bool> TermsAndConditions { get; set; }
     
         public virtual fl_location fl_location { get; set; }
     }

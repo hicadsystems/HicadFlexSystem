@@ -1,0 +1,69 @@
+﻿@using Flex.Data.Model
+@using Flex.Data.ViewModel
+@model PagedResult<VPayhistorybyAgent>
+<div class="padding-top-md">
+    <div class="panel">
+        <div class="padding-sm">
+            <form id="frmSearch">
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="row">
+                            <div class="col-sm-5 text-right padding-none">
+                                <label for="Name" class="uppercase smaller lite margin-top-sm margin-right-sm">Policy No.</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="form-group">
+                                    <input type="text" class="form-control input-md" name="PolicyNo" />
+                                    @*<input type="text" class="form-control" data-autocomplete="@Url.Action("PolicynoAutoComplete","CustPolicy")" style="width: 200px" />
+                        <input type="hidden" value="" id="PolicyNo" data-autocomplete-id="true" name="PolicyNo" />*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="row">
+                            <div class="col-sm-5 text-right padding-none">
+                                <label for="Name" class="uppercase smaller lite margin-top-sm margin-right-sm">Year</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="form-group">
+                                    <input type="text" class="form-control input-md" name="year" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="row">
+                            <div class="col-sm-5 text-right padding-none">
+                                <label for="Email" class="uppercase smaller lite margin-top-sm margin-right-sm">Sort by month</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="form-group">
+                                    @Html.DropDownList("Month", (IEnumerable<SelectListItem>)ViewBag.month, String.Empty,
+                                                       new { @class = "form-control input-md" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <input type="button" class="btn btn-info btn-sm" value="SEARCH" id="btnppsearch" data-url="@Url.Action("SearchPayhist", "CustPolicy")" onclick="searchPolicies(this);" />
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        @{
+            var dispaly = string.Empty;
+
+            dispaly = Model.Items.Any() ? "block" : "none";
+        }
+        <div id="tbpolicy" class="table-responsive">
+            @Html.Partial("_tbAgentPayhist", Model)
+        </div>
+
+    </div>
+</div>

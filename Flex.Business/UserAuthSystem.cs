@@ -98,6 +98,8 @@ namespace Flex.Business
             }
             return res;
         }
+       
+
 
         public ProcessResult ChangePassword(long userId,string newPassword, string oldPassword)
         {

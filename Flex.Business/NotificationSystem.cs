@@ -91,13 +91,16 @@ namespace Flex.Business
 
         public void SendPolicyCreationNotiification(fl_policyinput polInput,string username, string userpwd,string polType)
         {
+            try
+            {
+
             StringBuilder emailBody = new StringBuilder();
-            emailBody.AppendFormat("<p>Hello {0} {1}</p><br/><<p>Your Policy has been approved.</p>"
+            emailBody.AppendFormat("Hello {0} {1} Your Policy has been approved."
                 , polInput.surname, polInput.othername);
-            emailBody.Append("Please find details of your policy below.</p>");
-            emailBody.AppendFormat("<p>Policy No.: {0}</p><p>Username: {1}</p><p>Password: {2}</p><br/>",
+            emailBody.Append("Please find details of your ");
+            emailBody.AppendFormat("Policy No.: {0} Username: {1} Password: {2} ",
                 polInput.policyno, polInput.policyno, userpwd);
-            emailBody.Append("<p>Thanks<p/>");
+            emailBody.Append(" Thanks");
             //var msgDetail = GetMessage(MessageType.PolicyCreation, polType);
             //if (msgDetail != null && msgDetail.Any())
             //{
@@ -138,7 +141,75 @@ namespace Flex.Business
                 };
 
                 new CoreSystem<fl_pendingSMS>(_context).Save(pSms);
-            //}
+                //}
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+        public void SendPasswordNotiification(fl_policyinput polInput, string username, string userpwd)
+        {
+            try
+            {
+
+                StringBuilder emailBody = new StringBuilder();
+                emailBody.AppendFormat(" Hello {0} {1}  Your Policy has been approved. "
+                    , polInput.surname, polInput.othername);
+                emailBody.Append("Please find details of your policy below. ");
+                emailBody.AppendFormat(" Policy No.: Username: {1} Password: {2} ",
+                    polInput.policyno, polInput.policyno, userpwd);
+                emailBody.Append(" Thanks ");
+                //var msgDetail = GetMessage(MessageType.PolicyCreation, polType);
+                //if (msgDetail != null && msgDetail.Any())
+                //{
+                //var emailMessage = msgDetail.Where(x => x.NotificationType == NotificationType.Email).FirstOrDefault();
+                if (!string.IsNullOrEmpty(polInput.email))
+                {
+                    var pEmail = new PendingEmail()
+                    {
+                        //Body = emailMessage.Message.Replace("{Surname}", polInput.surname).Replace("{OtherName}", polInput.othername).Replace("{PolicyNo}", polInput.policyno)
+                        //        .Replace("{Username}",username).Replace("{Password}", userpwd),
+                        Body = emailBody.ToString(),
+                        DueDate = DateTime.Now,
+                        From = "NLPC",
+                        IsBodyHtml = true,
+                        Subject = string.Format("Welcome on Board {0} {1}", polInput.surname, polInput.othername),
+                        To = polInput.email,
+                        IsSent = false,
+                        Retries = 0,
+                        RetryCount = 0,
+
+
+                    };
+                    new CoreSystem<PendingEmail>(_context).Save(pEmail);
+                }
+
+                //var smsMsg = msgDetail.Where(x => x.NotificationType == NotificationType.Sms).FirstOrDefault();
+
+                var pSms = new fl_pendingSMS()
+                {
+
+                    //Application = "Flex",
+                    isSent = false,
+                    message = emailBody.ToString(),
+                    //message = smsMsg.Message.Replace("{Surname}", polInput.surname).Replace("{OtherName}", polInput.othername).Replace("{PolicyNo}", polInput.policyno)
+                    //        .Replace("{Username}", polInput.policyno).Replace("{Password}", userpwd),
+                    retrycount = 0,
+                    telephone = polInput.telephone
+                };
+
+                new CoreSystem<fl_pendingSMS>(_context).Save(pSms);
+                //}
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         public bool validate(string email, string phone)

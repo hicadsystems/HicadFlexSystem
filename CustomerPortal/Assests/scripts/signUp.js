@@ -15,11 +15,11 @@ $('#btnstep1Next').click(function () {
             $.ajax({
                 url: valUrl,
                 type: "POST",
-                data: { email: PersonalInfo.Email, phone: PersonalInfo.Phone },
+                data: { phone: PersonalInfo.Phone },
                 success: function (resp) {
                     console.log(resp);
                     if (!resp) {
-                        toastr.error("Email/Phone already exists for a policy. Contact Admin for details", "User Details Already Exist");
+                        toastr.error("Phone already exists for a policy. Contact Admin for details", "User Details Already Exist");
                         HideLoading();
                         return;
                     }
@@ -86,7 +86,12 @@ $('#btnstep3Back').click(function () {
     back(3);
     HideLoading();
 });
-
+$('#btnstep4Back').click(function () {
+    console.log('Back to step 3');
+    ShowLoading();
+    back(4);
+    HideLoading();
+});
 function postSignUp(step) {
     console.log("step :" + step);
     ShowLoading();
@@ -226,6 +231,8 @@ function clear() {
 }
 $('#btnsubmit').click(function () {
     console.log('About to Save Sign Up');
+    if ($("#chkcondition").is(':checked')) {
+       
     ShowLoading();
     if (benficiaries.length > 0) {
         if (signUpModel != null || signUpModel != {} || signUpModel !== undefined) {
@@ -238,6 +245,7 @@ $('#btnsubmit').click(function () {
                 type: "POST",
                 data: { signUpmodel: signUpModel },
                 success: function (resp) {
+
                     window.location.href = resp;
                     HideLoading();
                 },
@@ -257,6 +265,12 @@ $('#btnsubmit').click(function () {
         toastr.error( "One or more beneiciary required","Error");
         HideLoading();
     }
+       
+    }
+    else {
+        alert("Please accept term and condition");
+        return false;
+    }
 });
 
 function ShowLoading() {
@@ -265,4 +279,14 @@ function ShowLoading() {
 
 function HideLoading() {
     $('#ajax').modal('hide');
+}
+function AcceptTermAndcondition() {
+
+    if ($("#chkcondition").is(':checked')) {
+        return true;
+    }
+    else {
+        alert("Please accept term and condition");
+        return false;
+    }
 }

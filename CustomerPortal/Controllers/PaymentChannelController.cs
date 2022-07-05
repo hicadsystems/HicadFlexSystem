@@ -14,5 +14,15 @@ namespace CustomerPortal.Controllers
             var user = WebSecurity.GetCurrentUser(Request);
             return PartialView("_paymentchannel");
         }
+        public ActionResult ussd()
+        {
+            return PartialView("_paymentchannel2");
+        }
+        public ActionResult Paymentchannel2()
+        {
+            var user = WebSecurity.GetCurrentUser(Request);
+            return View();
+        }
+
     }
 }
