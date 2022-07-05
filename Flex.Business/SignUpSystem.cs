@@ -22,6 +22,7 @@ namespace Flex.Business
         {
             try
             {
+
                 var pinfo = new PersonalDetailsStaging();
                 var poltype = new CoreSystem<fl_poltype>(_context).Get(personalInfo.PolicyType);
                 pinfo.RegNo = GenerateregNo(poltype.poltype);
@@ -43,6 +44,11 @@ namespace Flex.Business
                 pinfo.Surname = personalInfo.Surname;
                 pinfo.Type = (int)Flex.Data.Enum.Type.New;
                 pinfo.Location = personalInfo.Location;
+                pinfo.IdentityNumber = personalInfo.IdentityNumber;
+                pinfo.IdentityType = personalInfo.IdentityType;
+                pinfo.PictureFile = personalInfo.PictureFile;
+                pinfo.signature = personalInfo.signature;
+                pinfo.agentcode = personalInfo.AgentCode;
 
                 var nextkinBen = new List<NextofKinBeneficiaryBindingModel>();
 

@@ -19,7 +19,7 @@ namespace CustomerPortal.Controllers
 
         public void GetPolicyType()
         {
-            var polType = new CoreSystem<fl_poltype>(context).FindAll(x=>x.IsDeleted==false);
+            var polType = new CoreSystem<fl_poltype>(context).FindAll(x=>x.code!="PPP");
             ViewBag.polType = new SelectList(polType, "Id", "poldesc");
         }
 
@@ -27,6 +27,12 @@ namespace CustomerPortal.Controllers
         {
             var loc = new CoreSystem<fl_location>(context).FindAll(x=>x.Isdeleted==false);
             ViewBag.location = new SelectList(loc, "Id", "locdesc");
+
+        }
+        public void GetAgent()
+        {
+            var loc = new CoreSystem<fl_agents>(context).FindAll(x => x.IsDeleted == false);
+            ViewBag.Agent = new SelectList(loc, "agentcode", "agentname");
 
         }
         public void GetClaimType()

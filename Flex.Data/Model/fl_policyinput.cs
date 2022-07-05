@@ -43,6 +43,9 @@ namespace Flex.Data.Model
         public Nullable<int> status { get; set; }
         public string pwd { get; set; }
         public byte[] PictureFile { get; set; }
+        public string IdentityNumber { get; set; }
+        public string IdentityType { get; set; }
+        public byte[] signature { get; set; }
     
         public virtual fl_location fl_location { get; set; }
     }

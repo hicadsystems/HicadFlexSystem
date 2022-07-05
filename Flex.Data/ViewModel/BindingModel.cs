@@ -40,11 +40,13 @@ namespace Flex.Data.ViewModel
         public Flex.Data.Enum.Type Type { get; set; }
 
         public int PolicyType { get; set; }
-
+        public string IdentityType { get; set; }
+        public string IdentityNumber { get; set; }
         public int Location { get; set; }
 
         public string AgentCode { get; set; }
         public byte[] PictureFile { get; set; }
+        public byte[] signature { get; set; }
         //public string PictureFile { get; set; }
         public string GroupCode { get; set; }
         public string Religion { get; set; }

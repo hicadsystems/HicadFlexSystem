@@ -9,6 +9,7 @@ $('#btnstep1Next').click(function () {
     if (isvalid) {
         var PersonalInfo = $("#step1Frm").serializeObject();
         if (PersonalInfo != null || PersonalInfo != {} || PersonalInfo !== undefined) {
+            
             var valUrl =applicationBaseUrl +  '/SignUp/Validate'
             ShowLoading();
             $.ajax({
@@ -23,10 +24,19 @@ $('#btnstep1Next').click(function () {
                         return;
                     }
                     else {
-                        signUpModel.PersonalInfo = PersonalInfo;
-                        console.log(signUpModel);
-                        postSignUp(1);
-                        HideLoading();
+                        var pt5 = PersonalInfo.PolicyType;
+                        var duu = PersonalInfo.Duration;
+                        if (duu < 5 && pt5==8) {
+                            alert(pt5);
+                            toastr.error("Contribution Duration can not be less tha 5 (five)");
+                            HideLoading();
+                            return;
+                        } else {
+                            signUpModel.PersonalInfo = PersonalInfo;
+                            console.log(signUpModel);
+                            postSignUp(1);
+                            HideLoading();
+                        }
                     }
                 },
                 error: function (resp) {

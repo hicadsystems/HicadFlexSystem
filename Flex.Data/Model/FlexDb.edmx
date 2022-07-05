@@ -682,6 +682,9 @@ warning 6002: The table/view 'FlexDB.dbo.fl_payinput2' does not have a primary k
           <Property Name="status" Type="int" />
           <Property Name="pwd" Type="nvarchar" MaxLength="50" />
           <Property Name="PictureFile" Type="varbinary(max)" />
+          <Property Name="IdentityNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdentityType" Type="nvarchar" MaxLength="50" />
+          <Property Name="signature" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="fl_poltype">
           <Key>
@@ -723,7 +726,7 @@ warning 6002: The table/view 'FlexDB.dbo.fl_payinput2' does not have a primary k
           <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="poltype" Type="nvarchar" MaxLength="3" />
-          <Property Name="grpcode" Type="int" />
+          <Property Name="grpcode" Type="nvarchar" MaxLength="3" />
           <Property Name="interest2" Type="nvarchar" MaxLength="10" />
           <Property Name="interest3" Type="nvarchar" MaxLength="10" />
           <Property Name="commrate3" Type="nvarchar" MaxLength="10" />
@@ -1128,6 +1131,11 @@ warning 6013: The table/view 'FlexDB.dbo.fl_tempreceiptlist' does not have a pri
           <Property Name="DateCreated" Type="datetime2" Precision="7" />
           <Property Name="ApprovedBy" Type="bigint" />
           <Property Name="Location" Type="int" />
+          <Property Name="PictureFile" Type="varbinary(max)" />
+          <Property Name="IdentityNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdentityType" Type="nvarchar" MaxLength="50" />
+          <Property Name="signature" Type="varbinary(max)" />
+          <Property Name="agentcode" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6013: The table/view 'FlexDB.dbo.PolicyNoSerial' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
@@ -1308,7 +1316,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_fl_premrate_fl_group">
+        <Association Name="FK_fl_premrate_fl_grouptype">
           <End Role="fl_grouptype" Type="Self.fl_grouptype" Multiplicity="0..1" />
           <End Role="fl_premrate" Type="Self.fl_premrate" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1881,7 +1889,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
             <End Role="fl_location" EntitySet="fl_location" />
             <End Role="fl_policyinput" EntitySet="fl_policyinput" />
           </AssociationSet>
-          <AssociationSet Name="FK_fl_premrate_fl_group" Association="Self.FK_fl_premrate_fl_group">
+          <AssociationSet Name="FK_fl_premrate_fl_grouptype" Association="Self.FK_fl_premrate_fl_grouptype">
             <End Role="fl_grouptype" EntitySet="fl_grouptype" />
             <End Role="fl_premrate" EntitySet="fl_premrate" />
           </AssociationSet>
@@ -2236,7 +2244,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <Property Name="DateCreated" Type="DateTime" Precision="7" />
           <Property Name="Createdby" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="annmonth" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="fl_premrate" Relationship="Self.FK_fl_premrate_fl_group" FromRole="fl_grouptype" ToRole="fl_premrate" />
+          <NavigationProperty Name="fl_premrate" Relationship="Self.FK_fl_premrate_fl_grouptype" FromRole="fl_grouptype" ToRole="fl_premrate" />
         </EntityType>
         <EntityType Name="fl_location">
           <Key>
@@ -2460,6 +2468,9 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <Property Name="status" Type="Int32" />
           <Property Name="pwd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PictureFile" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IdentityNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdentityType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="signature" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="fl_location" Relationship="Self.FK_fl_policyinput_fl_location" FromRole="fl_policyinput" ToRole="fl_location" />
         </EntityType>
         <EntityType Name="fl_poltype">
@@ -2505,7 +2516,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="poltype" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
-          <Property Name="grpcode" Type="Int32" />
+          <Property Name="grpcode" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="interest2" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="interest3" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="commrate3" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
@@ -2518,7 +2529,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <Property Name="comm_bound" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="comm_bound2" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="comm_bound3" Type="Decimal" Precision="19" Scale="4" />
-          <NavigationProperty Name="fl_grouptype" Relationship="Self.FK_fl_premrate_fl_group" FromRole="fl_premrate" ToRole="fl_grouptype" />
+          <NavigationProperty Name="fl_grouptype" Relationship="Self.FK_fl_premrate_fl_grouptype" FromRole="fl_premrate" ToRole="fl_grouptype" />
           <NavigationProperty Name="fl_poltype" Relationship="Self.FK_fl_premrate_fl_poltype" FromRole="fl_premrate" ToRole="fl_poltype" />
           <NavigationProperty Name="fl_premrateRules" Relationship="Self.FK_fl_premrateRules_fl_premrate" FromRole="fl_premrate" ToRole="fl_premrateRules" />
         </EntityType>
@@ -2810,6 +2821,11 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <Property Name="DateCreated" Type="DateTime" Precision="7" />
           <Property Name="ApprovedBy" Type="Int64" />
           <Property Name="Location" Type="Int32" />
+          <Property Name="PictureFile" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IdentityNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdentityType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="signature" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="agentcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="fl_poltype" Relationship="Self.FK_PersonalDetailsStaging_fl_poltype" FromRole="PersonalDetailsStaging" ToRole="fl_poltype" />
           <NavigationProperty Name="NextofKin_BeneficiaryStaging" Relationship="Self.FK_NextofKin_BeneficiaryStaging_PersonalDetailsStaging" FromRole="PersonalDetailsStaging" ToRole="NextofKin_BeneficiaryStaging" />
         </EntityType>
@@ -3198,7 +3214,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_fl_premrate_fl_group">
+        <Association Name="FK_fl_premrate_fl_grouptype">
           <End Role="fl_grouptype" Type="Self.fl_grouptype" Multiplicity="0..1" />
           <End Role="fl_premrate" Type="Self.fl_premrate" Multiplicity="*" />
           <ReferentialConstraint>
@@ -3411,7 +3427,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
             <End Role="CustomerUser" EntitySet="CustomerUsers" />
             <End Role="UserSession" EntitySet="UserSessions" />
           </AssociationSet>
-          <AssociationSet Name="FK_fl_premrate_fl_group" Association="Self.FK_fl_premrate_fl_group">
+          <AssociationSet Name="FK_fl_premrate_fl_grouptype" Association="Self.FK_fl_premrate_fl_grouptype">
             <End Role="fl_grouptype" EntitySet="fl_grouptype" />
             <End Role="fl_premrate" EntitySet="fl_premrate" />
           </AssociationSet>
@@ -4196,6 +4212,9 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="pwd" ColumnName="pwd" />
                 <ScalarProperty Name="PictureFile" ColumnName="PictureFile" />
+                <ScalarProperty Name="IdentityNumber" ColumnName="IdentityNumber" />
+                <ScalarProperty Name="IdentityType" ColumnName="IdentityType" />
+                <ScalarProperty Name="signature" ColumnName="signature" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4547,6 +4566,11 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
                 <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="PictureFile" ColumnName="PictureFile" />
+                <ScalarProperty Name="IdentityNumber" ColumnName="IdentityNumber" />
+                <ScalarProperty Name="IdentityType" ColumnName="IdentityType" />
+                <ScalarProperty Name="signature" ColumnName="signature" />
+                <ScalarProperty Name="agentcode" ColumnName="agentcode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

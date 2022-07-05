@@ -184,6 +184,11 @@ namespace Flex.Controllers
                             telephone = signup.Phone,
                             accdate = DateTime.Now,
                             location = signup.Location,
+                            agentcode=signup.agentcode,
+                            IdentityNumber=signup.IdentityNumber,
+                            IdentityType=signup.IdentityType,
+                            PictureFile=signup.PictureFile,
+                            signature=signup.signature,
                             
                             
                         };

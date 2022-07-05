@@ -6,8 +6,10 @@ using Flex.Data.ViewModel;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -23,6 +25,7 @@ namespace CustomerPortal.Controllers
             GetReationShip();
             GetPolicyType();
             GetLocation();
+            GetAgent();
             return View();
         }
 
@@ -123,7 +126,68 @@ namespace CustomerPortal.Controllers
             Logger.Info("Inside post signUp");
             try
             {
-                if (signUpmodel == null)
+                string filenames = "";
+                string fileName = "";
+                string path = "";
+                string fileName2 = "";
+                string path2 = "";
+                if (Request != null)
+                {
+
+                    HttpPostedFileBase FileUpload = Request.Files["passportphoto"];
+                    if (FileUpload.ContentLength > 0)
+                    {
+
+                        path = Path.Combine(Server.MapPath("~/Content/UploadPhotoPath/"), fileName);
+                        //fileName= Path.GetFileName(FileUpload.FileName);
+                        string fileExtension = System.IO.Path.GetExtension(Request.Files["passportphoto"].FileName.ToLower());
+
+                        // path = Path.Combine(Server.MapPath("~/Content/UploadPhotoPath/"));
+
+
+                        if (fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".gif" || fileExtension == ".png" || fileExtension == ".bmp")
+                        {
+
+                            if (System.IO.File.Exists(path))
+                            {
+                                System.IO.File.Delete(path);
+                            }
+                            FileUpload.SaveAs(path);
+                            ViewData["Feedback"] = "Upload Complete";
+
+                        }
+                    }
+
+                    if (fileName != null)
+                    {
+
+                        HttpPostedFileBase FileUpload2 = Request.Files["NokPassportphoto"];
+                        if (FileUpload2.ContentLength > 0)
+                        {
+
+                            fileName2 = "NOK" + filenames + DateTime.Now.ToString("yymmssff") + ".png";
+                            string fileExtension = System.IO.Path.GetExtension(Request.Files["NokPassportphoto"].FileName);
+
+                            path2 = Path.Combine(Server.MapPath("~/Content/UploadPhotoPath/"), fileName2);
+
+
+                            if (fileExtension.ToLower() == ".jpg" || fileExtension.ToLower() == ".jpeg" || fileExtension.ToLower() == ".gif" || fileExtension.ToLower() == ".png")
+                            {
+
+                                if (System.IO.File.Exists(path2))
+                                {
+                                    System.IO.File.Delete(path2);
+                                }
+                                FileUpload2.SaveAs(path2);
+                                ViewData["Feedback"] = "Upload Complete";
+
+                            }
+                        }
+
+                    }
+
+                }
+                    if (signUpmodel == null)
                 {
                     throw new Exception("Error Occurred.");
                 }
@@ -139,6 +203,18 @@ namespace CustomerPortal.Controllers
                 {
                     throw new Exception("Please Provide atleast one Beneficiary");
                 }
+
+                //var fileContent = Request.Files[0];
+                //HttpPostedFileBase postedFile = fileContent;
+                //byte[] bytes;
+                //using (BinaryReader br = new BinaryReader(postedFile.InputStream))
+                //{
+                //    bytes = br.ReadBytes(postedFile.ContentLength);
+                //}
+
+
+                //signUpmodel.PersonalInfo.PictureFile = bytes;
+
                 new SignUpSystem(context).SaveSignUp(signUpmodel.PersonalInfo);
                 //var ben = JsonConvert.DeserializeObject<List<NextofKinBeneficiaryBindingModel>>(beneficiaries);
 
@@ -177,6 +253,13 @@ namespace CustomerPortal.Controllers
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.Message);
             }
         }
+        //public byte[] convertTobyte(HttpPostedFileBase c)
+        //{
+        //    byte[] imageBytes = null;
+        //    BinaryReader reader = new BinaryReader(c.InputStream);
+        //    imageBytes = reader.ReadBytes((int)c.ContentLength);
+        //    return imageBytes;
+        //}
 
         public ActionResult Success()
         {
