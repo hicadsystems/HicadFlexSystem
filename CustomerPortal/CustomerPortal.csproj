@@ -181,13 +181,19 @@
     <Compile Include="Controllers\SetUpController.cs" />
     <Compile Include="Controllers\SignUpController.cs" />
     <Compile Include="Controllers\StatementController.cs" />
+    <Compile Include="Controllers\XpressPayController.cs" />
     <Compile Include="Filters\AuthFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ReturnInitiatePaystackModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PaystackModel.cs" />
+    <Compile Include="Models\RequestData.cs" />
+    <Compile Include="Models\VerifyPaymentModel.cs" />
+    <Compile Include="Models\xPaymentKeys.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -211,6 +217,8 @@
     <Content Include="Assests\scripts\datetimepicker.js" />
     <Content Include="Assests\scripts\js.cookie.js" />
     <Content Include="Assests\scripts\menu.js" />
+    <Content Include="Assests\scripts\paystck.js" />
+    <Content Include="Assests\scripts\xpresspay.js" />
     <Content Include="Assests\scripts\policy.js" />
     <Content Include="Assests\scripts\profile.js" />
     <Content Include="Assests\scripts\serializeObject.js" />
@@ -270,6 +278,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\treecss.css" />
+    <Content Include="images\expresspaylogo.png" />
+    <Content Include="images\paystack-opengraph.png" />
     <Content Include="Scripts\treejs.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -473,11 +483,17 @@
     <Content Include="Views\Login\ResetPassword.cshtml" />
     <Content Include="Views\SignUp\ResetPassword.cshtml" />
     <Content Include="Views\Shared\_ussdpayment.cshtml" />
+    <Content Include="Views\SignUp\_step4.cshtml" />
+    <Content Include="Views\XpressPay\Index.cshtml" />
+    <Content Include="Views\XpressPay\_xpresssPay.cshtml" />
+    <Content Include="Views\PaymentChannel\_xpresssPay.cshtml" />
+    <Content Include="Views\PaymentChannel\_paystackPay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\SetUp\" />
+    <Folder Include="XpressPayVue\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

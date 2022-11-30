@@ -1,0 +1,52 @@
+[Flex Customer Logger Started] 
+2022-11-14 15:16:43,807 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133129089891244334] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-11-14 15:17:55,502 [8] ERROR CustomerPortal - <log4net.Error>Exception during StringFormat: Index (zero based) must be greater than or equal to zero and less than the size of the argument list. <format>Payment Request. Details [error: {0}, StackTrace: {1}]</format><args>{CustomerPortal.Models.RequestData}</args></log4net.Error>
+[Flex Customer Logger Started] 
+2022-11-14 15:52:42,263 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133129111454377231] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-11-14 15:53:27,089 [6] ERROR CustomerPortal - <log4net.Error>Exception during StringFormat: Index (zero based) must be greater than or equal to zero and less than the size of the argument list. <format>Payment Request. Details [error: {0}, StackTrace: {1}]</format><args>{CustomerPortal.Models.RequestData}</args></log4net.Error>
+[Flex Customer Logger Started] 
+2022-11-14 16:09:43,518 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133129121783238549] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-11-14 16:10:25,470 [6] ERROR CustomerPortal - <log4net.Error>Exception during StringFormat: Index (zero based) must be greater than or equal to zero and less than the size of the argument list. <format>Payment Request. Details [error: {0}, StackTrace: {1}]</format><args>{CustomerPortal.Models.RequestData}</args></log4net.Error>
+[Flex Customer Logger Started] 
+2022-11-14 16:14:48,834 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133129124625592453] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-11-14 16:15:40,174 [5] ERROR CustomerPortal - <log4net.Error>Exception during StringFormat: Index (zero based) must be greater than or equal to zero and less than the size of the argument list. <format>Payment Request. Details [error: {0}, StackTrace: {1}]</format><args>{CustomerPortal.Models.RequestData}</args></log4net.Error>
+[Flex Customer Logger Started] 
+2022-11-14 16:24:37,813 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133129130616088335] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-11-14 16:25:25,003 [9] ERROR CustomerPortal - <log4net.Error>Exception during StringFormat: Index (zero based) must be greater than or equal to zero and less than the size of the argument list. <format>Payment Request. Details [error: {0}, StackTrace: {1}]</format><args>{CustomerPortal.Models.RequestData}</args></log4net.Error>
+[Flex Customer Logger Started] 
+2022-11-14 16:37:54,918 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133129138579747669] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-11-14 16:38:38,193 [5] ERROR CustomerPortal - <log4net.Error>Exception during StringFormat: Index (zero based) must be greater than or equal to zero and less than the size of the argument list. <format>Payment Request. Details [error: {0}, StackTrace: {1}]</format><args>{CustomerPortal.Models.RequestData}</args></log4net.Error>
+[Flex Customer Logger Started] 
+2022-11-14 16:49:32,213 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133129145558080227] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-11-14 16:50:11,241 [6] ERROR CustomerPortal - <log4net.Error>Exception during StringFormat: Index (zero based) must be greater than or equal to zero and less than the size of the argument list. <format>Payment Request. Details [error: {0}, StackTrace: {1}]</format><args>{CustomerPortal.Models.RequestData}</args></log4net.Error>
+[Flex Customer Logger Started] 
+2022-11-14 16:59:53,412 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133129151760185830] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-11-14 17:05:01,829 [10] ERROR CustomerPortal - <log4net.Error>Exception during StringFormat: Index (zero based) must be greater than or equal to zero and less than the size of the argument list. <format>Payment Request. Details [error: {0}, StackTrace: {1}]</format><args>{CustomerPortal.Models.RequestData}</args></log4net.Error>
+2022-11-14 17:05:50,059 [6] ERROR CustomerPortal - Payment Error Occurred. Details [error: Newtonsoft.Json.JsonSerializationException: Cannot deserialize the current JSON object (e.g. {"name":"value"}) into type 'System.Collections.Generic.List`1[CustomerPortal.Models.VerifyPaymentResponse]' because the type requires a JSON array (e.g. [1,2,3]) to deserialize correctly.
+To fix this error either change the JSON to a JSON array (e.g. [1,2,3]) or change the deserialized type so that it is a normal .NET type (e.g. not a primitive type like integer, not a collection type like an array or List<T>) that can be deserialized from a JSON object. JsonObjectAttribute can also be added to the type to force it to deserialize from a JSON object.
+Path 'responseCode', line 1, position 26.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at CustomerPortal.Controllers.XpressPayController.<verifyAndPostTran>d__4.MoveNext() in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\XpressPayController.cs:line 168, StackTrace:    at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at CustomerPortal.Controllers.XpressPayController.<verifyAndPostTran>d__4.MoveNext() in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\XpressPayController.cs:line 168]
+2022-11-14 17:06:19,740 [10] ERROR CustomerPortal - <log4net.Error>Exception during StringFormat: Index (zero based) must be greater than or equal to zero and less than the size of the argument list. <format>Payment Request. Details [error: {0}, StackTrace: {1}]</format><args>{CustomerPortal.Models.RequestData}</args></log4net.Error>
+[Flex Customer Logger Started] 
+2022-11-14 17:21:40,384 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133129164859184340] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-11-14 17:31:42,050 [6] ERROR CustomerPortal - <log4net.Error>Exception during StringFormat: Index (zero based) must be greater than or equal to zero and less than the size of the argument list. <format>Payment Request. Details [error: {0}, StackTrace: {1}]</format><args>{CustomerPortal.Models.RequestData}</args></log4net.Error>
+[Flex Customer Logger Started] 
+2022-11-14 17:35:53,444 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133129173426216914] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-11-14 17:37:02,117 [5] ERROR CustomerPortal - <log4net.Error>Exception during StringFormat: Index (zero based) must be greater than or equal to zero and less than the size of the argument list. <format>Payment Request. Details [error: {0}, StackTrace: {1}]</format><args>{CustomerPortal.Models.RequestData}</args></log4net.Error>
+[Flex Customer Logger Started] 
+2022-11-14 17:45:10,609 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133129178998064812] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-11-14 17:45:45,073 [5] ERROR CustomerPortal - <log4net.Error>Exception during StringFormat: Index (zero based) must be greater than or equal to zero and less than the size of the argument list. <format>Payment Request. Details [error: {0}, StackTrace: {1}]</format><args>{CustomerPortal.Models.RequestData}</args></log4net.Error>

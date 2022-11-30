@@ -29,6 +29,11 @@ namespace CustomerPortal.Controllers
             ViewBag.location = new SelectList(loc, "Id", "locdesc");
 
         }
+        public string GetLocationbyid(int id)
+        {
+            var loc = new CoreSystem<fl_location>(context).FindAll(x => x.Id == id).FirstOrDefault();
+            return loc.locdesc;
+        }
         public void Getbank()
         {
             var loc = new CoreSystem<fl_bank>(context).FindAll(x => x.Isdeleted == false);

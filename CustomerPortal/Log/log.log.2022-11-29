@@ -1,0 +1,141 @@
+[Flex Customer Logger Started] 
+2022-11-29 14:25:38,714 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133142019287720525] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-11-29 14:30:27,036 [12] ERROR CustomerPortal - Payment Error Occurred. Details [error: System.Net.Http.HttpRequestException: An error occurred while sending the request. ---> System.Net.WebException: The request was aborted: Could not create SSL/TLS secure channel.
+   at System.Net.HttpWebRequest.EndGetRequestStream(IAsyncResult asyncResult, TransportContext& context)
+   at System.Net.Http.HttpClientHandler.GetRequestStreamCallback(IAsyncResult ar)
+   --- End of inner exception stack trace ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at CustomerPortal.Controllers.XpressPayController.<initiatepaystack>d__5.MoveNext() in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\XpressPayController.cs:line 262, StackTrace:    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at CustomerPortal.Controllers.XpressPayController.<initiatepaystack>d__5.MoveNext() in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\XpressPayController.cs:line 262]
+[Flex Customer Logger Started] 
+2022-11-29 15:15:52,678 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133142049196414611] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Started] 
+2022-11-29 16:37:22,628 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133142098307482224] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-11-29 16:47:08,597 [16] ERROR CustomerPortal - <log4net.Error>Exception during StringFormat: Index (zero based) must be greater than or equal to zero and less than the size of the argument list. <format>Payment Error Occurred. Details [error: {0}, StackTrace: {1}]</format><args>{}</args></log4net.Error>
+2022-11-29 16:49:39,666 [15] ERROR CustomerPortal - <log4net.Error>Exception during StringFormat: Index (zero based) must be greater than or equal to zero and less than the size of the argument list. <format>Payment Error Occurred. Details [error: {0}, StackTrace: {1}]</format><args>{}</args></log4net.Error>
+2022-11-29 16:50:27,967 [15] ERROR CustomerPortal - Payment Error Occurred. Details [error: System.Net.ProtocolViolationException: Cannot send a content-body with this verb-type.
+   at System.Net.HttpWebRequest.CheckProtocol(Boolean onRequestStream)
+   at System.Net.HttpWebRequest.BeginGetRequestStream(AsyncCallback callback, Object state)
+   at System.Net.Http.HttpClientHandler.StartGettingRequestStream(RequestState state)
+   at System.Net.Http.HttpClientHandler.PrepareAndStartContentUpload(RequestState state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at CustomerPortal.Controllers.XpressPayController.<initiatepaystack>d__5.MoveNext(), StackTrace:    at System.Net.HttpWebRequest.CheckProtocol(Boolean onRequestStream)
+   at System.Net.HttpWebRequest.BeginGetRequestStream(AsyncCallback callback, Object state)
+   at System.Net.Http.HttpClientHandler.StartGettingRequestStream(RequestState state)
+   at System.Net.Http.HttpClientHandler.PrepareAndStartContentUpload(RequestState state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at CustomerPortal.Controllers.XpressPayController.<initiatepaystack>d__5.MoveNext()]
+2022-11-29 16:50:52,733 [15] ERROR CustomerPortal - Payment Error Occurred. Details [error: System.Net.ProtocolViolationException: Cannot send a content-body with this verb-type.
+   at System.Net.HttpWebRequest.CheckProtocol(Boolean onRequestStream)
+   at System.Net.HttpWebRequest.BeginGetRequestStream(AsyncCallback callback, Object state)
+   at System.Net.Http.HttpClientHandler.StartGettingRequestStream(RequestState state)
+   at System.Net.Http.HttpClientHandler.PrepareAndStartContentUpload(RequestState state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at CustomerPortal.Controllers.XpressPayController.<initiatepaystack>d__5.MoveNext(), StackTrace:    at System.Net.HttpWebRequest.CheckProtocol(Boolean onRequestStream)
+   at System.Net.HttpWebRequest.BeginGetRequestStream(AsyncCallback callback, Object state)
+   at System.Net.Http.HttpClientHandler.StartGettingRequestStream(RequestState state)
+   at System.Net.Http.HttpClientHandler.PrepareAndStartContentUpload(RequestState state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at CustomerPortal.Controllers.XpressPayController.<initiatepaystack>d__5.MoveNext()]
+[Flex Customer Logger Started] 
+2022-11-29 16:52:12,112 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133142107203280089] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-11-29 16:56:55,108 [10] ERROR CustomerPortal - Payment Error Occurred. Details [error: System.Net.ProtocolViolationException: Cannot send a content-body with this verb-type.
+   at System.Net.HttpWebRequest.CheckProtocol(Boolean onRequestStream)
+   at System.Net.HttpWebRequest.BeginGetRequestStream(AsyncCallback callback, Object state)
+   at System.Net.Http.HttpClientHandler.StartGettingRequestStream(RequestState state)
+   at System.Net.Http.HttpClientHandler.PrepareAndStartContentUpload(RequestState state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at CustomerPortal.Controllers.XpressPayController.<initiatepaystack>d__5.MoveNext() in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\XpressPayController.cs:line 269, StackTrace:    at System.Net.HttpWebRequest.CheckProtocol(Boolean onRequestStream)
+   at System.Net.HttpWebRequest.BeginGetRequestStream(AsyncCallback callback, Object state)
+   at System.Net.Http.HttpClientHandler.StartGettingRequestStream(RequestState state)
+   at System.Net.Http.HttpClientHandler.PrepareAndStartContentUpload(RequestState state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at CustomerPortal.Controllers.XpressPayController.<initiatepaystack>d__5.MoveNext() in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\XpressPayController.cs:line 269]
+2022-11-29 16:57:11,760 [6] ERROR CustomerPortal - Payment Error Occurred. Details [error: System.Net.ProtocolViolationException: Cannot send a content-body with this verb-type.
+   at System.Net.HttpWebRequest.CheckProtocol(Boolean onRequestStream)
+   at System.Net.HttpWebRequest.BeginGetRequestStream(AsyncCallback callback, Object state)
+   at System.Net.Http.HttpClientHandler.StartGettingRequestStream(RequestState state)
+   at System.Net.Http.HttpClientHandler.PrepareAndStartContentUpload(RequestState state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at CustomerPortal.Controllers.XpressPayController.<initiatepaystack>d__5.MoveNext() in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\XpressPayController.cs:line 269, StackTrace:    at System.Net.HttpWebRequest.CheckProtocol(Boolean onRequestStream)
+   at System.Net.HttpWebRequest.BeginGetRequestStream(AsyncCallback callback, Object state)
+   at System.Net.Http.HttpClientHandler.StartGettingRequestStream(RequestState state)
+   at System.Net.Http.HttpClientHandler.PrepareAndStartContentUpload(RequestState state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at CustomerPortal.Controllers.XpressPayController.<initiatepaystack>d__5.MoveNext() in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\XpressPayController.cs:line 269]
+2022-11-29 16:57:58,393 [23] ERROR CustomerPortal - Payment Error Occurred. Details [error: System.Net.ProtocolViolationException: Cannot send a content-body with this verb-type.
+   at System.Net.HttpWebRequest.CheckProtocol(Boolean onRequestStream)
+   at System.Net.HttpWebRequest.BeginGetRequestStream(AsyncCallback callback, Object state)
+   at System.Net.Http.HttpClientHandler.StartGettingRequestStream(RequestState state)
+   at System.Net.Http.HttpClientHandler.PrepareAndStartContentUpload(RequestState state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at CustomerPortal.Controllers.XpressPayController.<initiatepaystack>d__5.MoveNext() in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\XpressPayController.cs:line 269, StackTrace:    at System.Net.HttpWebRequest.CheckProtocol(Boolean onRequestStream)
+   at System.Net.HttpWebRequest.BeginGetRequestStream(AsyncCallback callback, Object state)
+   at System.Net.Http.HttpClientHandler.StartGettingRequestStream(RequestState state)
+   at System.Net.Http.HttpClientHandler.PrepareAndStartContentUpload(RequestState state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at CustomerPortal.Controllers.XpressPayController.<initiatepaystack>d__5.MoveNext() in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\XpressPayController.cs:line 269]
+2022-11-29 17:00:29,032 [6] INFO  Flex - Error occurred. Details System.Data.SqlTypes.SqlTypeException: SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+   at System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader)
+   at Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command)
+   at Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType)
+   at Flex.Business.PaymentSystem.XpaymentUpdate(XpayUpdateModel val) in C:\Users\Home\source\Repo\HicadFlexSystem\Flex.Business\PaymentSystem.cs:line 585
+2022-11-29 17:01:08,533 [6] ERROR CustomerPortal - Payment Error Occurred. Details [error: System.Data.SqlTypes.SqlTypeException: SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+   at System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader)
+   at Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command)
+   at Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType)
+   at Flex.Business.PaymentSystem.XpaymentUpdate(XpayUpdateModel val) in C:\Users\Home\source\Repo\HicadFlexSystem\Flex.Business\PaymentSystem.cs:line 592
+   at CustomerPortal.Controllers.XpressPayController.<verifyPaystackAndPostTran>d__6.MoveNext(), StackTrace:    at System.Data.SqlClient.TdsParser.TdsExecuteRPC(SqlCommand cmd, _SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader)
+   at Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command)
+   at Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType)
+   at Flex.Business.PaymentSystem.XpaymentUpdate(XpayUpdateModel val) in C:\Users\Home\source\Repo\HicadFlexSystem\Flex.Business\PaymentSystem.cs:line 592
+   at CustomerPortal.Controllers.XpressPayController.<verifyPaystackAndPostTran>d__6.MoveNext()]

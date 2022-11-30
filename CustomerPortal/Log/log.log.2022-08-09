@@ -1,0 +1,5 @@
+[Flex Customer Logger Started] 
+2022-08-09 15:49:54,663 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133045301758256408] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-08-09 15:53:19,014 [10] INFO  Flex - Inside Payment History
+[Flex Customer Logger Started] 
+2022-08-09 15:59:52,345 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133045307863544028] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]

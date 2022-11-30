@@ -1,10 +1,167 @@
 ﻿
-<form id="claim">
-    <div class="padding-md">
-        <div class="row">
-          <h1>USSD</h1>
-        </div>
-       
-    </div>
-</form>
+<style>
+    .accordion {
+        margin-top: 110px;
+        margin-right: 0 auto;
+        position: relative;
+        max-width: 900px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 
+        .accordion .container {
+            position: relative;
+            margin: 10px 10px;
+            border-radius: 50px;
+        }
+
+        /* Positions the labels relative to the .container. Adds padding to the top and bottom and increases font size. Also makes its cursor a pointer */
+
+        .accordion .label {
+            position: relative;
+            padding: 5px 0;
+            font-size: 10px;
+            color: black;
+            cursor: pointer;
+        }
+
+            .accordion .label::before {
+                content: '';
+                color: black;
+                position: absolute;
+                top: 40%;
+                font-size: 15px;
+                transform: translateY(-50%);
+            }
+
+        .accordion .content {
+            position: relative;
+            height: 0;
+            font-size: 20px;
+            text-align: justify;
+            overflow: hidden;
+            transition: 0.5s;
+        }
+
+        .accordion .container.active .content {
+            height: 350px;
+        }
+
+        .accordion .container.active #ussd {
+            height: 110px;
+        }
+
+        .accordion .container.active #gtcoweb {
+            height: 300px;
+        }
+
+        .accordion .container.active #quickteller {
+            height: 55px;
+        }
+
+        /* Changes from plus sign to negative sign once active */
+        .accordion .container.active .label::before {
+            content: '';
+            font-size: 15px;
+        }
+        /* Adds a horizontal line between the contents */
+        .accordion hr {
+            width: 100px;
+            margin-left: 0;
+            border: 1px solid grey;
+        }
+</style>
+
+@*<div class="row margin-top-lg" id="divcontent">
+
+        <h2>Policy Payment Channel</h2>
+
+
+    </div>*@
+@*<div>@Html.Partial("_ussdpayment")</div>*@
+<div class="padding-top-md">
+    <div class="panel">
+        <div class="padding-sm">
+            <div class="accordion row">
+                <div class="col-md-12">
+                <div class="container" style="padding:1px" onclick="event.preventDefault(); this.classList.toggle('active')">
+                    <div class="label">
+                        <p style="float:left;"> <img src="~/images/gtblogo.png" width="20" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USSD</p>
+                    </div>
+                    <div class="content" id="ussd" style="width: 100%; background-color:white; padding: 2px">
+                        <h6>1. PPP Savings Plan: *737*50*Amount*30#</h6>
+
+                        <h6>2. Target Savings Plan: *737*50*Amount*31#</h6>
+
+                        <h6>3. Almond Savings Plan:*737*50*Amount*32#</h6>
+
+                        <h6>4. Insurance Premium: *737*50*Amount*33#</h6>
+                    </div>
+                </div>
+                <hr style="border:1px solid #e8e5df4f" />
+
+                <div class="container" style="padding:1px" onclick="event.preventDefault(); this.classList.toggle('active')">
+                    <div class="label">
+                        <p style="float:left;"><img src="~/images/gtblogo.png" width="20" />&nbsp;&nbsp;MOBILE</p>
+                    </div>
+                    <div class="content col-md-12" style="background-color:white; padding: 2px; margin-bottom: 2px;">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-7" style="height:700px">
+
+                                    <h6>1. Open the GTBank mobile banking app and sign in</h6>
+                                    <h6>2. Click on Payments</h6>
+                                    <h6>3. Click on 'Insurance'</h6>
+                                    <h6>4. From select a Category</h6>
+                                    <h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choose "NIGN. LIFEANDPROVIDENT COMP.LTD"</h6>
+                                    <h6>5. From Product. Choose a Plan</h6>
+                                    <h6>6. Click Continue</h6>
+                                    <h6>7. Enter Your Policy No  and the Amount</h6>
+                                    <h6>8. Click Submit</h6>
+                                    <h6>9. Select the GT Bank account that you wish to make the</h6>
+                                    <h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;deposit from, insert your mobile banking pin and confirm</h6>
+                                    <h6>10. Upon successful payment, your wallet will be</h6>
+                                    <h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;credited instantly.</h6>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr style="border:1px solid #e8e5df4f" />
+
+                <div class="container" style="padding:2px" onclick="event.preventDefault(); this.classList.toggle('active')">
+                    <div class="label">
+                        <p style="float:left;"><img src="~/images/gtblogo.png" width="20" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WEB</p>
+                    </div>
+                    <div class="content" id="gtcoweb" style="width: 100%; background-color:white; padding: 2px">
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-4">
+
+                                    <h6>1. Clink on the Link GTCO(<a href="www.gtbank.com">www.gtbank.com</a> )</h6>
+                                    <h6>2. Login</h6>
+                                    <h6>3. Clink on ‘’Insurance & Health plans’’</h6>
+                                    <h6>4. Select ‘’NIG.Life&Provident Company Ltd’’</h6>
+                                    <h6>5. Clink make ‘’New Payment’’</h6>
+                                    <h6>6. Enter ‘’Policy No’’ and ‘’Amount’’</h6>
+                                    <h6>7. Enter ‘’Token’’ OR ’’OTP’’</h6>
+                                    <h6>8. Select the GT Bank account that you wish to make the </h6>
+                                    <h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;deposit from, insert your mobile banking pin and confirm</h6>
+                                    <h6>9. Upon successful payment, your betting wallet will be</h6>
+                                    <h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;credited instantly.</h6>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

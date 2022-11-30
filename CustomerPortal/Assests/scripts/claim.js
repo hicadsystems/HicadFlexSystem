@@ -1,14 +1,58 @@
 ﻿function showClaim(el) {
     console.log('About to add Claim');
-    alert("i claim money");
+ /*   alert("i claim money");*/
     ShowLoading();
     var url = $(el).attr('data-url');
     var data = { };
     var coyProfilePromise = Post(url, data, 'Get');
-
     coyProfilePromise.done(function (resp) {
+       // console.log(resp);
         var func = 'saveClaim()';
         showModal(resp, 'Claim Request', func);
+        HideLoading();
+    });
+
+    coyProfilePromise.fail(function (resp) {
+        if (resp.status === 401) {
+            window.location.href = loginurl;;
+        }
+        toastr.error(resp.statusText, "Error");
+        HideLoading();
+    });
+    //HideLoading();
+};
+function showXpayment(el) {
+    console.log('About to add');
+    ShowLoading();
+    var url = $(el).attr('data-url');
+    var data = {};
+    var coyProfilePromise = Post(url, data, 'Get');
+    coyProfilePromise.done(function (resp) {
+
+        var func = 'savePay()';
+        showModal2(resp, 'Pay Request', func);
+        HideLoading();
+    });
+
+    coyProfilePromise.fail(function (resp) {
+        if (resp.status === 401) {
+            window.location.href = loginurl;;
+        }
+        toastr.error(resp.statusText, "Error");
+        HideLoading();
+    });
+    //HideLoading();
+};
+
+function showGTpayment(el) {
+    ShowLoading();
+    var url = $(el).attr('data-url');
+    var data = {};
+    var coyProfilePromise = Post(url, data, 'Get');
+    coyProfilePromise.done(function (resp) {
+
+        var func = 'savePay()';
+        showModal2(resp, 'Pay Request', func);
         HideLoading();
     });
 

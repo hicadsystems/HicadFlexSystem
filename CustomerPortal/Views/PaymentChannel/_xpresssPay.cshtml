@@ -1,0 +1,42 @@
+﻿@model List<Flex.Data.Model.vwPolicy>
+
+
+<form name="step1" action="@Url.Action("Next")" id="frmCreatePayment">
+    <div class="panel panel-info margin-top-sm">
+        <!-- Default panel contents -->
+        <div class="padding-top-md">
+            <div class="panel">
+                <div class="padding-sm">
+                    <div class="row">
+                        <div class="form-group col-md-4 ss-item-required" hidden>
+                            <label class="color-transparent-darker lite small">Policy No</label>
+                            <input value="@Model.FirstOrDefault().policyno" name="policyno" type="text" class="form-control input-md" />
+                        </div>
+                        <div class="form-group col-md-4 ss-item-required">
+                            <label class="color-transparent-darker lite small">Phone No</label>
+                            <input value="@Model.FirstOrDefault().telephone" name="telephone" type="text" class="form-control input-md" />
+                        </div>
+                        <div class="form-group col-md-4 ss-item-required">
+                            <label class="color-transparent-darker lite small">Email</label>
+                            <input value="@Model.FirstOrDefault().email" name="email" type="text" class="form-control input-md" />
+                        </div>
+                        <div class="form-group col-md-4 ss-item-required">
+                            <label for="PolicyType" class="color-transparent-darker lite small">Policy Type</label>
+                            @Html.DropDownList("PolicyType", (IEnumerable<SelectListItem>)ViewBag.polType, String.Empty,
+                             new { @class = "form-control input-md", @required = "true" })
+                        </div>
+                        <div class="form-group col-md-4 ss-item-required">
+                            <label class="color-transparent-darker lite small" for="Amount"> Amount</label>
+                            <input type="number" name="amount" class="form-control input-md" required />
+                        </div>
+
+
+                    </div>
+                    <input type="button" class="btn btn-block btn-success" data-url="@Url.Action("InitializePayment","XpressPay")" value="Continue" onclick="xprsspayment(this)" />
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>

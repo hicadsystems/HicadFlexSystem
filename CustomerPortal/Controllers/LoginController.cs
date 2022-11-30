@@ -34,7 +34,9 @@ namespace CustomerPortal.Controllers
             {
                 JsonResult resp = null;
                 UserAuthResponseViewModel model = null;
-                
+                Session["xpassme"] = password;
+                Session["xme"] = username;
+
                 res = new CustomerAuthSystem(context).AuthenticateUser(username, password);
                 if (new AuthStatus[] { AuthStatus.Normal, AuthStatus.FirstTime, AuthStatus.PasswordExpired, AuthStatus.AlreadyLoggedOn }.Any(x => x == res.Status))
                 {

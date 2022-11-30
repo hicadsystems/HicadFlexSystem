@@ -1,0 +1,5 @@
+[Flex Customer Logger Started] 
+2022-09-27 14:01:23,557 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133087572628886820] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-09-27 14:03:51,455 [6] INFO  CustomerPortal - Inside post signUp
+[Flex Customer Logger Started] 
+2022-09-27 14:48:25,871 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133087600896024489] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]

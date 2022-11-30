@@ -1,0 +1,151 @@
+﻿<style>
+    input:focus{
+        outline:none;
+    }
+</style>
+<form name="step4" action="@Url.Action("SignUp")" id="step4frm">
+    <div style="margin-left: 50px; margin-top: -12px;">
+        <h3>Personal Data</h3>
+        <div style="margin-left:6px;">
+            <img id="blah" src="#" alt="your image" />
+            <div class="rowss">
+                <div class="column7"><strong>1.&nbsp;&nbsp;&nbsp; Surname:&nbsp;&nbsp; <strong id="Surname"></strong>  </strong></div>
+            </div>
+            <div class="rowss">
+                <div class="column7"><strong>2.&nbsp;&nbsp;&nbsp; Other Names:&nbsp;&nbsp; <strong id="OtherName"></strong> </strong></div>
+            </div>
+
+            <div class="rowss">
+                <div class="column7"><strong>3.&nbsp;&nbsp;&nbsp; DOB:&nbsp;&nbsp; <strong id="DateBirth"></strong> </strong></div>
+                <div class="column7"><strong>4.&nbsp;&nbsp;&nbsp; Residential Address:&nbsp;&nbsp;  <strong id="ResidentialAddress"></strong></strong></div>
+            </div>
+            <div class="rowss">
+                <div class="column7"><strong>3.&nbsp;&nbsp;&nbsp; Phone:&nbsp;&nbsp; <strong id="Phone"></strong> </strong></div>
+                @*<div class="column7"><strong>4.&nbsp;&nbsp;&nbsp; Residential Address:&nbsp;&nbsp;  <strong id="ResidentialAddress"></strong></strong></div>*@
+            </div>
+
+            <div class="rowss">
+                <div class="column7">
+                    <strong>
+                        8.&nbsp;&nbsp;&nbsp; Email:&nbsp;&nbsp; <strong id="Email"></strong>
+                    </strong>
+                </div>
+
+            </div>
+            <div class="rowss">
+                <div class="column7">
+                    <strong>
+                        9.&nbsp;&nbsp;&nbsp; Amount:&nbsp;&nbsp; <strong id="Amount"></strong>
+                    </strong>
+                </div>
+                <div class="column7"><strong>11.&nbsp;&nbsp;&nbsp; Policy Type:&nbsp;&nbsp;  <strong id="PolicyType"></strong></strong></div>
+
+            </div>
+
+        </div>
+
+        <div class="rowss">
+            @*<div class="column7"><strong>10.&nbsp;&nbsp;&nbsp; Location:&nbsp;&nbsp;  <strong id="Locationid"></strong></strong></div>*@
+            <div class="column7"><strong>10.&nbsp;&nbsp;&nbsp; Location:&nbsp;&nbsp;  <strong id="Location"></strong></strong></div>
+            <div class="column7"><strong>11.&nbsp;&nbsp;&nbsp; Postal Address:&nbsp;&nbsp;  <strong id="PostalAddress"></strong></strong></div>
+        </div>
+        <div class="rowss">
+            <div class="column7"><strong>12.&nbsp;&nbsp;&nbsp; Office Address :&nbsp;&nbsp; <strong id="OfficeAddress"></strong></strong></div>
+            <div class="column7"><strong>13.&nbsp;&nbsp;&nbsp; Occupation:&nbsp;&nbsp;  <strong id="Occupation"></strong></strong></div>
+        </div>
+        <div class="rowss">
+
+            <div class="column7"><strong>14.&nbsp;&nbsp;&nbsp; Identity Type:&nbsp;&nbsp; <strong id="IdentityType"></strong></strong></div>
+            <div class="column7"><strong>15.&nbsp;&nbsp;&nbsp; Identity Number:&nbsp;&nbsp; <strong id="IdentityNumber"></strong></strong></div>
+        </div>
+        <div class="rowss">
+            <div class="column7"><strong>16.&nbsp;&nbsp;&nbsp; Frequency:&nbsp;&nbsp; <strong id="Frequency"></strong></strong></div>
+            <div class="column7">
+                <strong>
+                    17.&nbsp;&nbsp;&nbsp; Duration&nbsp;&nbsp;  <strong id="Duration"></strong>
+                </strong>
+            </div>
+            <div class="column7"><strong>18.&nbsp;&nbsp;&nbsp; agentcode:&nbsp;&nbsp; <strong id="agentcode"></strong></strong></div>
+        </div>
+        <h3>Next Of Kin</h3>
+
+        <div class="rowss">
+            <div class="column7"><strong>1.&nbsp;&nbsp;&nbsp; FullName:&nbsp;&nbsp; <strong id="nokName"></strong>  </strong></div>
+        </div>
+
+        <div class="rowss">
+            <div class="column7"><strong>2.&nbsp;&nbsp;&nbsp; Email:&nbsp;&nbsp; <strong id="nokEmail"></strong> </strong></div>
+            <div class="column7"><strong>3.&nbsp;&nbsp;&nbsp; Address:&nbsp;&nbsp;  <strong id="nokAddress"></strong></strong></div>
+        </div>
+        <div class="rowss">
+            <div class="column7"><strong>4.&nbsp;&nbsp;&nbsp; Phone:&nbsp;&nbsp; <strong id="nokPhone"></strong> </strong></div>
+            @*<div class="column7"><strong>4.&nbsp;&nbsp;&nbsp; Residential Address:&nbsp;&nbsp;  <strong id="ResidentialAddress"></strong></strong></div>*@
+        </div>
+        <h3>Beneficiaries</h3>
+
+        <div class="row">
+            <div id="divBen2">
+                @*@Html.Partial("_beneficiaries")*@
+                <table id="tbBen2" class="table table-condensed">
+                    <thead>
+                        <tr class="headings">
+                           
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Phone </th>
+                            <th>Email</th>
+                            <th>Date of Birth</th>
+                            <th>Relationship</th>
+                            <th>Proportion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-offset-1">
+            @Html.CheckBox("TermsAndConditions", false, new { @id = "chkcondition" })
+            <a href="#" data-target="#exampleModalCenter" data-toggle="modal">Term and condition</a>
+
+            <input type="button" class="btn btn-gray btn-lg margin-right-md" value="back" id="btnstep4Back" />
+            <input type="button" class="btn btn-success btn-lg padding-lg-h" value="Submit" id="btnsubmit" />
+        </div>
+    </div>
+</form>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Read Terms and condition<</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2> GENERAL CONDITIONS</h2>
+
+                <strong>
+                    1.	THE CONTRACT: NLPC will only be bound by the conditions stated in the policy and any subsequent amendments, if any, which is duly signed by an authorized officer at the Head office. The completed application form shall constitute the basis of the contract.
+                    2.	EFFECTIVE DATE OF PAYMENT: For payments made by cheque/draft the effective date of payment shall be the date the cheque/draft is credited into our account.
+                    3.	INVESTMENT YIELD: Interest payable on your contributions shall be calculated on
+                    Pro rata basis at the end of each year. The interest which shall be guaranteed and calculated on compounded basis shall be five percent (5%) per annum, reviewable annually subject to changes in economic indices.
+                    4.	WITHDRAWAL: Contributors are expected to target their retirement date for withdrawal purpose. Withdrawal before minimum duration of five (5) years shall attract penalty on accrued interest.
+                    5.	DEATH : A lump sum of two (2) times annual contributions, subject to regular payment and insurable age of Sixty(60) years or contributions with accrued interest whichever is higher, shall be paid to the beneficiaries.
+                    6.	TO WHOM BENEFIT IS PAYABLE :                                                                                                     (i)  Contributor                                     (ii) Named Beneficiaries
+                    7.	COOLING OFF PERIOD: A contributor has the privilege to exercise his/her right to decide Whether or not to continue with the plan within 30 days of receipt of the policy.
+                    IN WITNESS where of this policy has been issued for and on behalf of Nigerian Life and Provident Company Limited
+                </strong>
+                <strong>Click on the check button to accept the above condition.</strong>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div>
+    </div>
+</div>

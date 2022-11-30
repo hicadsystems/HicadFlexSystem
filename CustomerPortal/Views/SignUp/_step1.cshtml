@@ -1,7 +1,11 @@
 ﻿@{ Layout = null; }
 <form name="step1" action="@Url.Action("Next")" id="step1Frm">
     <div class="col-md-12 bg-white">
+        <div class="row">
 
+           
+
+        </div>
         <div class="row">
             <div class="form-group col-md-6 ss-item-required">
                 <label for="Surname" class="color-transparent-darker lite small">SURNAME</label>
@@ -17,7 +21,7 @@
         <div class="row">
             <div class="form-group col-md-6 ss-item-required">
                 <label for="ResidentialAddress" class="color-transparent-darker lite small">RESIDENTIAL ADDRESS</label>
-                <textarea name="ResidentialAddress" class="form-control input-md" rows="2"></textarea>
+                <textarea name="ResAddress" class="form-control input-md" rows="2"></textarea>
                 <span class="text-danger pull-right small">* required</span>
             </div>
             <div class="form-group col-md-6">
@@ -139,13 +143,19 @@
                        onchange="document.getElementById('passport').src = window.URL.createObjectURL(this.files[0])" />
             </div>
         </div>*@
-        <div class="row">
-            <div class="form-group col-md-6">
-                <label for="Agent" class="color-transparent-darker lite small">Agent</label>
-                @Html.DropDownList("agentcode", (IEnumerable<SelectListItem>)ViewBag.Agent, String.Empty,
-                                                                                                            new { @class = "form-control input-md", @required = "true", @id = "agent" })
-            </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label for="Agent" class="color-transparent-darker lite small">Agent</label>
+            @Html.DropDownList("agentcode", (IEnumerable<SelectListItem>)ViewBag.Agent, String.Empty,
+                                                                                                        new { @class = "form-control input-md", @required = "true", @id = "agent" })
         </div>
+        <div class="form-group col-md-4">
+            <label for="Picture" class="color-transparent-darker lite small">Picture</label>
+            @*<input type="file" id="PictureFile" name="PictureFile" />*@
+            <input type="file" name="PictureFile" id="PictureFile" class="makethispretty" />
+
+        </div>
+    </div>
         <div class="row">
             <div class="col-md-offset-1">
                 <input type="button" class="btn btn-success btn-lg padding-lg-h" value="Next" id="btnstep1Next" />

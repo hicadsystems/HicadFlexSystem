@@ -13,6 +13,8 @@ using System.Data.Entity;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
@@ -133,8 +135,8 @@ namespace CustomerPortal.Controllers
             string path2 = "";
                 if (Session["IdentyNumber"] != null)
                 {
-                    if (Request != null)
-                    {
+                    //if (Request != null)
+                    //{
                         HttpPostedFileBase FileUpload = Request.Files["PictureFile"];
                         if (FileUpload.ContentLength > 0)
                         {
@@ -143,7 +145,7 @@ namespace CustomerPortal.Controllers
                             //fileName= Path.GetFileName(FileUpload.FileName);
                             string fileExtension = System.IO.Path.GetExtension(Request.Files["PictureFile"].FileName.ToLower());
                             // path = Path.Combine(Server.MapPath("~/Content/UploadPhotoPath/"));
-                            path = path.Replace("CustomerPortal", "Flex");
+                            path = path.Replace("CustomerPortal", "OnlineFlex");
                             if (fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".gif" || fileExtension == ".png" || fileExtension == ".bmp")
                             {
                                 if (System.IO.File.Exists(path))
@@ -155,7 +157,7 @@ namespace CustomerPortal.Controllers
                                 if (img.Width > 150)
                                     img.Resize(150, 150);
                                     img.Save(path);
-
+                               
                                 ViewData["Feedback"] = "Upload Complete";
 
                             }
@@ -163,7 +165,7 @@ namespace CustomerPortal.Controllers
 
                        
                     }
-                }
+                //}
                 Session["IdentyNumber"] = "";
             
                 return RedirectToAction("Success");
@@ -179,9 +181,10 @@ namespace CustomerPortal.Controllers
         [HttpPost]
         public ActionResult SignUp(SignUpBindingModel signUpmodel)
         {
+
             Logger.Info("Inside post signUp");
             try
-            {
+            {                       
                 if (signUpmodel == null)
                 {
                     throw new Exception("Error Occurred.");
@@ -208,6 +211,11 @@ namespace CustomerPortal.Controllers
                 }
 
                 Session["IdentyNumber"] = signUpmodel.PersonalInfo.IdentityNumber;
+                string fileName = "Passport_" + signUpmodel.PersonalInfo.IdentityNumber + ".png";
+                string path = "";
+                path = Path.Combine(Server.MapPath("~/Pictures/"), fileName);
+                path = path.Replace("CustomerPortal", "Flex");
+                signUpmodel.PersonalInfo.photopath = path;
                 new SignUpSystem(context).SaveSignUp(signUpmodel.PersonalInfo);
                 //var ben = JsonConvert.DeserializeObject<List<NextofKinBeneficiaryBindingModel>>(beneficiaries);
 
@@ -234,9 +242,9 @@ namespace CustomerPortal.Controllers
                 //    throw new Exception("Please Provide atleast one Beneficiary");
                 //}
 
-                
+                //return RedirectToAction("Success");
                 return new JsonResult(){
-                    Data= new UrlHelper(Request.RequestContext).Action("uploaddoc")
+                    Data= new UrlHelper(Request.RequestContext).Action("Success")
                 };
                    
             }
@@ -359,6 +367,55 @@ namespace CustomerPortal.Controllers
                 Logger.InfoFormat("Error occurred. Details {0}", ex.ToString());
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.ToString());
             }
+        }
+        [HttpPost]
+        public async Task<JsonResult> UploadHomeReport(string id)
+        {
+            try
+            {
+                if (id != "")
+                {
+                    foreach (string file in Request.Files)
+                    {
+                        var fileContent = Request.Files[file];
+                        if (fileContent != null && fileContent.ContentLength > 0)
+                        {
+                            // get a stream
+                            var stream = fileContent.InputStream;
+                            // and optionally write the file to disk
+                            var fileName = Path.GetFileName(file);
+                            fileName = "Passport_" + id + ".png";
+                            var path = Path.Combine(Server.MapPath("~/Pictures/"), fileName);
+                            //fileName= Path.GetFileName(FileUpload.FileName);
+                            string fileExtension = Path.GetExtension(fileName);
+                            // path = Path.Combine(Server.MapPath("~/Content/UploadPhotoPath/"));
+                            path = path.Replace("CustomerPortal", "Flex");
+                            if (fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".gif" || fileExtension == ".png" || fileExtension == ".bmp")
+                            {
+                                if (System.IO.File.Exists(path))
+                                {
+                                    System.IO.File.Delete(path);
+                                }
+                                fileContent.SaveAs(path);
+                                WebImage img = new WebImage(path);
+                                if (img.Width > 150)
+                                    img.Resize(150, 150);
+                                img.Save(path);
+
+                                ViewData["Feedback"] = "Upload Complete";
+
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json("Upload failed");
+            }
+
+            return Json("File uploaded successfully");
         }
     }
 

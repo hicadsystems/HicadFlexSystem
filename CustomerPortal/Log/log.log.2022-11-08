@@ -1,0 +1,35 @@
+[Flex Customer Logger Started] 
+2022-11-08 09:37:30,659 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133123702433460058] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-11-08 09:41:10,735 [9] INFO  CustomerPortal - <log4net.Error>Exception during StringFormat: Index (zero based) must be greater than or equal to zero and less than the size of the argument list. <format>Payment Request. Details [error: {0}, StackTrace: {1}]</format><args>{CustomerPortal.Models.RequestData}</args></log4net.Error>
+2022-11-08 09:42:29,719 [11] INFO  CustomerPortal - <log4net.Error>Exception during StringFormat: Index (zero based) must be greater than or equal to zero and less than the size of the argument list. <format>Payment Request. Details [error: {0}, StackTrace: {1}]</format><args>{CustomerPortal.Models.RequestData}</args></log4net.Error>
+2022-11-08 09:45:34,049 [13] INFO  CustomerPortal - <log4net.Error>Exception during StringFormat: Index (zero based) must be greater than or equal to zero and less than the size of the argument list. <format>Payment Request. Details [error: {0}, StackTrace: {1}]</format><args>{CustomerPortal.Models.RequestData}</args></log4net.Error>
+[Flex Customer Logger Started] 
+2022-11-08 10:15:58,570 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133123725442101722] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-11-08 10:20:46,532 [7] INFO  CustomerPortal - <log4net.Error>Exception during StringFormat: Index (zero based) must be greater than or equal to zero and less than the size of the argument list. <format>Payment Request. Details [error: {0}, StackTrace: {1}]</format><args>{CustomerPortal.Models.RequestData}</args></log4net.Error>
+2022-11-08 10:21:23,517 [8] INFO  CustomerPortal - <log4net.Error>Exception during StringFormat: Index (zero based) must be greater than or equal to zero and less than the size of the argument list. <format>Payment Request. Details [error: {0}, StackTrace: {1}]</format><args>{CustomerPortal.Models.RequestData}</args></log4net.Error>
+2022-11-08 10:24:06,249 [7] ERROR CustomerPortal - <log4net.Error>Exception during StringFormat: Index (zero based) must be greater than or equal to zero and less than the size of the argument list. <format>Payment Request. Details [error: {0}, StackTrace: {1}]</format><args>{CustomerPortal.Models.RequestData}</args></log4net.Error>
+2022-11-08 10:58:42,781 [11] INFO  CustomerPortal - Inside post signUp
+[Flex Customer Logger Started] 
+2022-11-08 11:06:48,028 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133123755888293506] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-11-08 11:08:58,016 [5] INFO  CustomerPortal - Inside post signUp
+2022-11-08 11:09:23,996 [6] ERROR CustomerPortal - Error Occurred. Details  [System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\Home\source\Repo\HicadFlexSystem\OnlineFlex\Pictures\Passport_1234567788tt.png'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at System.Web.HttpPostedFile.SaveAs(String filename)
+   at System.Web.HttpPostedFileWrapper.SaveAs(String filename)
+   at CustomerPortal.Controllers.SignUpController.SignUp2(SignUpBindingModel signUpmodel) in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\SignUpController.cs:line 153--   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at System.Web.HttpPostedFile.SaveAs(String filename)
+   at System.Web.HttpPostedFileWrapper.SaveAs(String filename)
+   at CustomerPortal.Controllers.SignUpController.SignUp2(SignUpBindingModel signUpmodel) in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\SignUpController.cs:line 153]
+[Flex Customer Logger Started] 
+2022-11-08 16:22:15,559 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133123945120434772] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-11-08 16:27:11,517 [10] INFO  CustomerPortal - Inside post signUp
+[Flex Customer Logger Started] 
+2022-11-08 16:30:07,500 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133123949904931250] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-11-08 16:33:01,919 [5] INFO  CustomerPortal - Inside post signUp
+2022-11-08 16:52:11,524 [5] INFO  CustomerPortal - Inside post signUp

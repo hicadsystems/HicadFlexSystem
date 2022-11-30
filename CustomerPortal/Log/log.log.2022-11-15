@@ -1,0 +1,78 @@
+[Flex Customer Logger Started] 
+2022-11-15 12:49:59,064 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133129865403464349] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-11-15 12:51:49,786 [5] ERROR CustomerPortal - <log4net.Error>Exception during StringFormat: Index (zero based) must be greater than or equal to zero and less than the size of the argument list. <format>Payment Request. Details [error: {0}, StackTrace: {1}]</format><args>{CustomerPortal.Models.RequestData}</args></log4net.Error>
+[Flex Customer Logger Started] 
+2022-11-15 13:39:24,950 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133129895506131174] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-11-15 13:47:48,484 [6] ERROR CustomerPortal - <log4net.Error>Exception during StringFormat: Index (zero based) must be greater than or equal to zero and less than the size of the argument list. <format>Payment Request. Details [error: {0}, StackTrace: {1}]</format><args>{CustomerPortal.Models.RequestData}</args></log4net.Error>
+[Flex Customer Logger Started] 
+2022-11-15 13:53:58,393 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133129904216486267] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-11-15 13:56:25,475 [9] ERROR CustomerPortal - <log4net.Error>Exception during StringFormat: Index (zero based) must be greater than or equal to zero and less than the size of the argument list. <format>Payment Request. Details [error: {0}, StackTrace: {1}]</format><args>{CustomerPortal.Models.RequestData}</args></log4net.Error>
+2022-11-15 13:57:48,266 [6] ERROR CustomerPortal - Payment Error Occurred. Details [error: System.Net.Http.HttpRequestException: An error occurred while sending the request. ---> System.Net.WebException: Unable to connect to the remote server ---> System.Net.Sockets.SocketException: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond 80.88.8.238:8090
+   at System.Net.Sockets.Socket.InternalEndConnect(IAsyncResult asyncResult)
+   at System.Net.Sockets.Socket.EndConnect(IAsyncResult asyncResult)
+   at System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- End of inner exception stack trace ---
+   at System.Net.HttpWebRequest.EndGetRequestStream(IAsyncResult asyncResult, TransportContext& context)
+   at System.Net.Http.HttpClientHandler.GetRequestStreamCallback(IAsyncResult ar)
+   --- End of inner exception stack trace ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at CustomerPortal.Controllers.XpressPayController.<InitializePayment>d__3.MoveNext() in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\XpressPayController.cs:line 98, StackTrace:    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at CustomerPortal.Controllers.XpressPayController.<InitializePayment>d__3.MoveNext() in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\XpressPayController.cs:line 98]
+2022-11-15 13:57:57,914 [6] ERROR CustomerPortal - <log4net.Error>Exception during StringFormat: Index (zero based) must be greater than or equal to zero and less than the size of the argument list. <format>Payment Request. Details [error: {0}, StackTrace: {1}]</format><args>{CustomerPortal.Models.RequestData}</args></log4net.Error>
+2022-11-15 13:58:19,255 [6] ERROR CustomerPortal - Payment Error Occurred. Details [error: System.Net.Http.HttpRequestException: An error occurred while sending the request. ---> System.Net.WebException: Unable to connect to the remote server ---> System.Net.Sockets.SocketException: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond 80.88.8.238:8090
+   at System.Net.Sockets.Socket.InternalEndConnect(IAsyncResult asyncResult)
+   at System.Net.Sockets.Socket.EndConnect(IAsyncResult asyncResult)
+   at System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- End of inner exception stack trace ---
+   at System.Net.HttpWebRequest.EndGetRequestStream(IAsyncResult asyncResult, TransportContext& context)
+   at System.Net.Http.HttpClientHandler.GetRequestStreamCallback(IAsyncResult ar)
+   --- End of inner exception stack trace ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at CustomerPortal.Controllers.XpressPayController.<InitializePayment>d__3.MoveNext() in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\XpressPayController.cs:line 98, StackTrace:    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at CustomerPortal.Controllers.XpressPayController.<InitializePayment>d__3.MoveNext() in C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\Controllers\XpressPayController.cs:line 98]
+2022-11-15 14:01:21,050 [9] ERROR CustomerPortal - <log4net.Error>Exception during StringFormat: Index (zero based) must be greater than or equal to zero and less than the size of the argument list. <format>Payment Request. Details [error: {0}, StackTrace: {1}]</format><args>{CustomerPortal.Models.RequestData}</args></log4net.Error>
+[Flex Customer Logger Started] 
+2022-11-15 15:01:42,881 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133129944964919511] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Started] 
+2022-11-15 15:31:56,413 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133129963035949376] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Started] 
+2022-11-15 15:42:09,074 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133129969240687150] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Started] 
+2022-11-15 15:48:13,378 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133129972802363207] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Started] 
+2022-11-15 16:14:17,290 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133129988445566121] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Started] 
+2022-11-15 16:26:55,374 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133129996015681215] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Started] 
+2022-11-15 22:12:56,626 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133130203687802114] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Started] 
+2022-11-15 22:26:13,616 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133130211515319595] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Started] 
+2022-11-15 22:34:04,446 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133130216256229827] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Started] 
+2022-11-15 22:39:49,484 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133130219736342086] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Started] 
+2022-11-15 22:42:28,100 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133130221300532796] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Started] 
+2022-11-15 22:49:56,202 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133130225761600916] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Started] 
+2022-11-15 23:04:42,583 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133130234752998655] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Started] 
+2022-11-15 23:08:31,122 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133130236931195086] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Started] 
+2022-11-15 23:11:54,374 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133130239074883015] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Started] 
+2022-11-15 23:22:26,062 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133130245286102745] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+[Flex Customer Logger Started] 
+2022-11-15 23:36:16,866 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133130253586494435] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]
+2022-11-15 23:38:18,977 [5] ERROR CustomerPortal - <log4net.Error>Exception during StringFormat: Index (zero based) must be greater than or equal to zero and less than the size of the argument list. <format>Payment Request. Details [error: {0}, StackTrace: {1}]</format><args>{CustomerPortal.Models.RequestData}</args></log4net.Error>
+[Flex Customer Logger Started] 
+2022-11-15 23:43:57,457 [1] INFO  AppStart - Application [/LM/W3SVC/2/ROOT-1-133130258324733961] Starting... @ BaseDir is [C:\Users\Home\source\Repo\HicadFlexSystem\CustomerPortal\]

@@ -20,6 +20,22 @@ function showModal(data, title,fn) {
     $('#Modal').modal({ backdrop: 'static', keyboard: false });
 
 };
+function showModal2(data, title, fn) {
+    //$('modalbody').html(data);
+    
+    var modalbody = document.getElementById('modalbody2');
+    modalbody.innerHTML = data;
+    modalbody.focus();
+    var modaltitle = document.getElementById('title2');
+    modaltitle.innerText = title;
+    //var submitbtn = document.getElementById('modalSubmit');
+    //submitbtn.setAttribute("data-click", fn);
+    //submitbtn.setAttribute("onclick", fn);
+    //submitbtn.onclick=fn;
+    $('#Modal2').modal({ backdrop: 'static', keyboard: false });
+
+};
+
 
 function showModalfromfile(url, title, fn) {
     $('#modalbody').load(url);

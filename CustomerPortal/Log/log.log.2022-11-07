@@ -1,0 +1,2 @@
+[Flex Customer Logger Started] 
+2022-11-07 10:00:28,363 [7] INFO  CustomerPortal - <log4net.Error>Exception during StringFormat: Index (zero based) must be greater than or equal to zero and less than the size of the argument list. <format>Payment Request. Details [error: {0}, StackTrace: {1}]</format><args>{CustomerPortal.Models.RequestData}</args></log4net.Error>
