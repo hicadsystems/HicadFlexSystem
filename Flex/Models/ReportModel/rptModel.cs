@@ -188,7 +188,7 @@ namespace Flex.Models.ReportModel
 
         public string Title { get; set; }
 
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
 
         public string ChequeNo { get; set; }
 
@@ -335,5 +335,77 @@ namespace Flex.Models.ReportModel
         public string header { get; set; }
         public string naration { get; set; }
     }
+    public class rptPesonalInfo
+    {
+        public string Surname { get; set; }
+        public string RegNo { get; set; }
 
+        public string Othernames { get; set; } = "";
+
+        public string ResAddress { get; set; } = "";
+
+        public string OfficeAddress { get; set; } = "";
+
+        public string PostalAddress { get; set; } = "";
+
+        public string Email { get; set; } = "";
+
+        public string Phone { get; set; } = "";
+
+        public DateTime Dob { get; set; }
+        public string birthdate { get; set; }
+
+        public string Occupation { get; set; } = "";
+
+        public Decimal Amount { get; set; } = 0M;
+
+        public string Frequency { get; set; } = "";
+
+        public DateTime CommencementDate { get; set; }
+
+        public int Duration { get; set; } = 0;
+
+        public string IdentityType { get; set; } = "";
+        public string IdentityNumber { get; set; } = "";
+
+        public string AgentCode { get; set; } = "";
+        public string GroupCode { get; set; } = "";
+        public string Religion { get; set; } = "";
+        public string Gender { get; set; } = "";
+
+    }
+    public class rptPesonalInfoAndNok
+    {
+      public string RegNo {get; set;} = "";
+      public string Surname {get; set;} = "";
+      public string OtherNames {get; set;} = "";
+      public string ResAddress {get; set;} = "";
+      public string OffAddress {get; set;} = "";
+      public string Email {get; set;} = "";
+      public string Phone {get; set;} = "";
+      public DateTime dob {get; set;}
+      public string Occupation {get; set;} = "";
+        public decimal ContribAmount { get; set; }  = 0m;
+      public string ContribFreq {get; set;} = "";
+      public DateTime CommencementDate {get; set;} 
+      public int Duration {get; set;} = 0;
+      public int Type {get; set;} = 0;
+      public int PolicyType {get; set;} = 0;
+      public string IdentityNumber {get; set;} = "";
+      public string IdentityType {get; set;} = "";
+      public string agentcode {get; set;} = "";
+      public string nokname {get; set;} = "";
+      public string Address {get; set;} = "";
+      public string nokphone {get; set;} = "";
+      public string nokemail {get; set;} = "";
+      public DateTime nokdob {get; set;} 
+      public string RelationShip {get; set;} = "";
+      public long PersonalDetailsStagingId {get; set;} =0;
+        public decimal Proportion { get; set; } = 0m;
+      public string locdesc {get; set;} = "";
+      public string agentname {get; set;} = "";
+      public string poldesc {get; set;} = "";
+        public string photopath { get; set; } = "";
+
+    }
 }

@@ -8,6 +8,7 @@ var signUpModel = signUpModel || {};
 var totalPropotion = totalPropotion || 0;
 
 function retrievePendQuatations(el) {
+ 
     ShowLoading();
     console.log('about to get pending policy for approval');
     var datefrom = $("#txtdatefrom").val();
@@ -997,7 +998,27 @@ function showpolicyDetails(Id) {
         HideLoading();
     });
 }
+function printpolicyDetails(Id) {
+    ShowLoading();
+    var url = applicationBaseUrl + "/CustPolicy/PrintCustForm";
+    var data = { Id: Id };
+    var Promise = Post(url, data, 'Post');
 
+    Promise.done(function (resp) {
+        HideLoading();
+        window.open(resp, "resizeable,scrollbar")
+        //showModal(resp, 'Policy Details', '');
+    });
+
+    Promise.fail(function (resp) {
+        if (resp.status === 401) {
+            //window.location.href = '/Login';
+            window.location.href = loginurl;
+        }
+        toastr.error(resp.statusText, "Error");
+        HideLoading();
+    });
+}
 function toggleManagePolicy(value) {
     var divpDetails = document.getElementById('divpDetails');
     var divNOK = document.getElementById('divnok');

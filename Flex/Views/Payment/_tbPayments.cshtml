@@ -50,10 +50,10 @@
                         <td>@trans.chequeno</td>
                         <td>@trans.amount</td>
                         @*<td>@trans.</td>*@
-                        <td>@trans.trandate.GetValueOrDefault().ToString("dd/MM/yyyy")</td>
+                        <td>@trans.trandate_w.GetValueOrDefault().ToString("dd/MM/yyyy")</td>
                         <td>
                             @{
-                                if (trans.reverseind == false || trans.reverseind == null)
+                                if (trans.reverseind_w == false || trans.reverseind == null)
                                 {
                                     <button class="btn btn-danger btn-sm fa fa-recycle" data-id="@trans.Id" data-url="@Url.Action("ConfirmReverse", "Payment")"
                                             data-submiturl="@Url.Action("ReverseTransaction", "Payment")" onclick="ShowdelItem(this,@trans.Id, 'Reverse Payment');">

@@ -9,9 +9,9 @@
             <div class="row">
                 <div class="form-group col-md-6 ss-item-required">
                     <label for="Code" class="color-transparent-darker lite small uppercase">Policy</label>
-                    @*<input type="text" name="policyno" class="form-control input-md" id="policyno" />*@
-                    <input type="text" class="form-control input-md" data-autocomplete="@Url.Action("PolicynoAutoComplete","CustPolicy")" />
-                    <input type="hidden" value="" id="policyno" data-autocomplete-id="true" name="policyno" />
+                    <input type="text" name="policyno" class="form-control input-md" id="policyno" />
+                    @*<input type="text" class="form-control input-md" data-autocomplete="@Url.Action("PolicynoAutoComplete","CustPolicy")" />*@
+                   @* <input type="hidden" value="" id="policyno" data-autocomplete-id="true" name="policyno" />*@
                 </div>
                 <div class="form-group col-md-6 ss-item-required">
                     <label for="Name" class="color-transparent-darker lite small uppercase">Claim Type</label>
@@ -39,7 +39,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="form-group col-md-6 ss-item-required">
+                <div class="form-group col-md-6">
                     <label for="Code" class="color-transparent-darker lite small uppercase">Interest Rate</label>
                     <input type="number" name="intr" class="form-control input-md" />
                 </div>

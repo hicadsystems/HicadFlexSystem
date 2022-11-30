@@ -9,11 +9,25 @@
     <form id="policyRe">
         <div class="panel"> 
             <div class="padding-sm">
-                <div class="row">
+                @*<div class="row">
                     <div class="col-sm-6">
                         <label for="Code" class="color-transparent-darker lite small uppercase">Policy Number</label>
                         @Html.DropDownList("policyno", (IEnumerable<SelectListItem>)ViewBag.Policy, String.Empty,
-                            new { @class = "form-control input-md" })
+                                 new { @class = "form-control input-md" })
+                    </div>
+                </div>*@
+                <div class="col-sm-4">
+                    <div class="row">
+                        <div class="col-sm-5 text-right padding-none">
+                            <label for="Name" class="uppercase smaller lite margin-top-sm margin-right-sm">Policy No.</label>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                @*<input type="text" class="form-control input-md" name="PolicyNo" />*@
+                                <input type="text" class="form-control" data-autocomplete="@Url.Action("PolicynoAutoComplete","CustPolicy")" style="width: 200px" />
+                                <input type="hidden" value="" id="policyno" data-autocomplete-id="true" name="policyno" />
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">

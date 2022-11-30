@@ -282,6 +282,13 @@ namespace Flex.Controllers
 
             return new SelectList(states, "Id", "Name", state);
         }
+        public SelectList GetLocationss(string state = "")
+        {
+            var locs = new List<fl_location>();
+            locs = new CoreSystem<fl_location>(context).FindAll(x => x.Isdeleted == false).ToList();
+
+            return new SelectList(locs, "Id", "locdesc",state);
+        }
 
         public void GetReationShip(string relation="")
         {

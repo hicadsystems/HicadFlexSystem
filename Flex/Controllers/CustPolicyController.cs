@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using Dapper;
 using Flex.Business;
 using Flex.Controllers.Util;
 using Flex.Data.Enum;
@@ -720,7 +721,7 @@ namespace Flex.Controllers
                 ViewBag.Location = GetLocations();
 
                 var pols = new PagedResult<vwPolicy>();
-                using (var _context = currentContext)
+                using (var _context = context)
                 {
                     pols = new PolicySystem(_context).searchPolicies(WebSecurity.ModulePolicyTypes);
                 }
@@ -1252,7 +1253,7 @@ namespace Flex.Controllers
                 var benefs = new List<NextofKin_BeneficiaryStaging>();
                 fl_policyinput policy = new fl_policyinput();
                
-                if (bens.Count > 0)
+                if (bens!=null)
                 {
                     policy = new CoreSystem<fl_policyinput>(context).Get(bens.FirstOrDefault().PolicyId);
                     benefs = bens.Select(x => new NextofKin_BeneficiaryStaging()
@@ -1284,7 +1285,7 @@ namespace Flex.Controllers
 
                             
                             if (existingPolicy != null)
-                                new PolicySystem(currentContext).UpdatePolicy(existingPolicy, pInfo.CustomerId);
+                                new PolicySystem(context).UpdatePolicy(existingPolicy, pInfo.CustomerId);
                             
                             if (existingNok != null)
                                 new CoreSystem<NextofKin_BeneficiaryStaging>(_context).Update(existingNok, nok.Id);
@@ -1309,7 +1310,7 @@ namespace Flex.Controllers
                             transaction.Commit();
 
                         }
-                        catch
+                        catch(Exception ex)
                         {
                             transaction.Rollback();
                             throw;
@@ -1359,7 +1360,7 @@ namespace Flex.Controllers
                         for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
                         {
                             var policy = new fl_policyinput();
-                           // policy.policyno = workSheet.Cells[rowIterator, 1].Value?.ToString();
+                            policy.policyno = workSheet.Cells[rowIterator, 1].Value?.ToString();
                             var policynoSno = string.Empty;
                             if (string.IsNullOrEmpty(policy.policyno))
                             {
@@ -1367,26 +1368,27 @@ namespace Flex.Controllers
                                 policy.policyno = GroupCode + "/" + policynoSno;
                                 //policy.pcn = policynoSno;
                             }
-                          //  policy.pcn = workSheet.Cells[rowIterator, 2].Value?.ToString();
+                           policy.pcn = workSheet.Cells[rowIterator, 2].Value?.ToString();
                             if (string.IsNullOrEmpty(policy.pcn))
                             {
                                 policy.pcn = policynoSno;
                             }
-                            policy.sex = workSheet.Cells[rowIterator, 1].Value?.ToString();
-                            policy.title = workSheet.Cells[rowIterator, 2].Value?.ToString();
-                            policy.surname = workSheet.Cells[rowIterator, 3].Value?.ToString();
-                            policy.othername = workSheet.Cells[rowIterator, 4].Value?.ToString();
-                            policy.dob = workSheet.Cells[rowIterator, 5].Value?.ToString();
-                            policy.grpcode = workSheet.Cells[rowIterator, 6].Value?.ToString();
+                            policy.sex = workSheet.Cells[rowIterator, 3].Value?.ToString();
+                            policy.title = workSheet.Cells[rowIterator, 4].Value?.ToString();
+                            policy.surname = workSheet.Cells[rowIterator, 5].Value?.ToString();
+                            policy.othername = workSheet.Cells[rowIterator, 6].Value?.ToString();
+                            policy.dob = workSheet.Cells[rowIterator, 7].Value?.ToString();
+                            policy.grpcode = workSheet.Cells[rowIterator, 8].Value?.ToString();
                             if (string.IsNullOrEmpty(policy.grpcode))
                             {
                                 policy.grpcode = GroupCode;
                             }
-                            policy.telephone = workSheet.Cells[rowIterator, 7].Value?.ToString();
-                            policy.email = workSheet.Cells[rowIterator, 8].Value?.ToString();
+                            policy.telephone = workSheet.Cells[rowIterator, 9].Value?.ToString();
+                            policy.email = workSheet.Cells[rowIterator, 10].Value?.ToString();
                             policy.status = (int)Status.Active;
                             policy.datecreated = DateTime.Now;
                             policy.poltype = xpoltype.poltype;
+                            policy.dob=Convert.ToDateTime(policy.dob).Day.ToString()+ Convert.ToDateTime(policy.dob).Month.ToString()+ Convert.ToDateTime(policy.dob).Year.ToString();
                             try
                             {
                                
@@ -1492,6 +1494,7 @@ namespace Flex.Controllers
                 {
                     poldetails = new PolicySystem(context).Get(Id);
                     nokBen = new CoreSystem<NextofKin_BeneficiaryStaging>(context).FindAll(x => x.PolicyId == Id).ToList();
+                    var location = new CoreSystem<fl_location>(context).FindAll(x => x.Id == poldetails.locationid).Select(x => x.locdesc).FirstOrDefault();
 
                     var state = new CoreSystem<fl_state>(context).FindAll(x => x.Id == poldetails.locationid).Select(x=>x.Name).FirstOrDefault();
                     var group = new CoreSystem<fl_grouptype>(context).FindAll(x => x.grpcode == poldetails.grpcode).Select(x=>x.grpname).FirstOrDefault();
@@ -1501,7 +1504,7 @@ namespace Flex.Controllers
                     var religion = poldetails.religion;
                     ViewBag.Id = Id;
                     GetReationShip();
-                    ViewBag.Location = GetStates2(state);
+                    ViewBag.Location = GetLocationss(location);
                     getPolicyTypeForDirectPolicyInput(policyType);
                     ViewBag.Agent = GetAgents(agent);
                     getGroup(group);
@@ -1563,6 +1566,7 @@ namespace Flex.Controllers
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.Message);
             }
         }
+      
 
         public JsonResult PolicynoAutoComplete(string term)
         {
@@ -1759,6 +1763,88 @@ namespace Flex.Controllers
 
 
         }
-      
+
+        public ActionResult PrintCustForm(long Id)
+        {
+            try
+            {
+                var pp = new List<rptPesonalInfoAndNok>();
+                var queryParameters = new DynamicParameters();
+                queryParameters.Add("@id", Id);
+                using (IDbConnection conn = new SqlConnection(context.Database.Connection.ConnectionString))
+                {
+                    pp = conn.Query<rptPesonalInfoAndNok>("fl_getPersonForm", queryParameters, commandType: CommandType.StoredProcedure, commandTimeout: 2000).ToList();
+                };
+                //List<rptPesonalInfoAndNok> rptss = new List<rptPesonalInfoAndNok>();
+                //var currentTrans = pp.Where(x => x.IdentityNumber != "").Select(x => new rptPesonalInfoAndNok()
+                //{
+                //    Surname = x.Surname,
+                //    OtherNames = x.OtherNames,
+                //    ResAddress = x.ResAddress,
+                //    OffAddress = x.OffAddress,
+                //    Email = x.Email,
+                //    Phone = x.Phone,
+                //    dob = x.dob,
+                //    Occupation = x.Occupation,
+                //    ContribAmount = x.ContribAmount,
+                //    ContribFreq = x.ContribFreq,
+                //    CommencementDate = x.CommencementDate,
+                //    Duration = x.Duration,
+                //    Type = x.Type,
+                //    PolicyType = x.PolicyType,
+                //    IdentityNumber = x.IdentityNumber,
+                //    IdentityType = x.IdentityType,
+                //    agentcode = x.agentcode,
+                //    nokname = x.nokname,
+                //    Address = x.Address,
+                //    nokphone = x.nokphone,
+                //    nokemail = x.nokemail,
+                //    nokdob = x.nokdob,
+                //    RelationShip = ((RelationShip)Enum.Parse(typeof(RelationShip), x.RelationShip)).ToString(),
+                //    PersonalDetailsStagingId = x.PersonalDetailsStagingId,
+                //    Proportion=x.Proportion,
+                //    locdesc=x.locdesc,
+                //    agentname=x.agentname,
+                //    poldesc=x.poldesc,
+                //}).ToList();
+                //rptss.AddRange(currentTrans);
+                
+                var rptdir = string.Empty;
+                    var rpt = new CrystalReportEngine();
+                    rpt.reportFormat = ReportFormat.pdf;
+                    rptdir = ReportUtil.GetConfig(ReportUtil.Constants.CustomerProfile);
+                    var rparams = new List<KeyValuePair<string, string>>();
+                    rparams.Add(RptHeaderCompanyName);
+                    rpt.Parameter = rparams;
+                    rpt.ReportPath = Path.Combine(Server.MapPath(ReportUtil.GetConfig(ReportUtil.Constants.BaseURL)), rptdir);
+                    var savedir = Server.MapPath(ConfigUtils.ReportPath);
+                    var reportName = rptdir.Split('.')[0] + "_" + DateTime.Now.ToString("yyyyMMddhhmmssfff") + ".pdf";
+                    rpt.ReportName = Path.Combine(savedir, reportName);
+                    rpt.GenerateReport(pp);
+                    //var contentType = "application/pdf";
+
+                    return ExportReport(reportName);
+                    //ReportDocument rrr = new ReportDocument();
+                    //rrr.Load(Path.Combine(Server.MapPath("~//Reports//CustomerProfile.rpt")));
+                    //rrr.SetDataSource(new[] { rpt });
+
+                    //Response.Buffer = false;
+                    //Response.ClearContent();
+                    //Response.ClearHeaders();
+                    //CrystalDecisions.Shared.ExportOptions exportOpts = rrr.ExportOptions;
+                    //exportOpts.ExportFormatType = CrystalDecisions.Shared.ExportFormatType.PortableDocFormat;
+                    //Stream stream = rrr.ExportToStream(exportOpts.ExportFormatType);
+                    //stream.Seek(0, SeekOrigin.Begin);
+                    //return File(stream, "application/pdf", "CustomerProfile.pdf");
+                //}
+            }
+            catch (Exception ex)
+            {
+                Logger.InfoFormat("Error occurred. Details {0}", ex.ToString());
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+
     }
 }

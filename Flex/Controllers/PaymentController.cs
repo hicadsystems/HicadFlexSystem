@@ -36,6 +36,7 @@ namespace Flex.Controllers
             var payments = new PagedResult<fl_payinput>();
             using (var _context = context)
             {
+                //context.getproduction();
                 payments = new PaymentSystem(_context).searchTransaction("", "", "", datefrom, dateto, "");
             }
             return PartialView("_payments", payments);
@@ -101,6 +102,7 @@ namespace Flex.Controllers
             var payments = new PagedResult<fl_translog>();
             using (var _context = context)
             {
+                context.getproduction();
                 payments = new PaymentSystem(_context).searchGTransaction("", "", "", datefrom, dateto, "", WebSecurity.ModulePolicyTypes);
             }
             return PartialView("_gratuityPayments", payments);
@@ -131,6 +133,7 @@ namespace Flex.Controllers
                     var trans = new PagedResult<fl_payinput>();
                     using (var _context = context)
                     {
+                        context.getproduction();
                         trans = new PaymentSystem(_context).searchTransaction(page, size, query.ReceiptNo, query.DateFrom,query.DateTo, query.policyno);
                     }
                     return PartialView("_tbPayments", trans);
@@ -156,14 +159,14 @@ namespace Flex.Controllers
                     if (!string.IsNullOrEmpty(queryjson))
                     {
                         var query = JsonConvert.DeserializeObject<paymentQueryModel>(queryjson);
-
+                        context.getproduction();
                         paymentLists = new PaymentSystem(_context).getTransaction(query.ReceiptNo,query.DateFrom,query.DateTo,query.ReceiptNo).Select(x => new rptPaymentList()
                         {
                             RecieptNo = x.receiptno,
                             PolicyNo = x.policyno,
-                            TransDate = x.trandate.Value,
+                            TransDate =(DateTime)x.trandate_w.Value,
                             ChequeNo = x.chequeno,
-                            Amount = x.amount.Value
+                            Amount = (decimal)x.amount
                         }).ToList();
 
                         var rptdir = ReportUtil.GetConfig(ReportUtil.Constants.PaymentListing);
@@ -206,6 +209,7 @@ namespace Flex.Controllers
                     var trans = new PagedResult<fl_translog>();
                     using (var _context = context)
                     {
+                        context.getproduction();
                         trans = new PaymentSystem(_context).searchGTransaction(page, size, query.ReceiptNo, query.DateFrom, query.DateTo,query.GroupCode,WebSecurity.ModulePolicyTypes);
                     }
                     return PartialView("_tbGPayments", trans);
@@ -254,6 +258,7 @@ namespace Flex.Controllers
 
                 using(var _context= context)
                 {
+                    context.getproduction();
                     var query = new CoreSystem<fl_receiptcontrol>(_context).GetAll().IncludeMultiple(p => p.fl_poltype);
                     PaymentMethod paymethod;
                     int poltype = 0;
@@ -325,6 +330,7 @@ namespace Flex.Controllers
             Logger.Info("About to save PaymentAccount");
             try
             {
+                context.getproduction();
                 int Id = 0;
                 int polType = 0;
                 var payAcct = new fl_receiptcontrol();
@@ -474,7 +480,7 @@ namespace Flex.Controllers
                 var userid = GetUserSesiion().fl_password.userid;
                 var queryparameter = new DynamicParameters();
 
-
+                context.getproduction();
                 if (string.IsNullOrEmpty(sms))
                 {
 
@@ -543,7 +549,7 @@ namespace Flex.Controllers
                 //var remark = formdata["Remark"].ToString();
                 //bool.TryParse(formdata["SMS"].ToString(), out smschk);
                 //var sms = formdata["SMS"].ToString();
-
+                context.getproduction();
                 var userid = GetUserSesiion().fl_password.userid;
                 var queryparameter = new DynamicParameters();
 
@@ -651,6 +657,7 @@ namespace Flex.Controllers
                         {
                             serialnoKey = SerialNoCountKey.PV;
                         }
+                        context.getproduction();
                         using (var transaction = _context.Database.BeginTransaction(System.Data.IsolationLevel.ReadCommitted))
                         {
                             try
@@ -681,7 +688,7 @@ namespace Flex.Controllers
                                 payinput.receiptno = recieptno;
                                 payinput.totamt = amt;
                                 payinput.type = xInstr.ToString();
-                                payinput.trandate = _transDate;
+                                 payinput.trandate = _transDate.ToString();
 
                                 new CoreSystem<fl_payinput>(_context).Save(payinput);
 
@@ -810,6 +817,7 @@ namespace Flex.Controllers
                     //{
                     //    throw new Exception("Invalid Transaction");
                     //}
+                    context.getproduction();
                     var payinput = new CoreSystem<fl_payinput>(_context).FindAll(x => x.Id == Id).FirstOrDefault();
                     if (payinput == null)
                     {
@@ -841,7 +849,7 @@ namespace Flex.Controllers
                             //new CoreSystem<fl_translog>(_context).Save(revTrans);
 
 
-                            payinput.reverseind = true;
+                            payinput.reverseind_w = true;
                             new CoreSystem<fl_payinput>(_context).Update(payinput, payinput.Id);
                             var revPayinput = new fl_payinput();
 
@@ -1023,6 +1031,7 @@ namespace Flex.Controllers
         {
             try
             {
+                //context.getproduction();
                 var file = Request.Files[0];
                 var payInputs = new List<fl_payinput2>();
                 var uploadErrors = new List<string>();
@@ -1134,6 +1143,8 @@ namespace Flex.Controllers
                         _context.fl_translog.Add(transLog);
                         _context.fl_payinput2.AddRange(payInputs);
                         _context.SaveChanges();
+                        
+                       
                     }
 
                 }
@@ -1245,7 +1256,7 @@ namespace Flex.Controllers
                                             payinput.receiptno = recieptno;
                                             payinput.totamt = payDetail.rct_credit;
                                             payinput.type = item.rcth_type.ToString();
-                                            payinput.trandate = payDetail.datecreated;
+                                            payinput.trandate = payDetail.datecreated.ToString();
 
                                             new CoreSystem<fl_payinput>(_context).Save(payinput);
 
@@ -1305,7 +1316,7 @@ namespace Flex.Controllers
             using (var _context = context)
             {
                 var paylist = new List<rptPaymentList>();
-                var paymentLists = new CoreSystem<fl_payinput>(_context).FindAll(x => x.reverseind == false)
+                var paymentLists = new CoreSystem<fl_payinput>(_context).FindAll(x => x.reverseind_w == false)
                .ToList();
                 if (query == null)
                 {

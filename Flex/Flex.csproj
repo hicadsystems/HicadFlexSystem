@@ -1155,6 +1155,7 @@
     <Content Include="Assests\styles\toastr.css.map">
       <DependentUpon>toastr.css</DependentUpon>
     </Content>
+    <Content Include="images\nlpcReportHeader.PNG" />
     <Content Include="images\setup.png" />
     <Content Include="log4net.config" />
     <Content Include="Message.json" />
@@ -1604,7 +1605,6 @@
     <Content Include="Views\UserRole\_resetPwd.cshtml" />
     <Content Include="Views\Report\_memberRegister.cshtml" />
     <Content Include="Views\Report\_stmtAcct.cshtml" />
-    <Content Include="Views\Report\_invHis.cshtml" />
     <Content Include="Views\Report\_production.cshtml" />
     <Content Include="Views\Report\_receiptList.cshtml" />
     <Content Include="Views\Report\_commission.cshtml" />

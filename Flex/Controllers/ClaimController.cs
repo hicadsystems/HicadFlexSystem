@@ -352,7 +352,7 @@ namespace Flex.Controllers
 
                         payinput.totamt=payinput.amount = -1 * amt;
                         payinput.chequeno = refno;
-                        payinput.trandate=payinput.datecreated = DateTime.Now;
+                        payinput.trandate = payinput.datecreated.ToString();// = DateTime.Now.ToString();
                         payinput.grpcode = pol.grpcode;
                         payinput.policyno = policyno;
                         payinput.poltype = pol.poltype;
@@ -685,7 +685,7 @@ namespace Flex.Controllers
 
         public ActionResult PolicyReactivation() 
         {
-            var exitpols = new PolicySystem(context).FindAll(x => x.status == (int)Status.Exited).ToList();
+            var exitpols = new PolicySystem(context).FindAll(x => x.exitdate!="").ToList();
             List<PolBindingModel> exPols = new List<PolBindingModel>();
             if (exitpols != null && exitpols.Any())
             {

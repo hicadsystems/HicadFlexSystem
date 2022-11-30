@@ -21,10 +21,10 @@
     var prvPage = Model.CurrentPage - 1;
     var nextpage = Model.CurrentPage + 1;
 }
-
 <table class="table table-common table-striped table-hover border-bottom table-condensed" id="tblagent">
     <thead>
         <tr>
+            <th style="width:10%;">Print Form</th>
             <th style="width:10%;">Policy Number</th>
             <th style="width:17%;">Name</th>
             <th style="width:9%;">Address</th>
@@ -32,7 +32,7 @@
             <th style="width:10%;">Email</th>
             <th style="width:15%;">Balance</th>
             @*<th style="width:5%;"></th>
-            <th style="width:5%;"></th>*@
+        <th style="width:5%;"></th>*@
         </tr>
     </thead>
     <tbody>
@@ -42,26 +42,27 @@
                 foreach (var pol in Model.Items)
                 {
                     var name = string.Format("{0} {1}", pol.surname, pol.othername);
-                    <tr class="pointer">
-                        <td><a onclick="showpolicyDetails(@pol.srn)" style="cursor:pointer;">@pol.policyno</a></td>
-                        <td>@name </td>
-                        <td>@pol.address</td>
-                        <td>@pol.telephone</td>
-                        <td>@pol.email</td>
-                        <td>@pol.balance.GetValueOrDefault().ToString("N2")</td>
-                        @*<td>
-                            <button class="btn btn-warning btn-sm fa fa-edit" data-id="@acct.Id" data-url="@Url.Action("AddEditPaymentAccount", "Payment")"
-                                    onclick="showPaymetSetUpInput(this,@acct.Id)">
-                                Edit
-                            </button>
-                        </td>
-                        <td>
-                            <button class="btn btn-danger btn-sm fa fa-remove" data-id="@acct.Id" data-url="@Url.Action("DeletePaymentAccount", "Payment")"
-                                    data-submiturl="@Url.Action("cDeletePaymentAccount", "Payment")" onclick="ShowdelItem(this,@acct.Id);">
-                                Delete
-                            </button>
-                        </td>*@
-                    </tr>
+                <tr class="pointer">
+                    <td><a onclick="printpolicyDetails(@pol.srn)" style="cursor:pointer;">Print Form</a></td>
+                    <td><a onclick="showpolicyDetails(@pol.srn)" style="cursor:pointer;">@pol.policyno</a></td>
+                    <td>@name </td>
+                    <td>@pol.address</td>
+                    <td>@pol.telephone</td>
+                    <td>@pol.email</td>
+                    <td>@pol.balance.GetValueOrDefault().ToString("N2")</td>
+                    @*<td>
+            <button class="btn btn-warning btn-sm fa fa-edit" data-id="@acct.Id" data-url="@Url.Action("AddEditPaymentAccount", "Payment")"
+                    onclick="showPaymetSetUpInput(this,@acct.Id)">
+                Edit
+            </button>
+        </td>
+        <td>
+            <button class="btn btn-danger btn-sm fa fa-remove" data-id="@acct.Id" data-url="@Url.Action("DeletePaymentAccount", "Payment")"
+                    data-submiturl="@Url.Action("cDeletePaymentAccount", "Payment")" onclick="ShowdelItem(this,@acct.Id);">
+                Delete
+            </button>
+        </td>*@
+                </tr>
                 }
             }
         }

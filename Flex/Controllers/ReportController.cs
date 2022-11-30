@@ -148,7 +148,7 @@ namespace Flex.Controllers
                 using (IDbConnection conn = new SqlConnection(context.Database.Connection.ConnectionString))
                 {
 
-                    stmt = conn.Query<StatementViewModel>("fl_create_statement", queryParameters, commandType: CommandType.StoredProcedure, commandTimeout: 2000).ToList();
+                    stmt = conn.Query<StatementViewModel>("fl_create_statement2", queryParameters, commandType: CommandType.StoredProcedure, commandTimeout: 2000).ToList();
                 };
 
                 //var result = context.fl_create_statement(policy, sDate, polytpe, workstation, interest.ToString());
@@ -391,12 +391,12 @@ namespace Flex.Controllers
                 string custLoc = query.CustLocation;
 
                 List<rptProduction> prod = new List<rptProduction>();
-
+                context.getproduction();
                 prod = new PaymentSystem(context).RetrieveProduction(agentcode, sdate, eDate,policyno,location,custLoc).Select(x => new rptProduction()
                 {
                     AgentName = x.agentname,
                     Amount = (decimal)x.amount.GetValueOrDefault(),
-                    Date=x.trandate.GetValueOrDefault().ToString("dd/MM/yyyy"),
+                    Date= Convert.ToDateTime(x.trandate_w).ToString("dd/MM/yyyy"),
                     Name=string.Format("{0} {1}",x.surname,x.othername),
                     //PremiumLoan=(decimal)x.loanamt.GetValueOrDefault(),
                     PolicyNo=x.policyno,
@@ -477,14 +477,14 @@ namespace Flex.Controllers
                 string sdate = query.sDate;
                 string eDate = query.eDate;
                 string policyno = query.Policy;
-
+                context.getproduction();
                 var rctList = new PaymentSystem(context).RecieptList(policyno, sdate, eDate).Select(x => new rptRecieptList()
                 {
                     Amount = (decimal)x.amount.GetValueOrDefault(),
                     ChequeNo = x.chequeno,
                     OtherName =x.othername,
                     RecieptNo = x.receiptno,
-                    Date = (DateTime)x.trandate,
+                    Date =Convert.ToDateTime(x.trandate_w).ToString("dd/MM/yyyy"),
                     Surname =x.surname,
                     PolicyNo = x.policyno,
                     Title=x.title,
@@ -1128,5 +1128,6 @@ namespace Flex.Controllers
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, ex.Message);
             }
         }
+
     }
 } 

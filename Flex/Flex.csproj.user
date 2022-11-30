@@ -9,7 +9,7 @@
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_ViewDialogWidth>600</WebStackScaffolding_ViewDialogWidth>
     <ProjectView>ShowAllFiles</ProjectView>
-    <NameOfLastUsedPublishProfile>C:\Users\HP\Desktop\HicadFlexSystem\Flex\Properties\PublishProfiles\FolderProfile7.pubxml</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>C:\Users\Home\source\Repo\HicadFlexSystem\Flex\Properties\PublishProfiles\flex.pubxml</NameOfLastUsedPublishProfile>
     <WebStackScaffolding_DbContextTypeFullName>Flex.Data.Model.FlexEntities</WebStackScaffolding_DbContextTypeFullName>
     <UseIISExpress>true</UseIISExpress>
     <LastActiveSolutionConfig>Debug|Any CPU</LastActiveSolutionConfig>
