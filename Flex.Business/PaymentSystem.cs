@@ -45,7 +45,7 @@ namespace Flex.Business
                     xDateFrom = Convert.ToDateTime(xDateFrom, culInfo).Date;
                     DateTime.TryParse(dateto,out xDateTo);
                     xDateTo = Convert.ToDateTime(xDateTo, culInfo).Date.AddDays(1).AddSeconds(-1);
-                    trans = trans.Where(x => x.trandate>= xDateFrom && x.trandate <= xDateTo);
+                    trans = trans.Where(x => x.trandate_w>= xDateFrom && x.trandate_w <= xDateTo);
                 }
                 if (!string.IsNullOrEmpty(receiptno))
                 {
@@ -93,7 +93,7 @@ namespace Flex.Business
                     xDateFrom = Convert.ToDateTime(xDateFrom, culInfo).Date;
                     DateTime.TryParse(dateto, out xDateTo);
                     xDateTo = Convert.ToDateTime(xDateTo, culInfo).Date.AddDays(1).AddSeconds(-1);
-                    trans = trans.Where(x => x.trandate >= xDateFrom && x.trandate <= xDateTo);
+                    trans = trans.Where(x => x.trandate_w >= xDateFrom && x.trandate_w <= xDateTo);
                 }
                 if (!string.IsNullOrEmpty(receiptno))
                 {
@@ -310,17 +310,36 @@ namespace Flex.Business
 
                 using (var context=_context)
                 {
-                    var query = new CoreSystem<vwPolicyHistory>(context).FindAll(x => x.trandate >= xDatefrom && x.trandate <= xDateto);
+                    //var query = new CoreSystem<vwPolicyHistory>(context).FindAll(x => x.trandate.Value.Date >= xDatefrom.Date && x.trandate.Value.Date <= xDateto.Date);
+
+                    //if (!string.IsNullOrEmpty(policyno))
+                    //{
+                    //    query = query.Where(x => x.policyno == policyno);
+
+                    //}
+                    //rcts = query.ToList();
 
                     if (!string.IsNullOrEmpty(policyno))
                     {
-                        query = query.Where(x => x.policyno == policyno);
+                        IEnumerable<vwPolicyHistory> query = null;
+                        var queryParameters = new DynamicParameters();
+                        queryParameters.Add("@sdate", xDatefrom.ToString("yyyyMMdd"));
+                        queryParameters.Add("@edate", xDateto.ToString("yyyyMMdd"));
+                        queryParameters.Add("@policy", policyno);
+                        queryParameters.Add("@option", option);
+
+                        using (IDbConnection conn = new SqlConnection(_context.Database.Connection.ConnectionString))
+                        {
+                            query = conn.Query<vwPolicyHistory>("sp_getpolicyhistory", queryParameters, commandType: CommandType.StoredProcedure, commandTimeout: 0);
+                        };
+
+                        rcts= query.ToList();
                     }
-                    rcts = query.ToList();
+                    
                 }
                 
 
-                return rcts;
+               return rcts;
             }
             catch (Exception ex)
             {
@@ -341,12 +360,16 @@ namespace Flex.Business
                 xDatefrom = Convert.ToDateTime(xDatefrom, culInfo).Date;
 
                 var xDateto = SqlDateTime.MinValue.Value;
+                var xDatefrom1 = SqlDateTime.MinValue.Value;
                 DateTime.TryParse(dateto, out xDateto);
                 xDateto = Convert.ToDateTime(xDateto, culInfo).Date;
 
                 var xlocation = 0;
                 var xCustLoc = 0;
-                var query = new CoreSystem<vProduction>(_context).FindAll(x => x.trandate >= xDatefrom && x.trandate <= xDateto);
+                var query = new CoreSystem<vProduction>(_context).FindAll(x => x.trandate_w >= xDatefrom
+                && x.trandate_w <= xDateto);
+                int.TryParse(location, out xlocation);
+                var query2 = new CoreSystem<vProduction>(_context).FindAll(x=>x.location==xlocation);
 
                 if (!string.IsNullOrEmpty(agentcode))
                 {
@@ -357,7 +380,7 @@ namespace Flex.Business
                     int.TryParse(location, out xlocation);
                     query = query.Where(x => (int)x.agentLocation == xlocation);
                 }
-                if (!string.IsNullOrEmpty(location))
+                if (!string.IsNullOrEmpty(custLocation))
                 {
                     int.TryParse(custLocation, out xCustLoc);
                     query = query.Where(x => (int)x.location == xCustLoc);
@@ -386,7 +409,7 @@ namespace Flex.Business
                 DateTime.TryParse(dateto, out xDateto);
                 xDateto = Convert.ToDateTime(xDateto, culInfo).Date;
 
-                var query = new CoreSystem<vProduction>(_context).FindAll(x => x.trandate >= xDatefrom && x.trandate <= xDateto);
+                var query = new CoreSystem<vProduction>(_context).FindAll(x => x.trandate_w >= xDatefrom && x.trandate_w <= xDateto);
 
                 if (!string.IsNullOrEmpty(policyno))
                 {
@@ -538,5 +561,37 @@ namespace Flex.Business
                 throw;
             }
         }
+        public string XpaymentUpdate(XpayUpdateModel val)
+        {
+            try
+            {
+                CultureInfo culInfo = CultureInfo.CreateSpecificCulture("en-GB");
+               
+                var queryParameters = new DynamicParameters();
+                queryParameters.Add("@pdate", val.paymentDate);
+                queryParameters.Add("@Tranid", val.transactionId);
+                queryParameters.Add("@Amount", val.amount);
+                queryParameters.Add("@paymentReference", val.paymentReference);
+                queryParameters.Add("@paymentType", val.paymentType);
+                queryParameters.Add("@gatewayResponse", val.gatewayResponse);
+                queryParameters.Add("@status", val.status);
+                queryParameters.Add("@isSuccessful", val.isSuccessful);
+                queryParameters.Add("@policyno", val.policyno); 
+                queryParameters.Add("@poltype", val.poltype); 
+                queryParameters.Add("@initiate", val.initiate);
+
+                using (IDbConnection conn = new SqlConnection(_context.Database.Connection.ConnectionString))
+                {
+                 conn.Execute("xpay_postPayment", queryParameters, commandType: CommandType.StoredProcedure, commandTimeout: 3000);
+                };
+                return "Successfully Updated";
+            }
+            catch (Exception ex)
+            {
+                Logger.InfoFormat("Error occurred. Details {0}", ex.ToString());
+                throw;
+            }
+        }
+
     }
 }

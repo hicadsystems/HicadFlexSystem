@@ -69,6 +69,7 @@ namespace Flex.Business
                 reportDocument = null;
             }
         }
+
         //public rptGratuity GenerateReport(rptGratuity data)
         //{
         //    ReportDocument reportDocument = null;

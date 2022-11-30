@@ -50,6 +50,7 @@ namespace Flex.Business
                 pinfo.signature = personalInfo.signature;
                 pinfo.agentcode = personalInfo.AgentCode;
                 pinfo.TermsAndConditions = personalInfo.TermsAndConditions;
+                pinfo.photopath = personalInfo.photopath;
 
                 var nextkinBen = new List<NextofKinBeneficiaryBindingModel>();
 

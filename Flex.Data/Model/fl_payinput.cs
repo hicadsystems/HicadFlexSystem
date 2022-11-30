@@ -20,9 +20,10 @@ namespace Flex.Data.Model
         public string type { get; set; }
         public string grpcode { get; set; }
         public string pcn { get; set; }
-        public Nullable<bool> reverseind { get; set; }
-        public Nullable<System.DateTime> trandate { get; set; }
-        public System.DateTime effdate { get; set; }
+        public string reverseind { get; set; }
+        public Nullable<System.DateTime> trandate_w { get; set; }
+        public string trandate { get; set; }
+        public string effdate { get; set; }
         public Nullable<decimal> totamt { get; set; }
         public string chequeno { get; set; }
         public string payindicator { get; set; }
@@ -31,5 +32,7 @@ namespace Flex.Data.Model
         public Nullable<System.DateTime> datecreated { get; set; }
         public Nullable<decimal> amount { get; set; }
         public string poltype { get; set; }
+        public Nullable<System.DateTime> effdate_w { get; set; }
+        public Nullable<bool> reverseind_w { get; set; }
     }
 }

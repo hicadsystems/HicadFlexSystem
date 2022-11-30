@@ -49,7 +49,7 @@ namespace Flex.Data.ViewModel
         public byte[] PictureFile { get; set; }
         public byte[] signature { get; set; }
         public Nullable<bool> TermsAndConditions { get; set; }
-        //public string PictureFile { get; set; }
+        public string photopath { get; set; }
         public string GroupCode { get; set; }
         public string Religion { get; set; }
         public string Gender { get; set; }
@@ -89,6 +89,11 @@ namespace Flex.Data.ViewModel
     public class SignUpBindingModel
     {
         public PesonalInfoBindingModel PersonalInfo { get; set; }
+
+    }
+    public class SignUpBindingModel2
+    {
+        public List<PesonalInfoBindingModel> PersonalInfo { get; set; }
 
     }
 
@@ -333,5 +338,22 @@ namespace Flex.Data.ViewModel
         public decimal loanamt { get; set; }
         public string grpname { get; set; }
         public string email { get; set; }
+    }
+    public class XpayUpdateModel
+    {
+        public string initiate { get; set; }
+        public string poltype { get; set; }
+        public string policyno { get; set; }
+        public string amount { get; set; }
+        public string paymentType { get; set; }
+        public string currency { get; set; }
+        public string status { get; set; }
+        public bool isSuccessful { get; set; }
+        public string gatewayResponse { get; set; }
+        public string transactionId { get; set; }
+        public DateTime paymentDate { get; set; }
+        public string paymentReference { get; set; }
+        public int merchantId { get; set; }
+
     }
 }

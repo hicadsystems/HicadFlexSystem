@@ -88,7 +88,7 @@ namespace Flex.Business
                 if (!string.IsNullOrEmpty(location))
                 {
                     //var loc = int.Parse(location);
-                    query = query.Where(x => x.location == location);
+                    query = query.Where(x => x.locdesc == location);
                 }
 
                 var TotalCount = query.Count();
@@ -276,7 +276,7 @@ namespace Flex.Business
         public bool validate(string phone)
         {
             bool isValid = true;
-            var query = FindAll(x=>x.telephone==phone && string.IsNullOrEmpty(x.exitdate));
+            var query = FindAll(x=>x.telephone==phone && x.exitdate==null);
             var pol = query.FirstOrDefault();
             if (pol != null)
             {

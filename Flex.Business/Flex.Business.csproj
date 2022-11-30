@@ -107,6 +107,7 @@
     <Compile Include="UserAuthSystem.cs" />
     <Compile Include="UserSessionSystem.cs" />
     <Compile Include="UtilitySystem.cs" />
+    <Compile Include="XpressPaymentSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Flex.Data\Flex.Data.csproj">

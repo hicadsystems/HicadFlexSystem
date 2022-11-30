@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9cc5010a1d0a491ba9147695976c5a4e" Name="Diagram1" ZoomLevel="83">
+      <Diagram DiagramId="f9828c9d859343c3a0445537848b168e" Name="Diagram1" ZoomLevel="75">
         <EntityTypeShape EntityType="FlexDBModel.ac_costCenter" Width="1.5" PointX="1.5" PointY="11.375" IsExpanded="true" />
         <EntityTypeShape EntityType="FlexDBModel.ac_jvdetails" Width="1.5" PointX="12.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FlexDBModel.ac_jvheader" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="true" />
@@ -19,7 +19,7 @@
         <EntityTypeShape EntityType="FlexDBModel.fl_bank" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FlexDBModel.fl_formfile" Width="1.5" PointX="5.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FlexDBModel.fl_gpayclaim" Width="1.5" PointX="18.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_grouptype" Width="1.5" PointX="5.75" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_grouptype" Width="1.5" PointX="5.75" PointY="21.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FlexDBModel.fl_location" Width="1.5" PointX="13.75" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="FlexDBModel.fl_month" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FlexDBModel.fl_password" Width="1.5" PointX="3.75" PointY="15.375" IsExpanded="true" />
@@ -31,9 +31,9 @@
         <EntityTypeShape EntityType="FlexDBModel.fl_pendingSMS" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FlexDBModel.fl_policyhistory" Width="1.5" PointX="12.75" PointY="20.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FlexDBModel.fl_policyinput" Width="1.5" PointX="16" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_poltype" Width="1.5" PointX="5.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_premrate" Width="1.5" PointX="8" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.fl_premrateRules" Width="1.5" PointX="10.25" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_poltype" Width="1.5" PointX="5.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_premrate" Width="1.5" PointX="8" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.fl_premrateRules" Width="1.5" PointX="10.25" PointY="14" IsExpanded="true" />
         <EntityTypeShape EntityType="FlexDBModel.fl_prgaccess" Width="1.5" PointX="20.75" PointY="18.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FlexDBModel.fl_prgaccessXX" Width="1.5" PointX="2.75" PointY="21.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FlexDBModel.fl_PublicHoliday" Width="1.5" PointX="18.75" PointY="21.75" IsExpanded="true" />
@@ -44,7 +44,7 @@
         <EntityTypeShape EntityType="FlexDBModel.fl_translog" Width="1.5" PointX="22.75" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FlexDBModel.LinkRole" Width="1.5" PointX="11" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FlexDBModel.Module" Width="1.5" PointX="14.75" PointY="22.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FlexDBModel.NextofKin_BeneficiaryStaging" Width="1.5" PointX="10.25" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FlexDBModel.NextofKin_BeneficiaryStaging" Width="1.5" PointX="10.25" PointY="26" IsExpanded="true" />
         <EntityTypeShape EntityType="FlexDBModel.Notification" Width="1.5" PointX="22.75" PointY="17.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FlexDBModel.OnlineReciept" Width="1.5" PointX="22.75" PointY="21.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FlexDBModel.PendingEmail" Width="1.5" PointX="24.75" PointY="0.75" IsExpanded="true" />

@@ -111,6 +111,9 @@
     <Compile Include="Model\fl_bank.cs">
       <DependentUpon>Flexdb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\fl_create_statement_Result.cs">
+      <DependentUpon>Flexdb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\fl_formfile.cs">
       <DependentUpon>Flexdb.tt</DependentUpon>
     </Compile>

@@ -20,6 +20,7 @@ namespace Flex.Data.Model
         public FlexEntities()
             : base("name=FlexEntities")
         {
+            Database.CommandTimeout = 4000;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -189,7 +190,7 @@ namespace Flex.Data.Model
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fl_backupb4_interest");
         }
     
-        public virtual int fl_create_statement(string ipolno, string idate, string ipoltype, string globalstation, string intrate)
+        public virtual ObjectResult<fl_create_statement_Result> fl_create_statement(string ipolno, string idate, string ipoltype, string globalstation, string intrate)
         {
             var ipolnoParameter = ipolno != null ?
                 new ObjectParameter("ipolno", ipolno) :
@@ -211,7 +212,32 @@ namespace Flex.Data.Model
                 new ObjectParameter("intrate", intrate) :
                 new ObjectParameter("intrate", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fl_create_statement", ipolnoParameter, idateParameter, ipoltypeParameter, globalstationParameter, intrateParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<fl_create_statement_Result>("fl_create_statement", ipolnoParameter, idateParameter, ipoltypeParameter, globalstationParameter, intrateParameter);
+        }
+    
+        public virtual int fl_create_statement2(string ipolno, string idate, string ipoltype, string globalstation, string intrate)
+        {
+            var ipolnoParameter = ipolno != null ?
+                new ObjectParameter("ipolno", ipolno) :
+                new ObjectParameter("ipolno", typeof(string));
+    
+            var idateParameter = idate != null ?
+                new ObjectParameter("idate", idate) :
+                new ObjectParameter("idate", typeof(string));
+    
+            var ipoltypeParameter = ipoltype != null ?
+                new ObjectParameter("ipoltype", ipoltype) :
+                new ObjectParameter("ipoltype", typeof(string));
+    
+            var globalstationParameter = globalstation != null ?
+                new ObjectParameter("globalstation", globalstation) :
+                new ObjectParameter("globalstation", typeof(string));
+    
+            var intrateParameter = intrate != null ?
+                new ObjectParameter("intrate", intrate) :
+                new ObjectParameter("intrate", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fl_create_statement2", ipolnoParameter, idateParameter, ipoltypeParameter, globalstationParameter, intrateParameter);
         }
     
         public virtual ObjectResult<fl_generate_serialno_Result> fl_generate_serialno(string poltype)
@@ -475,6 +501,11 @@ namespace Flex.Data.Model
                 new ObjectParameter("msg", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("fl_updgrat_receipt_smsonly", poltypeParameter, guserParameter, receiptParameter, msgParameter);
+        }
+    
+        public virtual int getproduction()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("getproduction");
         }
     
         public virtual ObjectResult<qrystatement_Result> qrystatement(string policyno, string poltype, string month, string year)

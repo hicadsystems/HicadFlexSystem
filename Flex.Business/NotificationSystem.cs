@@ -99,8 +99,9 @@ namespace Flex.Business
                 , polInput.surname, polInput.othername);
             emailBody.Append("Please find details of your ");
             emailBody.AppendFormat("Policy No.: {0} Username: {1} Password: {2} ",
-                polInput.policyno, polInput.policyno, userpwd);
-            emailBody.Append(" Thanks");
+             polInput.policyno, polInput.policyno, userpwd);
+             emailBody.Append("Login with https://apps.nlpc-ng.com/customerportal ");
+             emailBody.Append(" Thanks");
             //var msgDetail = GetMessage(MessageType.PolicyCreation, polType);
             //if (msgDetail != null && msgDetail.Any())
             //{

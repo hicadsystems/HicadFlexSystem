@@ -27,7 +27,8 @@ namespace Flex.Data.Model
         public string agentcode { get; set; }
         public string address { get; set; }
         public long srn { get; set; }
-        public string location { get; set; }
+        public Nullable<int> location { get; set; }
+        public Nullable<int> locationId { get; set; }
         public string locdesc { get; set; }
         public string agentname { get; set; }
         public Nullable<System.DateTime> accdate { get; set; }

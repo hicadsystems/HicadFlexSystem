@@ -583,9 +583,10 @@ warning 6013: The table/view 'FlexDB.dbo.fl_logfile' does not have a primary key
           <Property Name="type" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="grpcode" Type="nvarchar" MaxLength="8" />
           <Property Name="pcn" Type="nvarchar" MaxLength="9" />
-          <Property Name="reverseind" Type="bit" />
-          <Property Name="trandate" Type="datetime2" Precision="7" />
-          <Property Name="effdate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="reverseind" Type="nvarchar" MaxLength="1" />
+          <Property Name="trandate_w" Type="datetime2" Precision="7" />
+          <Property Name="trandate" Type="nvarchar" MaxLength="10" />
+          <Property Name="effdate" Type="nvarchar" MaxLength="8" Nullable="false" />
           <Property Name="totamt" Type="money" />
           <Property Name="chequeno" Type="nvarchar" MaxLength="50" />
           <Property Name="payindicator" Type="nvarchar" MaxLength="1" />
@@ -594,6 +595,8 @@ warning 6013: The table/view 'FlexDB.dbo.fl_logfile' does not have a primary key
           <Property Name="datecreated" Type="datetime2" Precision="7" />
           <Property Name="amount" Type="money" />
           <Property Name="poltype" Type="nvarchar" MaxLength="3" />
+          <Property Name="effdate_w" Type="date" />
+          <Property Name="reverseind_w" Type="bit" />
         </EntityType>
         <EntityType Name="fl_payinput2">
           <Key>
@@ -1154,6 +1157,7 @@ warning 6013: The table/view 'FlexDB.dbo.fl_tempreceiptlist' does not have a pri
           <Property Name="signature" Type="varbinary(max)" />
           <Property Name="agentcode" Type="nvarchar" MaxLength="50" />
           <Property Name="TermsAndConditions" Type="bit" />
+          <Property Name="photopath" Type="nvarchar(max)" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6013: The table/view 'FlexDB.dbo.PolicyNoSerial' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
@@ -1275,13 +1279,14 @@ warning 6002: The table/view 'FlexDB.dbo.vProduction' does not have a primary ke
           <Property Name="receiptno" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="chequeno" Type="nvarchar" MaxLength="50" />
           <Property Name="totamt" Type="money" />
-          <Property Name="trandate" Type="datetime2" Precision="7" />
+          <Property Name="trandate" Type="nvarchar" MaxLength="10" />
           <Property Name="amount" Type="money" />
           <Property Name="surname" Type="nvarchar" MaxLength="30" />
           <Property Name="othername" Type="nvarchar" MaxLength="30" />
           <Property Name="title" Type="nvarchar" MaxLength="10" />
           <Property Name="location" Type="int" />
           <Property Name="agentLocation" Type="int" />
+          <Property Name="trandate_w" Type="datetime2" Precision="7" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'FlexDB.dbo.vwPolicy' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1303,7 +1308,8 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicy' does not have a primary key d
           <Property Name="agentcode" Type="nvarchar" MaxLength="15" />
           <Property Name="address" Type="nvarchar(max)" />
           <Property Name="srn" Type="bigint" Nullable="false" />
-          <Property Name="location" Type="nvarchar" MaxLength="50" />
+          <Property Name="location" Type="int" />
+          <Property Name="locationId" Type="int" />
           <Property Name="locdesc" Type="nvarchar" MaxLength="50" />
           <Property Name="agentname" Type="nvarchar" MaxLength="50" />
           <Property Name="accdate" Type="datetime" />
@@ -1557,6 +1563,13 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <Parameter Name="globalstation" Type="varchar" Mode="In" />
           <Parameter Name="intrate" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="fl_create_statement2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ipolno" Type="varchar" Mode="In" />
+          <Parameter Name="idate" Type="varchar" Mode="In" />
+          <Parameter Name="ipoltype" Type="varchar" Mode="In" />
+          <Parameter Name="globalstation" Type="varchar" Mode="In" />
+          <Parameter Name="intrate" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="fl_generate_serialno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="poltype" Type="nvarchar" Mode="In" />
         </Function>
@@ -1631,6 +1644,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <Parameter Name="receipt" Type="varchar" Mode="In" />
           <Parameter Name="msg" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="getproduction" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="qrystatement" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="policyno" Type="varchar" Mode="In" />
           <Parameter Name="poltype" Type="varchar" Mode="In" />
@@ -1908,7 +1922,8 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
     [vProduction].[othername] AS [othername], 
     [vProduction].[title] AS [title], 
     [vProduction].[location] AS [location], 
-    [vProduction].[agentLocation] AS [agentLocation]
+    [vProduction].[agentLocation] AS [agentLocation], 
+    [vProduction].[trandate_w] AS [trandate_w]
     FROM [dbo].[vProduction] AS [vProduction]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwPolicy" EntityType="Self.vwPolicy" store:Type="Views" store:Schema="dbo">
@@ -1927,6 +1942,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
     [vwPolicy].[address] AS [address], 
     [vwPolicy].[srn] AS [srn], 
     [vwPolicy].[location] AS [location], 
+    [vwPolicy].[locationId] AS [locationId], 
     [vwPolicy].[locdesc] AS [locdesc], 
     [vwPolicy].[agentname] AS [agentname], 
     [vwPolicy].[accdate] AS [accdate], 
@@ -2485,9 +2501,10 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="grpcode" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
           <Property Name="pcn" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
-          <Property Name="reverseind" Type="Boolean" />
-          <Property Name="trandate" Type="DateTime" Precision="7" />
-          <Property Name="effdate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="reverseind" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="trandate_w" Type="DateTime" Precision="7" />
+          <Property Name="trandate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="effdate" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="totamt" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="chequeno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="payindicator" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
@@ -2496,6 +2513,8 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <Property Name="datecreated" Type="DateTime" Precision="7" />
           <Property Name="amount" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="poltype" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="effdate_w" Type="DateTime" Precision="0" />
+          <Property Name="reverseind_w" Type="Boolean" />
         </EntityType>
         <EntityType Name="fl_payinput2">
           <Key>
@@ -2960,6 +2979,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <Property Name="signature" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="agentcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TermsAndConditions" Type="Boolean" />
+          <Property Name="photopath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="fl_poltype" Relationship="Self.FK_PersonalDetailsStaging_fl_poltype" FromRole="PersonalDetailsStaging" ToRole="fl_poltype" />
           <NavigationProperty Name="NextofKin_BeneficiaryStaging" Relationship="Self.FK_NextofKin_BeneficiaryStaging_PersonalDetailsStaging" FromRole="PersonalDetailsStaging" ToRole="NextofKin_BeneficiaryStaging" />
         </EntityType>
@@ -3259,13 +3279,14 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <Property Name="receiptno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="chequeno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="totamt" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="trandate" Type="DateTime" Precision="7" />
+          <Property Name="trandate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="amount" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="surname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="othername" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="title" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="location" Type="Int32" />
           <Property Name="agentLocation" Type="Int32" />
+          <Property Name="trandate_w" Type="DateTime" Precision="7" />
         </EntityType>
         <EntityType Name="vwPolicy">
           <Key>
@@ -3285,7 +3306,8 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <Property Name="agentcode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="srn" Type="Int64" Nullable="false" />
-          <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="location" Type="Int32" />
+          <Property Name="locationId" Type="Int32" />
           <Property Name="locdesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="agentname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="accdate" Type="DateTime" Precision="3" />
@@ -3658,7 +3680,14 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
             <Parameter Name="optintr" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="fl_backupb4_interest" />
-          <FunctionImport Name="fl_create_statement">
+          <FunctionImport Name="fl_create_statement" ReturnType="Collection(FlexDBModel.fl_create_statement_Result)">
+            <Parameter Name="ipolno" Mode="In" Type="String" />
+            <Parameter Name="idate" Mode="In" Type="String" />
+            <Parameter Name="ipoltype" Mode="In" Type="String" />
+            <Parameter Name="globalstation" Mode="In" Type="String" />
+            <Parameter Name="intrate" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fl_create_statement2">
             <Parameter Name="ipolno" Mode="In" Type="String" />
             <Parameter Name="idate" Mode="In" Type="String" />
             <Parameter Name="ipoltype" Mode="In" Type="String" />
@@ -3739,6 +3768,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
             <Parameter Name="receipt" Mode="In" Type="String" />
             <Parameter Name="msg" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="getproduction" />
           <FunctionImport Name="qrystatement" ReturnType="Collection(FlexDBModel.qrystatement_Result)">
             <Parameter Name="policyno" Mode="In" Type="String" />
             <Parameter Name="poltype" Mode="In" Type="String" />
@@ -3753,14 +3783,18 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           </FunctionImport>
           <FunctionImport Name="sp_MaturityReport" ReturnType="Collection(FlexDBModel.sp_MaturityReport_Result)" />
         </EntityContainer>
+        <ComplexType Name="fl_create_statement_Result">
+          <Property Type="String" Name="Column1" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Column2" Nullable="true" MaxLength="8" />
+        </ComplexType>
         <ComplexType Name="fl_generate_serialno_Result">
           <Property Type="String" Name="poltype" Nullable="true" MaxLength="3" />
           <Property Type="Int32" Name="polno" Nullable="true" />
         </ComplexType>
         <ComplexType Name="fl_grat_statement_Result">
           <Property Type="String" Name="title" Nullable="true" MaxLength="10" />
-          <Property Type="String" Name="surname" Nullable="false" MaxLength="30" />
-          <Property Type="String" Name="othername" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="surname" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="othername" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="location" Nullable="true" MaxLength="25" />
           <Property Type="Decimal" Name="gir" Nullable="true" Precision="19" />
           <Property Type="String" Name="grpcode" Nullable="true" MaxLength="20" />
@@ -4307,6 +4341,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
                 <ScalarProperty Name="grpcode" ColumnName="grpcode" />
                 <ScalarProperty Name="pcn" ColumnName="pcn" />
                 <ScalarProperty Name="reverseind" ColumnName="reverseind" />
+                <ScalarProperty Name="trandate_w" ColumnName="trandate_w" />
                 <ScalarProperty Name="trandate" ColumnName="trandate" />
                 <ScalarProperty Name="effdate" ColumnName="effdate" />
                 <ScalarProperty Name="totamt" ColumnName="totamt" />
@@ -4317,6 +4352,8 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
                 <ScalarProperty Name="datecreated" ColumnName="datecreated" />
                 <ScalarProperty Name="amount" ColumnName="amount" />
                 <ScalarProperty Name="poltype" ColumnName="poltype" />
+                <ScalarProperty Name="effdate_w" ColumnName="effdate_w" />
+                <ScalarProperty Name="reverseind_w" ColumnName="reverseind_w" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4785,6 +4822,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
                 <ScalarProperty Name="signature" ColumnName="signature" />
                 <ScalarProperty Name="agentcode" ColumnName="agentcode" />
                 <ScalarProperty Name="TermsAndConditions" ColumnName="TermsAndConditions" />
+                <ScalarProperty Name="photopath" ColumnName="photopath" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -5069,6 +5107,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="location" ColumnName="location" />
                 <ScalarProperty Name="agentLocation" ColumnName="agentLocation" />
+                <ScalarProperty Name="trandate_w" ColumnName="trandate_w" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -5089,6 +5128,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
                 <ScalarProperty Name="address" ColumnName="address" />
                 <ScalarProperty Name="srn" ColumnName="srn" />
                 <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="locationId" ColumnName="locationId" />
                 <ScalarProperty Name="locdesc" ColumnName="locdesc" />
                 <ScalarProperty Name="agentname" ColumnName="agentname" />
                 <ScalarProperty Name="accdate" ColumnName="accdate" />
@@ -5129,7 +5169,15 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <FunctionImportMapping FunctionImportName="fl_annual_interest_calc" FunctionName="FlexDBModel.Store.fl_annual_interest_calc" />
           <FunctionImportMapping FunctionImportName="fl_annual_interest_calcTSP" FunctionName="FlexDBModel.Store.fl_annual_interest_calcTSP" />
           <FunctionImportMapping FunctionImportName="fl_backupb4_interest" FunctionName="FlexDBModel.Store.fl_backupb4_interest" />
-          <FunctionImportMapping FunctionImportName="fl_create_statement" FunctionName="FlexDBModel.Store.fl_create_statement" />
+          <FunctionImportMapping FunctionImportName="fl_create_statement" FunctionName="FlexDBModel.Store.fl_create_statement">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FlexDBModel.fl_create_statement_Result">
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+                <ScalarProperty Name="Column2" ColumnName="Column2" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fl_create_statement2" FunctionName="FlexDBModel.Store.fl_create_statement2" />
           <FunctionImportMapping FunctionImportName="fl_generate_serialno" FunctionName="FlexDBModel.Store.fl_generate_serialno">
             <ResultMapping>
               <ComplexTypeMapping TypeName="FlexDBModel.fl_generate_serialno_Result">
@@ -5210,6 +5258,7 @@ warning 6002: The table/view 'FlexDB.dbo.vwPolicyHistory' does not have a primar
           <FunctionImportMapping FunctionImportName="fl_updgrat_receipt" FunctionName="FlexDBModel.Store.fl_updgrat_receipt" />
           <FunctionImportMapping FunctionImportName="fl_updgrat_receipt_original" FunctionName="FlexDBModel.Store.fl_updgrat_receipt_original" />
           <FunctionImportMapping FunctionImportName="fl_updgrat_receipt_smsonly" FunctionName="FlexDBModel.Store.fl_updgrat_receipt_smsonly" />
+          <FunctionImportMapping FunctionImportName="getproduction" FunctionName="FlexDBModel.Store.getproduction" />
           <FunctionImportMapping FunctionImportName="qrystatement" FunctionName="FlexDBModel.Store.qrystatement">
             <ResultMapping>
               <ComplexTypeMapping TypeName="FlexDBModel.qrystatement_Result">

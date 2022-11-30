@@ -21,12 +21,13 @@ namespace Flex.Data.Model
         public string receiptno { get; set; }
         public string chequeno { get; set; }
         public Nullable<decimal> totamt { get; set; }
-        public Nullable<System.DateTime> trandate { get; set; }
+        public string trandate { get; set; }
         public Nullable<decimal> amount { get; set; }
         public string surname { get; set; }
         public string othername { get; set; }
         public string title { get; set; }
         public Nullable<int> location { get; set; }
         public Nullable<int> agentLocation { get; set; }
+        public Nullable<System.DateTime> trandate_w { get; set; }
     }
 }
